@@ -84,7 +84,19 @@ class HttpClient:
         kwargs.setdefault("timeout", self.timeout)
         resp = self.session.request(method, url, **kwargs)
         resp.raise_for_status()
+        self._fix_encoding(resp)
         return resp
+
+    @staticmethod
+    def _fix_encoding(resp) -> None:
+        """requests falls back to ISO-8859-1 for text/* without a charset, which garbles umlauts
+        (Düsseldorf -> DÃ¼sseldorf). If the server declared no charset, detect it from the content."""
+        try:
+            declared = "charset" in (resp.headers.get("Content-Type", "") or "").lower()
+            if not declared and getattr(resp, "content", None):
+                resp.encoding = resp.apparent_encoding or "utf-8"
+        except (AttributeError, TypeError):
+            pass
 
     def get(self, url: str, **kwargs) -> requests.Response:
         return self.request("GET", url, **kwargs)

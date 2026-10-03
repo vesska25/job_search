@@ -17,7 +17,7 @@ class PersonioScraper(BaseScraper):
         parts = urlsplit(bank.jobs_url)
         base = f"{parts.scheme}://{parts.netloc}"
         resp = self.http.get(base + "/xml", params={"language": bank.options.get("language", "de")})
-        return self.parse(resp.text, bank, base)
+        return self.parse(resp.content, bank, base)  # bytes: the XML declares its own encoding
 
     def parse(self, xml_text: str, bank: Bank, base: str) -> list:
         try:

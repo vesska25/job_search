@@ -36,6 +36,8 @@ def test_credit_suisse_mapped_to_ubs():
 class FakeResp:
     def __init__(self, text="", status=200):
         self.text, self.status_code = text, status
+        self.content = text.encode("utf-8")
+        self.headers = {"Content-Type": "text/html; charset=utf-8"}
 
     def json(self):
         import json
@@ -134,3 +136,23 @@ def test_detail_location_resolved_only_for_filtered_jobs(settings):
     assert [m.title for m in matches] == ["Head of Regulatory Reporting (f/m/d)"]
     assert matches[0].location == "Frankfurt am Main"
     assert len(fetched) == 2          # intern never fetched; Prague job fetched, then rejected by the Germany filter
+
+
+def test_missing_charset_is_detected_not_latin1():
+    """Servers without a charset must not turn 'Düsseldorf' into 'DÃ¼sseldorf'."""
+    import requests
+    from src.utils.http import HttpClient
+    body = "<html><body>Bereichsleiter Finanzen – Düsseldorf, Köln</body></html>".encode("utf-8")
+    resp = requests.Response()
+    resp._content, resp.status_code = body, 200
+    resp.headers["Content-Type"] = "text/html"
+    resp.encoding = "ISO-8859-1"          # what requests assumes without a charset
+    HttpClient._fix_encoding(resp)
+    assert "Düsseldorf" in resp.text and "Köln" in resp.text
+    # a declared charset is left alone
+    resp2 = requests.Response()
+    resp2._content, resp2.status_code = "Düsseldorf".encode("latin-1"), 200
+    resp2.headers["Content-Type"] = "text/html; charset=iso-8859-1"
+    resp2.encoding = "iso-8859-1"
+    HttpClient._fix_encoding(resp2)
+    assert resp2.text == "Düsseldorf"
