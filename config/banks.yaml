@@ -523,11 +523,12 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: Not on the vr.de exchange. The bank page URL comes from a web search result (page not seen); same Atruvia CMS layout
-    as Volksbank Seligenstadt, so the same selector is tried. Unverified until a Verify run.
+  enabled: false
+  verification_status: failed
+  last_verified: '2026-10-03'
+  notes: 'Auto-disabled 2026-10-03: source returned 0 vacancies | Not on the vr.de exchange. The bank page URL comes from
+    a web search result (page not seen); same Atruvia CMS layout as Volksbank Seligenstadt, so the same selector is tried.
+    Unverified until a Verify run.'
   options:
     selectors:
       item: a.internal[href*="/karriere/arbeitgeber-genossenschaftsbank/"]
@@ -1617,8 +1618,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Search URL supplied by the user (SuccessFactors/Jobs2web, locationsearch=frankfurt); the earlier sitemap attempt
     returned no URLs. Unverified until a Verify run.
   options:
@@ -2648,8 +2649,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Greenhouse board of the Raisin group (URL supplied by the user); public JSON API boards-api.greenhouse.io/v1/boards/raisin/jobs
     confirmed by a probe. Group-wide list, so the location filter applies. Unverified until a Verify run.
   options:
