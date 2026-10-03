@@ -19,6 +19,8 @@ import requests
 from src.config import load_banks, load_settings
 from src.utils.http import HttpClient
 
+STR_LIT = re.compile(r"""["'`]((?:https?:)?//[^"'`\s]{6,}|/[A-Za-z0-9_\-./?=&%]{3,})["'`]""")
+KEYWORDS = re.compile(r"api|search|beesite|graphql|\.json|job|vacanc|position|stelle|career", re.I)
 API_HINT = re.compile(r"""["'(]((?:https?:)?//[^"'\s)]+|/[^"'\s)]*)(?:api|graphql|search|jobs|vacanc|positions)[^"'\s)]*["')]""", re.I)
 
 
@@ -53,19 +55,41 @@ def diagnose(url: str, http: HttpClient) -> None:
     print(f"API-looking URLs in page source ({len(hits)}):")
     for h in hits[:40]:
         print("   ", h)
-    for s in re.findall(r"(?i)<script[^>]+src=[\"']([^\"']+)", r.text)[:15]:
-        print("script:", urljoin(url, s))
+    anchors = {}
+    for m in re.finditer(r"""(?is)<a\s[^>]*href=["']([^"']+)["'][^>]*>(.*?)</a>""", r.text):
+        href = urljoin(url, m.group(1))
+        if urlsplit(href).netloc == parts.netloc and not re.search(r"\.(css|js|png|jpg|svg|ico)(\?|$)", href):
+            anchors.setdefault(href, re.sub(r"<[^>]+>|\s+", " ", m.group(2)).strip()[:60])
+    print(f"same-site links ({len(anchors)}), first 40:")
+    for href, text in list(anchors.items())[:40]:
+        print("    ", href, "|", text)
+    scripts = [urljoin(url, x) for x in re.findall(r"(?i)<script[^>]+src=[\"']([^\"']+)", r.text)]
+    own = [x for x in scripts if urlsplit(x).netloc == parts.netloc][:8]
+    print(f"first-party scripts scanned for endpoint strings: {len(own)}")
+    for sc in own:
+        if not http.allowed(sc):
+            print("script skipped by robots.txt:", sc)
+            continue
+        try:
+            js = http.session.get(sc, timeout=http.timeout).text
+        except requests.RequestException as exc:
+            print("script failed:", sc, exc)
+            continue
+        found = sorted({m.group(1) for m in STR_LIT.finditer(js) if KEYWORDS.search(m.group(1))})
+        print(f"  {sc}: {len(found)} candidate strings")
+        for f in found[:30]:
+            print("      ", f)
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--bank")
-    ap.add_argument("--url")
+    ap.add_argument("--url", help="one or more URLs, comma-separated")
     a = ap.parse_args()
     h = load_settings()["http"]
     http = HttpClient(user_agent=h["user_agent"], timeout=h["timeout"], retries=1, min_delay=1, respect_robots=True)
     ids = {x.strip() for x in (a.bank or "").split(",") if x.strip()}
-    urls = [a.url] if a.url else [b.jobs_url for b in load_banks() if b.id in ids and b.jobs_url]
+    urls = [u.strip() for u in a.url.split(",") if u.strip()] if a.url else [b.jobs_url for b in load_banks() if b.id in ids and b.jobs_url]
     if not urls:
         raise SystemExit("Give --url or a --bank id that has a jobs_url")
     for u in urls:

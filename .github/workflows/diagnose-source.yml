@@ -4,8 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       bank:
-        description: "Bank id(s) from banks.yaml, comma-separated (e.g. abn_amro,bnp_paribas,commerzbank,deutsche_bank)"
-        required: true
+        description: "Bank id(s) from banks.yaml, comma-separated (optional if url is given)"
+        required: false
+        default: ""
+      url:
+        description: "Page URL(s), comma-separated (optional if bank is given)"
+        required: false
+        default: ""
 
 jobs:
   diagnose:
@@ -18,4 +23,8 @@ jobs:
           python-version: "3.11"
           cache: pip
       - run: pip install -r requirements.txt
-      - run: python -m tools.diagnose_source --bank "${{ inputs.bank }}"
+      - name: Diagnose
+        env:
+          BANK: ${{ inputs.bank }}
+          URLS: ${{ inputs.url }}
+        run: python -m tools.diagnose_source ${BANK:+--bank "$BANK"} ${URLS:+--url "$URLS"}
