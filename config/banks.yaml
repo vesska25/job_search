@@ -1013,15 +1013,21 @@ banks:
   name: Deutsche Leasing Finance GmbH
   country: Germany
   address_in_source_list: 61352 Bad Homburg v d Höhe
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://jobs.deutsche-leasing.com/
+  source_type: sitemap_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Career portal of Deutsche Leasing (group portal, example vacancy supplied by the user). robots.txt allows all and
+    names sitemap.xml; every vacancy page /offer/<slug>/<uuid> has schema.org JobPosting JSON-LD (confirmed by a probe). The
+    portal covers the Deutsche Leasing group, not only the Finance GmbH. Unverified until a Verify run.
+  options:
+    sitemap_url: https://jobs.deutsche-leasing.com/sitemap.xml
+    url_regex: /offer/[^/]+/[0-9a-f-]{36}$
+    max_pages: 120
 - id: deutsche_oppenheim_family_office
   name: Deutsche Oppenheim Family Office AG
   country: Germany
