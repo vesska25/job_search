@@ -1676,8 +1676,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 57751310, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -1692,8 +1692,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 30150200, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -1708,8 +1708,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 38250110, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -1724,8 +1724,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 50750094, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -1740,8 +1740,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 50852553, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -1756,8 +1756,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 31251220, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -2525,8 +2525,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 55350010, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -2593,8 +2593,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 50650023, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -2727,8 +2727,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 79550000, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -2743,8 +2743,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 50950068, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -2773,8 +2773,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 39550110, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -2789,8 +2789,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 38450000, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -2805,8 +2805,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 33450000, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -2855,8 +2855,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 37551440, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -2872,8 +2872,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 30550000, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -2888,8 +2888,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 51850079, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -2904,8 +2904,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 45451555, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -2920,8 +2920,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 50850150, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -2936,8 +2936,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 30351220, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -2952,8 +2952,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 37551780, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -2968,8 +2968,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 34250000, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -3006,8 +3006,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 31050000, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -3022,8 +3022,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 34050000, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -3051,8 +3051,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 33050000, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -3121,8 +3121,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 50550020, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
