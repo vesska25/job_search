@@ -7,6 +7,10 @@ on:
         description: "Bank id(s) from banks.yaml, comma-separated (optional if url is given)"
         required: false
         default: ""
+      brief:
+        description: "Shorter output (true/false)"
+        required: false
+        default: "false"
       context:
         description: "Characters of context around each pattern match (default 220)"
         required: false
@@ -37,4 +41,5 @@ jobs:
           URLS: ${{ inputs.url }}
           PATTERN: ${{ inputs.pattern }}
           CONTEXT: ${{ inputs.context }}
-        run: python -m tools.diagnose_source ${BANK:+--bank "$BANK"} ${URLS:+--url "$URLS"} ${PATTERN:+--pattern "$PATTERN"} ${CONTEXT:+--context "$CONTEXT"}
+          BRIEF: ${{ inputs.brief }}
+        run: python -m tools.diagnose_source ${BANK:+--bank "$BANK"} ${URLS:+--url "$URLS"} ${PATTERN:+--pattern "$PATTERN"} ${CONTEXT:+--context "$CONTEXT"} $([ "$BRIEF" = "true" ] && echo --brief)

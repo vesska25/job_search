@@ -70,7 +70,7 @@ def grep_js(url: str, http: HttpClient, pattern: str, ctx: int = 220, limit: int
         print("  no matches")
 
 
-def diagnose(url: str, http: HttpClient, pattern: str = DEFAULT_PATTERN, ctx: int = 220) -> None:
+def diagnose(url: str, http: HttpClient, pattern: str = DEFAULT_PATTERN, ctx: int = 220, brief: bool = False) -> None:
     if re.search(r"\.js(\?|$)", urlsplit(url).path + ("?" if "?" in url else "")):
         grep_js(url, http, pattern, ctx)
         return
@@ -119,8 +119,8 @@ def diagnose(url: str, http: HttpClient, pattern: str = DEFAULT_PATTERN, ctx: in
         href = urljoin(url, m.group(1))
         if urlsplit(href).netloc == parts.netloc and not re.search(r"\.(css|js|png|jpg|svg|ico)(\?|$)", href):
             anchors.setdefault(href, re.sub(r"<[^>]+>|\s+", " ", m.group(2)).strip()[:60])
-    print(f"same-site links ({len(anchors)}), first 40:")
-    for href, text in list(anchors.items())[:40]:
+    print(f"same-site links ({len(anchors)}), first {15 if brief else 40}:")
+    for href, text in list(anchors.items())[: 15 if brief else 40]:
         print("    ", href, "|", text)
     scripts = [urljoin(url, x) for x in re.findall(r"(?i)<script[^>]+src=[\"']([^\"']+)", r.text)]
     own = [x for x in scripts if urlsplit(x).netloc == parts.netloc][:8]
@@ -135,6 +135,8 @@ def diagnose(url: str, http: HttpClient, pattern: str = DEFAULT_PATTERN, ctx: in
             print("script failed:", sc, exc)
             continue
         found = sorted({m.group(1) for m in STR_LIT.finditer(js) if KEYWORDS.search(m.group(1))})
+        if brief and not found:
+            continue
         print(f"  {sc}: {len(found)} candidate strings")
         for f in found[:30]:
             print("      ", f)
@@ -150,6 +152,7 @@ def main():
     ap.add_argument("--bank")
     ap.add_argument("--url", help="one or more URLs, comma-separated (a .js URL prints snippets around --pattern)")
     ap.add_argument("--context", type=int, default=220, help="characters of context around each --pattern match")
+    ap.add_argument("--brief", action="store_true", help="shorter output")
     ap.add_argument("--pattern", default=DEFAULT_PATTERN, help="regex searched in .js files")
     a = ap.parse_args()
     h = load_settings()["http"]
@@ -159,7 +162,7 @@ def main():
     if not urls:
         raise SystemExit("Give --url or a --bank id that has a jobs_url")
     for u in urls:
-        diagnose(u, http, a.pattern, a.context)
+        diagnose(u, http, a.pattern, a.context, a.brief)
 
 
 if __name__ == "__main__":
