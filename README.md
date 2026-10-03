@@ -11,17 +11,21 @@ tools/verify_banks.py live verification + ATS discovery
 data/jobs.db          seen-jobs database (committed back by the workflow)
 ```
 
-## Current status (read this first)
+## Current status
 
-The tool was built in a sandbox that **blocked every bank career site and Telegram**, so **no bank source has been
-verified live** and no Telegram message has been sent for real. All parsers are tested only against fixtures
-modeled on each ATS's documented format. Before relying on it:
+Sources are verified live on GitHub Actions (the development sandbox cannot reach bank sites). A bank is marked
+`verification_status: ok` only after the **Verify bank sources** workflow got vacancies (or, for banks flagged
+`allow_empty`, a correctly parsed empty list) from its official career page; failing sources are disabled
+automatically with the reason in `notes`. `docs/bank_coverage.txt` lists every bank of the original list: which are
+monitored, which are duplicates of another entry, and which are not monitored and why (JavaScript-only portals,
+robots.txt forbids automation, no public career page, excluded by the user).
 
-1. Run the **Verify bank sources** workflow (Actions tab) or `python -m tools.verify_banks --apply` locally.
-   It marks a bank `ok` only if its scraper returned jobs, and auto-disables failing ones.
-2. Run it again with *discover* ticked: it probes Personio/SmartRecruiters for banks without a source and stores
-   candidates as notes (never auto-enabled, since a slug may belong to another company).
-3. Banks marked `needs_review` have a known portal but need an adapter configuration (see "Add a bank").
+- Schedule: **Fridays 15:00 UTC** (17:00 Germany in summer time, 16:00 in winter), see `.github/workflows/job-monitor.yml`.
+- Secrets: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` (required); `ANTHROPIC_API_KEY` (optional, only with `llm.enabled`).
+- Delivery check: `python -m src.main --test-telegram` (or the `test_telegram` workflow input) sends a sample digest
+  of stored vacancies and marks nothing as notified.
+- Profile (`config/settings.yaml`): Finance, Risk, Regulatory, Treasury **and Organisation / IT** leadership roles in Germany.
+- Tools (Actions tab): *Verify bank sources*, *Diagnose bank source*, *Probe URL* (grep a page or JSON endpoint).
 
 ## 1. Install locally
 ```bash
@@ -77,7 +81,7 @@ Append to `config/banks.yaml` (unique `id`):
 - id: examplebank
   name: Example Bank AG
   jobs_url: "https://examplebank.jobs.personio.de/"
-  source_type: personio          # personio | smartrecruiters | workday | successfactors | softgarden | beesite | custom_api | custom_html | sparkasse
+  source_type: personio          # personio | smartrecruiters | workday | successfactors | softgarden | beesite | custom_api | custom_html | sparkasse_jobmarket | vr_jobs | sitemap_jobs
   germany_only: true             # true only if the page itself guarantees Germany-only jobs
   enabled: true
   options: {}
@@ -87,6 +91,11 @@ Then `python -m src.main --bank examplebank --dry-run --verbose`, and `python -m
 Adapter options: BeeSite (`source_type: beesite`; used by Commerzbank and Deutsche Bank, `options.api_url`, `language`, `criteria`), Workday `options.applied_facets` (Germany facet id from the site), SuccessFactors
 `options.params`, SmartRecruiters `options.company`, `custom_html` `options.selectors` (`no_link: true` for accordion lists without per-job links) / `link_pattern` /
 `pagination`, `custom_api` `options.api_url/items_path/fields/pagination` (see `src/scrapers/custom_api.py`).
+Shared platforms with their own adapter: `sparkasse_jobmarket` (all Sparkassen via `sparkasse.de/api/job-market`,
+`options.bank_code` = BLZ), `vr_jobs` (Volks- and Raiffeisenbanken via the vr.de exchange sitemap, `options.vr_slug`,
+`allow_empty`), `sitemap_jobs` (sites that list every vacancy in a sitemap: `sitemap_url`, `url_regex`, `skip_slug`,
+`detail`, `max_pages`). `custom_html` selectors also support `title_attr` / `title_strip` (title from a link attribute) and fall back
+to the URL slug when a link has no text.
 If a career page is JavaScript-rendered, find the JSON request in the browser's network tab and use `custom_api`.
 
 ## 10. Add another ATS adapter
