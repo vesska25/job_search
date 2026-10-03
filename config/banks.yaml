@@ -361,8 +361,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Workday site supplied by the user (tenant juliusbaer, site External). Group-wide list, searched for Frankfurt; the
     location filter makes the final Germany check. Unverified until a Verify run.
   options:
@@ -939,8 +939,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Vacancies are on the ANWR GROUP portal (URL supplied by the user), a rexx portal shared by the whole group; only
     links whose slug starts with "DZB-" are taken, so jobs of DZB posted without that prefix are missed. robots.txt of the
     portal only blocks generic HTTP libraries by name; the project uses its own User-Agent. Unverified until a Verify run.
@@ -1469,8 +1469,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: HSBC career portal (Eightfold; URL supplied by the user). Public JSON API /api/apply/v2/jobs with location=Germany
     confirmed by a probe (position names and ids returned); field names location/canonicalPositionUrl follow the Eightfold
     format and are unproven until a Verify run.
@@ -2130,8 +2130,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Mizuho EMEA career site (SuccessFactors / Jobs2web; search URL supplied by the user). Group-wide EMEA list read without
     a location filter, so the monitor location filter makes the Germany check. Unverified until a Verify run.
   options:
@@ -3104,8 +3104,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Own career portal on HRpuls (URL supplied by the user; not on the Sparkassen exchange API, so no BLZ needed). Vacancy
     links job-offer-list/job-detail/<title>-<id>.html are server-rendered; robots.txt allows them. Unverified until a Verify
     run.
@@ -3541,12 +3541,13 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'BNY career site on Oracle Cloud HCM (URL supplied by the user). Public REST list confirmed by a probe: items[0].requisitionList
-    with Id/Title/PostedDate/PrimaryLocation, 20 Germany vacancies (country filter locationId 300000000378221). Vacancy URL
-    pattern assumed from the site layout; unverified until a Verify run.'
+  enabled: false
+  verification_status: failed
+  last_verified: '2026-10-03'
+  notes: 'Auto-disabled 2026-10-03: ScraperError: custom_api: items_path ''items.0.requisitionList'' is not a list | BNY career
+    site on Oracle Cloud HCM (URL supplied by the user). Public REST list confirmed by a probe: items[0].requisitionList with
+    Id/Title/PostedDate/PrimaryLocation, 20 Germany vacancies (country filter locationId 300000000378221). Vacancy URL pattern
+    assumed from the site layout; unverified until a Verify run.'
   options:
     api_url: https://eofe.fa.us2.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions
     params:
