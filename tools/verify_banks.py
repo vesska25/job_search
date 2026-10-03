@@ -122,7 +122,10 @@ def main(argv=None):
     banks = load_banks(path)
     results = candidates = {}
     if args.discover:
-        candidates = discover(banks, http)
+        # Probing mostly hits non-existent hosts: no retries and a short timeout keep the run fast.
+        probe = HttpClient(user_agent=h["user_agent"], timeout=10, retries=0, min_delay=1.0,
+                           respect_robots=h["respect_robots_txt"])
+        candidates = discover(banks, probe)
         log.info("Discovery candidates: %d", len(candidates))
     else:
         todo = [b for b in banks if not b.alias_of and b.jobs_url and (b.enabled or args.all)]
