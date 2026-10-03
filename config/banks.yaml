@@ -98,15 +98,20 @@ banks:
   name: Aareal Bank AG
   country: Germany
   address_in_source_list: 65189 Wiesbaden
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://aareal-bank-group.onlyfy.jobs/
+  source_type: custom_html
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Onlyfy (Prescreen) career site aareal-bank-group.onlyfy.jobs linked from aareal-bank.com; vacancy links /de/job/<id>.
+    Not germany_only: the group has foreign offices, the location filter decides. Run Verify to confirm.'
+  display_name: Aareal Bank
+  options:
+    selectors:
+      item: a[href*="/de/job/"]
 - id: agricultural_bank_of_china_limited_frankfurt_bra
   name: Agricultural Bank of China Limited Frankfurt Branch
   country: Germany
@@ -852,15 +857,18 @@ banks:
   name: DZ BANK AG Deutsche Zentral-Genossenschaftsbank, Frankfurt am Main
   country: Germany
   address_in_source_list: 60325 Frankfurt am Main
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://jobs.dzbank.de/
+  source_type: successfactors
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: SAP SuccessFactors career site jobs.dzbank.de (vacancy URLs /job/<city>-<title>/<id> seen in search results). Run
+    Verify to confirm.
+  display_name: DZ BANK
+  options: {}
 - id: dzb_bank
   name: DZB BANK GmbH
   country: Germany
@@ -2676,15 +2684,20 @@ banks:
   name: Santander Consumer Bank Aktiengesellschaft
   country: Germany
   address_in_source_list: 41061 Mönchengladbach
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://santander.wd3.myworkdayjobs.com/de-DE/SantanderCareers
+  source_type: workday
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Workday career site linked from santander.de/karriere (santander.wd3.myworkdayjobs.com/de-DE/SantanderCareers). The
+    tenant is group-wide, so the search is limited to the bank's seat Mönchengladbach; other German locations of the group
+    would be missed. Run Verify to confirm.
+  display_name: Santander Consumer Bank
+  options:
+    search_text: Mönchengladbach
 - id: skandinaviska_enskilda_banken_ab_publ_frankfurt_
   name: Skandinaviska Enskilda Banken AB (publ) Frankfurt Branch
   country: Germany
