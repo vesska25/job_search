@@ -512,11 +512,12 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: true
-  verification_status: unverified
+  enabled: false
+  verification_status: failed
   last_verified: '2026-10-03'
-  notes: CHECK-IN portal vr.mein-check-in.de/55061303 (URL supplied by the user; 55061303 assumed to be the BLZ of this bank,
-    check the sample titles in the Verify log). Vacancies are a.mainmenu_position_link on the index page. Run Verify to confirm.
+  notes: 'Auto-disabled 2026-10-03: source returned 0 vacancies | CHECK-IN portal vr.mein-check-in.de/55061303 (URL supplied
+    by the user; 55061303 assumed to be the BLZ of this bank, check the sample titles in the Verify log). Vacancies are a.mainmenu_position_link
+    on the index page. Run Verify to confirm.'
   options:
     selectors:
       item: a.mainmenu_position_link
@@ -1239,7 +1240,7 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
+  verification_status: ok
   last_verified: '2026-10-03'
   notes: Own career page (URL from the user); server-rendered tiles with PDF ads (no per-job URL). Run Verify to confirm.
   options:
@@ -2248,11 +2249,11 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: true
-  verification_status: unverified
+  enabled: false
+  verification_status: failed
   last_verified: '2026-10-03'
-  notes: Helix Jobs vacancy list (psdbank-ht.helixjobs.com), URL supplied by the user from the bank's own career page. Run
-    Verify to confirm.
+  notes: 'Auto-disabled 2026-10-03: source returned 0 vacancies | Helix Jobs vacancy list (psdbank-ht.helixjobs.com), URL
+    supplied by the user from the bank''s own career page. Run Verify to confirm.'
   options:
     selectors:
       item: a[href*="/_/jobad?prj="]
@@ -2267,7 +2268,7 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
+  verification_status: ok
   last_verified: '2026-10-03'
   notes: stellen.center career portal (psd-rr.stellen.center), URL supplied by the user; server-rendered list, vacancy links
     look like /<9-char id>/<title-slug>. Run Verify to confirm.
@@ -2284,7 +2285,7 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
+  verification_status: ok
   last_verified: '2026-10-03'
   notes: stellen.center career portal (psd-west.stellen.center), URL supplied by the user; server-rendered list, vacancy links
     look like /<9-char id>/<title-slug>. Run Verify to confirm.
@@ -2301,7 +2302,7 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
+  verification_status: ok
   last_verified: '2026-10-03'
   notes: CHECK-IN portal (vr.mein-check-in.de/pax-bkc), URL supplied by the user; static HTML, vacancies are a.mainmenu_position_link;
     the list carries no location, Cologne-based bank. Run Verify to confirm.
@@ -2414,7 +2415,7 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
+  verification_status: ok
   last_verified: '2026-10-03'
   notes: Own career page (URL from the user); server-rendered, each vacancy is an h2.cms-title with a PDF ad (no per-job URL).
     Run Verify to confirm.
@@ -2776,7 +2777,7 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
+  verification_status: ok
   last_verified: '2026-10-03'
   notes: Helix Jobs vacancy list (sparda-west.helixjobs.com), URL supplied by the user from the bank's own career page. Run
     Verify to confirm.
@@ -3428,7 +3429,7 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
+  verification_status: ok
   last_verified: '2026-10-03'
   notes: Helix Jobs vacancy list (vobadreieich.helixjobs.com), URL supplied by the user from the bank's own career page. Run
     Verify to confirm.
@@ -3517,7 +3518,7 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
+  verification_status: ok
   last_verified: '2026-10-03'
   notes: Helix Jobs vacancy list (vrbank-brs.helixjobs.com), URL supplied by the user from the bank's own career page. Run
     Verify to confirm.
@@ -3778,7 +3779,7 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
+  verification_status: ok
   last_verified: '2026-10-03'
   notes: Own career page (URL from the user); server-rendered, vacancies are links below /karriere/arbeitgeber-genossenschaftsbank/.
     Run Verify to confirm.
