@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       bank:
-        description: "Bank id from banks.yaml (e.g. bnp_paribas, abn_amro)"
+        description: "Bank id(s) from banks.yaml, comma-separated (e.g. abn_amro,bnp_paribas,commerzbank,deutsche_bank)"
         required: true
 
 jobs:

@@ -141,7 +141,7 @@ banks:
   enabled: true
   verification_status: ok
   last_verified: '2026-10-03'
-  notes: URL supplied by user. Personio XML feed (/xml) not yet tested live.
+  notes: URL supplied by user. Personio XML feed verified live 2026-10-03 (returned vacancies).
 - id: alpen_privatbank_zweigniederlassung_deutschland
   name: Alpen Privatbank Aktiengesellschaft, Zweigniederlassung Deutschland
   country: Germany
@@ -341,10 +341,10 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: needs_review
+  verification_status: no_source_found
   last_verified: null
-  notes: 'Discovery candidate (2026-10-03): personio https://julius.jobs.personio.de/ - verify it is this bank, then set source_type/jobs_url/enabled.
-    | No official Germany-specific vacancy source verified'
+  notes: 'No official Germany-specific vacancy source verified. Discovery slug on Personio rejected: generic word, likely
+    a different company.'
 - id: bank_pictet_cie_europe
   name: Bank Pictet & Cie (Europe) AG
   country: Germany
@@ -1146,16 +1146,16 @@ banks:
   name: Frankfurter Bankgesellschaft (Deutschland) AG
   country: Germany
   address_in_source_list: 60311 Frankfurt am Main
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://frankfurter-bankgesellschaft.jobs.personio.de/
+  source_type: personio
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: needs_review
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: 'Discovery candidate (2026-10-03): personio https://frankfurter-bankgesellschaft.jobs.personio.de/ - verify it is
-    this bank, then set source_type/jobs_url/enabled. | No official Germany-specific vacancy source verified'
+  notes: Personio source found by discovery (slug matches company name); identity and feed not yet confirmed. Run Verify to
+    confirm.
 - id: frankfurter_sparkasse
   name: Frankfurter Sparkasse
   country: Germany
@@ -1212,16 +1212,16 @@ banks:
   name: GENO Broker GmbH
   country: Germany
   address_in_source_list: 60325 Frankfurt am Main
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://genobroker.jobs.personio.de/
+  source_type: personio
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: needs_review
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: 'Discovery candidate (2026-10-03): personio https://genobroker.jobs.personio.de/ - verify it is this bank, then set
-    source_type/jobs_url/enabled. | No official Germany-specific vacancy source verified'
+  notes: Personio source found by discovery (slug matches company name); identity and feed not yet confirmed. Run Verify to
+    confirm.
 - id: gladbacher_bank_von_1922
   name: GLADBACHER BANK AG von 1922
   country: Germany
@@ -2053,10 +2053,10 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: needs_review
+  verification_status: no_source_found
   last_verified: null
-  notes: 'Discovery candidate (2026-10-03): personio https://open.jobs.personio.de/ - verify it is this bank, then set source_type/jobs_url/enabled.
-    | No official Germany-specific vacancy source verified'
+  notes: 'No official Germany-specific vacancy source verified. Discovery slug on Personio rejected: generic word, likely
+    a different company.'
 - id: otp_bank_nyrt_niederlassung_deutschland
   name: OTP Bank Nyrt. Niederlassung Deutschland
   country: Germany

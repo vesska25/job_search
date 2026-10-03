@@ -1,6 +1,7 @@
 """Read-only diagnosis of a bank career page, using the same honest User-Agent and robots.txt rules.
 
     python -m tools.diagnose_source --bank abn_amro
+    python -m tools.diagnose_source --bank abn_amro,bnp_paribas,commerzbank
     python -m tools.diagnose_source --url https://example.com/careers
 
 Reports: HTTP status, robots.txt rules for the page, sitemap URLs, JSON-LD JobPosting presence,
@@ -63,7 +64,8 @@ def main():
     a = ap.parse_args()
     h = load_settings()["http"]
     http = HttpClient(user_agent=h["user_agent"], timeout=h["timeout"], retries=1, min_delay=1, respect_robots=True)
-    urls = [a.url] if a.url else [b.jobs_url for b in load_banks() if b.id == a.bank and b.jobs_url]
+    ids = {x.strip() for x in (a.bank or "").split(",") if x.strip()}
+    urls = [a.url] if a.url else [b.jobs_url for b in load_banks() if b.id in ids and b.jobs_url]
     if not urls:
         raise SystemExit("Give --url or a --bank id that has a jobs_url")
     for u in urls:
