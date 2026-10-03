@@ -1385,13 +1385,13 @@ banks:
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'Vacancy page https://www.hauck-aufhaeuser.com/karriere/stellenanzeigen/ (user-supplied) embeds the Guidecom job
-    portal "hal-administration". Guidecom robots.txt explicitly allows /jobportal/*/rss and the list/detail pages. Using the
-    portal RSS feed. Whether location is in the title/description is not yet known: check the verify samples. Not yet confirmed
-    by a full run.'
+  enabled: false
+  verification_status: failed
+  last_verified: '2026-10-03'
+  notes: 'Auto-disabled 2026-10-03: ScraperError: RSS parse error: no element found: line 1, column 0 | Vacancy page https://www.hauck-aufhaeuser.com/karriere/stellenanzeigen/
+    (user-supplied) embeds the Guidecom job portal "hal-administration". Guidecom robots.txt explicitly allows /jobportal/*/rss
+    and the list/detail pages. Using the portal RSS feed. Whether location is in the title/description is not yet known: check
+    the verify samples. Not yet confirmed by a full run.'
   display_name: Hauck Aufhäuser Lampe
   options:
     feed_url: https://jobs.guidecom.de/jobportal/hal-administration/rss
