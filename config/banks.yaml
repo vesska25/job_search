@@ -11,7 +11,8 @@ banks:
   enabled: false
   verification_status: out_of_scope
   last_verified: null
-  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Representative office;
+    unlikely to publish vacancies.
 - id: abn_amro_asset_based_finance_n_v_niederlassung_d
   name: ABN AMRO Asset Based Finance N.V., Niederlassung Deutschland
   country: Germany
@@ -65,8 +66,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Found by a web search and a probe of the page; unverified until a Verify run. Job profile pages listed in the career
     menu (a.ce-menu-subpages__item__title, title attribute).
   options:
@@ -316,7 +317,8 @@ banks:
   enabled: false
   verification_status: out_of_scope
   last_verified: null
-  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Representative office;
+    unlikely to publish vacancies.
 - id: banco_do_brasil_s_a_zweigniederlassung_frankfurt
   name: Banco do Brasil S.A. Zweigniederlassung Frankfurt/Main
   country: Germany
@@ -342,7 +344,8 @@ banks:
   enabled: false
   verification_status: out_of_scope
   last_verified: null
-  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Representative office;
+    unlikely to publish vacancies.
 - id: bank_julius_bar_europe
   name: Bank Julius Bär Europe AG
   country: Germany
@@ -382,7 +385,8 @@ banks:
   enabled: false
   verification_status: out_of_scope
   last_verified: null
-  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Sanctioned institution; irrelevant.
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Sanctioned institution;
+    irrelevant.
 - id: bank_of_america
   name: Bank of America Europe Designated Activity Company Zweigniederlassung Frankfurt am Main
   display_name: Bank of America
@@ -412,10 +416,10 @@ banks:
       size: 100
       max_pages: 25
   enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: Official careers JSON servlet (global list, country filter parameter is ignored by the server), filtered by the
-    item country field. Earlier run failed because of an adapter bug (fixed); awaiting a verified run.
+  verification_status: ok
+  last_verified: '2026-10-03'
+  notes: Official careers JSON servlet (global list, country filter parameter is ignored by the server), filtered by the item
+    country field. Earlier run failed because of an adapter bug (fixed); awaiting a verified run.
 - id: bank_of_communications_co_ltd_frankfurt_branch
   name: Bank of Communications Co., Ltd. Frankfurt branch
   country: Germany
@@ -465,8 +469,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: 'Found by user link and a probe of the page; unverified until a Verify run. rexx portal: vacancy links end in -j<number>.html. '
   options:
     link_pattern: /karriere/[^/?#]+-j\d+\.html$
@@ -519,11 +523,12 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not
-    fetched); unverified until a Verify run. '
+  enabled: false
+  verification_status: failed
+  last_verified: '2026-10-03'
+  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''bensberger-bank-e-g'') |
+    VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not fetched);
+    unverified until a Verify run. '
   options:
     allow_empty: true
 - id: bruhler_bank
@@ -535,11 +540,12 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not
-    fetched); unverified until a Verify run. '
+  enabled: false
+  verification_status: failed
+  last_verified: '2026-10-03'
+  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''bruehler-bank-eg'') | VR
+    job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not fetched);
+    unverified until a Verify run. '
   options:
     allow_empty: true
 - id: budenheimer_volksbank
@@ -672,8 +678,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Found by a web search (agent report, page itself not fetched); unverified until a Verify run. CHECK-IN portal; same
     selector as the verified Check-In banks.
   options:
@@ -1085,8 +1091,8 @@ banks:
   enabled: false
   verification_status: out_of_scope
   last_verified: null
-  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Emporiki was integrated into Alpha Bank (2013); status of this
-    German entity not verified.
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Emporiki was integrated
+    into Alpha Bank (2013); status of this German entity not verified.
 - id: erste_abwicklungsanstalt
   name: Erste Abwicklungsanstalt
   country: Germany
@@ -1099,8 +1105,8 @@ banks:
   enabled: false
   verification_status: out_of_scope
   last_verified: null
-  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Resolution agency (winding-down institution); likely no regular
-    vacancies.
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Resolution agency (winding-down
+    institution); likely no regular vacancies.
 - id: essence_international_financial_holdings_ltd_fra
   name: Essence International Financial Holdings Ltd. - Frankfurt Repräsentanz
   country: Germany
@@ -1373,8 +1379,8 @@ banks:
   enabled: false
   verification_status: out_of_scope
   last_verified: null
-  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Housing cooperative, not a bank; likely irrelevant for this
-    profile.
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Housing cooperative,
+    not a bank; likely irrelevant for this profile.
 - id: goldman_sachs
   name: Goldman Sachs Bank Europe SE
   display_name: Goldman Sachs
@@ -1501,11 +1507,12 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not
-    fetched); unverified until a Verify run. '
+  enabled: false
+  verification_status: failed
+  last_verified: '2026-10-03'
+  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''huettenberger-bank-eg'')
+    | VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not fetched);
+    unverified until a Verify run. '
   options:
     allow_empty: true
 - id: icici_bank_uk_plc_germany_branch
@@ -1608,11 +1615,11 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: Found by a web search and a probe of the page; unverified until a Verify run. Jobs2web sitemap, German cities only
-    (URL starts with the city).
+  enabled: false
+  verification_status: failed
+  last_verified: '2026-10-03'
+  notes: 'Auto-disabled 2026-10-03: ScraperError: sitemap lists no URLs (layout change or blocked?) | Found by a web search
+    and a probe of the page; unverified until a Verify run. Jobs2web sitemap, German cities only (URL starts with the city).'
   options:
     sitemap_url: https://jobs.intesasanpaolo.com/sitemap.xml
     url_regex: /job/(Frankfurt|Duesseldorf|Dusseldorf)-
@@ -1879,11 +1886,12 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not
-    fetched); unverified until a Verify run. '
+  enabled: false
+  verification_status: failed
+  last_verified: '2026-10-03'
+  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''landbank-horlofftal-eingetragene-genossenschaft'')
+    | VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not fetched);
+    unverified until a Verify run. '
   options:
     allow_empty: true
 - id: helaba
@@ -2436,8 +2444,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Found by a web search and a probe of the page; unverified until a Verify run. Vacancy links a.job-entry__link (title
     taken from the URL slug).
   options:
@@ -2592,8 +2600,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: 'VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not
     fetched); unverified until a Verify run. '
   options:
@@ -2638,11 +2646,12 @@ banks:
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: Found by a web search (agent report, page itself not fetched); unverified until a Verify run. Personio feed of the
-    Raisin group; location filter applies.
+  enabled: false
+  verification_status: failed
+  last_verified: '2026-10-03'
+  notes: 'Auto-disabled 2026-10-03: RobotsDisallowed: robots.txt disallows or could not be checked for https://raisin.jobs.personio.de/xml
+    | Found by a web search (agent report, page itself not fetched); unverified until a Verify run. Personio feed of the Raisin
+    group; location filter applies.'
 - id: reisebank
   name: ReiseBank Aktiengesellschaft
   country: Germany
@@ -2822,8 +2831,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: 'Found by user link and a probe of the page; unverified until a Verify run. rexx portal: vacancy links end in -j<number>.html.
     Same platform as Bank11; table was empty in the probe, so unproven.'
   options:
@@ -3216,11 +3225,11 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: Sparkassen job exchange; bankCode 34051570 taken from the exchange URL found by a web search; unverified until a
-    Verify run.
+  enabled: false
+  verification_status: failed
+  last_verified: '2026-10-03'
+  notes: 'Auto-disabled 2026-10-03: source returned 0 vacancies | Sparkassen job exchange; bankCode 34051570 taken from the
+    exchange URL found by a web search; unverified until a Verify run.'
   options:
     bank_code: '34051570'
 - id: stadtsparkasse_wuppertal
@@ -3250,13 +3259,13 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'Official Jobs2web sitemap (the /search and /go pages render the list with JavaScript). Vacancy URLs start with the
-    city, so only German cities are fetched; unverified until a run.'
+  verification_status: ok
+  last_verified: '2026-10-03'
+  notes: Official Jobs2web sitemap (the /search and /go pages render the list with JavaScript). Vacancy URLs start with the
+    city, so only German cities are fetched; unverified until a run.
   options:
     sitemap_url: https://jobs.standardchartered.com/sitemap.xml
-    url_regex: '/job/(Frankfurt|Duesseldorf|Dusseldorf|Munich|Muenchen|Hamburg|Berlin|Stuttgart|Cologne|Koeln|Eschborn|Bonn)-'
+    url_regex: /job/(Frankfurt|Duesseldorf|Dusseldorf|Munich|Muenchen|Hamburg|Berlin|Stuttgart|Cologne|Koeln|Eschborn|Bonn)-
     max_pages: 80
 - id: state_bank_of_india_indische_staatsbank_zweignie
   name: State Bank of India (Indische Staatsbank) Zweigniederlassung Frankfurt am Main
@@ -3384,8 +3393,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Found by a web search and a probe of the page; unverified until a Verify run. Jobs2web category page, links a.jobTitle-link
     (first page only).
   options:
@@ -3476,7 +3485,8 @@ banks:
   enabled: false
   verification_status: out_of_scope
   last_verified: null
-  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Representative office;
+    unlikely to publish vacancies.
 - id: triodos_bank_n_v_deutschland
   name: Triodos Bank N.V. Deutschland
   country: Germany
@@ -3502,7 +3512,8 @@ banks:
   enabled: false
   verification_status: out_of_scope
   last_verified: null
-  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Representative office;
+    unlikely to publish vacancies.
 - id: ubs_europe
   name: UBS Europe SE
   display_name: UBS
@@ -3516,7 +3527,8 @@ banks:
   enabled: false
   verification_status: js_list
   last_verified: null
-  notes: "Not monitored (checked 2026-10-03): Brassring TGnewUI portal; the vacancy list and detail pages are rendered by JavaScript with a session token (no JSON-LD, no sitemap, robots.txt 404). Needs a browser-based or API integration."
+  notes: 'Not monitored (checked 2026-10-03): Brassring TGnewUI portal; the vacancy list and detail pages are rendered by
+    JavaScript with a session token (no JSON-LD, no sitemap, robots.txt 404). Needs a browser-based or API integration.'
 - id: volksbank_seligenstadt_eg
   name: VOLKSBANK SELIGENSTADT EG
   country: Germany
@@ -3597,8 +3609,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: 'VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not
     fetched); unverified until a Verify run. '
   options:
@@ -3614,8 +3626,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: 'VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not
     fetched); unverified until a Verify run. '
   options:
@@ -3690,8 +3702,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: 'VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not
     fetched); unverified until a Verify run. '
   options:
@@ -3707,8 +3719,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Found by a web search (agent report, page itself not fetched); unverified until a Verify run. Personio feed of the
     Frankfurt branch.
 - id: vnesheconombank_bank_fur_entwicklung_und_auenwir
@@ -3723,7 +3735,8 @@ banks:
   enabled: false
   verification_status: out_of_scope
   last_verified: null
-  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Representative office;
+    unlikely to publish vacancies.
 - id: volks_bau_und_sparverein_frankfurt_am_main_einge
   name: Volks- Bau- und Sparverein Frankfurt am Main eingetragene Genossenschaft
   country: Germany
@@ -4121,8 +4134,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Found by a web search / user link and a probe of the page; unverified until a Verify run. Job cards a.job-list-item,
     title read from the title attribute.
   options:
