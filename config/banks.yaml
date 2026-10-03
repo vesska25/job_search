@@ -104,8 +104,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: 'Onlyfy (Prescreen) career site aareal-bank-group.onlyfy.jobs linked from aareal-bank.com; vacancy links /de/job/<id>.
     Not germany_only: the group has foreign offices, the location filter decides. Run Verify to confirm.'
   display_name: Aareal Bank
@@ -518,12 +518,12 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
+  verification_status: ok
   last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: source returned 0 vacancies | CHECK-IN portal vr.mein-check-in.de/55061303 (URL supplied
-    by the user; 55061303 assumed to be the BLZ of this bank, check the sample titles in the Verify log). Vacancies are a.mainmenu_position_link
-    on the index page. Run Verify to confirm. | Checked 2026-10-03: the page loads but lists no vacancies at the moment, so
-    the selectors are unproven for this bank; same platform and selectors are verified on other banks. Kept enabled with allow_empty.'
+  notes: 'CHECK-IN portal vr.mein-check-in.de/55061303 (URL supplied by the user; 55061303 assumed to be the BLZ of this bank,
+    check the sample titles in the Verify log). Vacancies are a.mainmenu_position_link on the index page. Run Verify to confirm.
+    | Checked 2026-10-03: the page loads but lists no vacancies at the moment, so the selectors are unproven for this bank;
+    same platform and selectors are verified on other banks. Kept enabled with allow_empty.'
   options:
     selectors:
       item: a.mainmenu_position_link
@@ -863,8 +863,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: SAP SuccessFactors career site jobs.dzbank.de (vacancy URLs /job/<city>-<title>/<id> seen in search results). Run
     Verify to confirm.
   display_name: DZ BANK
@@ -2260,12 +2260,11 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
+  verification_status: ok
   last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: source returned 0 vacancies | Helix Jobs vacancy list (psdbank-ht.helixjobs.com), URL
-    supplied by the user from the bank''s own career page. Run Verify to confirm. | Checked 2026-10-03: the page loads but
-    lists no vacancies at the moment, so the selectors are unproven for this bank; same platform and selectors are verified
-    on other banks. Kept enabled with allow_empty.'
+  notes: 'Helix Jobs vacancy list (psdbank-ht.helixjobs.com), URL supplied by the user from the bank''s own career page. Run
+    Verify to confirm. | Checked 2026-10-03: the page loads but lists no vacancies at the moment, so the selectors are unproven
+    for this bank; same platform and selectors are verified on other banks. Kept enabled with allow_empty.'
   options:
     selectors:
       item: a[href*="/_/jobad?prj="]
@@ -2690,8 +2689,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Workday career site linked from santander.de/karriere (santander.wd3.myworkdayjobs.com/de-DE/SantanderCareers). The
     tenant is group-wide, so the search is limited to the bank's seat Mönchengladbach; other German locations of the group
     would be missed. Run Verify to confirm.
