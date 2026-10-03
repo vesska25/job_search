@@ -151,15 +151,20 @@ banks:
   name: Alpen Privatbank Aktiengesellschaft, Zweigniederlassung Deutschland
   country: Germany
   address_in_source_list: 40213 Düsseldorf
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.alpenprivatbank.com/karriere
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Career page supplied by the user; vacancy links /karriere/<title>-m/w/d-standort-<city> (Düsseldorf), confirmed by
+    a probe. Title falls back to the URL slug when the link has no text. Unverified until a Verify run.
+  options:
+    selectors:
+      item: a[href*="-m/w/d"]
+    accept_unknown_location: true
 - id: arab_banking_corp
   name: Arab Banking Corporation SA, Zweigniederlassung Frankfurt
   display_name: Arab Banking Corporation
