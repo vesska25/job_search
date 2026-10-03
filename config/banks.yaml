@@ -518,19 +518,20 @@ banks:
   name: Bensberger Bank e.G.
   country: Germany
   address_in_source_list: 51429 Bergisch Gladbach
-  jobs_url: https://www.vr.de/karriere/jobs.html
-  source_type: vr_jobs
+  jobs_url: https://www.bensbergerbank.de/meine-bank/karriere/arbeitgeber-genossenschaftsbank.html
+  source_type: custom_html
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: failed
-  last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''bensberger-bank-e-g'') |
-    VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not fetched);
-    unverified until a Verify run. '
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: Not on the vr.de exchange. The bank page URL comes from a web search result (page not seen); same Atruvia CMS layout
+    as Volksbank Seligenstadt, so the same selector is tried. Unverified until a Verify run.
   options:
-    allow_empty: true
+    selectors:
+      item: a.internal[href*="/karriere/arbeitgeber-genossenschaftsbank/"]
+    accept_unknown_location: true
 - id: bruhler_bank
   name: Brühler Bank eG
   country: Germany
