@@ -48,7 +48,7 @@ class CustomApiScraper(BaseScraper):
             if not pg or not new:
                 break
             pos += size if pg.get("type") != "page" else 1
-            total = dig(data, pg.get("total_path", ""), None)
+            total = dig(data, pg["total_path"], None) if pg.get("total_path") else None
             if total is not None and len(jobs) >= int(total):
                 break
         return jobs

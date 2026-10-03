@@ -78,6 +78,23 @@ def test_custom_api(bank):
         CustomApiScraper(None).parse(fixture_json("custom_api.json"), bank)
 
 
+def test_custom_api_offset_pagination_without_total_path(bank):
+    pages = {0: [{"t": "A", "i": "1", "u": "/a"}, {"t": "B", "i": "2", "u": "/b"}], 2: [{"t": "C", "i": "3", "u": "/c"}], 4: []}
+
+    class Http:
+        def request(self, method, url, params=None, **kw):
+            class R:
+                def json(_):
+                    return {"jobsList": pages[params["start"]]}
+            return R()
+
+    bank.options = {"api_url": "https://x/api", "items_path": "jobsList",
+                    "fields": {"title": "t", "id": "i", "url": "u"},
+                    "pagination": {"type": "offset", "param": "start", "size_param": "rows", "size": 2, "max_pages": 5}}
+    jobs = CustomApiScraper(Http()).fetch_jobs(bank)
+    assert [j.title for j in jobs] == ["A", "B", "C"]
+
+
 def test_generic_html_jsonld(bank):
     jobs = GenericHtmlScraper(None).parse(fixture_text("jsonld.html"), bank)
     assert len(jobs) == 1

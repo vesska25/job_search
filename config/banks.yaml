@@ -406,12 +406,11 @@ banks:
       size_param: rows
       size: 100
       max_pages: 25
-  enabled: false
-  verification_status: failed
-  last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: TypeError: int() argument must be a string, a bytes-like object or a real number, not
-    ''dict'' | Official careers JSON servlet (global list, country filter parameter is ignored by the server), filtered by
-    the item country field. Not yet verified by a run.'
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: Official careers JSON servlet (global list, country filter parameter is ignored by the server), filtered by the
+    item country field. Earlier run failed because of an adapter bug (fixed); awaiting a verified run.
 - id: bank_of_communications_co_ltd_frankfurt_branch
   name: Bank of Communications Co., Ltd. Frankfurt branch
   country: Germany
