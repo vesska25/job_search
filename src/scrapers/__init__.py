@@ -4,6 +4,7 @@ from src.scrapers.beesite import BeeSiteScraper
 from src.scrapers.custom_api import CustomApiScraper
 from src.scrapers.generic_html import GenericHtmlScraper
 from src.scrapers.personio import PersonioScraper
+from src.scrapers.rss import RssScraper
 from src.scrapers.smartrecruiters import SmartRecruitersScraper
 from src.scrapers.softgarden import SoftgardenScraper
 from src.scrapers.sparkasse import SparkasseScraper
@@ -18,6 +19,7 @@ SCRAPERS = {
     "softgarden": SoftgardenScraper,
     "custom_api": CustomApiScraper,
     "beesite": BeeSiteScraper,
+    "rss": RssScraper,
     "custom_html": GenericHtmlScraper,
     "sparkasse": SparkasseScraper,
 }

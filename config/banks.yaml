@@ -1380,17 +1380,22 @@ banks:
   name: Hauck Aufhäuser Lampe Privatbank AG
   country: Germany
   address_in_source_list: 60311 Frankfurt am Main
-  jobs_url: https://www.hal-privatbank.com/karriere/job-finden
-  source_type: unknown
+  jobs_url: https://jobs.guidecom.de/jobportal/hal-administration/rss
+  source_type: rss
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: needs_review
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: Job page https://www.hal-privatbank.com/karriere/job-finden (also hauck-aufhaeuser.com/en/careers/vacancies/). On
-    2026-10-03 the site answered 503 even for robots.txt, so it is skipped (cannot confirm robots.txt). Retry later.
+  notes: 'Vacancy page https://www.hauck-aufhaeuser.com/karriere/stellenanzeigen/ (user-supplied) embeds the Guidecom job
+    portal "hal-administration". Guidecom robots.txt explicitly allows /jobportal/*/rss and the list/detail pages. Using the
+    portal RSS feed. Whether location is in the title/description is not yet known: check the verify samples. Not yet confirmed
+    by a full run.'
   display_name: Hauck Aufhäuser Lampe
+  options:
+    feed_url: https://jobs.guidecom.de/jobportal/hal-administration/rss
+    location_regex: \(([^()]+)\)\s*$
 - id: honda_bank
   name: Honda Bank GmbH
   country: Germany

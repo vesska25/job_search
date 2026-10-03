@@ -3,13 +3,13 @@ from __future__ import annotations
 
 import time
 from urllib.parse import urlsplit
-from urllib.robotparser import RobotFileParser
 
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
 from src.utils.logging import get_logger
+from src.utils.robots import RobotsRules
 
 log = get_logger("http")
 
@@ -36,7 +36,7 @@ class HttpClient:
             self.session.mount("https://", adapter)
             self.session.mount("http://", adapter)
         self._last_request: dict[str, float] = {}
-        self._robots: dict[str, RobotFileParser | None] = {}
+        self._robots: dict[str, RobotsRules | None] = {}
 
     # -- robots ---------------------------------------------------------------
     def _robots_for(self, url: str):
@@ -44,30 +44,26 @@ class HttpClient:
         origin = f"{parts.scheme}://{parts.netloc}"
         if origin in self._robots:
             return self._robots[origin]
-        rp = RobotFileParser()
-        parser = None
         try:
             resp = self.session.get(origin + "/robots.txt", timeout=self.timeout)
             if resp.status_code == 200:
-                rp.parse(resp.text.splitlines())
-                parser = rp
+                self._fix_encoding(resp)
+                rules = RobotsRules(resp.text, self.user_agent)
             elif 400 <= resp.status_code < 500:
-                parser = None  # no robots.txt -> everything allowed
+                rules = None                      # no robots.txt -> everything allowed
             else:
-                rp.disallow_all = True  # server error: be conservative
-                parser = rp
+                rules = RobotsRules(disallow_all=True)   # server error: be conservative
         except requests.RequestException as exc:
             log.warning("robots.txt unreachable for %s (%s); being conservative", origin, exc)
-            rp.disallow_all = True
-            parser = rp
-        self._robots[origin] = parser
-        return parser
+            rules = RobotsRules(disallow_all=True)
+        self._robots[origin] = rules
+        return rules
 
     def allowed(self, url: str) -> bool:
         if not self.respect_robots:
             return True
-        parser = self._robots_for(url)
-        return True if parser is None else parser.can_fetch(self.user_agent, url)
+        rules = self._robots_for(url)
+        return True if rules is None else rules.allowed(url)
 
     # -- requests -------------------------------------------------------------
     def _throttle(self, url: str) -> None:

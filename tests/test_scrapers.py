@@ -210,3 +210,14 @@ def test_successfactors_empty_second_page_is_end_of_list(bank):
     bank.jobs_url = "https://karriere.nrwbank.de/"
     jobs = SuccessFactorsScraper(Http()).fetch_jobs(bank)
     assert len(jobs) == 2          # page 1 results survive the unrecognised page 2
+
+
+def test_rss_feed(bank):
+    from src.scrapers.rss import RssScraper
+    bank.options = {"location_regex": r"\(([^()]+)\)\s*$"}
+    jobs = RssScraper(None).parse(fixture_text("jobs_feed.xml").encode("utf-8"), bank)
+    assert [j.source_job_id for j in jobs] == ["2026-014", "2026-015"]      # item without title skipped
+    assert jobs[0].location == "Frankfurt am Main" and jobs[1].location == "Luxemburg"
+    assert jobs[0].published_date == "2026-09-29" and "disziplinarische" in jobs[0].description
+    with pytest.raises(ScraperError):
+        RssScraper(None).parse(b"<html><body>blocked</body></html>", bank)
