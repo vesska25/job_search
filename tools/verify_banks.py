@@ -33,7 +33,7 @@ def verify(banks, http, max_pages):
     for b in banks:
         try:
             jobs = get_scraper(b.source_type, http, max_pages=b.options.get("max_pages", max_pages)).fetch_jobs(b)
-            status = "ok" if jobs else "empty"
+            status = "ok" if jobs or b.options.get("allow_empty") else "empty"
             results[b.id] = (status, len(jobs), "")
             for j in jobs[:3]:
                 log.info("    sample: %s | %s | %s", j.title[:70], j.location or "-", j.url[:90])

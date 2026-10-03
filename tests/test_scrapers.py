@@ -104,7 +104,7 @@ def test_tiny_page_raises(bank):
 
 def test_registry_covers_all_types():
     for t in ("personio", "workday", "successfactors", "smartrecruiters", "softgarden", "custom_api",
-              "custom_html", "sparkasse", "proprietary", "beesite", "sparkasse_jobmarket"):
+              "custom_html", "sparkasse", "proprietary", "beesite", "sparkasse_jobmarket", "vr_jobs"):
         assert t in SCRAPERS
     with pytest.raises(ScraperError):
         get_scraper("unknown", None)
@@ -282,3 +282,51 @@ def test_sparkasse_jobmarket_pagination(bank):
 
     jobs = SparkasseJobMarketScraper(Http()).fetch_jobs(bank)
     assert len(jobs) == 3 and [c["offset"] for c in calls] == [0, 2] and calls[0]["bankCode"] == "1"
+
+
+VR_SITEMAP = """<urlset>
+<url><loc>https://www.vr.de/karriere/jobs/leiter-rechnungswesen-m-w-d-wiesbadener-volksbank-eg-abc123.html</loc></url>
+<url><loc>https://www.vr.de/karriere/jobs/initiativbewerbung-wiesbadener-volksbank-eg-zzz999.html</loc></url>
+<url><loc>https://www.vr.de/karriere/jobs/berater-m-w-d-volksbank-eg-qqq111.html</loc></url>
+<url><loc>https://www.vr.de/karriere/jobs/referent-m-w-d-sparda-bank-nuernberg-eg-nnn222.html</loc></url>
+</urlset>"""
+VR_PAGE = """<html><body><script type="application/ld+json">{"@type":"JobPosting","title":"Leiter Rechnungswesen (m/w/d)",
+"datePosted":"2026-06-22T07:10:10.799Z","jobLocation":{"address":{"addressLocality":"Wiesbaden","addressCountry":"DE"}},
+"url":"https://www.vr.de/karriere/jobs/leiter-rechnungswesen-m-w-d-wiesbadener-volksbank-eg-abc123.html"}</script></body></html>"""
+
+
+def _vr_http(pages):
+    class R:
+        def __init__(self, text):
+            self.text = text
+
+    class Http:
+        calls = []
+
+        def get(self, url, **kw):
+            self.calls.append(url)
+            return R(pages[url])
+    return Http()
+
+
+def test_vr_jobs_matches_bank_by_slug_and_reads_jsonld(bank):
+    from src.scrapers.vr_jobs import SITEMAP_URL, VrJobsScraper
+    VrJobsScraper._sitemap_cache.clear()
+    bank.name, bank.options = "Wiesbadener Volksbank eG", {}
+    detail = "https://www.vr.de/karriere/jobs/leiter-rechnungswesen-m-w-d-wiesbadener-volksbank-eg-abc123.html"
+    http = _vr_http({SITEMAP_URL: VR_SITEMAP, detail: VR_PAGE})
+    jobs = VrJobsScraper(http).fetch_jobs(bank)
+    assert [(j.title, j.location, j.source_job_id) for j in jobs] == [("Leiter Rechnungswesen (m/w/d)", "Wiesbaden", "abc123")]
+    assert http.calls == [SITEMAP_URL, detail]          # initiativbewerbung page and other banks never fetched
+
+
+def test_vr_jobs_unknown_bank_is_an_error_but_bank_without_vacancies_is_not(bank):
+    from src.scrapers.vr_jobs import SITEMAP_URL, VrJobsScraper
+    VrJobsScraper._sitemap_cache.clear()
+    http = _vr_http({SITEMAP_URL: VR_SITEMAP})
+    bank.name, bank.options = "Gibt Es Nicht eG", {}
+    with pytest.raises(ScraperError):
+        VrJobsScraper(http).fetch_jobs(bank)
+    bank.options = {"vr_slug": "sparda-bank-nuernberg-eg"}      # only an explicit slug override; one referent page, no JSON-LD
+    http2 = _vr_http({SITEMAP_URL: VR_SITEMAP, "https://www.vr.de/karriere/jobs/referent-m-w-d-sparda-bank-nuernberg-eg-nnn222.html": "<html></html>"})
+    assert VrJobsScraper(http2).fetch_jobs(bank) == []

@@ -507,15 +507,18 @@ banks:
   name: Budenheimer Volksbank eG
   country: Germany
   address_in_source_list: 55257 Budenheim b Mainz
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: burgschaftsbank_hessen
   name: Bürgschaftsbank Hessen GmbH
   country: Germany
@@ -1228,15 +1231,18 @@ banks:
   name: Freikirchen.Bank eG
   country: Germany
   address_in_source_list: 61350 Bad Homburg v d Höhe
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: gefa_bank
   name: GEFA BANK GmbH
   country: Germany
@@ -2233,54 +2239,66 @@ banks:
   name: PSD Bank Hessen-Thüringen eG
   country: Germany
   address_in_source_list: 65760 Eschborn, Taunus
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: psd_bank_rhein_ruhr
   name: PSD Bank Rhein-Ruhr eG
   country: Germany
   address_in_source_list: 40210 Düsseldorf
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: psd_bank_west
   name: PSD Bank West eG
   country: Germany
   address_in_source_list: 50667 Köln
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: pax_bank
   name: Pax-Bank eG
   country: Germany
   address_in_source_list: 50670 Köln
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: peoples_bank_of_china_reprasentanz
   name: People’s Bank of China Repräsentanz
   country: Germany
@@ -2350,93 +2368,114 @@ banks:
   name: Raiffeisenbank Frechen-Hürth eG
   country: Germany
   address_in_source_list: 50354 Hürth, Rheinl
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: raiffeisenbank_gravenwiesbach
   name: Raiffeisenbank Grävenwiesbach eG
   country: Germany
   address_in_source_list: 61279 Grävenwiesbach
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: raiffeisenbank_gymnich
   name: Raiffeisenbank Gymnich eG
   country: Germany
   address_in_source_list: 50374 Erftstadt
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: raiffeisenbank_kaarst
   name: Raiffeisenbank Kaarst eG
   country: Germany
   address_in_source_list: 41564 Kaarst
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: raiffeisenbank_neustadt
   name: Raiffeisenbank Neustadt eG
   country: Germany
   address_in_source_list: 53577 Neustadt (Wied)
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: raiffeisenbank_nordliche_bergstrae
   name: Raiffeisenbank Nördliche Bergstraße eG
   country: Germany
   address_in_source_list: 64665 Alsbach-Hähnlein
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: raiffeisenbank_schaafheim
   name: Raiffeisenbank Schaafheim eG
   country: Germany
   address_in_source_list: 64850 Schaafheim
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: raiffeisenbank
   name: Raiffeisenbank eG
   country: Germany
@@ -2454,28 +2493,34 @@ banks:
   name: Raiffeisenbank im Hochtaunus eG
   country: Germany
   address_in_source_list: 61352 Bad Homburg v d Höhe
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: raiffeisenbank_in_rheinhessen
   name: Raiffeisenbank in Rheinhessen eG
   country: Germany
   address_in_source_list: 55120 Mainz a Rhein
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: raisin_bank
   name: Raisin Bank AG
   country: Germany
@@ -2682,15 +2727,18 @@ banks:
   name: Sparda-Bank Hessen eG
   country: Germany
   address_in_source_list: 60327 Frankfurt am Main
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: sparda_bank_sudwest
   name: Sparda-Bank Südwest eG
   country: Germany
@@ -2713,15 +2761,18 @@ banks:
   name: Sparda-Bank West eG
   country: Germany
   address_in_source_list: 40227 Düsseldorf
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: sparkasse_aschaffenburg_miltenberg
   name: Sparkasse Aschaffenburg-Miltenberg
   country: Germany
@@ -3328,54 +3379,66 @@ banks:
   name: VOLKSBANK SELIGENSTADT EG
   country: Germany
   address_in_source_list: 63500 Seligenstadt, Hess
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: vr_bank_bad_orb_gelnhausen
   name: VR Bank Bad Orb-Gelnhausen eG
   country: Germany
   address_in_source_list: 63571 Gelnhausen
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: vr_bank_dreieich_offenbach
   name: VR Bank Dreieich-Offenbach eG
   country: Germany
   address_in_source_list: 63303 Dreieich
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: vr_bank_main_kinzig_budingen
   name: VR Bank Main-Kinzig-Büdingen eG
   country: Germany
   address_in_source_list: 63654 Büdingen, Hess
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: vr_bank
   name: VR Bank eG
   country: Germany
@@ -3406,15 +3469,18 @@ banks:
   name: VR Bank eG Bergisch Gladbach-Leverkusen
   country: Germany
   address_in_source_list: 51465 Bergisch Gladbach
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: vr_smart_finanz_bank
   name: VR Smart Finanz Bank GmbH
   country: Germany
@@ -3432,15 +3498,18 @@ banks:
   name: VR-Bank Bonn Rhein-Sieg eG
   country: Germany
   address_in_source_list: 53721 Siegburg
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: vakifbank_international_wien_zweigniederlassung_
   name: VakifBank International AG, Wien, Zweigniederlassung Deutschland
   country: Germany
@@ -3511,132 +3580,163 @@ banks:
   name: Volksbank Berg eG
   country: Germany
   address_in_source_list: 51688 Wipperfürth
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: volksbank_brandoberndorf
   name: Volksbank Brandoberndorf eG
   country: Germany
   address_in_source_list: 35647 Waldsolms
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: volksbank_butzbach
   name: Volksbank Butzbach eG
   country: Germany
   address_in_source_list: 35510 Butzbach
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: volksbank_darmstadt_sudhessen
   name: Volksbank Darmstadt-Südhessen eG
   country: Germany
   address_in_source_list: 64283 Darmstadt
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
+    vr_slug: volksbank-darmstadt-mainz-eg
 - id: volksbank_dunnwald_holweide
   name: Volksbank Dünnwald-Holweide eG
   country: Germany
   address_in_source_list: 51069 Köln
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: volksbank_dusseldorf_neuss
   name: Volksbank Düsseldorf Neuss eG
   country: Germany
   address_in_source_list: 40215 Düsseldorf
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: volksbank_erft
   name: Volksbank Erft eG
   country: Germany
   address_in_source_list: 50189 Elsdorf, Rheinl
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: volksbank_euskirchen
   name: Volksbank Euskirchen eG
   country: Germany
   address_in_source_list: 53879 Euskirchen
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: volksbank_heimbach
   name: Volksbank Heimbach eG
   country: Germany
   address_in_source_list: 52396 Heimbach
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: volksbank_kierspe
   name: Volksbank Kierspe eG
   country: Germany
   address_in_source_list: 58566 Kierspe
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: volksbank_koln_bonn
   name: Volksbank Köln Bonn eG
   country: Germany
@@ -3659,93 +3759,114 @@ banks:
   name: Volksbank Mainspitze eG
   country: Germany
   address_in_source_list: 65462 Ginsheim-Gustavsburg
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: volksbank_monchengladbach
   name: Volksbank Mönchengladbach eG
   country: Germany
   address_in_source_list: 41066 Mönchengladbach
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: volksbank_ober_morlen
   name: Volksbank Ober-Mörlen eG
   country: Germany
   address_in_source_list: 61239 Ober-Mörlen
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: volksbank_oberberg
   name: Volksbank Oberberg eG
   country: Germany
   address_in_source_list: 51674 Wiehl
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: volksbank_rhein_erft_koln
   name: Volksbank Rhein-Erft-Köln eG
   country: Germany
   address_in_source_list: 50354 Hürth, Rheinl
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: volksbank_sprockhovel
   name: Volksbank Sprockhövel eG.
   country: Germany
   address_in_source_list: 45549 Sprockhövel
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: volksbank_im_bergischen_land
   name: Volksbank im Bergischen Land eG
   country: Germany
   address_in_source_list: 42897 Remscheid
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
+    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  options:
+    allow_empty: true
 - id: wells_fargo_bank_international_uc_niederlassung_
   name: Wells Fargo Bank International UC, Niederlassung Frankfurt
   country: Germany
