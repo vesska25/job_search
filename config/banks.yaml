@@ -599,16 +599,17 @@ banks:
   display_name: Commerzbank
   country: Germany
   address_in_source_list: 60311 Frankfurt am Main
-  jobs_url: https://www.commerzbank.de/karriere/
-  source_type: proprietary
+  jobs_url: https://jobs.commerzbank.com/
+  source_type: custom_api
   germany_only: false
   germany_filter: ''
   location_filter: []
   enabled: false
   verification_status: needs_review
   last_verified: null
-  notes: Global/official career portal exists but needs a Germany filter and adapter configuration before it can be enabled;
-    not tested.
+  notes: Career portal is jobs.commerzbank.com (page lists https://jobs.commerzbank.com/index.php?ac=search_result); the site
+    script references https://api-jobs.commerzbank.com/search/. Request format not yet known; the earlier guessed /karriere/
+    URL was wrong. Disabled until adapter options are configured and verified.
 - id: cronbank
   name: CRONBANK Aktiengesellschaft
   country: Germany
@@ -1217,12 +1218,12 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: true
-  verification_status: unverified
+  enabled: false
+  verification_status: needs_review
   last_verified: null
-  notes: Career page supplied by user (company has vacancies there). Earlier Personio slug discovery returned 0 jobs and was
-    dropped. germany_only set because GENO Broker is a Frankfurt company; parser untested - run Diagnose/Verify, the page
-    may need options.selectors or may not list jobs in parseable HTML.
+  notes: 'Career page https://www.genobroker.de/karriere.html (user-supplied; company has vacancies). It is an Angular single-page
+    app: diagnosis (2026-10-03) found no job links in the HTML and no endpoint strings in its scripts, so it cannot be parsed
+    with the current adapters. Disabled until a data endpoint or job-alert e-mail route is found.'
 - id: gladbacher_bank_von_1922
   name: GLADBACHER BANK AG von 1922
   country: Germany

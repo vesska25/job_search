@@ -24,7 +24,39 @@ KEYWORDS = re.compile(r"api|search|beesite|graphql|\.json|job|vacanc|position|st
 API_HINT = re.compile(r"""["'(]((?:https?:)?//[^"'\s)]+|/[^"'\s)]*)(?:api|graphql|search|jobs|vacanc|positions)[^"'\s)]*["')]""", re.I)
 
 
-def diagnose(url: str, http: HttpClient) -> None:
+DEFAULT_PATTERN = r"api-jobs|/api/|ajax|fetch\(|getJSON|XMLHttpRequest|\.json|search_result|jobplatform|vacanc"
+
+
+def grep_js(url: str, http: HttpClient, pattern: str, ctx: int = 220, limit: int = 15) -> None:
+    """Print short snippets of a public script around `pattern` (to learn how a career page loads its data)."""
+    if not http.allowed(url):
+        print("script skipped by robots.txt:", url)
+        return
+    try:
+        js = http.session.get(url, timeout=http.timeout).text
+    except requests.RequestException as exc:
+        print("script failed:", url, exc)
+        return
+    print(f"== script {url} ({len(js)} bytes), pattern /{pattern}/")
+    last_end, shown = -1, 0
+    for m in re.finditer(pattern, js):
+        if m.start() < last_end:
+            continue
+        a, b = max(0, m.start() - ctx), min(len(js), m.end() + ctx)
+        snippet = re.sub(r"\s+", " ", js[a:b])
+        print(f"  [{m.start()}] ...{snippet}...")
+        last_end, shown = b, shown + 1
+        if shown >= limit:
+            print("  (limit reached)")
+            break
+    if not shown:
+        print("  no matches")
+
+
+def diagnose(url: str, http: HttpClient, pattern: str = DEFAULT_PATTERN) -> None:
+    if re.search(r"\.js(\?|$)", urlsplit(url).path + ("?" if "?" in url else "")):
+        grep_js(url, http, pattern)
+        return
     parts = urlsplit(url)
     origin = f"{parts.scheme}://{parts.netloc}"
     print(f"== {url}")
@@ -79,12 +111,18 @@ def diagnose(url: str, http: HttpClient) -> None:
         print(f"  {sc}: {len(found)} candidate strings")
         for f in found[:30]:
             print("      ", f)
+        for f in found:
+            nxt = urljoin(sc, f)
+            if re.search(r"\.js(\?|$)", f) and urlsplit(nxt).netloc == parts.netloc and nxt not in own:
+                print("  second-level script referenced:", nxt)
+                grep_js(nxt, http, pattern)
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--bank")
-    ap.add_argument("--url", help="one or more URLs, comma-separated")
+    ap.add_argument("--url", help="one or more URLs, comma-separated (a .js URL prints snippets around --pattern)")
+    ap.add_argument("--pattern", default=DEFAULT_PATTERN, help="regex searched in .js files")
     a = ap.parse_args()
     h = load_settings()["http"]
     http = HttpClient(user_agent=h["user_agent"], timeout=h["timeout"], retries=1, min_delay=1, respect_robots=True)
@@ -93,7 +131,7 @@ def main():
     if not urls:
         raise SystemExit("Give --url or a --bank id that has a jobs_url")
     for u in urls:
-        diagnose(u, http)
+        diagnose(u, http, a.pattern)
 
 
 if __name__ == "__main__":

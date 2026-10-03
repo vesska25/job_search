@@ -7,6 +7,10 @@ on:
         description: "Bank id(s) from banks.yaml, comma-separated (optional if url is given)"
         required: false
         default: ""
+      pattern:
+        description: "Regex searched in .js URLs (optional)"
+        required: false
+        default: ""
       url:
         description: "Page URL(s), comma-separated (optional if bank is given)"
         required: false
@@ -27,4 +31,5 @@ jobs:
         env:
           BANK: ${{ inputs.bank }}
           URLS: ${{ inputs.url }}
-        run: python -m tools.diagnose_source ${BANK:+--bank "$BANK"} ${URLS:+--url "$URLS"}
+          PATTERN: ${{ inputs.pattern }}
+        run: python -m tools.diagnose_source ${BANK:+--bank "$BANK"} ${URLS:+--url "$URLS"} ${PATTERN:+--pattern "$PATTERN"}
