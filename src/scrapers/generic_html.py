@@ -97,7 +97,7 @@ class GenericHtmlScraper(BaseScraper):
         sel = bank.options.get("selectors")
         if not sel or not sel.get("item"):
             return []
-        jobs = []
+        jobs, seen_urls = [], set()
         for item in soup.select(sel["item"]):
             title_el = item.select_one(sel["title"]) if sel.get("title") else None
             loc_el = item.select_one(sel["location"]) if sel.get("location") else None
@@ -126,8 +126,11 @@ class GenericHtmlScraper(BaseScraper):
                     location = lines[tl["location"]] if "location" in tl else location
                 else:
                     continue
-            jobs.append(self.make_job(
-                bank, title=title, url=urljoin(bank.jobs_url, link["href"]), location=location))
+            url = urljoin(bank.jobs_url, link["href"])
+            if url in seen_urls:  # menus and result lists often repeat the same vacancy
+                continue
+            seen_urls.add(url)
+            jobs.append(self.make_job(bank, title=title, url=url, location=location))
         return jobs
 
     def _from_links(self, soup, bank):

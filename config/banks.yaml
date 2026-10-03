@@ -1,11 +1,3 @@
-# Bank list (278 institutions from the supplied list).
-# verification_status: unverified | needs_review | no_source_found | alias | ok | failed
-#   - 'ok' is written ONLY by `python -m tools.verify_banks --apply` after a successful live fetch.
-#   - As built, no source has been verified: the build sandbox could not reach any career site.
-# Fields: id, name, display_name, country, address_in_source_list, jobs_url, source_type, germany_only
-#   (source page already guarantees Germany-only jobs), germany_filter (how Germany is selected at the
-#   source), location_filter, enabled, alias_of (same employer monitored under another id),
-#   verification_status, last_verified, notes, options (scraper-specific settings).
 banks:
 - id: abanca_corporacion_bancaria_s_a_reprasentanz
   name: ABANCA Corporación Bancaria, S.A. Repräsentanz
@@ -1678,80 +1670,98 @@ banks:
   name: Kreissparkasse Ahrweiler
   country: Germany
   address_in_source_list: 53474 Bad Neuenahr-Ahrweiler
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.sparkasse.de/jobboerse/kreissparkasse-ahrweiler.html
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 57751310, from the exchange's own client list). Covers vacancies
+    the bank publishes on the exchange. Run Verify to confirm.
+  options:
+    bank_code: '57751310'
 - id: kreissparkasse_dusseldorf
   name: Kreissparkasse Düsseldorf
   country: Germany
   address_in_source_list: 40213 Düsseldorf
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.sparkasse.de/jobboerse/kreissparkasse-duesseldorf.html
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 30150200, from the exchange's own client list). Covers vacancies
+    the bank publishes on the exchange. Run Verify to confirm.
+  options:
+    bank_code: '30150200'
 - id: kreissparkasse_euskirchen
   name: Kreissparkasse Euskirchen
   country: Germany
   address_in_source_list: 53879 Euskirchen
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.sparkasse.de/jobboerse/kreissparkasse-euskirchen.html
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 38250110, from the exchange's own client list). Covers vacancies
+    the bank publishes on the exchange. Run Verify to confirm.
+  options:
+    bank_code: '38250110'
 - id: kreissparkasse_gelnhausen
   name: Kreissparkasse Gelnhausen
   country: Germany
   address_in_source_list: 63571 Gelnhausen
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.sparkasse.de/jobboerse/kreissparkasse-gelnhausen.html
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 50750094, from the exchange's own client list). Covers vacancies
+    the bank publishes on the exchange. Run Verify to confirm.
+  options:
+    bank_code: '50750094'
 - id: kreissparkasse_gro_gerau
   name: Kreissparkasse Groß-Gerau
   country: Germany
   address_in_source_list: 64521 Groß-Gerau
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.sparkasse.de/jobboerse/kreissparkasse-gross-gerau.html
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 50852553, from the exchange's own client list). Covers vacancies
+    the bank publishes on the exchange. Run Verify to confirm.
+  options:
+    bank_code: '50852553'
 - id: kreissparkasse_heinsberg_zweckverbandssparkasse_
   name: Kreissparkasse Heinsberg - Zweckverbandssparkasse des Kreises Heinsberg und der Stadt Erkelenz -
   country: Germany
   address_in_source_list: 41812 Erkelenz
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.sparkasse.de/jobboerse/kreissparkasse-heinsberg.html
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 31251220, from the exchange's own client list). Covers vacancies
+    the bank publishes on the exchange. Run Verify to confirm.
+  options:
+    bank_code: '31251220'
 - id: kreissparkasse_koln
   name: Kreissparkasse Köln
   country: Germany
@@ -2509,15 +2519,18 @@ banks:
   name: Rheinhessen Sparkasse
   country: Germany
   address_in_source_list: 55116 Mainz a Rhein
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.sparkasse.de/jobboerse/rheinhessen-sparkasse.html
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 55350010, from the exchange's own client list). Covers vacancies
+    the bank publishes on the exchange. Run Verify to confirm.
+  options:
+    bank_code: '55350010'
 - id: s_broker_co_kg
   name: S Broker AG & Co. KG
   country: Germany
@@ -2574,15 +2587,18 @@ banks:
   name: SPARKASSE HANAU
   country: Germany
   address_in_source_list: 63450 Hanau
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-hanau.html
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 50650023, from the exchange's own client list). Covers vacancies
+    the bank publishes on the exchange. Run Verify to confirm.
+  options:
+    bank_code: '50650023'
 - id: saman_bank_niederlassung_frankfurt
   name: Saman Bank Niederlassung Frankfurt
   country: Germany
@@ -2705,28 +2721,34 @@ banks:
   name: Sparkasse Aschaffenburg-Miltenberg
   country: Germany
   address_in_source_list: 63739 Aschaffenburg
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-aschaffenburg-miltenberg.html
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 79550000, from the exchange's own client list). Covers vacancies
+    the bank publishes on the exchange. Run Verify to confirm.
+  options:
+    bank_code: '79550000'
 - id: sparkasse_bensheim
   name: Sparkasse Bensheim
   country: Germany
   address_in_source_list: 64625 Bensheim
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-bensheim.html
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 50950068, from the exchange's own client list). Covers vacancies
+    the bank publishes on the exchange. Run Verify to confirm.
+  options:
+    bank_code: '50950068'
 - id: sparkasse_dieburg_zweckverbandssparkasse
   name: Sparkasse Dieburg - Zweckverbandssparkasse -
   country: Germany
@@ -2737,48 +2759,57 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: alias
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Merged into Sparkasse Darmstadt und Dieburg (exchange BLZ 50850150); covered by stadt_und_kreis_sparkasse_darmstadt.
 - id: sparkasse_duren
   name: Sparkasse Düren
   country: Germany
   address_in_source_list: 52349 Düren, Rheinl
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-dueren.html
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 39550110, from the exchange's own client list). Covers vacancies
+    the bank publishes on the exchange. Run Verify to confirm.
+  options:
+    bank_code: '39550110'
 - id: sparkasse_gummersbach
   name: Sparkasse Gummersbach
   country: Germany
   address_in_source_list: 51643 Gummersbach
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-gummersbach.html
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 38450000, from the exchange's own client list). Covers vacancies
+    the bank publishes on the exchange. Run Verify to confirm.
+  options:
+    bank_code: '38450000'
 - id: sparkasse_hilden_ratingen_velbert
   name: Sparkasse Hilden Ratingen Velbert
   country: Germany
   address_in_source_list: 42551 Velbert
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-hilden-ratingen-velbert.html
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 33450000, from the exchange's own client list). Covers vacancies
+    the bank publishes on the exchange. Run Verify to confirm.
+  options:
+    bank_code: '33450000'
 - id: sparkasse_kolnbonn
   name: Sparkasse KölnBonn
   country: Germany
@@ -2817,107 +2848,131 @@ banks:
   name: Sparkasse Leverkusen
   country: Germany
   address_in_source_list: 51373 Leverkusen
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-leverkusen.html
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 37551440, from the exchange's own client list). Covers vacancies
+    the bank publishes on the exchange. Run Verify to confirm.
+  options:
+    bank_code: '37551440'
 - id: sparkasse_neuss_zweckverbandssparkasse_des_rhein
   name: Sparkasse Neuss - Zweckverbandssparkasse des Rhein-Kreises Neuss, der Stadt Neuss, der Stadt Korschenbroich und der
     Stadt Kaarst
   country: Germany
   address_in_source_list: 41460 Neuss
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-neuss.html
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 30550000, from the exchange's own client list). Covers vacancies
+    the bank publishes on the exchange. Run Verify to confirm.
+  options:
+    bank_code: '30550000'
 - id: sparkasse_oberhessen
   name: Sparkasse Oberhessen
   country: Germany
   address_in_source_list: 61169 Friedberg (Hessen)
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-oberhessen.html
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 51850079, from the exchange's own client list). Covers vacancies
+    the bank publishes on the exchange. Run Verify to confirm.
+  options:
+    bank_code: '51850079'
 - id: sparkasse_schwelm_sprockhovel_zweckverbandsspark
   name: Sparkasse Schwelm-Sprockhövel - Zweckverbandssparkasse der Städte Schwelm und Sprockhövel
   country: Germany
   address_in_source_list: 58332 Schwelm
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-schwelm-sprockhoevel.html
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 45451555, from the exchange's own client list). Covers vacancies
+    the bank publishes on the exchange. Run Verify to confirm.
+  options:
+    bank_code: '45451555'
 - id: stadt_und_kreis_sparkasse_darmstadt
   name: Stadt- und Kreis-Sparkasse Darmstadt
   country: Germany
   address_in_source_list: 64283 Darmstadt
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-darmstadt.html
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 50850150, from the exchange's own client list). Covers vacancies
+    the bank publishes on the exchange. Run Verify to confirm.
+  options:
+    bank_code: '50850150'
 - id: stadt_sparkasse_haan_rheinl
   name: Stadt-Sparkasse Haan (Rheinl.)
   country: Germany
   address_in_source_list: 42781 Haan, Rheinl
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.sparkasse.de/jobboerse/stadt-sparkasse-haan.html
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 30351220, from the exchange's own client list). Covers vacancies
+    the bank publishes on the exchange. Run Verify to confirm.
+  options:
+    bank_code: '30351220'
 - id: stadt_sparkasse_langenfeld_rhld
   name: Stadt-Sparkasse Langenfeld (Rhld.)
   country: Germany
   address_in_source_list: 40764 Langenfeld (Rheinland)
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-langenfeld.html
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 37551780, from the exchange's own client list). Covers vacancies
+    the bank publishes on the exchange. Run Verify to confirm.
+  options:
+    bank_code: '37551780'
 - id: stadt_sparkasse_solingen
   name: Stadt-Sparkasse Solingen
   country: Germany
   address_in_source_list: 42651 Solingen
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.sparkasse.de/jobboerse/stadt-sparkasse-solingen.html
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 34250000, from the exchange's own client list). Covers vacancies
+    the bank publishes on the exchange. Run Verify to confirm.
+  options:
+    bank_code: '34250000'
 - id: stadtsparkasse_dusseldorf
   name: Stadtsparkasse Düsseldorf
   country: Germany
@@ -2944,28 +2999,34 @@ banks:
   name: Stadtsparkasse Mönchengladbach
   country: Germany
   address_in_source_list: 41061 Mönchengladbach
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.sparkasse.de/jobboerse/stadtsparkasse-moenchengladbach.html
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 31050000, from the exchange's own client list). Covers vacancies
+    the bank publishes on the exchange. Run Verify to confirm.
+  options:
+    bank_code: '31050000'
 - id: stadtsparkasse_remscheid
   name: Stadtsparkasse Remscheid
   country: Germany
   address_in_source_list: 42853 Remscheid
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.sparkasse.de/jobboerse/stadtsparkasse-remscheid.html
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 34050000, from the exchange's own client list). Covers vacancies
+    the bank publishes on the exchange. Run Verify to confirm.
+  options:
+    bank_code: '34050000'
 - id: stadtsparkasse_wermelskirchen
   name: Stadtsparkasse Wermelskirchen
   country: Germany
@@ -2983,15 +3044,18 @@ banks:
   name: Stadtsparkasse Wuppertal
   country: Germany
   address_in_source_list: 42103 Wuppertal
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.sparkasse.de/jobboerse/stadtsparkasse-wuppertal.html
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 33050000, from the exchange's own client list). Covers vacancies
+    the bank publishes on the exchange. Run Verify to confirm.
+  options:
+    bank_code: '33050000'
 - id: standard_chartered
   name: Standard Chartered Bank AG
   display_name: Standard Chartered
@@ -3050,15 +3114,18 @@ banks:
   name: Städtische Sparkasse Offenbach a. M.
   country: Germany
   address_in_source_list: 63065 Offenbach am Main
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.sparkasse.de/jobboerse/staedtische-sparkasse-offenbach-am-main.html
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 50550020, from the exchange's own client list). Covers vacancies
+    the bank publishes on the exchange. Run Verify to confirm.
+  options:
+    bank_code: '50550020'
 - id: sumitomo_mitsui_banking_corporation_fil_dusseldo
   name: Sumitomo Mitsui Banking Corporation Fil. Düsseldorf Zweigniederlassung der Sumitomo Mitsui Banking Corporation mit
     Sitz in Tokio
