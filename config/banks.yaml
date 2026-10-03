@@ -1199,28 +1199,31 @@ banks:
   name: Frankfurter Sparkasse
   country: Germany
   address_in_source_list: 60311 Frankfurt am Main
-  jobs_url: ''
+  jobs_url: https://www.frankfurter-sparkasse.de/karriere/
   source_type: unknown
   germany_only: false
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: needs_review
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Career page https://www.frankfurter-sparkasse.de/karriere/. Source type to be diagnosed.
+  display_name: Frankfurter Sparkasse
 - id: frankfurter_volksbank_rhein_main
   name: Frankfurter Volksbank Rhein/Main eG
   country: Germany
   address_in_source_list: 60313 Frankfurt am Main
-  jobs_url: ''
+  jobs_url: https://www.frankfurter-volksbank.de/karriere.html
   source_type: unknown
   germany_only: false
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: needs_review
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Career page https://www.frankfurter-volksbank.de/karriere.html; the job list page found by search returned 404. To
+    be diagnosed.
+  display_name: Frankfurter Volksbank
 - id: freikirchen_bank
   name: Freikirchen.Bank eG
   country: Germany
@@ -1739,15 +1742,17 @@ banks:
   name: Kreissparkasse Köln
   country: Germany
   address_in_source_list: 50667 Köln
-  jobs_url: ''
+  jobs_url: https://www.ksk-koeln.de/de/home/karriere/stellenangebote.html
   source_type: unknown
   germany_only: false
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: needs_review
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Career page https://www.ksk-koeln.de/de/home/karriere/stellenangebote.html ("Onlinebewerbung"). Source type to be
+    diagnosed.
+  display_name: Kreissparkasse Köln
 - id: landbank_horlofftal_eingetragene_genossenschaft
   name: Landbank Horlofftal eingetragene Genossenschaft
   country: Germany
@@ -1996,15 +2001,20 @@ banks:
   name: Nassauische Sparkasse
   country: Germany
   address_in_source_list: 65185 Wiesbaden
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.naspa.de/jobs
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Own job exchange https://www.naspa.de/jobs (server-rendered list; links /naspa/position-<id>; robots.txt allows).
+    City is the "in <City>" suffix of the title. Germany-only employer. Parse not yet confirmed by a full run.
+  display_name: Naspa
+  options:
+    link_pattern: /naspa/position-\d+
+    location_regex: \bin ([A-ZÄÖÜ][^()]*)$
 - id: natwest
   name: NatWest Bank Europe GmbH
   display_name: NatWest
@@ -2745,15 +2755,23 @@ banks:
   name: Sparkasse KölnBonn
   country: Germany
   address_in_source_list: 50667 Köln
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://karriere.sparkasse-koelnbonn.de/jobs/
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Career portal karriere.sparkasse-koelnbonn.de (WordPress, server-rendered, robots.txt allows). Cards div.job__item
+    with h3 title and a.button link. Germany-only employer. Includes initiative applications (filtered out by the keyword
+    filters). Not yet confirmed by a full run.
+  display_name: Sparkasse KölnBonn
+  options:
+    selectors:
+      item: div.job__item
+      title: h3
+      link: a.button
 - id: sparkasse_langen_seligenstadt
   name: Sparkasse Langen-Seligenstadt
   country: Germany
@@ -2876,15 +2894,24 @@ banks:
   name: Stadtsparkasse Düsseldorf
   country: Germany
   address_in_source_list: 40212 Düsseldorf
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://karriere.sskduesseldorf.de/job-search
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Career portal karriere.sskduesseldorf.de/job-search (server-rendered; ?page=N linked in the HTML; robots.txt disallows
+    only /api/). Job links /job-search/<slug>-<uuid>, title in h4. Germany-only employer. Not yet confirmed by a full run.
+  display_name: Stadtsparkasse Düsseldorf
+  options:
+    selectors:
+      item: a[href^="/job-search/"]
+      title: h4
+    pagination:
+      param: page
+      max_pages: 8
 - id: stadtsparkasse_monchengladbach
   name: Stadtsparkasse Mönchengladbach
   country: Germany
@@ -3074,15 +3101,16 @@ banks:
   name: Taunus-Sparkasse
   country: Germany
   address_in_source_list: 61352 Bad Homburg v d Höhe
-  jobs_url: ''
+  jobs_url: https://www.taunussparkasse.de/de/home/ihre-sparkasse/karriere.html
   source_type: unknown
   germany_only: false
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: needs_review
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Career page https://www.taunussparkasse.de/de/home/ihre-sparkasse/karriere.html. Source type to be diagnosed.
+  display_name: Taunus-Sparkasse
 - id: the_bank_of_japan_reprasentanz
   name: The Bank of Japan Repräsentanz
   country: Germany
@@ -3508,15 +3536,17 @@ banks:
   name: Volksbank Köln Bonn eG
   country: Germany
   address_in_source_list: 53175 Bonn
-  jobs_url: ''
+  jobs_url: https://www.volksbank-koeln-bonn.de/meine-bank/karriere.html
   source_type: unknown
   germany_only: false
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: needs_review
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Career page https://www.volksbank-koeln-bonn.de/meine-bank/karriere.html; the job list page found by search returned
+    404 without ?position=. To be diagnosed.
+  display_name: Volksbank Köln Bonn
 - id: volksbank_mainspitze
   name: Volksbank Mainspitze eG
   country: Germany

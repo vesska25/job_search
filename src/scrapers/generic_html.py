@@ -41,6 +41,13 @@ class GenericHtmlScraper(BaseScraper):
         jobs = self._from_jsonld(soup, bank) or self._from_selectors(soup, bank) or self._from_links(soup, bank)
         if not jobs and len(html) < 500:
             raise ScraperError("Page nearly empty (blocked or JavaScript-rendered?)")
+        rx = bank.options.get("location_regex")  # e.g. "\\bin ([A-ZÄÖÜ][^()]*)$" for titles like "Leiter X (m/w/d) in Wiesbaden"
+        if rx:
+            pattern = re.compile(rx)
+            for j in jobs:
+                if not j.location:
+                    m = pattern.search(j.title)
+                    j.location = m.group(1).strip() if m else ""
         return jobs
 
     # -- strategies ---------------------------------------------------------

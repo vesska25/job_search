@@ -221,3 +221,24 @@ def test_rss_feed(bank):
     assert jobs[0].published_date == "2026-09-29" and "disziplinarische" in jobs[0].description
     with pytest.raises(ScraperError):
         RssScraper(None).parse(b"<html><body>blocked</body></html>", bank)
+
+
+def test_location_regex_from_title(bank):
+    html = '<a href="/naspa/position-130257">Leitung Accounting / Rechnungswesen (m/w/d) in Wiesbaden</a>' \
+           '<a href="/naspa/position-131943">Gewerbekundenberater (m/w/d) für unsere Standorte</a>'
+    bank.jobs_url = "https://www.naspa.de/jobs"
+    bank.options = {"link_pattern": r"/naspa/position-\d+", "location_regex": r"\bin ([A-ZÄÖÜ][^()]*)$"}
+    jobs = GenericHtmlScraper(None).parse(html, bank)
+    assert [j.location for j in jobs] == ["Wiesbaden", ""]
+    assert jobs[0].url == "https://www.naspa.de/naspa/position-130257"
+
+
+def test_sparkasse_koelnbonn_style_cards(bank):
+    html = '<div class="job__item"><div class="job__content"><h3>Teamleitung Kreditrisikocontrolling (m/w/d) bei der Sparkasse KölnBonn</h3></div>' \
+           '<a href="/jobs/cb81-00020a/teamleitung-kreditrisikocontrolling/" class="button button--red">Mehr Info</a></div>' \
+           '<div class="job__item"><h3>Schülerpraktikum (m/w/d)</h3><a href="/jobs/cb81-000082/schuelerpraktikum/" class="button">Mehr Info</a></div>'
+    bank.jobs_url = "https://karriere.sparkasse-koelnbonn.de/jobs/"
+    bank.options = {"selectors": {"item": "div.job__item", "title": "h3", "link": "a.button"}}
+    jobs = GenericHtmlScraper(None).parse(html, bank)
+    assert [j.title for j in jobs][0].startswith("Teamleitung Kreditrisikocontrolling") and len(jobs) == 2
+    assert jobs[0].url == "https://karriere.sparkasse-koelnbonn.de/jobs/cb81-00020a/teamleitung-kreditrisikocontrolling/"
