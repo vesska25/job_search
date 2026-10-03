@@ -7,6 +7,10 @@ on:
         description: "Bank id(s) from banks.yaml, comma-separated (optional if url is given)"
         required: false
         default: ""
+      context:
+        description: "Characters of context around each pattern match (default 220)"
+        required: false
+        default: "220"
       pattern:
         description: "Regex searched in .js URLs (optional)"
         required: false
@@ -32,4 +36,5 @@ jobs:
           BANK: ${{ inputs.bank }}
           URLS: ${{ inputs.url }}
           PATTERN: ${{ inputs.pattern }}
-        run: python -m tools.diagnose_source ${BANK:+--bank "$BANK"} ${URLS:+--url "$URLS"} ${PATTERN:+--pattern "$PATTERN"}
+          CONTEXT: ${{ inputs.context }}
+        run: python -m tools.diagnose_source ${BANK:+--bank "$BANK"} ${URLS:+--url "$URLS"} ${PATTERN:+--pattern "$PATTERN"} ${CONTEXT:+--context "$CONTEXT"}

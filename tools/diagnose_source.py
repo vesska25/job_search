@@ -53,9 +53,9 @@ def grep_js(url: str, http: HttpClient, pattern: str, ctx: int = 220, limit: int
         print("  no matches")
 
 
-def diagnose(url: str, http: HttpClient, pattern: str = DEFAULT_PATTERN) -> None:
+def diagnose(url: str, http: HttpClient, pattern: str = DEFAULT_PATTERN, ctx: int = 220) -> None:
     if re.search(r"\.js(\?|$)", urlsplit(url).path + ("?" if "?" in url else "")):
-        grep_js(url, http, pattern)
+        grep_js(url, http, pattern, ctx)
         return
     parts = urlsplit(url)
     origin = f"{parts.scheme}://{parts.netloc}"
@@ -123,13 +123,14 @@ def diagnose(url: str, http: HttpClient, pattern: str = DEFAULT_PATTERN) -> None
             nxt = urljoin(sc, f)
             if re.search(r"\.js(\?|$)", f) and urlsplit(nxt).netloc == parts.netloc and nxt not in own:
                 print("  second-level script referenced:", nxt)
-                grep_js(nxt, http, pattern)
+                grep_js(nxt, http, pattern, ctx)
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--bank")
     ap.add_argument("--url", help="one or more URLs, comma-separated (a .js URL prints snippets around --pattern)")
+    ap.add_argument("--context", type=int, default=220, help="characters of context around each --pattern match")
     ap.add_argument("--pattern", default=DEFAULT_PATTERN, help="regex searched in .js files")
     a = ap.parse_args()
     h = load_settings()["http"]
@@ -139,7 +140,7 @@ def main():
     if not urls:
         raise SystemExit("Give --url or a --bank id that has a jobs_url")
     for u in urls:
-        diagnose(u, http, a.pattern)
+        diagnose(u, http, a.pattern, a.context)
 
 
 if __name__ == "__main__":
