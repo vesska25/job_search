@@ -27,6 +27,19 @@ robots.txt forbids automation, no public career page, excluded by the user).
 - Profile (`config/settings.yaml`): Finance, Risk, Regulatory, Treasury **and Organisation / IT** leadership roles in Germany.
 - Tools (Actions tab): *Verify bank sources*, *Diagnose bank source*, *Probe URL* (grep a page or JSON endpoint).
 
+## Several recipients (profiles)
+
+`config/settings.yaml` -> `profiles` defines extra recipients next to the built-in `main` profile (leadership roles, goes to
+`TELEGRAM_CHAT_ID`). Currently: **`sergey`** = *Junior IT Java* (title has Java / J2EE / Jakarta EE / Spring Boot **and** an entry-level
+word such as Junior, Berufseinsteiger, Absolvent, Trainee; senior / lead / student / apprentice titles are excluded). Banks are scraped
+once; each profile is filtered separately, has its own "already sent" table (`jobs_<name>` in `data/jobs.db`) and its own chat, read
+from the secret named in `chat_id_env` (`TELEGRAM_CHAT_ID_SERGEY`). Without that secret the profile is skipped with a log warning; the
+main profile is never affected.
+
+- Run one profile: `python -m src.main --profile sergey` (workflow input `profile`). Several: repeat `--profile`.
+- First run of a new profile: a normal run (no `--baseline`) sends its current openings once; with `--baseline` they are only stored.
+- Another recipient: add a block under `profiles:` (copy `sergey`), add a secret and the env line in `.github/workflows/job-monitor.yml`.
+
 ## 1. Install locally
 ```bash
 python -m venv .venv && source .venv/bin/activate

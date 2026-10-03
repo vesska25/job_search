@@ -6,6 +6,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import html as htmllib
 import re
 import sys
@@ -15,6 +16,7 @@ from pathlib import Path
 from src.config import CONFIG_DIR, ROOT, Bank, env, load_banks, load_settings
 from src.filters.llm import LlmClassifier
 from src.filters.pipeline import evaluate
+from src.filters.profile import evaluate_keywords
 from src.models.job import Job
 from src.notifications.telegram import TelegramNotifier, format_digest, format_job
 from src.scrapers import get_scraper
@@ -72,9 +74,16 @@ def resolve_location(job, bank, http) -> None:
         log.warning("Could not resolve location for '%s': %s", job.title, exc)
 
 
-def run(banks, settings, http, db, llm, stats: Stats) -> list:
-    """Scrape + filter every bank. Errors in one bank never stop the run. Returns matching jobs."""
+def run(banks, settings, http, db, llm, stats: Stats, extra: dict | None = None, profiles: dict | None = None) -> list:
+    """Scrape + filter every bank. Errors in one bank never stop the run. Returns the jobs matching the main
+    (leadership) profile. Every bank is scraped once; with `profiles` ({name: keyword config}) the same vacancies
+    are also evaluated per extra profile and collected into `extra[name]`."""
     matches, seen_ids = [], set()
+    profiles = profiles or {}
+    extra = extra if extra is not None else {}
+    extra_seen = {name: set() for name in profiles}
+    for name in profiles:
+        extra.setdefault(name, [])
     for bank in banks:
         stats.processed += 1
         log.info("Scraping %s", bank.label)
@@ -90,6 +99,18 @@ def run(banks, settings, http, db, llm, stats: Stats) -> list:
         log.info("Found %d vacancies", len(jobs))
         n_de = n_lead = n_rel = 0
         for job in jobs:
+            for pname, pcfg in profiles.items():
+                try:
+                    pd = evaluate_keywords(job, bank, settings, pcfg)
+                except Exception as exc:  # noqa: BLE001
+                    log.error("Profile %s filtering failed for '%s' (%s): %s", pname, job.title, bank.label, exc)
+                    continue
+                if pd.accepted and job.job_id not in extra_seen[pname]:
+                    extra_seen[pname].add(job.job_id)
+                    pj = copy.copy(job)
+                    pj.matched_functions, pj.borderline = pd.functions, False
+                    extra[pname].append(pj)
+                    log.debug("MATCH[%s] %s | %s | %s", pname, bank.label, job.title, pd.reason)
             try:
                 if bank.options.get("detail_location") and not job.location:
                     if evaluate(job, replace(bank, germany_only=True), settings).accepted:
@@ -128,6 +149,45 @@ def send_test_digest(db, banks, notifier, limit: int = 10) -> int:
     return len(jobs)
 
 
+def deliver_profile(name: str, pcfg: dict, matches: list, db, args, tcfg: dict) -> int:
+    """Dedup, store and send the digest of one extra profile (own table, own chat). Returns an exit code."""
+    pdb = JobDatabase(":memory:") if args.dry_run and not args.db else db.for_profile(name)
+    try:
+        to_notify = [j for j in matches if pdb.needs_notification(j)]
+        new = sum(1 for j in matches if pdb.find(j) is None)
+        log.info("Profile %s: %d matching, %d new", name, len(matches), new)
+        if args.dry_run:
+            for j in to_notify:
+                log.info("[dry-run][%s] would notify: %s — %s (%s) %s", name, j.bank_name, j.title, j.location, j.url)
+            return 0
+        for j in matches:
+            pdb.record(j)
+        if args.baseline:
+            pdb.mark_notified(matches)
+            log.info("Profile %s baseline stored: %d vacancies marked as notified", name, len(matches))
+            return 0
+        if not (to_notify or pcfg.get("send_empty_digest", tcfg.get("send_empty_digest", True))):
+            return 0
+        chat = env(pcfg.get("chat_id_env", ""))
+        if not chat:
+            log.warning("Profile %s: %s is not set - nothing sent, vacancies stay pending", name, pcfg.get("chat_id_env"))
+            return 0
+        try:
+            TelegramNotifier(env("TELEGRAM_BOT_TOKEN"), chat).send_all(format_digest(
+                to_notify, max_jobs=pcfg.get("max_jobs_in_digest", tcfg["max_jobs_in_digest"]),
+                title=pcfg.get("title", name.upper()),
+                empty_text=pcfg.get("empty_text", "No new matching vacancies this week.")))
+            pdb.mark_notified(to_notify)
+            log.info("Profile %s: Telegram notification sent", name)
+        except Exception as exc:  # noqa: BLE001
+            log.error("Profile %s: Telegram notification failed (stays pending for next run): %s", name, exc)
+            return 1
+        return 0
+    finally:
+        if pdb is not db:
+            pdb.close()
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description="Weekly bank job monitor")
     ap.add_argument("--config-dir", type=Path, default=CONFIG_DIR)
@@ -138,6 +198,9 @@ def main(argv=None) -> int:
                     help="store all current matches as already notified (use for the very first run)")
     ap.add_argument("--test-telegram", action="store_true",
                     help="send a sample digest of already stored vacancies to Telegram and exit (no scraping, no DB changes)")
+    ap.add_argument("--profile", action="append",
+                    help="only this recipient profile (repeatable): 'main' (leadership) or a name from settings.yaml 'profiles'; "
+                         "default: all")
     ap.add_argument("--no-robots", action="store_true", help="debug only; default respects robots.txt")
     ap.add_argument("--verbose", action="store_true")
     args = ap.parse_args(argv)
@@ -149,14 +212,31 @@ def main(argv=None) -> int:
     selected, skipped = select_banks(banks, args.bank)
     log.info("Banks enabled: %d", len(selected))
     log.info("Banks skipped: %d", len(skipped))
+    extra_cfg = {n: c for n, c in (settings.get("profiles") or {}).items() if c.get("enabled", True)}
+    wanted = args.profile or ["main", *extra_cfg]
+    unknown = [n for n in wanted if n != "main" and n not in extra_cfg]
+    if unknown:
+        raise SystemExit(f"Unknown profile(s): {unknown}; available: main, {', '.join(extra_cfg)}")
+    run_main = "main" in wanted
+    profiles = {n: extra_cfg[n] for n in wanted if n != "main"}
+    log.info("Profiles: %s", ", ".join(wanted))
 
     if args.test_telegram:
-        db = JobDatabase(args.db or ROOT / settings["database"]["path"])
-        try:
-            n = send_test_digest(db, banks, TelegramNotifier(env("TELEGRAM_BOT_TOKEN"), env("TELEGRAM_CHAT_ID")))
-        finally:
-            db.close()
-        log.info("Test message sent (%d sample vacancies)", n)
+        if run_main:
+            db = JobDatabase(args.db or ROOT / settings["database"]["path"])
+            try:
+                n = send_test_digest(db, banks, TelegramNotifier(env("TELEGRAM_BOT_TOKEN"), env("TELEGRAM_CHAT_ID")))
+            finally:
+                db.close()
+            log.info("Test message sent (%d sample vacancies)", n)
+        for name, pcfg in profiles.items():
+            chat = env(pcfg.get("chat_id_env", ""))
+            if not chat:
+                log.warning("Profile %s: %s is not set, no test message", name, pcfg.get("chat_id_env"))
+                continue
+            TelegramNotifier(env("TELEGRAM_BOT_TOKEN"), chat).send(
+                f"<b>TEST MESSAGE</b> - delivery check for the profile \"{pcfg.get('title', name)}\". Nothing is new.")
+            log.info("Test message sent to profile %s", name)
         return 0
 
     h = settings["http"]
@@ -165,7 +245,7 @@ def main(argv=None) -> int:
                       respect_robots=h["respect_robots_txt"] and not args.no_robots)
     lcfg = settings.get("llm", {})
     llm = None
-    if lcfg.get("enabled"):
+    if lcfg.get("enabled") and run_main:
         llm = LlmClassifier(env("ANTHROPIC_API_KEY"), lcfg["model"], lcfg["min_confidence"],
                             lcfg["max_calls_per_run"], lcfg["timeout"])
         if not llm.api_key:
@@ -175,16 +255,21 @@ def main(argv=None) -> int:
     db_path = args.db or ROOT / settings["database"]["path"]
     db = JobDatabase(":memory:" if args.dry_run and not args.db else db_path)
     stats = Stats()
-    matches = run(selected, settings, http, db, llm, stats)
+    extra: dict = {}
+    matches = run(selected, settings, http, db, llm, stats, extra=extra, profiles=profiles)
 
     # Deduplicate against the database: new jobs, or earlier jobs whose notification failed.
+    if not run_main:
+        matches = []
     to_notify = [j for j in matches if db.needs_notification(j)]
     stats.new = sum(1 for j in matches if db.find(j) is None)
     log.info("New vacancies: %d", stats.new)
 
     exit_code = 0
     tcfg = settings["telegram"]
-    if args.dry_run:
+    if not run_main:
+        pass
+    elif args.dry_run:
         for j in to_notify:
             log.info("[dry-run] would notify: %s — %s (%s) %s", j.bank_name, j.title, j.location, j.url)
     else:
@@ -206,6 +291,8 @@ def main(argv=None) -> int:
             except Exception as exc:  # noqa: BLE001
                 log.error("Telegram notification failed (jobs stay pending for next run): %s", exc)
                 exit_code = 1
+    for name, pcfg in profiles.items():
+        exit_code = deliver_profile(name, pcfg, extra.get(name, []), db, args, tcfg) or exit_code
     db.close()
     log.info("Summary:\n%s", stats.summary())
     if stats.processed and stats.failed == stats.processed:

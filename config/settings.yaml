@@ -271,3 +271,52 @@ telegram:
 
 database:
   path: data/jobs.db
+
+# Extra recipients. 'main' (leadership roles in Finance / Risk / Regulatory / Treasury / Organisation & IT) is built in and
+# goes to TELEGRAM_CHAT_ID. Every profile below is evaluated on the same scraped vacancies, has its own "already sent"
+# table and its own Telegram chat (the chat id is read from the environment variable named in chat_id_env).
+# A vacancy matches when the title has a `tech` term AND a `level` term and none of the `exclude` terms
+# (whole words, case-insensitive: "Java" does not match "JavaScript"). Location filter: same as above.
+profiles:
+  sergey:
+    enabled: true
+    title: "JUNIOR JAVA - BANK JOBS"
+    empty_text: "No new junior Java vacancies in banks this week."
+    chat_id_env: TELEGRAM_CHAT_ID_SERGEY
+    max_jobs_in_digest: 40
+    level_in_description: false
+    tech: [Java, J2EE, Jakarta EE, Spring Boot]
+    level:
+      - Junior
+      - Jr
+      - Berufseinsteiger
+      - Berufseinsteigerin
+      - Berufseinstieg
+      - Einsteiger
+      - Absolvent
+      - Absolventin
+      - Entry Level
+      - Entry-Level
+      - Graduate
+      - Trainee
+      - Young Professional
+      - Nachwuchs
+    exclude:
+      - Senior
+      - Lead
+      - Principal
+      - Head
+      - Director
+      - Architect
+      - Werkstudent
+      - Werkstudentin
+      - Working Student
+      - Praktikant
+      - Praktikantin
+      - Praktikum
+      - Intern
+      - Internship
+      - Ausbildung
+      - Auszubildende
+      - Azubi
+      - Duales Studium

@@ -36,11 +36,12 @@ def format_job(job) -> str:
     )
 
 
-def format_digest(jobs: list, today: date | None = None, max_jobs: int = 40, failed_sources: int = 0) -> list[str]:
+def format_digest(jobs: list, today: date | None = None, max_jobs: int = 40, failed_sources: int = 0,
+                  title: str = "BANK JOB MONITOR", empty_text: str = EMPTY_TEXT) -> list[str]:
     """Return one or more messages (split below Telegram's length limit)."""
     if not jobs:
-        return [EMPTY_TEXT]
-    header = f"<b>BANK JOB MONITOR</b>\nWeek of {week_of(today)}\nNew matching vacancies: {len(jobs)}\n"
+        return [empty_text]
+    header = f"<b>{_e(title)}</b>\nWeek of {week_of(today)}\nNew matching vacancies: {len(jobs)}\n"
     blocks = []
     for i, j in enumerate(jobs[:max_jobs], 1):
         flag = " (borderline)" if j.borderline else ""
