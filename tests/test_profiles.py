@@ -118,3 +118,31 @@ def test_deliver_profile_without_chat_id_sends_nothing(monkeypatch, settings, tm
 def test_cli_unknown_profile(tmp_path):
     with pytest.raises(SystemExit):
         main_mod.main(["--dry-run", "--profile", "nobody"])
+
+
+def test_digest_messages_never_exceed_3000_chars():
+    from src.config import Bank
+    b = Bank(id="b", name="A Bank")
+    jobs = [make_job(b, f"Junior Java Developer {i} (m/w/d) " + "x" * 120, url=f"https://x.example/{i}" + "y" * 80)
+            for i in range(60)]
+    msgs = format_digest(jobs, max_jobs=60)
+    assert len(msgs) > 1 and all(len(m) <= 3000 for m in msgs)
+
+
+def test_resend_sends_already_known_matches(monkeypatch, settings, tmp_path, pcfg):
+    from src.config import Bank
+    monkeypatch.setattr(main_mod, "TelegramNotifier", FakeNotifier)
+    monkeypatch.setenv("TELEGRAM_BOT_TOKEN", "t")
+    monkeypatch.setenv("TELEGRAM_CHAT_ID_SERGEY", "999")
+    FakeNotifier.sent = []
+    db = JobDatabase(tmp_path / "t.db")
+    jobs = [make_job(Bank(id="b", name="B Bank"), "Junior Java Developer (m/w/d)", url="https://x.example/1")]
+    base = Namespace(dry_run=False, db=None, baseline=True, resend=False)
+    deliver_profile("sergey", pcfg, jobs, db, base, settings["telegram"])        # stored silently
+    assert FakeNotifier.sent == []
+    args = Namespace(dry_run=False, db=None, baseline=False, resend=False)
+    deliver_profile("sergey", pcfg, jobs, db, args, settings["telegram"])        # nothing new
+    assert "No new junior Java" in FakeNotifier.sent[-1][1]
+    args.resend = True
+    deliver_profile("sergey", pcfg, jobs, db, args, settings["telegram"])        # explicit resend
+    assert "Junior Java Developer" in FakeNotifier.sent[-1][1]

@@ -14,6 +14,10 @@ on:
         description: "Dry run: scrape and filter, log matches, no Telegram, no database changes"
         type: boolean
         default: false
+      resend:
+        description: "Send ALL current matches (not only new ones) to the selected profiles, then store them as sent"
+        type: boolean
+        default: false
       profile:
         description: "Only this recipient profile (main = leadership, sergey = junior Java); empty = all"
         type: string
@@ -47,7 +51,7 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           TELEGRAM_CHAT_ID_SERGEY: ${{ secrets.TELEGRAM_CHAT_ID_SERGEY }}   # second recipient (profile "sergey")
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}   # optional, only if llm.enabled
-        run: python -m src.main ${{ inputs.baseline && '--baseline' || '' }} ${{ inputs.dry_run && '--dry-run --verbose' || '' }} ${{ inputs.test_telegram && '--test-telegram' || '' }} ${{ inputs.profile && format('--profile {0}', inputs.profile) || '' }}
+        run: python -m src.main ${{ inputs.baseline && '--baseline' || '' }} ${{ inputs.dry_run && '--dry-run --verbose' || '' }} ${{ inputs.test_telegram && '--test-telegram' || '' }} ${{ inputs.resend && '--resend' || '' }} ${{ inputs.profile && format('--profile {0}', inputs.profile) || '' }}
       - name: Persist database
         if: always()
         run: |

@@ -10,7 +10,7 @@ import requests
 from src.utils.logging import get_logger
 
 log = get_logger("telegram")
-MAX_LEN = 4000  # Telegram limit is 4096; keep a margin
+MAX_LEN = 3000  # one message never exceeds 3000 characters (Telegram allows 4096)
 EMPTY_TEXT = "No new matching senior banking vacancies this week."
 
 

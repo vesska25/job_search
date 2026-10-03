@@ -153,7 +153,7 @@ def deliver_profile(name: str, pcfg: dict, matches: list, db, args, tcfg: dict) 
     """Dedup, store and send the digest of one extra profile (own table, own chat). Returns an exit code."""
     pdb = JobDatabase(":memory:") if args.dry_run and not args.db else db.for_profile(name)
     try:
-        to_notify = [j for j in matches if pdb.needs_notification(j)]
+        to_notify = list(matches) if getattr(args, "resend", False) else [j for j in matches if pdb.needs_notification(j)]
         new = sum(1 for j in matches if pdb.find(j) is None)
         log.info("Profile %s: %d matching, %d new", name, len(matches), new)
         if args.dry_run:
@@ -196,6 +196,8 @@ def main(argv=None) -> int:
     ap.add_argument("--dry-run", action="store_true", help="no Telegram message, no database writes")
     ap.add_argument("--baseline", action="store_true",
                     help="store all current matches as already notified (use for the very first run)")
+    ap.add_argument("--resend", action="store_true",
+                    help="send ALL current matches of the selected profiles, not only the new ones (they are then stored as sent)")
     ap.add_argument("--test-telegram", action="store_true",
                     help="send a sample digest of already stored vacancies to Telegram and exit (no scraping, no DB changes)")
     ap.add_argument("--profile", action="append",
@@ -261,7 +263,7 @@ def main(argv=None) -> int:
     # Deduplicate against the database: new jobs, or earlier jobs whose notification failed.
     if not run_main:
         matches = []
-    to_notify = [j for j in matches if db.needs_notification(j)]
+    to_notify = list(matches) if args.resend else [j for j in matches if db.needs_notification(j)]
     stats.new = sum(1 for j in matches if db.find(j) is None)
     log.info("New vacancies: %d", stats.new)
 
