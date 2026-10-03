@@ -19,8 +19,10 @@ def test_banks_yaml_consistency():
             assert b.jobs_url and b.source_type in SCRAPERS
         if b.source_type == "unknown":
             assert not b.enabled
-            if not b.alias_of:
+            if not b.alias_of and not b.jobs_url:
                 assert "No official Germany-specific vacancy source verified" in b.notes
+            if b.jobs_url and not b.alias_of:
+                assert b.verification_status == "needs_review"   # known page, adapter still to be configured
         # nothing may claim verification without a date
         if b.verification_status == "ok":
             assert b.last_verified
@@ -106,3 +108,29 @@ def test_dry_run_cli_with_no_enabled_banks(tmp_path):
     (cfg / "settings.yaml").write_text((CONFIG_DIR / "settings.yaml").read_text())
     (cfg / "banks.yaml").write_text(yaml.safe_dump({"banks": [{"id": "x", "name": "X", "enabled": False}]}))
     assert main(["--config-dir", str(cfg), "--dry-run"]) == 0
+
+
+def test_detail_location_resolved_only_for_filtered_jobs(settings):
+    from src.config import Bank
+    bank = Bank(id="dbg", name="Deutsche Börse Group", jobs_url="https://careers.example/search", source_type="custom_html",
+                enabled=True, options={"link_pattern": "offer-redirect", "detail_location": {"regex": r"\(([^()]*)\)\s*›"}})
+    listing = ('<a href="/offer-redirect/?offerApiId=AAA">Head of Regulatory Reporting (f/m/d)</a>'
+               '<a href="/offer-redirect/?offerApiId=BBB">Head of Risk Control (f/m/d)</a>'
+               '<a href="/offer-redirect/?offerApiId=CCC">Intern - Risk (f/m/d)</a>')
+    fetched = []
+
+    class S(FakeSession):
+        def request(self, method, url, **kw):
+            if url.endswith("/robots.txt"):
+                return FakeResp("", 404)
+            if url.endswith("/search"):
+                return FakeResp(listing)
+            fetched.append(url)
+            city = "Frankfurt am Main" if "AAA" in url else "Prague"
+            return FakeResp(f"<html><title>Head of X (f/m/d) ({city}) › Deutsche Börse Group</title></html>")
+
+    http = HttpClient(session=S({}), min_delay=0)
+    matches = run([bank], settings, http, JobDatabase(":memory:"), None, Stats())
+    assert [m.title for m in matches] == ["Head of Regulatory Reporting (f/m/d)"]
+    assert matches[0].location == "Frankfurt am Main"
+    assert len(fetched) == 2          # intern never fetched; Prague job fetched, then rejected by the Germany filter

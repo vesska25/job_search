@@ -6,8 +6,10 @@
 from __future__ import annotations
 
 import argparse
+import html as htmllib
+import re
 import sys
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 
 from src.config import CONFIG_DIR, ROOT, Bank, env, load_banks, load_settings
@@ -51,6 +53,24 @@ def select_banks(banks: list[Bank], only: list[str] | None):
     return enabled, [b for b in banks if b not in enabled]
 
 
+def resolve_location(job, bank, http) -> None:
+    """Some lists carry no location. For banks with options.detail_location, open the vacancy page
+    and read the location from its <title> with a regex (group 1). Called only for jobs that already
+    passed the seniority and function filters, so only a handful of extra requests are made."""
+    cfg = bank.options["detail_location"]
+    try:
+        text = http.get(job.url).text
+        m = re.search(r"(?is)<title[^>]*>(.*?)</title>", text)
+        title = htmllib.unescape(m.group(1)).strip() if m else ""
+        loc = re.search(cfg["regex"], title)
+        if loc:
+            job.location = loc.group(1).strip()
+        else:
+            log.debug("No location found in page title '%s' for %s", title, job.url)
+    except Exception as exc:  # noqa: BLE001
+        log.warning("Could not resolve location for '%s': %s", job.title, exc)
+
+
 def run(banks, settings, http, db, llm, stats: Stats) -> list:
     """Scrape + filter every bank. Errors in one bank never stop the run. Returns matching jobs."""
     matches, seen_ids = [], set()
@@ -70,6 +90,9 @@ def run(banks, settings, http, db, llm, stats: Stats) -> list:
         n_de = n_lead = n_rel = 0
         for job in jobs:
             try:
+                if bank.options.get("detail_location") and not job.location:
+                    if evaluate(job, replace(bank, germany_only=True), settings).accepted:
+                        resolve_location(job, bank, http)
                 d = evaluate(job, bank, settings, llm)
             except Exception as exc:  # noqa: BLE001
                 log.error("Filtering failed for '%s' (%s): %s", job.title, bank.label, exc)

@@ -168,3 +168,23 @@ def test_accordion_job_flows_through_filters(settings, de_bank):
     d = evaluate(jobs[0], de_bank, settings)
     assert d.accepted and not d.borderline            # 'Senior Manager' + Finanzcontrolling + management signal
     assert not evaluate(jobs[1], de_bank, settings).accepted
+
+
+def test_generic_html_text_lines(bank):
+    html = '<a href="/karriere/offene-stellen/a-1"><span>Frankfurt am Main</span><span>Gruppenleiter Payments (m/w/d)</span></a>' \
+           '<a href="/karriere/offene-stellen/b-2"><span>München</span><span>Senior Accountant (m/w/d)</span></a>' \
+           '<a href="/karriere/offene-stellen/c-3"><span>nur eine Zeile</span></a>'
+    bank.jobs_url = "https://www.metzler.com/de/metzler/karriere/stellenangebote"
+    bank.options = {"selectors": {"item": 'a[href^="/karriere/offene-stellen/"]', "text_lines": {"location": 0, "title": 1}}}
+    jobs = GenericHtmlScraper(None).parse(html, bank)
+    assert [(j.location, j.title) for j in jobs] == [("Frankfurt am Main", "Gruppenleiter Payments (m/w/d)"), ("München", "Senior Accountant (m/w/d)")]
+    assert jobs[0].url == "https://www.metzler.com/karriere/offene-stellen/a-1"
+
+
+def test_link_pattern_umantis_style(bank):
+    html = '<a href="/Vacancies/1143/Description/1">Revisor (d/m/w) Prüfungsschwerpunkt Risikomanagement</a>' \
+           '<a href="/Vacancies/1143/Application/CheckLogin/1">Jetzt bewerben</a>'
+    bank.jobs_url = "https://recruitingapp-2764.umantis.com/Jobs/1?lang=ger"
+    bank.options = {"link_pattern": r"/Vacancies/\d+/Description/"}
+    jobs = GenericHtmlScraper(None).parse(html, bank)
+    assert len(jobs) == 1 and jobs[0].url.endswith("/Vacancies/1143/Description/1")

@@ -110,9 +110,17 @@ class GenericHtmlScraper(BaseScraper):
             title_el = title_el or link
             if not link or not link.get("href") or not title_el:
                 continue
+            title = title_el.get_text(" ", strip=True)
+            tl = sel.get("text_lines")
+            if tl:  # title/location are separate text nodes inside one element, e.g. <a><span>City</span><span>Title</span></a>
+                lines = [x for x in item.get_text("\n", strip=True).split("\n") if x]
+                if len(lines) > max(tl.values()):
+                    title = lines[tl.get("title", 0)]
+                    location = lines[tl["location"]] if "location" in tl else location
+                else:
+                    continue
             jobs.append(self.make_job(
-                bank, title=title_el.get_text(" ", strip=True), url=urljoin(bank.jobs_url, link["href"]),
-                location=location))
+                bank, title=title, url=urljoin(bank.jobs_url, link["href"]), location=location))
         return jobs
 
     def _from_links(self, soup, bank):

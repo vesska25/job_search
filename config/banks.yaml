@@ -226,15 +226,23 @@ banks:
   name: B. Metzler seel. Sohn & Co. Aktiengesellschaft
   country: Germany
   address_in_source_list: 60329 Frankfurt am Main
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.metzler.com/de/metzler/karriere/stellenangebote
+  source_type: custom_html
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Own career page (Next.js, server-rendered list, robots.txt allows). Job links /karriere/offene-stellen/<slug>; link
+    text = city line then title line. Selector from diagnosis, text_lines split not yet confirmed by a full run.
+  display_name: Metzler
+  options:
+    selectors:
+      item: a[href^="/karriere/offene-stellen/"]
+      text_lines:
+        location: 0
+        title: 1
 - id: bank_of_china_limited_zweigniederlassung_frankfu
   name: BANK OF CHINA LIMITED Zweigniederlassung Frankfurt am Main Frankfurt Branch
   country: Germany
@@ -713,15 +721,23 @@ banks:
   name: Clearstream Banking Aktiengesellschaft
   country: Germany
   address_in_source_list: 65760 Eschborn, Taunus
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://careers.deutsche-boerse.com/search
+  source_type: custom_html
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Group portal for Deutsche Börse AG, Clearstream and Eurex Clearing (one source, no duplicate monitoring). List has
+    titles only; for jobs passing the seniority/function filter the city is read from the vacancy page <title> ("... (Frankfurt
+    am Main) › Deutsche Börse Group"). Jobs also in Prague/Luxembourg/Cork are rejected by the Germany filter. Not yet confirmed
+    by a full run.
+  display_name: Deutsche Börse Group
+  options:
+    link_pattern: offer-redirect
+    detail_location:
+      regex: \(([^()]*)\)\s*›
 - id: cooperatieve_rabobank_u_a_zweigniederlassung_fra
   name: Coöperatieve Rabobank U.A. Zweigniederlassung Frankfurt am Main
   country: Germany
@@ -780,15 +796,23 @@ banks:
   name: DEUTSCHE APOTHEKER- UND ÄRZTEBANK EG
   country: Germany
   address_in_source_list: 40547 Düsseldorf
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://karriere.apobank.de/job-suche
+  source_type: custom_html
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Own career portal (Next.js, robots.txt allows). Only the first page (~16 most recent of ~160 jobs) is present in
+    the HTML; ?page=N returns the same page, so the list is read without pagination. Enough to catch NEW jobs weekly unless
+    >16 appear in one week. Germany filter is client-side on city.
+  options:
+    selectors:
+      item: a[href^="/job-suche/"]
+      title: h5
+      location: p
+  display_name: apoBank
 - id: deutsche_bank
   name: DEUTSCHE BANK AKTIENGESELLSCHAFT
   display_name: Deutsche Bank
@@ -947,15 +971,16 @@ banks:
   name: Deutsche WertpapierService Bank AG
   country: Germany
   address_in_source_list: 60487 Frankfurt am Main
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://dwpbank.softgarden.io/de/vacancies
+  source_type: softgarden
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: softgarden vacancy page found in the career page source (https://www.dwpbank.de/karriere/professionals/). Adapter
+    parse unverified; Germany-only employer (Frankfurt/Münster sites).
 - id: etris_bank
   name: ETRIS Bank GmbH
   country: Germany
@@ -979,9 +1004,10 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: alias
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Same career portal as Clearstream Banking (Deutsche Börse Group); monitored once under clearstream_banking.
+  alias_of: clearstream_banking
 - id: elavon_financial_services_designated_activity_co
   name: Elavon Financial Services Designated Activity Company, Niederlassung Deutschland
   country: Germany
@@ -1354,15 +1380,17 @@ banks:
   name: Hauck Aufhäuser Lampe Privatbank AG
   country: Germany
   address_in_source_list: 60311 Frankfurt am Main
-  jobs_url: ''
+  jobs_url: https://www.hal-privatbank.com/karriere/job-finden
   source_type: unknown
   germany_only: false
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: needs_review
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Job page https://www.hal-privatbank.com/karriere/job-finden (also hauck-aufhaeuser.com/en/careers/vacancies/). On
+    2026-10-03 the site answered 503 even for robots.txt, so it is skipped (cannot confirm robots.txt). Retry later.
+  display_name: Hauck Aufhäuser Lampe
 - id: honda_bank
   name: Honda Bank GmbH
   country: Germany
@@ -1419,15 +1447,17 @@ banks:
   name: IKB Deutsche Industriebank Aktiengesellschaft
   country: Germany
   address_in_source_list: 40474 Düsseldorf
-  jobs_url: ''
+  jobs_url: https://www.ikb.de/karriere/einstiegs-und-stellenangebote/alle-stellenangebote
   source_type: unknown
   germany_only: false
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: needs_review
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Career page uses softgarden (references api.softgarden.io/api/rest/v3/frontend/). Company slug/API call still to
+    be determined; ~14 jobs listed. Not enabled yet.
+  display_name: IKB
 - id: ing_deutschland
   name: ING-DiBa AG
   display_name: ING Deutschland
@@ -1761,15 +1791,19 @@ banks:
   name: Landwirtschaftliche Rentenbank
   country: Germany
   address_in_source_list: 60486 Frankfurt am Main
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://recruitingapp-2764.umantis.com/Jobs/1?lang=ger
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Vacancies are embedded from Umantis (Abacus). Using the public list page /Jobs/1 (robots.txt allows; the /VacanciesIntraxData/
+    endpoint is disallowed and not used). Frankfurt employer, so germany_only. Parse not yet confirmed by a full run.
+  display_name: Rentenbank
+  options:
+    link_pattern: /Vacancies/\d+/Description/
 - id: liechtensteinische_landesbank_zweigniederlassung
   name: Liechtensteinische Landesbank AG, Zweigniederlassung Deutschland
   country: Germany
@@ -1945,15 +1979,17 @@ banks:
   name: NRW.BANK 44
   country: Germany
   address_in_source_list: 40213 Düsseldorf
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://karriere.nrwbank.de/
+  source_type: successfactors
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: SAP SuccessFactors career site (karriere.nrwbank.de, robots.txt allows /search/). Germany-only employer (Düsseldorf/Münster).
+    Adapter parse not yet confirmed by a full run.
+  display_name: NRW.BANK
 - id: nassauische_sparkasse
   name: Nassauische Sparkasse
   country: Germany
@@ -2053,15 +2089,17 @@ banks:
   name: ODDO BHF SE
   country: Germany
   address_in_source_list: 60329 Frankfurt am Main
-  jobs_url: ''
+  jobs_url: https://www.oddo-bhf.com/discover-our-jobs/
   source_type: unknown
   germany_only: false
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: needs_review
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: https://www.oddo-bhf.com/careers/ has no job list; vacancies are behind /discover-our-jobs/ or /experienced-professionals/
+    (external ATS likely). To be diagnosed.
+  display_name: ODDO BHF
 - id: open_bank_s_a_zweigniederlassung_deutschland
   name: OPEN BANK, S.A., Zweigniederlassung Deutschland
   country: Germany

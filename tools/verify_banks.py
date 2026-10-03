@@ -35,6 +35,8 @@ def verify(banks, http, max_pages):
             jobs = get_scraper(b.source_type, http, max_pages=b.options.get("max_pages", max_pages)).fetch_jobs(b)
             status = "ok" if jobs else "empty"
             results[b.id] = (status, len(jobs), "")
+            for j in jobs[:3]:
+                log.info("    sample: %s | %s | %s", j.title[:70], j.location or "-", j.url[:90])
         except Exception as exc:  # noqa: BLE001
             results[b.id] = ("failed", 0, f"{type(exc).__name__}: {exc}"[:200])
         log.info("%-40s %-7s jobs=%s %s", b.id, *results[b.id][:2], results[b.id][2])
