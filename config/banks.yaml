@@ -390,16 +390,28 @@ banks:
   location_filter: []
   options:
     api_url: https://careers.bankofamerica.com/services/jobssearchservlet
-    params: {search: getAllJobs}
+    params:
+      search: getAllJobs
     items_path: jobsList
-    fields: {title: postingTitle, id: jobRequisitionId, location: country, department: lob, date: postedDate}
-    url_template: "https://careers.bankofamerica.com{jcrURL}"
-    pagination: {type: offset, param: start, size_param: rows, size: 100, max_pages: 25}
-  enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: Official careers JSON servlet (global list, country filter parameter is ignored by the server), filtered by the
-    item country field. Not yet verified by a run.
+    fields:
+      title: postingTitle
+      id: jobRequisitionId
+      location: country
+      department: lob
+      date: postedDate
+    url_template: https://careers.bankofamerica.com{jcrURL}
+    pagination:
+      type: offset
+      param: start
+      size_param: rows
+      size: 100
+      max_pages: 25
+  enabled: false
+  verification_status: failed
+  last_verified: '2026-10-03'
+  notes: 'Auto-disabled 2026-10-03: TypeError: int() argument must be a string, a bytes-like object or a real number, not
+    ''dict'' | Official careers JSON servlet (global list, country filter parameter is ignored by the server), filtered by
+    the item country field. Not yet verified by a run.'
 - id: bank_of_communications_co_ltd_frankfurt_branch
   name: Bank of Communications Co., Ltd. Frankfurt branch
   country: Germany
@@ -713,8 +725,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Radancy site jobs.citi.com. robots.txt forbids /search-jobs/ (not used), but allows the vacancy pages and sitemap.xml.
     The sitemap lists every Citi vacancy worldwide as /job/<city>/<title>/287/<id>; only German cities are fetched (URL filter),
     so a vacancy in a German city that is missing from the regex would be missed. Run Verify to confirm.
@@ -3191,11 +3203,12 @@ banks:
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: SAP SuccessFactors career site jobs.standardchartered.com (robots.txt only blocks /services/ etc.). Search limited
-    with locationsearch=Germany; the location filter of the monitor does the final Germany check. Run Verify to confirm.
+  enabled: false
+  verification_status: failed
+  last_verified: '2026-10-03'
+  notes: 'Auto-disabled 2026-10-03: ScraperError: SuccessFactors: no job links found (layout changed?) | SAP SuccessFactors
+    career site jobs.standardchartered.com (robots.txt only blocks /services/ etc.). Search limited with locationsearch=Germany;
+    the location filter of the monitor does the final Germany check. Run Verify to confirm.'
   options:
     params:
       locationsearch: Germany
@@ -3465,7 +3478,7 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
+  verification_status: ok
   last_verified: '2026-10-03'
   notes: Own career page (the user supplied voba-seligenstadt.de/.../stellenangebote.html, which lists no vacancies and links
     to this page). Same CMS and selector as Volksbank Mainspitze (verified live). The bank has no vacancies at the moment,
