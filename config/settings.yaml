@@ -284,7 +284,8 @@ profiles:
     empty_text: "No new junior Java vacancies in banks this week."
     chat_id_env: TELEGRAM_CHAT_ID_SERGEY
     max_jobs_in_digest: 40
-    level_in_description: false
+    level_in_description: true        # also look for the level words in the first 600 characters of the description
+    accept_unspecified_level: true    # Java title without a level word is shown too, flagged (borderline)
     tech: [Java, J2EE, Jakarta EE, Spring Boot]
     level:
       - Junior
@@ -301,6 +302,12 @@ profiles:
       - Trainee
       - Young Professional
       - Nachwuchs
+      - Berufsanfänger
+      - Berufsanfängerin
+      - Hochschulabsolvent
+      - Hochschulabsolventin
+      - Quereinsteiger
+      - Einstieg
     exclude:
       - Senior
       - Lead
@@ -308,6 +315,16 @@ profiles:
       - Head
       - Director
       - Architect
+      - Experte
+      - Expert
+      - Leiter
+      - Leiterin
+      - Leitung
+      - Teamleiter
+      - Abteilungsleiter
+      - Manager
+      - Consultant
+      - Berater
       - Werkstudent
       - Werkstudentin
       - Working Student

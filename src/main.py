@@ -114,7 +114,7 @@ def run(banks, settings, http, db, llm, stats: Stats, extra: dict | None = None,
                 if pd.accepted and job.job_id not in extra_seen[pname]:
                     extra_seen[pname].add(job.job_id)
                     pj = copy.copy(job)
-                    pj.matched_functions, pj.borderline = pd.functions, False
+                    pj.matched_functions, pj.borderline = pd.functions, pd.borderline
                     extra[pname].append(pj)
                     log.debug("MATCH[%s] %s | %s | %s", pname, bank.label, job.title, pd.reason)
             try:

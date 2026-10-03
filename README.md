@@ -30,8 +30,8 @@ robots.txt forbids automation, no public career page, excluded by the user).
 ## Several recipients (profiles)
 
 `config/settings.yaml` -> `profiles` defines extra recipients next to the built-in `main` profile (leadership roles, goes to
-`TELEGRAM_CHAT_ID`). Currently: **`sergey`** = *Junior IT Java* (title has Java / J2EE / Jakarta EE / Spring Boot **and** an entry-level
-word such as Junior, Berufseinsteiger, Absolvent, Trainee; senior / lead / student / apprentice titles are excluded). Banks are scraped
+`TELEGRAM_CHAT_ID`). Currently: **`sergey`** = *Junior IT Java* (title has Java / J2EE / Jakarta EE / Spring Boot; with an entry-level
+word such as Junior, Berufseinsteiger, Absolvent, Trainee - in the title or the start of the description - it is a clear match; without any level word it is still shown but flagged "(borderline)" / "level not stated"; senior / lead / manager / consultant / student / apprentice titles are excluded). Banks are scraped
 once; each profile is filtered separately, has its own "already sent" table (`jobs_<name>` in `data/jobs.db`) and its own chat, read
 from the secret named in `chat_id_env` (`TELEGRAM_CHAT_ID_SERGEY`). Without that secret the profile is skipped with a log warning; the
 main profile is never affected.

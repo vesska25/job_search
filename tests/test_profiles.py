@@ -24,7 +24,7 @@ def pcfg(settings):
     ("Junior Software Engineer - Java / Spring Boot", True),
     ("Trainee Java Backend (m/w/d)", True),
     ("Senior Java Developer (m/w/d)", False),          # excluded
-    ("Java Developer (m/w/d)", False),                  # no entry-level marker
+    ("Java Developer (m/w/d)", True),                   # level not stated: shown, flagged borderline
     ("Junior JavaScript Developer", False),            # JavaScript is not Java
     ("Junior Python Developer", False),
     ("Werkstudent Java Entwicklung", False),
@@ -32,6 +32,23 @@ def pcfg(settings):
 ])
 def test_keyword_profile_titles(settings, pcfg, bank, title, ok):
     assert evaluate_keywords(make_job(bank, title), bank, settings, pcfg).accepted is ok
+
+
+def test_unspecified_level_is_flagged_borderline(settings, pcfg, bank):
+    plain = evaluate_keywords(make_job(bank, "Java Entwickler (m/w/d)"), bank, settings, pcfg)
+    assert plain.accepted and plain.borderline and plain.functions[1] == "level not stated"
+    junior = evaluate_keywords(make_job(bank, "Junior Java Entwickler (m/w/d)"), bank, settings, pcfg)
+    assert junior.accepted and not junior.borderline
+    strict = {**pcfg, "accept_unspecified_level": False}
+    assert not evaluate_keywords(make_job(bank, "Java Entwickler (m/w/d)"), bank, settings, strict).accepted
+    for title in ("Senior Java Entwickler", "Teamleiter Java Entwicklung", "Java Consultant (m/w/d)", "Werkstudent Java"):
+        assert not evaluate_keywords(make_job(bank, title), bank, settings, pcfg).accepted, title
+
+
+def test_level_word_in_description(settings, pcfg, bank):
+    job = make_job(bank, "Java Entwickler (m/w/d)", description="Für Berufseinsteiger geeignet. Wir bieten ...")
+    d = evaluate_keywords(job, bank, settings, pcfg)
+    assert d.accepted and not d.borderline
 
 
 def test_keyword_profile_needs_germany(settings, pcfg, bank):

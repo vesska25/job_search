@@ -5,6 +5,8 @@ A vacancy matches when
   * the title (or department) contains at least one `tech` term,
   * the title (or department) contains at least one `level` term,
   * and the title contains none of the `exclude` terms.
+With `accept_unspecified_level: true` a title with a technology term but no level word is accepted too, flagged as
+borderline ("level not stated"); the `exclude` terms (Senior, Lead, ...) still remove it.
 All terms are matched as whole words, case-insensitive ("Java" does not match "JavaScript").
 """
 from __future__ import annotations
@@ -38,6 +40,12 @@ def evaluate_keywords(job, bank, settings: dict, cfg: dict) -> Decision:
         return d
     level = find_terms(cfg.get("level", []), level_scope)
     if not level:
+        if cfg.get("accept_unspecified_level"):
+            # Seniority is not stated and nothing excludes the title: show it, flagged, so the reader can judge.
+            d.functions = [tech[0], "level not stated"]
+            d.accepted, d.borderline = True, True
+            d.reason = f"technology {tech[0]}, level not stated"
+            return d
         d.reason = f"technology {tech[0]} but no junior/entry-level term"
         return d
     d.functions = [tech[0], level[0]]
