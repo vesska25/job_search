@@ -512,16 +512,18 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: failed
+  enabled: true
+  verification_status: unverified
   last_verified: '2026-10-03'
   notes: 'Auto-disabled 2026-10-03: source returned 0 vacancies | CHECK-IN portal vr.mein-check-in.de/55061303 (URL supplied
     by the user; 55061303 assumed to be the BLZ of this bank, check the sample titles in the Verify log). Vacancies are a.mainmenu_position_link
-    on the index page. Run Verify to confirm.'
+    on the index page. Run Verify to confirm. | Checked 2026-10-03: the page loads but lists no vacancies at the moment, so
+    the selectors are unproven for this bank; same platform and selectors are verified on other banks. Kept enabled with allow_empty.'
   options:
     selectors:
       item: a.mainmenu_position_link
     accept_unknown_location: true
+    allow_empty: true
 - id: burgschaftsbank_hessen
   name: Bürgschaftsbank Hessen GmbH
   country: Germany
@@ -2249,15 +2251,18 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: failed
+  enabled: true
+  verification_status: unverified
   last_verified: '2026-10-03'
   notes: 'Auto-disabled 2026-10-03: source returned 0 vacancies | Helix Jobs vacancy list (psdbank-ht.helixjobs.com), URL
-    supplied by the user from the bank''s own career page. Run Verify to confirm.'
+    supplied by the user from the bank''s own career page. Run Verify to confirm. | Checked 2026-10-03: the page loads but
+    lists no vacancies at the moment, so the selectors are unproven for this bank; same platform and selectors are verified
+    on other banks. Kept enabled with allow_empty.'
   options:
     selectors:
       item: a[href*="/_/jobad?prj="]
       title: h3
+    allow_empty: true
 - id: psd_bank_rhein_ruhr
   name: PSD Bank Rhein-Ruhr eG
   country: Germany
