@@ -3403,15 +3403,21 @@ banks:
   name: Sutor Bank GmbH
   country: Germany
   address_in_source_list: 60313 Frankfurt am Main
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.sutorbank.de/karriere
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Career page supplied by the user; vacancy teasers a.teaser-feature__link with the title in the title attribute and
+    links /karriere/stellenangebote/<slug>, confirmed by a probe. Unverified until a Verify run.
+  options:
+    selectors:
+      item: a.teaser-feature__link
+      title_attr: title
+    accept_unknown_location: true
 - id: sud_west_kreditbank_finanzierung
   name: Süd-West-Kreditbank Finanzierung GmbH
   country: Germany
