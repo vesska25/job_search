@@ -1,3 +1,4 @@
+# Workflow definition (re-registered after initial push)
 name: Weekly bank job monitor
 
 on:

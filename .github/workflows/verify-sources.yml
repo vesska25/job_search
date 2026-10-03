@@ -1,3 +1,4 @@
+# Workflow definition (re-registered after initial push)
 name: Verify bank sources (manual)
 
 on:
