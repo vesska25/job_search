@@ -330,3 +330,20 @@ def test_vr_jobs_unknown_bank_is_an_error_but_bank_without_vacancies_is_not(bank
     bank.options = {"vr_slug": "sparda-bank-nuernberg-eg"}      # only an explicit slug override; one referent page, no JSON-LD
     http2 = _vr_http({SITEMAP_URL: VR_SITEMAP, "https://www.vr.de/karriere/jobs/referent-m-w-d-sparda-bank-nuernberg-eg-nnn222.html": "<html></html>"})
     assert VrJobsScraper(http2).fetch_jobs(bank) == []
+
+
+def test_vr_jobs_skips_expired_vacancy_pages(bank):
+    import requests
+    from src.scrapers.vr_jobs import SITEMAP_URL, VrJobsScraper
+    VrJobsScraper._sitemap_cache.clear()
+    bank.name, bank.options = "Wiesbadener Volksbank eG", {}
+
+    class Http:
+        def get(self, url, **kw):
+            if url == SITEMAP_URL:
+                return type("R", (), {"text": VR_SITEMAP})()
+            resp = requests.Response()
+            resp.status_code = 404
+            raise requests.HTTPError("404", response=resp)
+
+    assert VrJobsScraper(Http()).fetch_jobs(bank) == []

@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import re
 
+import requests
 from bs4 import BeautifulSoup
 
 from src.config import Bank
@@ -61,7 +62,13 @@ class VrJobsScraper(BaseScraper):
         for url, slug, jid in mine:
             if SKIP_PREFIX.match(slug):
                 continue
-            soup = BeautifulSoup(self.http.get(url).text, "html.parser")
+            try:
+                html = self.http.get(url).text
+            except requests.HTTPError as exc:
+                if exc.response is not None and exc.response.status_code in (404, 410):
+                    continue  # the sitemap still lists expired vacancies
+                raise
+            soup = BeautifulSoup(html, "html.parser")
             for job in parser._from_jsonld(soup, bank):   # JSON-LD only: link heuristics would pick up related-job teasers
                 if job.url.rstrip("/") != url:
                     continue

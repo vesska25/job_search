@@ -515,9 +515,8 @@ banks:
   enabled: false
   verification_status: failed
   last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''budenheimer-volksbank-eg'')
-    | Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange sitemap
-    by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
+    website. Needs the bank's vacancy-page URL.
   options:
     allow_empty: true
 - id: burgschaftsbank_hessen
@@ -1240,9 +1239,8 @@ banks:
   enabled: false
   verification_status: failed
   last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''freikirchen-bank-eg'') |
-    Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange sitemap
-    by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
+    website. Needs the bank's vacancy-page URL.
   options:
     allow_empty: true
 - id: gefa_bank
@@ -2249,9 +2247,8 @@ banks:
   enabled: false
   verification_status: failed
   last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''psd-bank-hessen-thueringen-eg'')
-    | Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange sitemap
-    by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
+    website. Needs the bank's vacancy-page URL.
   options:
     allow_empty: true
 - id: psd_bank_rhein_ruhr
@@ -2266,9 +2263,8 @@ banks:
   enabled: false
   verification_status: failed
   last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''psd-bank-rhein-ruhr-eg'')
-    | Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange sitemap
-    by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
+    website. Needs the bank's vacancy-page URL.
   options:
     allow_empty: true
 - id: psd_bank_west
@@ -2283,9 +2279,8 @@ banks:
   enabled: false
   verification_status: failed
   last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''psd-bank-west-eg'') | Job
-    exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange sitemap by
-    the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
+    website. Needs the bank's vacancy-page URL.
   options:
     allow_empty: true
 - id: pax_bank
@@ -2300,9 +2295,8 @@ banks:
   enabled: false
   verification_status: failed
   last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''pax-bank-eg'') | Job exchange
-    of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange sitemap by the bank
-    name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
+    website. Needs the bank's vacancy-page URL.
   options:
     allow_empty: true
 - id: peoples_bank_of_china_reprasentanz
@@ -2382,9 +2376,8 @@ banks:
   enabled: false
   verification_status: failed
   last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''raiffeisenbank-frechen-huerth-eg'')
-    | Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange sitemap
-    by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
+    website. Needs the bank's vacancy-page URL.
   options:
     allow_empty: true
 - id: raiffeisenbank_gravenwiesbach
@@ -2399,9 +2392,8 @@ banks:
   enabled: false
   verification_status: failed
   last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''raiffeisenbank-graevenwiesbach-eg'')
-    | Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange sitemap
-    by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
+    website. Needs the bank's vacancy-page URL.
   options:
     allow_empty: true
 - id: raiffeisenbank_gymnich
@@ -2416,9 +2408,8 @@ banks:
   enabled: false
   verification_status: failed
   last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''raiffeisenbank-gymnich-eg'')
-    | Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange sitemap
-    by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
+    website. Needs the bank's vacancy-page URL.
   options:
     allow_empty: true
 - id: raiffeisenbank_kaarst
@@ -2481,9 +2472,8 @@ banks:
   enabled: false
   verification_status: failed
   last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''raiffeisenbank-schaafheim-eg'')
-    | Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange sitemap
-    by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
+    website. Needs the bank's vacancy-page URL.
   options:
     allow_empty: true
 - id: raiffeisenbank
@@ -2511,9 +2501,8 @@ banks:
   enabled: false
   verification_status: failed
   last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''raiffeisenbank-im-hochtaunus-eg'')
-    | Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange sitemap
-    by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
+    website. Needs the bank's vacancy-page URL.
   options:
     allow_empty: true
 - id: raiffeisenbank_in_rheinhessen
@@ -2746,9 +2735,8 @@ banks:
   enabled: false
   verification_status: failed
   last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''sparda-bank-hessen-eg'')
-    | Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange sitemap
-    by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
+    website. Needs the bank's vacancy-page URL.
   options:
     allow_empty: true
 - id: sparda_bank_sudwest
@@ -2781,9 +2769,8 @@ banks:
   enabled: false
   verification_status: failed
   last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''sparda-bank-west-eg'') |
-    Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange sitemap
-    by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
+    website. Needs the bank's vacancy-page URL.
   options:
     allow_empty: true
 - id: sparkasse_aschaffenburg_miltenberg
@@ -3400,9 +3387,8 @@ banks:
   enabled: false
   verification_status: failed
   last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''volksbank-seligenstadt-eg'')
-    | Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange sitemap
-    by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
+    website. Needs the bank's vacancy-page URL.
   options:
     allow_empty: true
 - id: vr_bank_bad_orb_gelnhausen
@@ -3520,9 +3506,8 @@ banks:
   enabled: false
   verification_status: failed
   last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''vr-bank-bonn-rhein-sieg-eg'')
-    | Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange sitemap
-    by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
+    website. Needs the bank's vacancy-page URL.
   options:
     allow_empty: true
 - id: vakifbank_international_wien_zweigniederlassung_
@@ -3619,9 +3604,8 @@ banks:
   enabled: false
   verification_status: failed
   last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''volksbank-brandoberndorf-eg'')
-    | Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange sitemap
-    by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
+    website. Needs the bank's vacancy-page URL.
   options:
     allow_empty: true
 - id: volksbank_butzbach
@@ -3685,9 +3669,8 @@ banks:
   enabled: false
   verification_status: failed
   last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''volksbank-duesseldorf-neuss-eg'')
-    | Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange sitemap
-    by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
+    website. Needs the bank's vacancy-page URL.
   options:
     allow_empty: true
 - id: volksbank_erft
@@ -3715,12 +3698,11 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: failed
+  enabled: true
+  verification_status: unverified
   last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: HTTPError: 404 Client Error: Not Found for url: https://www.vr.de/karriere/jobs/bankkaufmann-frau-ausbildungsbeginn-01082022-volksbank-euskirchen-eg-Sk6mbi.html
-    | Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange sitemap
-    by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  notes: VR exchange (vr.de); the sitemap still listed an expired 2022 vacancy (404), expired pages are now skipped. Run Verify
+    to confirm.
   options:
     allow_empty: true
 - id: volksbank_heimbach
@@ -3735,9 +3717,8 @@ banks:
   enabled: false
   verification_status: failed
   last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''volksbank-heimbach-eg'')
-    | Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange sitemap
-    by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
+    website. Needs the bank's vacancy-page URL.
   options:
     allow_empty: true
 - id: volksbank_kierspe
@@ -3786,9 +3767,8 @@ banks:
   enabled: false
   verification_status: failed
   last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''volksbank-mainspitze-eg'')
-    | Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange sitemap
-    by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
+    website. Needs the bank's vacancy-page URL.
   options:
     allow_empty: true
 - id: volksbank_monchengladbach
@@ -3819,9 +3799,8 @@ banks:
   enabled: false
   verification_status: failed
   last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''volksbank-ober-moerlen-eg'')
-    | Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange sitemap
-    by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
+    website. Needs the bank's vacancy-page URL.
   options:
     allow_empty: true
 - id: volksbank_oberberg
@@ -3868,9 +3847,8 @@ banks:
   enabled: false
   verification_status: failed
   last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''volksbank-sprockhoevel-eg'')
-    | Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange sitemap
-    by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
+    website. Needs the bank's vacancy-page URL.
   options:
     allow_empty: true
 - id: volksbank_im_bergischen_land
