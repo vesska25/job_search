@@ -1612,19 +1612,19 @@ banks:
   country: Germany
   address_in_source_list: 60311 Frankfurt am Main
   jobs_url: https://jobs.intesasanpaolo.com/
-  source_type: sitemap_jobs
+  source_type: successfactors
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: failed
-  last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: ScraperError: sitemap lists no URLs (layout change or blocked?) | Found by a web search
-    and a probe of the page; unverified until a Verify run. Jobs2web sitemap, German cities only (URL starts with the city).'
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: Search URL supplied by the user (SuccessFactors/Jobs2web, locationsearch=frankfurt); the earlier sitemap attempt
+    returned no URLs. Unverified until a Verify run.
   options:
-    sitemap_url: https://jobs.intesasanpaolo.com/sitemap.xml
-    url_regex: /job/(Frankfurt|Duesseldorf|Dusseldorf)-
-    max_pages: 40
+    params:
+      locationsearch: frankfurt
+    max_pages: 10
 - id: investitions_und_strukturbank_rheinland_pfalz_is
   name: Investitions- und Strukturbank Rheinland-Pfalz (ISB)
   country: Germany
