@@ -47,7 +47,6 @@ filters:
   # responsibility (see management_signals); otherwise treated as borderline (see borderline_policy).
   ambiguous_seniority_keywords:
     - Senior Manager
-    - Manager
     - Group Manager
     - Vice President
     - VP
@@ -55,6 +54,16 @@ filters:
     - Projektleiter
     - Projektleiterin
     - Projektleitung
+
+  # Plain "Manager" is far too common (Account Manager, Tax Manager ...): accepted ONLY when the
+  # description shows people management; never by borderline_policy.
+  weak_seniority_keywords:
+    - Manager
+    - Managerin
+
+  # For ambiguous/weak titles the relevant function must appear in the TITLE
+  # (not just in the department/category). Set false to also accept department matches.
+  ambiguous_requires_title_function: true
 
   # Phrases in the description signalling people management.
   management_signals:

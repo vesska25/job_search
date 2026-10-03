@@ -63,9 +63,13 @@ def evaluate(job, bank, settings: dict, llm=None) -> Decision:
             d.reason = "leadership but no relevant function"
         return d
 
-    # --- ambiguous seniority ("Senior Manager ...")
+    # --- ambiguous ("Senior Manager ...") or weak ("Manager ...") seniority
+    weak = sen.level == "weak"
+    if fcfg.get("ambiguous_requires_title_function", True):
+        funcs = match_functions(job, fcfg, title_only=True)
+        d.functions, d.relevant = funcs, bool(funcs)
     if not funcs:
-        d.reason = "ambiguous seniority and no relevant function"
+        d.reason = f"{sen.level} seniority and no relevant function in title"
         return d
     if sen.management_signal:
         d.leadership = d.accepted = True
@@ -80,6 +84,9 @@ def evaluate(job, bank, settings: dict, llm=None) -> Decision:
             d.borderline = d.accepted
             d.reason = f"LLM: {verdict.reason}"
             return d
+    if weak:
+        d.reason = f"{sen.reason}; no management signal in description"
+        return d
     if fcfg.get("borderline_policy", "include") == "include":
         d.leadership = d.accepted = d.borderline = True
         d.reason = f"{sen.reason}; borderline (no management signal found)"

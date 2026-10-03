@@ -20,12 +20,12 @@ def _hit(term: str, text: str) -> bool:
     return t in text
 
 
-def match_functions(job, cfg: dict) -> list[str]:
+def match_functions(job, cfg: dict, title_only: bool = False) -> list[str]:
     phrases = cfg.get("irrelevant_function_phrases", [])
-    fields = cfg.get("function_fields", ["title", "department"])
+    fields = ["title"] if title_only else cfg.get("function_fields", ["title", "department"])
     text = _strip_phrases(normalize_text(" ".join(getattr(job, f, "") for f in fields)), phrases)
     hits = [f for f in cfg["relevant_functions"] if _hit(f, text)]
-    if hits:
+    if hits or title_only:
         return hits
     desc = _strip_phrases(normalize_text(job.description), phrases)
     desc_hits = [f for f in cfg["relevant_functions"] if _hit(f, desc)]

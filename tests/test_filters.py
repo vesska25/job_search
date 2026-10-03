@@ -134,3 +134,23 @@ def test_llm_json_parsing():
     from src.filters.llm import LlmClassifier
     v = LlmClassifier.parse('Sure: {"leadership_role": true, "relevant_function": false, "germany": true, "confidence": 0.8, "reason": "r"}')
     assert v.leadership_role and not v.relevant_function and not v.accepts(0.5)
+
+
+def test_plain_manager_needs_management_signal(settings, bank):
+    assert classify_seniority("(Senior) Bank Account Manager*in", "", settings["filters"]).level == "weak"
+    # function only in department/category must not rescue a plain Manager
+    j = make_job(bank, "(Senior) Bank Account Manager*in", department="Finance")
+    assert not evaluate(j, bank, settings).accepted
+    assert not evaluate(make_job(bank, "Manager Regulatory Reporting"), bank, settings).accepted
+    ok = evaluate(make_job(bank, "Manager Regulatory Reporting", description="Mit Personalverantwortung für 4 Mitarbeitende"), bank, settings)
+    assert ok.accepted and not ok.borderline
+
+
+def test_ambiguous_needs_function_in_title(settings, bank):
+    assert not evaluate(make_job(bank, "Senior Tax Manager", department="Finance"), bank, settings).accepted   # weak title
+    assert not evaluate(make_job(bank, "Senior Manager Tax", department="Finance"), bank, settings).accepted  # function only in department
+    d = evaluate(make_job(bank, "Senior Manager Finanzcontrolling (m/w/d)"), bank, settings)
+    assert d.accepted and d.borderline
+    # configurable: department match allowed when the flag is off
+    s2 = {**settings, "filters": {**settings["filters"], "ambiguous_requires_title_function": False}}
+    assert evaluate(make_job(bank, "Senior Manager Tax", department="Finance"), bank, s2).accepted

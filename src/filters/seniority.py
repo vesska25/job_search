@@ -10,7 +10,7 @@ from src.utils.normalization import normalize_text
 
 @dataclass
 class SeniorityResult:
-    level: str  # strong | ambiguous | none | excluded
+    level: str  # strong | ambiguous | weak | none | excluded
     matched: list = field(default_factory=list)
     reason: str = ""
     management_signal: bool = False
@@ -51,8 +51,11 @@ def classify_seniority(title: str, description: str, cfg: dict) -> SeniorityResu
     if soft:
         return SeniorityResult("excluded", soft, f"exclusion: {soft[0]}")
 
+    signals = [x for x in cfg.get("management_signals", []) if normalize_text(x) in d] if d else []
     amb = find_terms(cfg.get("ambiguous_seniority_keywords", []), t)
     if amb:
-        signals = [x for x in cfg.get("management_signals", []) if normalize_text(x) in d] if d else []
         return SeniorityResult("ambiguous", amb, f"ambiguous title: {amb[0]}", management_signal=bool(signals))
+    weak = find_terms(cfg.get("weak_seniority_keywords", []), t)
+    if weak:
+        return SeniorityResult("weak", weak, f"weak title: {weak[0]}", management_signal=bool(signals))
     return SeniorityResult("none", [], "no leadership keyword")
