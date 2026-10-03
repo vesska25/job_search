@@ -4281,12 +4281,12 @@ banks:
   name: norisbank GmbH
   country: Germany
   address_in_source_list: 53113 Bonn
-  jobs_url: ''
+  jobs_url: https://www.norisbank.de/ueber-uns/karriere/arbeiten-mit-uns.html
   source_type: unknown
   germany_only: false
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: no_vacancies_now
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Career page supplied by the user (2026-10-03); it lists no vacancies at the moment, so no parser can be set up or verified yet. Applications go through the Deutsche Bank career portal. Connect when positions appear.
