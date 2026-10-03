@@ -82,6 +82,7 @@ def run(banks, settings, http, db, llm, stats: Stats, extra: dict | None = None,
     profiles = profiles or {}
     extra = extra if extra is not None else {}
     extra_seen = {name: set() for name in profiles}
+    funnel = {name: [0, 0] for name in profiles}      # [Germany vacancies with a technology term, of which junior-level]
     for name in profiles:
         extra.setdefault(name, [])
     for bank in banks:
@@ -105,6 +106,11 @@ def run(banks, settings, http, db, llm, stats: Stats, extra: dict | None = None,
                 except Exception as exc:  # noqa: BLE001
                     log.error("Profile %s filtering failed for '%s' (%s): %s", pname, job.title, bank.label, exc)
                     continue
+                if pd.germany and pd.relevant:
+                    funnel[pname][0] += 1
+                    funnel[pname][1] += pd.accepted
+                    if not pd.accepted:
+                        log.debug("NEAR-MISS[%s] %s | %s | %s", pname, bank.label, job.title, pd.reason)
                 if pd.accepted and job.job_id not in extra_seen[pname]:
                     extra_seen[pname].add(job.job_id)
                     pj = copy.copy(job)
@@ -134,6 +140,9 @@ def run(banks, settings, http, db, llm, stats: Stats, extra: dict | None = None,
         stats.germany += n_de
         stats.leadership += n_lead
         stats.relevant += n_rel
+    for name, (with_tech, junior) in funnel.items():
+        log.info("Profile %s funnel: %d Germany vacancies with a technology term in the title, %d of them junior-level",
+                 name, with_tech, junior)
     return matches
 
 
