@@ -1762,9 +1762,10 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: alias
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Covered by the entry kfw_ipex_bank (KfW career portal jobs.kfw.de, monitored via sitemap).
+  alias_of: kfw_ipex_bank
 - id: kreissparkasse_ahrweiler
   name: Kreissparkasse Ahrweiler
   country: Germany

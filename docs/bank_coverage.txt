@@ -4,9 +4,9 @@ Stand: 2026-10-03   |   Quelle: config/banks.yaml (278 Einträge aus Ihrer Liste
 
 Banken in Ihrer Liste ........................ 278
   im Monitoring (aktiv, geprüft) ............. 103
-  Dubletten (durch anderen Eintrag abgedeckt)  16
+  Dubletten (durch anderen Eintrag abgedeckt)  17
   nicht aktiv, Quelle bekannt, aber Problem .. 56
-  nicht aktiv, keine Quelle gefunden ......... 103
+  nicht aktiv, keine Quelle gefunden ......... 102
 
 Hinweis: "geprüft" heisst, dass die Seite beim letzten Lauf Vakanzen geliefert hat.
 Einige Banken (PSD Hessen-Thüringen, Budenheimer Volksbank) haben aktuell keine Vakanzen,
@@ -140,7 +140,7 @@ ihr Aufbau ist daher noch nicht live bestätigt. Sie sind mit * markiert.
   [x] Santander Consumer Bank   (41061 Mönchengladbach)
 
 ==============================================================================
-2. DUBLETTEN: durch einen anderen Eintrag abgedeckt (16)
+2. DUBLETTEN: durch einen anderen Eintrag abgedeckt (17)
 ==============================================================================
   [=] ABN AMRO Asset Based Finance N.V., Niederlassung Deutschland  ->  ABN AMRO (nicht aktiv)
   [=] Arab Banking Corporation, Daus & Co. GmbH  ->  Arab Banking Corporation (nicht aktiv)
@@ -151,6 +151,7 @@ ihr Aufbau ist daher noch nicht live bestätigt. Sie sind mit * markiert.
   [=] EUREX Clearing Aktiengesellschaft  ->  Deutsche Börse Group (aktiv)
   [=] Ford Bank Niederlassung der FCE Bank plc  ->  Ford Bank (nicht aktiv)
   [=] Goldman Sachs International Bank Zweigniederlassung Frankfurt  ->  Goldman Sachs (nicht aktiv)
+  [=] KfW  ->  KfW (incl. IPEX-Bank) (aktiv)
   [=] Landesbausparkasse Hessen-Thüringen Abteilung der Landesbank Hessen-Thüringen Girozentrale  ->  Helaba (aktiv)
   [=] National Westminster Bank Plc Niederlassung Deutschland  ->  NatWest (nicht aktiv)
   [=] NATIXIS Pfandbriefbank AG  ->  Natixis (nicht aktiv)
@@ -296,7 +297,7 @@ ihr Aufbau ist daher noch nicht live bestätigt. Sie sind mit * markiert.
         Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
 
 ==============================================================================
-4. NICHT AKTIV, KEINE QUELLE GEFUNDEN (103)
+4. NICHT AKTIV, KEINE QUELLE GEFUNDEN (102)
 ==============================================================================
 Für diese Banken wurde keine offizielle Karriereseite mit Vakanzen für Deutschland gefunden
 (oft Repräsentanzen, Niederlassungen ausländischer Banken oder Kleinstbanken).
@@ -360,7 +361,6 @@ Wenn Sie einen Link haben, kann ich die Bank einzeln anbinden.
   [ ] JCB FINANCE S.A.S. Zweigniederlassung Deutschland   (50674 Köln)
   [ ] KBC Bank NV, Niederlassung Deutschland   (40215 Düsseldorf)
   [ ] KEB Hana Bank (D) Aktiengesellschaft   (60325 Frankfurt am Main)
-  [ ] KfW   (60325 Frankfurt am Main)
   [ ] Kommunalkredit Austria AG Zweigstelle Deutschland   (60313 Frankfurt am Main)
   [ ] Liechtensteinische Landesbank AG, Zweigniederlassung Deutschland   (60313 Frankfurt am Main)
   [ ] Macquarie Bank Europe Designated Activity Company, Frankfurt Branch   (60306 Frankfurt am Main)

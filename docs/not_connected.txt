@@ -70,7 +70,7 @@ Sparkasse: код банка (BLZ) неизвестен, подтвердить 
   [ ] Steyler Bank GmbH
   [ ] Süd-West-Kreditbank Finanzierung GmbH
 
-Нет собственной страницы вакансий для Германии: представительства, малые банки, банки в ликвидации, вакансии только на сторонних сайтах (57)
+Нет собственной страницы вакансий для Германии: представительства, малые банки, банки в ликвидации, вакансии только на сторонних сайтах (56)
 ----------------------------------------------------------------------
   [ ] Agricultural Bank of China Limited Frankfurt Branch
   [ ] AION Bank S.A. German Branch
@@ -104,7 +104,6 @@ Sparkasse: код банка (BLZ) неизвестен, подтвердить 
   [ ] J&T BANKA, a.s. Zweigniederlassung Deutschland
   [ ] JCB FINANCE S.A.S. Zweigniederlassung Deutschland
   [ ] KEB Hana Bank (D) Aktiengesellschaft
-  [ ] KfW
   [ ] Kommunalkredit Austria AG Zweigstelle Deutschland
   [ ] Maple GmbH
   [ ] MEDIOBANCA BANCA DI CREDITO FINANZIARIO SOCIETA' PER AZIONI, Zweigniederlassung Deutschland
