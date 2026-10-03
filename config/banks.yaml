@@ -232,8 +232,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Own career page (Next.js, server-rendered list, robots.txt allows). Job links /karriere/offene-stellen/<slug>; link
     text = city line then title line. Selector from diagnosis, text_lines split not yet confirmed by a full run.
   display_name: Metzler
@@ -727,8 +727,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Group portal for Deutsche Börse AG, Clearstream and Eurex Clearing (one source, no duplicate monitoring). List has
     titles only; for jobs passing the seniority/function filter the city is read from the vacancy page <title> ("... (Frankfurt
     am Main) › Deutsche Börse Group"). Jobs also in Prague/Luxembourg/Cork are rejected by the Germany filter. Not yet confirmed
@@ -802,8 +802,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Own career portal (Next.js, robots.txt allows). Only the first page (~16 most recent of ~160 jobs) is present in
     the HTML; ?page=N returns the same page, so the list is read without pagination. Enough to catch NEW jobs weekly unless
     >16 appear in one week. Germany filter is client-side on city.
@@ -977,8 +977,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: softgarden vacancy page found in the career page source (https://www.dwpbank.de/karriere/professionals/). Adapter
     parse unverified; Germany-only employer (Frankfurt/Münster sites).
 - id: etris_bank
@@ -1797,8 +1797,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Vacancies are embedded from Umantis (Abacus). Using the public list page /Jobs/1 (robots.txt allows; the /VacanciesIntraxData/
     endpoint is disallowed and not used). Frankfurt employer, so germany_only. Parse not yet confirmed by a full run.
   display_name: Rentenbank
@@ -1984,11 +1984,12 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: SAP SuccessFactors career site (karriere.nrwbank.de, robots.txt allows /search/). Germany-only employer (Düsseldorf/Münster).
-    Adapter parse not yet confirmed by a full run.
+  enabled: false
+  verification_status: failed
+  last_verified: '2026-10-03'
+  notes: 'Auto-disabled 2026-10-03: ScraperError: SuccessFactors: no job rows found (layout changed?) | SAP SuccessFactors
+    career site (karriere.nrwbank.de, robots.txt allows /search/). Germany-only employer (Düsseldorf/Münster). Adapter parse
+    not yet confirmed by a full run.'
   display_name: NRW.BANK
 - id: nassauische_sparkasse
   name: Nassauische Sparkasse
