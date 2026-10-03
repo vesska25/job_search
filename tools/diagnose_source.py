@@ -27,6 +27,23 @@ API_HINT = re.compile(r"""["'(]((?:https?:)?//[^"'\s)]+|/[^"'\s)]*)(?:api|graphq
 DEFAULT_PATTERN = r"api-jobs|/api/|ajax|fetch\(|getJSON|XMLHttpRequest|\.json|search_result|jobplatform|vacanc"
 
 
+def grep_text(text: str, pattern: str, ctx: int, limit: int, label: str) -> None:
+    print(f"== text matches in {label}, pattern /{pattern}/")
+    last_end, shown = -1, 0
+    for m in re.finditer(pattern, text):
+        if m.start() < last_end:
+            continue
+        a, b = max(0, m.start() - ctx), min(len(text), m.end() + ctx)
+        snippet = re.sub(r"\s+", " ", text[a:b])
+        print(f"  [{m.start()}] ...{snippet}...")
+        last_end, shown = b, shown + 1
+        if shown >= limit:
+            print("  (limit reached)")
+            break
+    if not shown:
+        print("  no matches")
+
+
 def grep_js(url: str, http: HttpClient, pattern: str, ctx: int = 220, limit: int = 15) -> None:
     """Print short snippets of a public script around `pattern` (to learn how a career page loads its data)."""
     if not http.allowed(url):
@@ -83,6 +100,8 @@ def diagnose(url: str, http: HttpClient, pattern: str = DEFAULT_PATTERN, ctx: in
               "ask the bank for a feed, or leave disabled.")
         return
     print("JSON-LD JobPosting present:", "JobPosting" in r.text)
+    if pattern != DEFAULT_PATTERN:
+        grep_text(r.text, pattern, ctx, 12, url)
     probe = re.compile(r"m/w/d|w/m/d|m/f/d|Stellenanzeige|Vacancy", re.I)
     hits = list(probe.finditer(r.text))
     print(f"job-title markers (m/w/d, Stellenanzeige ...) in raw HTML: {len(hits)}")
