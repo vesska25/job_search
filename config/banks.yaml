@@ -4231,15 +4231,21 @@ banks:
   name: akf bank GmbH & Co KG
   country: Germany
   address_in_source_list: 42277 Wuppertal
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.akf.de/karriere/alle-stellenangebote/
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Page supplied by the user lists links to the Vorwerk group portal jobs.vorwerkgroup.com/akf/job/<city>-<title>/<id>/
+    (confirmed by a probe); the link has no text, so the title is taken from the URL slug (city and postcode may remain in
+    it). Unverified until a Verify run.
+  options:
+    selectors:
+      item: a[href*="jobs.vorwerkgroup.com/akf/job/"]
+    accept_unknown_location: true
 - id: noa_bank_co_kg
   name: noa bank GmbH & Co. KG
   country: Germany
