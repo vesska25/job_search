@@ -45,11 +45,11 @@ banks:
   germany_only: true
   germany_filter: url (land/deutschland-1)
   location_filter: []
-  enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: URL supplied by user. Parser untested; page may be JavaScript-rendered -> if verify reports 0 jobs, find its JSON
-    endpoint and switch to custom_api.
+  enabled: false
+  verification_status: failed
+  last_verified: '2026-10-03'
+  notes: 'Auto-disabled 2026-10-03: source returned 0 vacancies | URL supplied by user. Parser untested; page may be JavaScript-rendered
+    -> if verify reports 0 jobs, find its JSON endpoint and switch to custom_api.'
 - id: aion_bank_s_a_german_branch
   name: AION Bank S.A. German Branch
   country: Germany
@@ -139,8 +139,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: URL supplied by user. Personio XML feed (/xml) not yet tested live.
 - id: alpen_privatbank_zweigniederlassung_deutschland
   name: Alpen Privatbank Aktiengesellschaft, Zweigniederlassung Deutschland
@@ -273,11 +273,12 @@ banks:
   germany_only: true
   germany_filter: url (/germany)
   location_filter: []
-  enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: URL supplied by user. Parser untested; if verify reports 0 jobs, locate the JSON endpoint behind the page and switch
-    to custom_api.
+  enabled: false
+  verification_status: failed
+  last_verified: '2026-10-03'
+  notes: 'Auto-disabled 2026-10-03: HTTPError: 403 Client Error: Forbidden for url: https://group.bnpparibas/en/careers/all-job-offers/germany
+    | URL supplied by user. Parser untested; if verify reports 0 jobs, locate the JSON endpoint behind the page and switch
+    to custom_api.'
 - id: banco_bilbao_vizcaya_argentaria_s_a_niederlassun
   name: Banco Bilbao Vizcaya Argentaria, S.A., Niederlassung Deutschland
   country: Germany
