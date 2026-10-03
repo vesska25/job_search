@@ -384,15 +384,22 @@ banks:
   country: Germany
   address_in_source_list: 60329 Frankfurt am Main
   jobs_url: https://careers.bankofamerica.com/
-  source_type: proprietary
+  source_type: custom_api
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: needs_review
+  options:
+    api_url: https://careers.bankofamerica.com/services/jobssearchservlet
+    params: {search: getAllJobs}
+    items_path: jobsList
+    fields: {title: postingTitle, id: jobRequisitionId, location: country, department: lob, date: postedDate}
+    url_template: "https://careers.bankofamerica.com{jcrURL}"
+    pagination: {type: offset, param: start, size_param: rows, size: 100, max_pages: 25}
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: Global/official career portal exists but needs a Germany filter and adapter configuration before it can be enabled;
-    not tested.
+  notes: Official careers JSON servlet (global list, country filter parameter is ignored by the server), filtered by the
+    item country field. Not yet verified by a run.
 - id: bank_of_communications_co_ltd_frankfurt_branch
   name: Bank of Communications Co., Ltd. Frankfurt branch
   country: Germany
@@ -697,19 +704,24 @@ banks:
   notes: No official Germany-specific vacancy source verified
 - id: citi
   name: Citibank Europe plc, Germany Branch
-  display_name: Citi
+  display_name: Citi (Germany)
   country: Germany
   address_in_source_list: 60323 Frankfurt am Main
   jobs_url: https://jobs.citi.com/
-  source_type: proprietary
-  germany_only: false
+  source_type: sitemap_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: needs_review
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: Global/official career portal exists but needs a Germany filter and adapter configuration before it can be enabled;
-    not tested.
+  notes: Radancy site jobs.citi.com. robots.txt forbids /search-jobs/ (not used), but allows the vacancy pages and sitemap.xml.
+    The sitemap lists every Citi vacancy worldwide as /job/<city>/<title>/287/<id>; only German cities are fetched (URL filter),
+    so a vacancy in a German city that is missing from the regex would be missed. Run Verify to confirm.
+  options:
+    sitemap_url: https://jobs.citi.com/sitemap.xml
+    url_regex: /job/(frankfurt|frankfurt-am-main|duesseldorf|dusseldorf|munich|muenchen|hamburg|berlin|stuttgart|cologne|koeln|eschborn|bad-homburg)[a-z-]*/
+    max_pages: 80
 - id: citigroup_global_markets_europe
   name: Citigroup Global Markets Europe AG
   country: Germany
@@ -3175,15 +3187,19 @@ banks:
   country: Germany
   address_in_source_list: 60325 Frankfurt am Main
   jobs_url: https://jobs.standardchartered.com/
-  source_type: proprietary
+  source_type: successfactors
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: needs_review
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: Global/official career portal exists but needs a Germany filter and adapter configuration before it can be enabled;
-    not tested.
+  notes: SAP SuccessFactors career site jobs.standardchartered.com (robots.txt only blocks /services/ etc.). Search limited
+    with locationsearch=Germany; the location filter of the monitor does the final Germany check. Run Verify to confirm.
+  options:
+    params:
+      locationsearch: Germany
+    max_pages: 20
 - id: state_bank_of_india_indische_staatsbank_zweignie
   name: State Bank of India (Indische Staatsbank) Zweigniederlassung Frankfurt am Main
   country: Germany
@@ -3443,17 +3459,21 @@ banks:
   name: VOLKSBANK SELIGENSTADT EG
   country: Germany
   address_in_source_list: 63500 Seligenstadt, Hess
-  jobs_url: https://www.voba-seligenstadt.de/meine-bank/karriere/stellenangebote.html
-  source_type: vr_jobs
+  jobs_url: https://www.voba-seligenstadt.de/meine-bank/karriere/arbeitgeber-genossenschaftsbank.html
+  source_type: custom_html
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_vacancies_now
+  enabled: true
+  verification_status: unverified
   last_verified: '2026-10-03'
-  notes: Own career page (URL from the user) lists no vacancies right now; it uses the same CMS as Volksbank Mainspitze, so
-    the Mainspitze selector can be reused once a vacancy shows up. Not enabled because that cannot be verified today.
+  notes: Own career page (the user supplied voba-seligenstadt.de/.../stellenangebote.html, which lists no vacancies and links
+    to this page). Same CMS and selector as Volksbank Mainspitze (verified live). The bank has no vacancies at the moment,
+    so the setup is unproven for this bank; enabled with allow_empty.
   options:
+    selectors:
+      item: a.internal[href*="/karriere/arbeitgeber-genossenschaftsbank/"]
+    accept_unknown_location: true
     allow_empty: true
 - id: vr_bank_bad_orb_gelnhausen
   name: VR Bank Bad Orb-Gelnhausen eG
