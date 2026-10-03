@@ -506,28 +506,34 @@ banks:
   name: Bensberger Bank e.G.
   country: Germany
   address_in_source_list: 51429 Bergisch Gladbach
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not
+    fetched); unverified until a Verify run. '
+  options:
+    allow_empty: true
 - id: bruhler_bank
   name: Brühler Bank eG
   country: Germany
   address_in_source_list: 50321 Brühl, Rheinl
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not
+    fetched); unverified until a Verify run. '
+  options:
+    allow_empty: true
 - id: budenheimer_volksbank
   name: Budenheimer Volksbank eG
   country: Germany
@@ -652,15 +658,20 @@ banks:
   name: CRONBANK Aktiengesellschaft
   country: Germany
   address_in_source_list: 63303 Dreieich
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.mein-check-in.de/cronbank
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Found by a web search (agent report, page itself not fetched); unverified until a Verify run. CHECK-IN portal; same
+    selector as the verified Check-In banks.
+  options:
+    selectors:
+      item: a.mainmenu_position_link
+    accept_unknown_location: true
 - id: caixa_economica_montepio_geral_reprasentanz_fran
   name: Caixa Económica Montepio Geral - Repräsentanz Frankfurt
   country: Germany
@@ -1477,15 +1488,18 @@ banks:
   name: Hüttenberger Bank eG
   country: Germany
   address_in_source_list: 35625 Hüttenberg, Hess
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not
+    fetched); unverified until a Verify run. '
+  options:
+    allow_empty: true
 - id: icici_bank_uk_plc_germany_branch
   name: ICICI Bank UK PLC, Germany Branch
   country: Germany
@@ -1847,15 +1861,18 @@ banks:
   name: Landbank Horlofftal eingetragene Genossenschaft
   country: Germany
   address_in_source_list: 61203 Reichelsheim (Wetterau)
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not
+    fetched); unverified until a Verify run. '
+  options:
+    allow_empty: true
 - id: helaba
   name: Landesbank Hessen-Thüringen Girozentrale
   display_name: Helaba
@@ -2551,15 +2568,18 @@ banks:
   name: Raiffeisenbank eG
   country: Germany
   address_in_source_list: 63517 Rodenbach b Hanau
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not
+    fetched); unverified until a Verify run. '
+  options:
+    allow_empty: true
 - id: raiffeisenbank_im_hochtaunus
   name: Raiffeisenbank im Hochtaunus eG
   country: Germany
@@ -2595,15 +2615,16 @@ banks:
   name: Raisin Bank AG
   country: Germany
   address_in_source_list: 60325 Frankfurt am Main
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://raisin.jobs.personio.de/
+  source_type: personio
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Found by a web search (agent report, page itself not fetched); unverified until a Verify run. Personio feed of the
+    Raisin group; location filter applies.
 - id: reisebank
   name: ReiseBank Aktiengesellschaft
   country: Germany
@@ -3167,15 +3188,18 @@ banks:
   name: Stadtsparkasse Wermelskirchen
   country: Germany
   address_in_source_list: 42929 Wermelskirchen
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.sparkasse.de/jobboerse/34051570
+  source_type: sparkasse_jobmarket
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Sparkassen job exchange; bankCode 34051570 taken from the exchange URL found by a web search; unverified until a
+    Verify run.
+  options:
+    bank_code: '34051570'
 - id: stadtsparkasse_wuppertal
   name: Stadtsparkasse Wuppertal
   country: Germany
@@ -3539,28 +3563,35 @@ banks:
   name: VR Bank eG
   country: Germany
   address_in_source_list: 40789 Monheim am Rhein
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not
+    fetched); unverified until a Verify run. '
+  options:
+    vr_slug: vr-bank-eg-monheim-am-rhein
+    allow_empty: true
 - id: vr_bank_alsheim_rheinhess
   name: VR Bank eG
   country: Germany
   address_in_source_list: 67577 Alsheim, Rheinhess
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not
+    fetched); unverified until a Verify run. '
+  options:
+    allow_empty: true
 - id: vr_bank_bergisch_gladbach_leverkusen
   name: VR Bank eG Bergisch Gladbach-Leverkusen
   country: Germany
@@ -3625,28 +3656,33 @@ banks:
   name: Vereinigte Volksbank Raiffeisenbank eG
   country: Germany
   address_in_source_list: 64354 Reinheim, Odenw
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not
+    fetched); unverified until a Verify run. '
+  options:
+    vr_slug: vereinigte-volksbank-raiffeisenbank
+    allow_empty: true
 - id: vietnam_joint_stock_commercial_bank_for_industry
   name: Vietnam Joint Stock Commercial Bank for Industry and Trade (VietinBank), Filiale Deutschland
   country: Germany
   address_in_source_list: 60322 Frankfurt am Main
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://vietinbank.jobs.personio.de/
+  source_type: personio
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Found by a web search (agent report, page itself not fetched); unverified until a Verify run. Personio feed of the
+    Frankfurt branch.
 - id: vnesheconombank_bank_fur_entwicklung_und_auenwir
   name: Vnesheconombank (Bank für Entwicklung und Außenwirtschaft) Repräsentanz in der Bundesrepublik Deutschland
   country: Germany
