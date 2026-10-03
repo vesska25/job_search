@@ -9,9 +9,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
 - id: abn_amro_asset_based_finance_n_v_niederlassung_d
   name: ABN AMRO Asset Based Finance N.V., Niederlassung Deutschland
   country: Germany
@@ -78,9 +78,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: alte_leipziger_bauspar
   name: ALTE LEIPZIGER Bauspar AG
   country: Germany
@@ -165,9 +165,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: arab_banking_corporation_daus_co
   name: Arab Banking Corporation, Daus & Co. GmbH
   country: Germany
@@ -205,9 +205,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: australia_and_new_zealand_banking_group_limited_
   name: Australia and New Zealand Banking Group Limited Niederlassung Frankfurt am Main
   country: Germany
@@ -309,9 +309,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
 - id: banco_do_brasil_s_a_zweigniederlassung_frankfurt
   name: Banco do Brasil S.A. Zweigniederlassung Frankfurt/Main
   country: Germany
@@ -335,9 +335,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
 - id: bank_julius_bar_europe
   name: Bank Julius Bär Europe AG
   country: Germany
@@ -375,9 +375,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified. Sanctioned institution; irrelevant.
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Sanctioned institution; irrelevant.
 - id: bank_of_america
   name: Bank of America Europe Designated Activity Company Zweigniederlassung Frankfurt am Main
   display_name: Bank of America
@@ -486,9 +486,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: bausparkasse_mainz
   name: Bausparkasse Mainz Aktiengesellschaft
   country: Germany
@@ -624,9 +624,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: commerzbank
   name: COMMERZBANK Aktiengesellschaft
   display_name: Commerzbank
@@ -930,9 +930,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: denizbank_wien_zweigniederlassung_frankfurt_am_m
   name: DenizBank (Wien) AG, Zweigniederlassung Frankfurt am Main
   country: Germany
@@ -943,9 +943,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: deutsch_schweizerische_bank
   name: Deutsch-Schweizerische Bank Aktiengesellschaft
   country: Germany
@@ -1024,9 +1024,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: eurex_clearing
   name: EUREX Clearing Aktiengesellschaft
   country: Germany
@@ -1051,9 +1051,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: emporiki_bank_germany
   name: Emporiki Bank - Germany GmbH
   country: Germany
@@ -1064,9 +1064,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified. Emporiki was integrated into Alpha Bank (2013); status of this
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Emporiki was integrated into Alpha Bank (2013); status of this
     German entity not verified.
 - id: erste_abwicklungsanstalt
   name: Erste Abwicklungsanstalt
@@ -1078,9 +1078,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified. Resolution agency (winding-down institution); likely no regular
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Resolution agency (winding-down institution); likely no regular
     vacancies.
 - id: essence_international_financial_holdings_ltd_fra
   name: Essence International Financial Holdings Ltd. - Frankfurt Repräsentanz
@@ -1131,9 +1131,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: fib_frankfurt_international_bank
   name: FIB Frankfurt International Bank AG
   country: Germany
@@ -1326,9 +1326,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: garantibank_international_n_v_niederlassung_duss
   name: GarantiBank International N.V. Niederlassung Düsseldorf
   country: Germany
@@ -1352,9 +1352,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified. Housing cooperative, not a bank; likely irrelevant for this
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Housing cooperative, not a bank; likely irrelevant for this
     profile.
 - id: goldman_sachs
   name: Goldman Sachs Bank Europe SE
@@ -1496,9 +1496,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: ikb_deutsche_industriebank
   name: IKB Deutsche Industriebank Aktiengesellschaft
   country: Germany
@@ -1548,9 +1548,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: industrial_and_commercial_bank_of_china_limited_
   name: Industrial and Commercial Bank of China Limited Frankfurt Branch
   country: Germany
@@ -1613,9 +1613,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: j_t_banka_a_s_zweigniederlassung_deutschland
   name: J&T BANKA, a.s. Zweigniederlassung Deutschland
   country: Germany
@@ -1678,9 +1678,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: kfw_ipex_bank
   name: KfW IPEX-Bank GmbH
   country: Germany
@@ -2021,9 +2021,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: mizuho_bank_ltd_filiale_dusseldorf
   name: Mizuho Bank, Ltd. Filiale Düsseldorf
   country: Germany
@@ -2163,9 +2163,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: national_westminster_bank_plc_niederlassung_deut
   name: National Westminster Bank Plc Niederlassung Deutschland
   country: Germany
@@ -2243,9 +2243,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: owh_i_l
   name: OWH SE i.L.
   country: Germany
@@ -2269,9 +2269,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: piraeus_bank_a_e_athen_zweigniederlassung_frankf
   name: PIRAEUS BANK A.E., Athen Zweigniederlassung Frankfurt am Main
   country: Germany
@@ -2295,9 +2295,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: psd_bank_hessen_thuringen
   name: PSD Bank Hessen-Thüringen eG
   country: Germany
@@ -2724,9 +2724,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: santander_consumer_bank
   name: Santander Consumer Bank Aktiengesellschaft
   country: Germany
@@ -3220,9 +3220,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: stellantis_bank_sa_niederlassung_deutschland
   name: Stellantis Bank SA Niederlassung Deutschland
   country: Germany
@@ -3421,9 +3421,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
 - id: triodos_bank_n_v_deutschland
   name: Triodos Bank N.V. Deutschland
   country: Germany
@@ -3447,9 +3447,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
 - id: ubs_europe
   name: UBS Europe SE
   display_name: UBS
@@ -3617,9 +3617,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: vereinigte_volksbank_raiffeisenbank
   name: Vereinigte Volksbank Raiffeisenbank eG
   country: Germany
@@ -3656,9 +3656,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
 - id: volks_bau_und_sparverein_frankfurt_am_main_einge
   name: Volks- Bau- und Sparverein Frankfurt am Main eingetragene Genossenschaft
   country: Germany
@@ -3986,9 +3986,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: westpac_europe
   name: Westpac Europe GmbH
   country: Germany
@@ -4043,9 +4043,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: abcbank
   name: abcbank GmbH
   country: Germany
@@ -4082,9 +4082,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: out_of_scope
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: norisbank
   name: norisbank GmbH
   country: Germany

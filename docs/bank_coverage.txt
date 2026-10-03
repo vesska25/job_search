@@ -3,20 +3,20 @@ Stand: 2026-10-03   |   Quelle: config/banks.yaml (278 Einträge aus Ihrer Liste
 ==============================================================================
 
 Banken in Ihrer Liste ........................ 278
-  im Monitoring (aktiv, geprüft) ............. 85
+  im Monitoring (aktiv, geprüft) ............. 88
   Dubletten (durch anderen Eintrag abgedeckt)  16
-  nicht aktiv, Quelle bekannt, aber Problem .. 19
-  nicht aktiv, keine Quelle gefunden ......... 158
+  nicht aktiv, Quelle bekannt, aber Problem .. 52
+  nicht aktiv, keine Quelle gefunden ......... 122
 
 Hinweis: "geprüft" heisst, dass die Seite beim letzten Lauf Vakanzen geliefert hat.
 Einige Banken (PSD Hessen-Thüringen, Budenheimer Volksbank) haben aktuell keine Vakanzen,
 ihr Aufbau ist daher noch nicht live bestätigt. Sie sind mit * markiert.
 
 ==============================================================================
-1. IM MONITORING (85)
+1. IM MONITORING (88)
 ==============================================================================
 
---- eigene Karriereseite / Helix Jobs / Check-In / stellen.center / Onlyfy  (30) ---
+--- eigene Karriereseite / Helix Jobs / Check-In / stellen.center / Onlyfy  (31) ---
   [x] Aareal Bank   (65189 Wiesbaden)
   [x] apoBank   (40547 Düsseldorf)
   [x] Budenheimer Volksbank eG *   (55257 Budenheim b Mainz)
@@ -44,6 +44,7 @@ ihr Aufbau ist daher noch nicht live bestätigt. Sie sind mit * markiert.
   [x] Taunus-Sparkasse   (61352 Bad Homburg v d Höhe)
   [x] Volksbank Köln Bonn   (53175 Bonn)
   [x] Volksbank Mainspitze eG   (65462 Ginsheim-Gustavsburg)
+  [x] VOLKSBANK SELIGENSTADT EG   (63500 Seligenstadt, Hess)
   [x] VR Bank Dreieich-Offenbach eG   (63303 Dreieich)
   [x] VR-Bank Bonn Rhein-Sieg eG   (53721 Siegburg)
   [x] Wiesbadener Volksbank eG   (65185 Wiesbaden)
@@ -96,6 +97,11 @@ ihr Aufbau ist daher noch nicht live bestätigt. Sie sind mit * markiert.
   [x] VR Bank eG Bergisch Gladbach-Leverkusen   (51465 Bergisch Gladbach)
   [x] VR Bank Main-Kinzig-Büdingen eG   (63654 Büdingen, Hess)
 
+--- Sitemap + Seiten der Vakanzen  (3) ---
+  [x] Citi (Germany)   (60323 Frankfurt am Main)
+  [x] KfW (incl. IPEX-Bank)   (60325 Frankfurt am Main)
+  [x] TARGOBANK   (40213 Düsseldorf)
+
 --- Personio  (2) ---
   [x] AKTIVBANK   (60528 Frankfurt am Main)
   [x] Frankfurter Bankgesellschaft (Deutschland) AG   (60311 Frankfurt am Main)
@@ -112,9 +118,8 @@ ihr Aufbau ist daher noch nicht live bestätigt. Sie sind mit * markiert.
   [x] Deutsche WertpapierService Bank AG   (60487 Frankfurt am Main)
   [x] IKB   (40474 Düsseldorf)
 
---- Sitemap + Seiten der Vakanzen  (2) ---
-  [x] KfW (incl. IPEX-Bank)   (60325 Frankfurt am Main)
-  [x] TARGOBANK   (40213 Düsseldorf)
+--- eigene API  (1) ---
+  [x] Bank of America   (60329 Frankfurt am Main)
 
 --- Workday  (1) ---
   [x] Santander Consumer Bank   (41061 Mönchengladbach)
@@ -125,7 +130,7 @@ ihr Aufbau ist daher noch nicht live bestätigt. Sie sind mit * markiert.
   [=] ABN AMRO Asset Based Finance N.V., Niederlassung Deutschland  ->  ABN AMRO (nicht aktiv)
   [=] Arab Banking Corporation, Daus & Co. GmbH  ->  Arab Banking Corporation (nicht aktiv)
   [=] BNP PARIBAS LEASE GROUP S.A. Zweigniederlassung Deutschland  ->  BNP Paribas (nicht aktiv)
-  [=] Citigroup Global Markets Europe AG  ->  Citi (nicht aktiv)
+  [=] Citigroup Global Markets Europe AG  ->  Citi (Germany) (aktiv)
   [=] Credit Suisse (Deutschland) Aktiengesellschaft  ->  UBS (nicht aktiv)
   [=] Deutsche Bank Europe GmbH  ->  Deutsche Bank (aktiv)
   [=] EUREX Clearing Aktiengesellschaft  ->  Deutsche Börse Group (aktiv)
@@ -140,35 +145,87 @@ ihr Aufbau ist daher noch nicht live bestätigt. Sie sind mit * markiert.
   [=] The Bank of New York Mellon SA/NV, Asset Servicing, Niederlassung Frankfurt am Main  ->  BNY Mellon (nicht aktiv)
 
 ==============================================================================
-3. NICHT AKTIV, QUELLE BEKANNT (19)
+3. NICHT AKTIV, QUELLE BEKANNT (52)
 ==============================================================================
+  [ ] ABANCA Corporación Bancaria, S.A. Repräsentanz
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
   [ ] ABN AMRO
         Grund: Liste wird anders geladen, Seite liefert keine Vakanzen (noch nicht untersucht)
         Seite: https://karriere.abnamro.de/stellenangebote/land/deutschland-1
-  [ ] Bank of America
-        Grund: Karriereseite bekannt, globaler Anbieter, Adapter noch nicht eingerichtet
-        Seite: https://careers.bankofamerica.com/
+  [ ] AKBANK AG
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] Arab Banking Corporation
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] Attijariwafa Bank Europe
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] Banco Pastor Repräsentanz
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] Bank Gospodarstwa Krajowego „Repräsentanz“
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] Bank Sepah-Iran, Filiale Frankfurt
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] Banque Chaabi du Maroc S. A. Zweigniederlassung Deutschland
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
   [ ] BNP Paribas
         Grund: Seite blockiert automatischen Zugriff (Fehler 403); nicht umgangen
         Seite: https://group.bnpparibas/en/careers/all-job-offers/germany
-  [ ] Citi
-        Grund: Karriereseite bekannt, globaler Anbieter, Adapter noch nicht eingerichtet
-        Seite: https://jobs.citi.com/
+  [ ] CLAAS FINANCIAL SERVICES S.A.S. Zweigniederlassung Deutschland
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] Demir-Halk Bank (Nederland) N.V. Filiale Düsseldorf
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] DenizBank (Wien) AG, Zweigniederlassung Frankfurt am Main
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] Elavon Financial Services Designated Activity Company, Niederlassung Deutschland
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] Emporiki Bank - Germany GmbH
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] Erste Abwicklungsanstalt
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] ETRIS Bank GmbH
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] Europe Arab Bank SA, Niederlassung Frankfurt
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] Gemeinnützige Bau- und Siedlungsgenossenschaft Wiesbaden 1950 eG
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] GLADBACHER BANK AG von 1922
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
   [ ] Goldman Sachs
         Grund: Karriereseite bekannt, globaler Anbieter, Adapter noch nicht eingerichtet
         Seite: https://higher.gs.com/
+  [ ] ICICI Bank UK PLC, Germany Branch
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] Ikano Bank AB (publ), Zweigniederlassung Deutschland
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] Isbank AG
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] KT Bank AG
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] Misr Bank - Europe GmbH
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] National Bank of Pakistan Filiale Frankfurt am Main
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] noa bank GmbH & Co. KG
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] OTP Bank Nyrt. Niederlassung Deutschland
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] OYAK ANKER Bank GmbH
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] PKO Bank Polski S.A. Niederlassung Deutschland
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
   [ ] Raiffeisenbank Frechen-Hürth eG
-        Grund: von Ihnen ausgeschlossen (zu klein)
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
         Seite: https://www.vr.de/karriere/jobs.html
   [ ] Raiffeisenbank Grävenwiesbach eG
-        Grund: von Ihnen ausgeschlossen (zu klein)
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
         Seite: https://www.vr.de/karriere/jobs.html
   [ ] Raiffeisenbank im Hochtaunus eG
-        Grund: von Ihnen ausgeschlossen (zu klein)
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
         Seite: https://www.vr.de/karriere/jobs.html
   [ ] Raiffeisenbank Schaafheim eG
-        Grund: von Ihnen ausgeschlossen (zu klein)
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
         Seite: https://www.vr.de/karriere/jobs.html
+  [ ] Saman Bank Niederlassung Frankfurt
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
   [ ] Société Générale S.A.
         Grund: Liste wird per JavaScript geladen, kein Zugriff ohne Browser
         Seite: https://careers.societegenerale.com/en/search?query=&refinementList[jobType][0]=STANDARD
@@ -176,64 +233,67 @@ ihr Aufbau ist daher noch nicht live bestätigt. Sie sind mit * markiert.
         Grund: Vakanzen auf sparda-he.pi-asp.de, robots.txt verbietet automatischen Zugriff
         Seite: https://sparda-he.pi-asp.de/bewerber-web/?companyEid=50&tenant=&lang=D
   [ ] Standard Chartered
-        Grund: Karriereseite bekannt, globaler Anbieter, Adapter noch nicht eingerichtet
+        Grund: Liste wird per JavaScript geladen, kein Zugriff ohne Browser
         Seite: https://jobs.standardchartered.com/
+  [ ] State Bank of India (Indische Staatsbank) Zweigniederlassung Frankfurt am Main
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] The Korea Development Bank Frankfurt Representative Office
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] Türkiye Cumhuriyet Merkez Bankasi Repräsentanz
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
   [ ] UBS
-        Grund: Karriereseite bekannt, globaler Anbieter, Adapter noch nicht eingerichtet
-        Seite: https://www.ubs.com/global/en/careers/search-and-apply.html
+        Grund: Liste wird per JavaScript geladen, kein Zugriff ohne Browser
+        Seite: https://jobs.ubs.com/TGnewUI/Search/home/HomeWithPreLoad?partnerid=25008&siteid=5012&PageType=searchResults&SearchType=linkquery&LinkID=15231
+  [ ] VakifBank International AG, Wien, Zweigniederlassung Deutschland
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] Vnesheconombank (Bank für Entwicklung und Außenwirtschaft) Repräsentanz in der Bundesrepublik Deutschland
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
   [ ] Volksbank Brandoberndorf eG
-        Grund: von Ihnen ausgeschlossen (zu klein)
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
         Seite: https://www.vr.de/karriere/jobs.html
   [ ] Volksbank Düsseldorf Neuss eG
         Grund: aktuell "Keine Stellenangebote" auf vr-karriere.de, nicht prüfbar
         Seite: https://www.vr-karriere.de/profil/165
   [ ] Volksbank Heimbach eG
-        Grund: von Ihnen ausgeschlossen (zu klein)
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
         Seite: https://www.vr.de/karriere/jobs.html
   [ ] Volksbank Ober-Mörlen eG
-        Grund: von Ihnen ausgeschlossen (zu klein)
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
         Seite: https://www.vr.de/karriere/jobs.html
-  [ ] VOLKSBANK SELIGENSTADT EG
-        Grund: aktuell keine Vakanzen auf der Seite, nicht prüfbar
-        Seite: https://www.voba-seligenstadt.de/meine-bank/karriere/stellenangebote.html
   [ ] Volksbank Sprockhövel eG.
         Grund: Vakanzen kommen aus einem JavaScript-Widget (matchpunktup.de)
         Seite: https://vbsprockhoevel.matchpunktup.de/
+  [ ] Westend Bank AG
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
+  [ ] ZIRAAT BANK INTERNATIONAL AKTIENGESELLSCHAFT
+        Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
 
 ==============================================================================
-4. NICHT AKTIV, KEINE QUELLE GEFUNDEN (158)
+4. NICHT AKTIV, KEINE QUELLE GEFUNDEN (122)
 ==============================================================================
 Für diese Banken wurde keine offizielle Karriereseite mit Vakanzen für Deutschland gefunden
 (oft Repräsentanzen, Niederlassungen ausländischer Banken oder Kleinstbanken).
 Wenn Sie einen Link haben, kann ich die Bank einzeln anbinden.
 
-  [ ] ABANCA Corporación Bancaria, S.A. Repräsentanz   (60596 Frankfurt)
   [ ] abcbank GmbH   (50672 Köln)
   [ ] Agricultural Bank of China Limited Frankfurt Branch   (60325 Frankfurt am Main)
   [ ] AION Bank S.A. German Branch   (60329 Frankfurt am Main)
   [ ] AKA Ausfuhrkredit-Gesellschaft mit beschränkter Haftung   (60311 Frankfurt am Main)
-  [ ] AKBANK AG   (65760 Eschborn, Taunus)
   [ ] akf bank GmbH & Co KG   (42277 Wuppertal)
   [ ] Alpen Privatbank Aktiengesellschaft, Zweigniederlassung Deutschland   (40213 Düsseldorf)
   [ ] ALTE LEIPZIGER Bauspar AG   (61440 Oberursel (Taunus))
-  [ ] Arab Banking Corporation   (60311 Frankfurt am Main)
   [ ] Asian Development Bank European Representative Office   (60325 Frankfurt am Main)
-  [ ] Attijariwafa Bank Europe   (60329 Frankfurt am Main)
   [ ] Australia and New Zealand Banking Group Limited Niederlassung Frankfurt am Main   (60327 Frankfurt am Main)
   [ ] Banco Bilbao Vizcaya Argentaria, S.A., Niederlassung Deutschland   (60311 Frankfurt am Main)
   [ ] Banco do Brasil S.A. Zweigniederlassung Frankfurt/Main   (60311 Frankfurt am Main)
-  [ ] Banco Pastor Repräsentanz   (60311 Frankfurt am Main)
-  [ ] Bank Gospodarstwa Krajowego „Repräsentanz“   (60311 Frankfurt am Main)
   [ ] Bank Julius Bär Europe AG   (60322 Frankfurt am Main)
   [ ] BANK OF CHINA LIMITED Zweigniederlassung Frankfurt am Main Frankfurt Branch   (60323 Frankfurt am Main)
   [ ] Bank of Communications Co., Ltd. Frankfurt branch   (60311 Frankfurt am Main)
   [ ] Bank of Ireland, Niederlassung Frankfurt   (60325 Frankfurt am Main)
   [ ] Bank of Taiwan Frankfurt Representative Office   (60325 Frankfurt am Main)
   [ ] Bank Pictet & Cie (Europe) AG   (60311 Frankfurt am Main)
-  [ ] Bank Sepah-Iran, Filiale Frankfurt   (60327 Frankfurt am Main)
   [ ] Bank11 für Privatkunden und Handel GmbH   (41460 Neuss)
   [ ] Bankhaus Werhahn GmbH   (41460 Neuss)
-  [ ] Banque Chaabi du Maroc S. A. Zweigniederlassung Deutschland   (60329 Frankfurt am Main)
   [ ] Bausparkasse Mainz Aktiengesellschaft   (55122 Mainz a Rhein)
   [ ] Bensberger Bank e.G.   (51429 Bergisch Gladbach)
   [ ] BNY Mellon   (60308 Frankfurt am Main)
@@ -247,27 +307,19 @@ Wenn Sie einen Link haben, kann ich die Bank einzeln anbinden.
   [ ] Cecabank, S.A. Repräsentanz Deutschland   (60596 Frankfurt am Main)
   [ ] China Construction Bank Corporation Niederlassung Frankfurt   (60325 Frankfurt am Main)
   [ ] CIC Repräsentanz für Deutschland   (60329 Frankfurt am Main)
-  [ ] CLAAS FINANCIAL SERVICES S.A.S. Zweigniederlassung Deutschland   (50674 Köln)
   [ ] Coöperatieve Rabobank U.A. Zweigniederlassung Frankfurt am Main   (60486 Frankfurt am Main)
   [ ] Credit Europe Bank N.V. Niederlassung Deutschland   (60327 Frankfurt am Main)
   [ ] CRONBANK Aktiengesellschaft   (63303 Dreieich)
   [ ] Crédit Agricole Corporate and Investment Bank Deutschland, Niederlassung einer französischen Société Anonyme   (60327 Frankfurt am Main)
   [ ] De Lage Landen International B.V. Deutsche Niederlassung   (40549 Düsseldorf)
-  [ ] Demir-Halk Bank (Nederland) N.V. Filiale Düsseldorf   (40213 Düsseldorf)
-  [ ] DenizBank (Wien) AG, Zweigniederlassung Frankfurt am Main   (60329 Frankfurt am Main)
   [ ] Deutsch-Schweizerische Bank Aktiengesellschaft   (60325 Frankfurt am Main)
   [ ] Deutsche Leasing Finance GmbH   (61352 Bad Homburg v d Höhe)
   [ ] Deutsche Oppenheim Family Office AG   (50668 Köln)
   [ ] DHB Bank N.V. Niederlassung Deutschland   (40213 Düsseldorf)
   [ ] DZB BANK GmbH   (63533 Mainhausen)
-  [ ] Elavon Financial Services Designated Activity Company, Niederlassung Deutschland   (60528 Frankfurt am Main)
-  [ ] Emporiki Bank - Germany GmbH   (60325 Frankfurt am Main)
-  [ ] Erste Abwicklungsanstalt   (40217 Düsseldorf)
   [ ] Essence International Financial Holdings Ltd. - Frankfurt Repräsentanz   (60313 Frankfurt am Main)
-  [ ] ETRIS Bank GmbH   (42389 Wuppertal)
   [ ] Eurocity AG   (60311 Frankfurt am Main)
   [ ] Euroclear Bank SA/NV Repräsentanz   (60313 Frankfurt am Main)
-  [ ] Europe Arab Bank SA, Niederlassung Frankfurt   (60325 Frankfurt am Main)
   [ ] FIB Frankfurt International Bank AG   (60329 Frankfurt am Main)
   [ ] FIL Fondsbank GmbH   (61476 Kronberg im Taunus)
   [ ] First Commercial Bank, Ltd. Frankfurt Branch   (60325 Frankfurt am Main)
@@ -275,28 +327,22 @@ Wenn Sie einen Link haben, kann ich die Bank einzeln anbinden.
   [ ] Ford Bank   (50735 Köln)
   [ ] GarantiBank International N.V. Niederlassung Düsseldorf   (40474 Düsseldorf)
   [ ] GEFA BANK GmbH   (42117 Wuppertal)
-  [ ] Gemeinnützige Bau- und Siedlungsgenossenschaft Wiesbaden 1950 eG   (65187 Wiesbaden)
-  [ ] GLADBACHER BANK AG von 1922   (41061 Mönchengladbach)
   [ ] Gontard & MetallBank Aktiengesellschaft   (60325 Frankfurt am Main)
   [ ] Halifax plc Repräsentant: Andrew Peat Finanz Consultants GmbH   (41068 Mönchengladbach)
   [ ] Honda Bank GmbH   (60314 Frankfurt am Main)
   [ ] HSBC Continental Europe S.A., Germany   (40549 Düsseldorf)
   [ ] Hyundai Capital Bank Europe GmbH   (60327 Frankfurt am Main)
   [ ] Hüttenberger Bank eG   (35625 Hüttenberg, Hess)
-  [ ] ICICI Bank UK PLC, Germany Branch   (65760 Eschborn, Taunus)
-  [ ] Ikano Bank AB (publ), Zweigniederlassung Deutschland   (65189 Wiesbaden)
   [ ] Industrial and Commercial Bank of China Limited Frankfurt Branch   (60325 Frankfurt am Main)
   [ ] International Card Services B.V., Niederlassung Deutschland   (40468 Düsseldorf)
   [ ] Intesa Sanpaolo S.p.A. Filiale Frankfurt am Main   (60311 Frankfurt am Main)
   [ ] Investitions- und Strukturbank Rheinland-Pfalz (ISB)   (55116 Mainz a Rhein)
-  [ ] Isbank AG   (60313 Frankfurt am Main)
   [ ] J&T BANKA, a.s. Zweigniederlassung Deutschland   (60486 Frankfurt am Main)
   [ ] JCB FINANCE S.A.S. Zweigniederlassung Deutschland   (50674 Köln)
   [ ] KBC Bank NV, Niederlassung Deutschland   (40215 Düsseldorf)
   [ ] KEB Hana Bank (D) Aktiengesellschaft   (60325 Frankfurt am Main)
   [ ] KfW   (60325 Frankfurt am Main)
   [ ] Kommunalkredit Austria AG Zweigstelle Deutschland   (60313 Frankfurt am Main)
-  [ ] KT Bank AG   (60327 Frankfurt am Main)
   [ ] Landbank Horlofftal eingetragene Genossenschaft   (61203 Reichelsheim (Wetterau))
   [ ] Liechtensteinische Landesbank AG, Zweigniederlassung Deutschland   (60313 Frankfurt am Main)
   [ ] Macquarie Bank Europe Designated Activity Company, Frankfurt Branch   (60306 Frankfurt am Main)
@@ -305,23 +351,17 @@ Wenn Sie einen Link haben, kann ich die Bank einzeln anbinden.
   [ ] MEDIOBANCA BANCA DI CREDITO FINANZIARIO SOCIETA' PER AZIONI, Zweigniederlassung Deutschland   (60311 Frankfurt am Main)
   [ ] MGF S.A.S. Zweigniederlassung Deutschland   (50674 Köln)
   [ ] MHB-Bank Aktiengesellschaft   (60325 Frankfurt am Main)
-  [ ] Misr Bank - Europe GmbH   (60329 Frankfurt am Main)
   [ ] Mizuho Bank, Ltd. Filiale Düsseldorf   (40213 Düsseldorf)
   [ ] MUFG Bank (Europe) N.V. Germany Branch   (40213 Düsseldorf)
-  [ ] National Bank of Pakistan Filiale Frankfurt am Main   (60313 Frankfurt am Main)
   [ ] Natixis   (60325 Frankfurt am Main)
   [ ] NatWest   (60311 Frankfurt am Main)
   [ ] NIBC BANK N.V. Zweigniederlassung Frankfurt am Main   (60322 Frankfurt am Main)
-  [ ] noa bank GmbH & Co. KG   (40213 Düsseldorf)
   [ ] norisbank GmbH   (53113 Bonn)
   [ ] North Channel Bank GmbH & Co. KG   (55116 Mainz a Rhein)
   [ ] OPEN BANK, S.A., Zweigniederlassung Deutschland   (60322 Frankfurt am Main)
-  [ ] OTP Bank Nyrt. Niederlassung Deutschland   (65760 Eschborn, Taunus)
   [ ] OWH SE i.L.   (60329 Frankfurt am Main)
-  [ ] OYAK ANKER Bank GmbH   (60528 Frankfurt am Main)
   [ ] People’s Bank of China Repräsentanz   (60322 Frankfurt am Main)
   [ ] PIRAEUS BANK A.E., Athen Zweigniederlassung Frankfurt am Main   (60329 Frankfurt am Main)
-  [ ] PKO Bank Polski S.A. Niederlassung Deutschland   (60311 Frankfurt am Main)
   [ ] Portigon AG   (40219 Düsseldorf)
   [ ] ProCredit Bank AG   (60486 Frankfurt am Main)
   [ ] Raiffeisen Bank International AG, Zweigniederlassung Frankfurt   (60329 Frankfurt am Main)
@@ -331,7 +371,6 @@ Wenn Sie einen Link haben, kann ich die Bank einzeln anbinden.
   [ ] ReiseBank Aktiengesellschaft   (60325 Frankfurt am Main)
   [ ] Repräsentanz der Export Development Canada   (40213 Düsseldorf)
   [ ] S Broker AG & Co. KG   (65203 Wiesbaden)
-  [ ] Saman Bank Niederlassung Frankfurt   (60323 Frankfurt am Main)
   [ ] SECB Swiss Euro Clearing Bank GmbH   (60318 Frankfurt am Main)
   [ ] SHINHAN BANK EUROPE GmbH   (60322 Frankfurt am Main)
   [ ] Skandinaviska Enskilda Banken AB (publ) Frankfurt Branch   (60313 Frankfurt am Main)
@@ -340,7 +379,6 @@ Wenn Sie einen Link haben, kann ich die Bank einzeln anbinden.
   [ ] Spar- und Bauverein Solingen eG Gemeinnützige Wohnungsgenossenschaft   (42651 Solingen)
   [ ] Sparkasse Langen-Seligenstadt   (63500 Seligenstadt, Hess)
   [ ] Stadtsparkasse Wermelskirchen   (42929 Wermelskirchen)
-  [ ] State Bank of India (Indische Staatsbank) Zweigniederlassung Frankfurt am Main   (60329 Frankfurt am Main)
   [ ] Stellantis Bank SA Niederlassung Deutschland   (63263 Neu-Isenburg)
   [ ] Steyler Bank GmbH   (53757 Sankt Augustin)
   [ ] Sumitomo Mitsui Banking Corporation Fil. Düsseldorf Zweigniederlassung der Sumitomo Mitsui Banking Corporation mit Sitz in Tokio   (40549 Düsseldorf)
@@ -348,20 +386,14 @@ Wenn Sie einen Link haben, kann ich die Bank einzeln anbinden.
   [ ] Süd-West-Kreditbank Finanzierung GmbH   (55124 Mainz a Rhein)
   [ ] The Bank of Japan Repräsentanz   (60311 Frankfurt am Main)
   [ ] The Bank of Korea Repräsentanz   (60308 Frankfurt am Main)
-  [ ] The Korea Development Bank Frankfurt Representative Office   (60311 Frankfurt am Main)
   [ ] TOYOTA Kreditbank GmbH   (50858 Köln)
   [ ] Triodos Bank N.V. Deutschland   (60487 Frankfurt am Main)
-  [ ] Türkiye Cumhuriyet Merkez Bankasi Repräsentanz   (60311 Frankfurt am Main)
-  [ ] VakifBank International AG, Wien, Zweigniederlassung Deutschland   (50667 Köln)
   [ ] Vereinigte Volksbank Raiffeisenbank eG   (64354 Reinheim, Odenw)
   [ ] Vietnam Joint Stock Commercial Bank for Industry and Trade (VietinBank), Filiale Deutschland   (60322 Frankfurt am Main)
-  [ ] Vnesheconombank (Bank für Entwicklung und Außenwirtschaft) Repräsentanz in der Bundesrepublik Deutschland   (60329 Frankfurt am Main)
   [ ] Volks- Bau- und Sparverein Frankfurt am Main eingetragene Genossenschaft   (60311 Frankfurt am Main)
   [ ] VR Bank eG   (40789 Monheim am Rhein)
   [ ] VR Bank eG   (67577 Alsheim, Rheinhess)
   [ ] VR Smart Finanz Bank GmbH   (65760 Eschborn, Taunus)
   [ ] Wells Fargo Bank International UC, Niederlassung Frankfurt   (60308 Frankfurt am Main)
-  [ ] Westend Bank AG   (60599 Frankfurt am Main)
   [ ] Westpac Europe GmbH   (60325 Frankfurt am Main)
   [ ] Woori Bank Europe GmbH   (60308 Frankfurt am Main)
-  [ ] ZIRAAT BANK INTERNATIONAL AKTIENGESELLSCHAFT   (60323 Frankfurt am Main)
