@@ -66,7 +66,7 @@ Repo -> Settings -> Secrets and variables -> Actions -> New repository secret:
 `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` (optional: `ANTHROPIC_API_KEY`).
 
 ## 8. Enable GitHub Actions
-Actions tab -> enable workflows. `Weekly bank job monitor` runs Mondays 06:00 UTC and can be started manually
+Actions tab -> enable workflows. `Weekly bank job monitor` runs Fridays 15:00 UTC (17:00 Germany in summer time, 16:00 in winter) and can be started manually
 (*Run workflow*). Do the first run with **baseline** ticked so you are not flooded with every open vacancy.
 The workflow commits `data/jobs.db` back to the repo (Settings -> Actions -> General -> Workflow permissions must
 allow read and write). The database holds only job titles/URLs; keep the repo private if you prefer.
