@@ -10,6 +10,10 @@ on:
         description: "First run: store current matches as already notified (no Telegram flood)"
         type: boolean
         default: false
+      dry_run:
+        description: "Dry run: scrape and filter, log matches, no Telegram, no database changes"
+        type: boolean
+        default: false
 
 permissions:
   contents: write              # needed to commit data/jobs.db back
@@ -34,7 +38,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}   # optional, only if llm.enabled
-        run: python -m src.main ${{ inputs.baseline && '--baseline' || '' }}
+        run: python -m src.main ${{ inputs.baseline && '--baseline' || '' }} ${{ inputs.dry_run && '--dry-run --verbose' || '' }}
       - name: Persist database
         if: always()
         run: |
