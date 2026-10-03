@@ -4306,6 +4306,9 @@ banks:
   last_verified: '2026-10-03'
   notes: Added at the user's request. Official portal karriere.deka.de (linked from dekabank.de/karriere); robots.txt blocks
     only service paths. Treated as SAP SuccessFactors/Jobs2web (standard /search/ list); the format is unproven until a Verify
-    run. Group-wide list, the location filter makes the Germany check.
+    run. Group-wide list, the location filter makes the Germany check. Location text is not recognised by the parser (0 of
+    49 vacancies counted for Germany), so vacancies without a location are accepted (accept_unknown_location); foreign cities
+    in the location text are still rejected.
   options:
     max_pages: 20
+    accept_unknown_location: true
