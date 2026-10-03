@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import json
 import re
-from urllib.parse import urljoin
+from urllib.parse import unquote, urljoin, urlsplit
 
 from bs4 import BeautifulSoup
 
@@ -118,6 +118,11 @@ class GenericHtmlScraper(BaseScraper):
             if not link or not link.get("href") or not title_el:
                 continue
             title = title_el.get_text(" ", strip=True)
+            if not title:  # icon / arrow links: fall back to the title attribute, then to the URL slug
+                title = (title_el.get("title") or link.get("title") or "").strip()
+            if not title:
+                slug = unquote(urlsplit(link["href"]).path.rstrip("/").rsplit("/", 1)[-1])
+                title = re.sub(r"\s+", " ", re.sub(r"[-_]", " ", slug)).strip().title()
             tl = sel.get("text_lines")
             if tl:  # title/location are separate text nodes inside one element, e.g. <a><span>City</span><span>Title</span></a>
                 lines = [x for x in item.get_text("\n", strip=True).split("\n") if x]

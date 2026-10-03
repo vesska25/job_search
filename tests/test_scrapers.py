@@ -95,6 +95,16 @@ def test_custom_api_offset_pagination_without_total_path(bank):
     assert [j.title for j in jobs] == ["A", "B", "C"]
 
 
+def test_generic_html_selector_title_fallbacks(bank):
+    html = ('<a class="job" href="/open-positions/senior-trade-finance-specialist"> </a>'
+            '<a class="job" href="/karriere/team-head-export-finance" title="Team Head Export Finance (m/w/d)"> </a>'
+            '<a class="job" href="/karriere/x">Leiter Risiko</a>')
+    bank.jobs_url = "https://x.example/jobs"
+    bank.options = {"selectors": {"item": "a.job"}}
+    titles = [j.title for j in GenericHtmlScraper(None).parse(html, bank)]
+    assert titles == ["Senior Trade Finance Specialist", "Team Head Export Finance (m/w/d)", "Leiter Risiko"]
+
+
 def test_generic_html_jsonld(bank):
     jobs = GenericHtmlScraper(None).parse(fixture_text("jsonld.html"), bank)
     assert len(jobs) == 1

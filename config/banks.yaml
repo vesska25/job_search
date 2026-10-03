@@ -59,15 +59,20 @@ banks:
   name: AKA Ausfuhrkredit-Gesellschaft mit beschränkter Haftung
   country: Germany
   address_in_source_list: 60311 Frankfurt am Main
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.akabank.de/karriere
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Found by a web search and a probe of the page; unverified until a Verify run. Job profile pages listed in the career
+    menu (a.ce-menu-subpages__item__title, title attribute).
+  options:
+    selectors:
+      item: a.ce-menu-subpages__item__title
+    accept_unknown_location: true
 - id: akbank
   name: AKBANK AG
   country: Germany
@@ -1595,15 +1600,20 @@ banks:
   name: Intesa Sanpaolo S.p.A. Filiale Frankfurt am Main
   country: Germany
   address_in_source_list: 60311 Frankfurt am Main
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://jobs.intesasanpaolo.com/
+  source_type: sitemap_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Found by a web search and a probe of the page; unverified until a Verify run. Jobs2web sitemap, German cities only
+    (URL starts with the city).
+  options:
+    sitemap_url: https://jobs.intesasanpaolo.com/sitemap.xml
+    url_regex: /job/(Frankfurt|Duesseldorf|Dusseldorf)-
+    max_pages: 40
 - id: investitions_und_strukturbank_rheinland_pfalz_is
   name: Investitions- und Strukturbank Rheinland-Pfalz (ISB)
   country: Germany
@@ -2417,15 +2427,20 @@ banks:
   name: ProCredit Bank AG
   country: Germany
   address_in_source_list: 60486 Frankfurt am Main
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.procreditbank.de/en/career/open-positions
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Found by a web search and a probe of the page; unverified until a Verify run. Vacancy links a.job-entry__link (title
+    taken from the URL slug).
+  options:
+    selectors:
+      item: a.job-entry__link
+    accept_unknown_location: true
 - id: rci_banque_s_a_niederlassung_deutschland
   name: RCI Banque S.A. Niederlassung Deutschland
   country: Germany
@@ -3355,15 +3370,20 @@ banks:
   name: TOYOTA Kreditbank GmbH
   country: Germany
   address_in_source_list: 50858 Köln
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://jobs.toyota-bank-portal.de/tkg/go/Alle-Stellen/9016701/
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Found by a web search and a probe of the page; unverified until a Verify run. Jobs2web category page, links a.jobTitle-link
+    (first page only).
+  options:
+    selectors:
+      item: a.jobTitle-link
+    accept_unknown_location: true
 - id: taunus_sparkasse
   name: Taunus-Sparkasse
   country: Germany
