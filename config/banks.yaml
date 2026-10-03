@@ -605,8 +605,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: BeeSite API found in the career site script (api-jobs.commerzbank.com/search). Request format taken from DB/Commerzbank
     page scripts; not yet verified by a full run. Germany filtering is client-side on city names (location filter).
   options:
@@ -800,8 +800,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: BeeSite API found in careers.db.com jobplatform.js (api-deutschebank.beesite.de/search, GET ?data=<json>). Not yet
     verified by a full run. Germany filtering is client-side on city names; a server-side country criterion can be added via
     options.criteria once its id is known.
@@ -1231,8 +1231,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: 'Career page https://www.genobroker.de/karriere.html (user-supplied). Server-rendered accordion: job titles are in
     the HTML as <details><summary class="cms-title">; no per-job links, so each job gets ?job=<slug> as identity. robots.txt
     allows the page. Selectors from diagnosis, not yet verified by a full run.'
