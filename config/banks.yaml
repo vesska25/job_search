@@ -3542,8 +3542,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: 'BNY career site on Oracle Cloud HCM (URL supplied by the user). Public REST list; the vacancy list is only returned
     with expand=requisitionList.workLocation (confirmed by a probe: Id/Title/PostedDate/PrimaryLocation, 20 Germany vacancies).
     First attempt failed without expand. Vacancy URL pattern assumed from the site layout; unverified until a Verify run.'
@@ -4289,7 +4289,8 @@ banks:
   enabled: false
   verification_status: no_vacancies_now
   last_verified: null
-  notes: Career page supplied by the user (2026-10-03); it lists no vacancies at the moment, so no parser can be set up or verified yet. Applications go through the Deutsche Bank career portal. Connect when positions appear.
+  notes: Career page supplied by the user (2026-10-03); it lists no vacancies at the moment, so no parser can be set up or
+    verified yet. Applications go through the Deutsche Bank career portal. Connect when positions appear.
 - id: dekabank_deutsche_girozentrale
   name: DekaBank Deutsche Girozentrale
   display_name: DekaBank
@@ -4301,8 +4302,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Added at the user's request. Official portal karriere.deka.de (linked from dekabank.de/karriere); robots.txt blocks
     only service paths. Treated as SAP SuccessFactors/Jobs2web (standard /search/ list); the format is unproven until a Verify
     run. Group-wide list, the location filter makes the Germany check.
