@@ -104,7 +104,7 @@ def test_tiny_page_raises(bank):
 
 def test_registry_covers_all_types():
     for t in ("personio", "workday", "successfactors", "smartrecruiters", "softgarden", "custom_api",
-              "custom_html", "sparkasse", "proprietary", "beesite", "sparkasse_jobmarket", "vr_jobs"):
+              "custom_html", "sparkasse", "proprietary", "beesite", "sparkasse_jobmarket", "vr_jobs", "sitemap_jobs"):
         assert t in SCRAPERS
     with pytest.raises(ScraperError):
         get_scraper("unknown", None)
@@ -347,3 +347,72 @@ def test_vr_jobs_skips_expired_vacancy_pages(bank):
             raise requests.HTTPError("404", response=resp)
 
     assert VrJobsScraper(Http()).fetch_jobs(bank) == []
+
+
+SM = """<urlset>
+<url><loc>https://jobs.example.bank/stellenangebote/senior-risikomanager-w-m-d/</loc></url>
+<url><loc>https://jobs.example.bank/stellenangebote/ausbildung-bankkaufmann-wmd-rostock/</loc></url>
+<url><loc>https://jobs.example.bank/stellenangebote/leiter-compliance-in-duesseldorf/</loc></url>
+<url><loc>https://jobs.example.bank/stellenangebote/abgelaufen-stelle/</loc></url>
+<url><loc>https://jobs.example.bank/story/ein-artikel/</loc></url>
+</urlset>"""
+
+
+def _sm_http(pages, errors=()):
+    import requests
+
+    class Http:
+        calls = []
+
+        def get(self, url, **kw):
+            self.calls.append(url)
+            if url in errors:
+                r = requests.Response()
+                r.status_code = 404
+                raise requests.HTTPError("404", response=r)
+            return type("R", (), {"text": pages[url]})()
+    return Http()
+
+
+def test_sitemap_jobs_filters_urls_and_reads_h1_or_jsonld(bank):
+    from src.scrapers.sitemap_jobs import SitemapJobsScraper
+    base = "https://jobs.example.bank/stellenangebote/"
+    bank.options = {"sitemap_url": "https://jobs.example.bank/sm.xml", "url_regex": "/stellenangebote/",
+                    "skip_slug": "^ausbildung", "location_regex": r"\bin ([A-Za-zÄÖÜäöü]+)$", "max_pages": 50}
+    jsonld = ('<script type="application/ld+json">{"@type":"JobPosting","title":"Senior Risikomanager (m/w/d)",'
+              '"jobLocation":{"address":{"addressLocality":"Frankfurt"}},"url":"x"}</script>')
+    http = _sm_http({"https://jobs.example.bank/sm.xml": SM,
+                     base + "senior-risikomanager-w-m-d/": f"<html>{jsonld}<h1>ignored</h1></html>",
+                     base + "leiter-compliance-in-duesseldorf/": "<html><h1>Leiter Compliance in Düsseldorf</h1></html>"},
+                    errors={base + "abgelaufen-stelle/"})
+    jobs = SitemapJobsScraper(http, max_pages=50).fetch_jobs(bank)
+    assert [(j.title, j.location, j.source_job_id) for j in jobs] == [
+        ("Senior Risikomanager (m/w/d)", "Frankfurt", "senior-risikomanager-w-m-d"),
+        ("Leiter Compliance in Düsseldorf", "Düsseldorf", "leiter-compliance-in-duesseldorf")]
+    assert jobs[0].url == base + "senior-risikomanager-w-m-d/"
+    assert base + "ausbildung-bankkaufmann-wmd-rostock/" not in http.calls and not any("story" in c for c in http.calls)
+
+
+def test_sitemap_jobs_without_detail_uses_slug_and_requires_sitemap(bank):
+    from src.scrapers.sitemap_jobs import SitemapJobsScraper
+    bank.options = {"sitemap_url": "https://jobs.example.bank/sm.xml", "url_regex": "/stellenangebote/", "detail": False}
+    jobs = SitemapJobsScraper(_sm_http({"https://jobs.example.bank/sm.xml": SM})).fetch_jobs(bank)
+    assert jobs[0].title == "Senior Risikomanager W M D" and len(jobs) == 4
+    bank.options = {}
+    with pytest.raises(ScraperError):
+        SitemapJobsScraper(None).fetch_jobs(bank)
+
+
+def test_sitemap_jobs_key_uses_query_when_id_is_in_query(bank):
+    from src.scrapers.sitemap_jobs import SitemapJobsScraper, slug_of
+    assert slug_of("https://jobs.kfw.de/index.php?ac=jobad&id=13637") == "ac=jobad&id=13637"
+    assert slug_of("https://jobs.example.bank/stellenangebote/foo-bar/") == "foo-bar"
+    sm = ("<urlset><url><loc>https://jobs.kfw.de/index.php?ac=jobad&amp;id=1</loc></url>"
+          "<url><loc>https://jobs.kfw.de/index.php?ac=jobad&amp;id=2</loc></url>"
+          "<url><loc>https://jobs.kfw.de//index.php?ac=contact&amp;language=1</loc></url></urlset>")
+    bank.options = {"sitemap_url": "https://jobs.kfw.de/sitemap.xml", "url_regex": "ac=jobad"}
+    pages = {"https://jobs.kfw.de/sitemap.xml": sm,
+             "https://jobs.kfw.de/index.php?ac=jobad&id=1": "<h1>Referent (m/w/d) Treasury</h1>",
+             "https://jobs.kfw.de/index.php?ac=jobad&id=2": "<h1>Teamleiter (m/w/d) Risiko</h1>"}
+    jobs = SitemapJobsScraper(_sm_http(pages)).fetch_jobs(bank)
+    assert [j.job_id.split(":", 1)[1] for j in jobs] == ["ac=jobad&id=1", "ac=jobad&id=2"] and len({j.job_id for j in jobs}) == 2

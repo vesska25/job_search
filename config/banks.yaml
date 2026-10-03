@@ -1661,15 +1661,22 @@ banks:
   country: Germany
   address_in_source_list: 60325 Frankfurt am Main
   jobs_url: https://jobs.kfw.de/index.php?ac=search_result
-  source_type: unknown
+  source_type: sitemap_jobs
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: js_list
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: 'KfW portal jobs.kfw.de (also covers KfW IPEX-Bank): the result page contains no vacancy links, they are loaded by
-    JavaScript (/resp/api/get/ seen in a script). Needs the endpoint; not worked on yet.'
+  notes: The KfW job board jobs.kfw.de (milch & zucker) fills its result list with JavaScript, but every vacancy (index.php?ac=jobad&id=N)
+    is listed in sitemap.xml (named in robots.txt). One portal for the whole KfW group, so this entry covers KfW itself and
+    IPEX-Bank. Title and location are read from the vacancy page; unknown locations are accepted. Run Verify to confirm.
+  display_name: KfW (incl. IPEX-Bank)
+  options:
+    sitemap_url: https://jobs.kfw.de/sitemap.xml
+    url_regex: ac=jobad
+    max_pages: 150
+    accept_unknown_location: true
 - id: kommunalkredit_austria_zweigstelle_deutschland
   name: Kommunalkredit Austria AG Zweigstelle Deutschland
   country: Germany
@@ -2738,8 +2745,9 @@ banks:
   enabled: false
   verification_status: js_list
   last_verified: null
-  notes: careers.societegenerale.com search is an Algolia InstantSearch app (JavaScript); no vacancies in the static page.
-    Not worked on.
+  notes: careers.societegenerale.com lists offers of the whole group worldwide (sitemap has /en/job-offers/<slug>-<id>-en
+    pages, no country in the URL) and the search is Algolia/JavaScript. Finding the few German offers would need a request
+    per offer page for thousands of pages; not worth it for the Frankfurt branch. Not monitored.
 - id: sozialbank
   name: SozialBank AG
   country: Germany
@@ -3274,15 +3282,22 @@ banks:
   country: Germany
   address_in_source_list: 40213 Düsseldorf
   jobs_url: https://jobs.targobank.de/stellenangebote/
-  source_type: unknown
-  germany_only: false
+  source_type: sitemap_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: js_list
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: jobs.targobank.de loads the vacancy list with JavaScript (filters in the URL hash); the static page has no vacancies.
-    Needs the endpoint behind the list; not found yet.
+  notes: The list on jobs.targobank.de is loaded by JavaScript, but every vacancy is a WordPress job_offer page listed in
+    job_offer-sitemap.xml (robots.txt allows it); title and city come from the page JSON-LD. Training, internships and student
+    jobs are skipped by URL. Run Verify to confirm.
+  display_name: TARGOBANK
+  options:
+    sitemap_url: https://jobs.targobank.de/job_offer-sitemap.xml
+    url_regex: /stellenangebote/[^/]+/?$
+    skip_slug: ^(ausbildung|praktikum|student|werkstudent|duales|trainee)
+    max_pages: 250
 - id: toyota_kreditbank
   name: TOYOTA Kreditbank GmbH
   country: Germany
