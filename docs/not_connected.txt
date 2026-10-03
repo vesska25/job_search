@@ -1,0 +1,131 @@
+БАНКИ ИЗ ВАШЕГО ФАЙЛА, КОТОРЫЕ НЕ ПОДКЛЮЧЕНЫ (Stand 2026-10-03)
+======================================================================
+
+Проверено, но вакансий не вернулось (источник не подтверждён) (2)
+----------------------------------------------------------------------
+  [ ] Bensberger Bank e.G.
+  [ ] Stadtsparkasse Wermelskirchen
+
+Нет на бирже вакансий vr.de (Volks-/Raiffeisenbank), своего списка не нашли (3)
+----------------------------------------------------------------------
+  [ ] Brühler Bank eG
+  [ ] Hüttenberger Bank eG
+  [ ] Landbank Horlofftal eingetragene Genossenschaft
+
+Sparkasse: код банка (BLZ) неизвестен, подтвердить нечем (1)
+----------------------------------------------------------------------
+  [ ] Sparkasse Langen-Seligenstadt
+
+Вакансии на Join.com (адаптера нет) (2)
+----------------------------------------------------------------------
+  [ ] Bank of Communications Co., Ltd. Frankfurt branch
+  [ ] Honda Bank GmbH
+
+Список вакансий подгружается JavaScript-ом / нет данных в HTML (нужен браузер или API) (30)
+----------------------------------------------------------------------
+  [ ] Banco Bilbao Vizcaya Argentaria, S.A., Niederlassung Deutschland
+  [ ] Bank Julius Bär Europe AG
+  [ ] Bank of Ireland, Niederlassung Frankfurt
+  [ ] Bank Pictet & Cie (Europe) AG
+  [ ] BNY Mellon
+  [ ] Coöperatieve Rabobank U.A. Zweigniederlassung Frankfurt am Main
+  [ ] Crédit Agricole Corporate and Investment Bank Deutschland, Niederlassung einer französischen Société Anonyme
+  [ ] De Lage Landen International B.V. Deutsche Niederlassung
+  [ ] DZB BANK GmbH
+  [ ] Euroclear Bank SA/NV Repräsentanz
+  [ ] FIL Fondsbank GmbH
+  [ ] GEFA BANK GmbH
+  [ ] HSBC Continental Europe S.A., Germany
+  [ ] KBC Bank NV, Niederlassung Deutschland
+  [ ] Liechtensteinische Landesbank AG, Zweigniederlassung Deutschland
+  [ ] Macquarie Bank Europe Designated Activity Company, Frankfurt Branch
+  [ ] Mizuho Bank, Ltd. Filiale Düsseldorf
+  [ ] MUFG Bank (Europe) N.V. Germany Branch
+  [ ] Natixis
+  [ ] NatWest
+  [ ] NIBC BANK N.V. Zweigniederlassung Frankfurt am Main
+  [ ] PIRAEUS BANK A.E., Athen Zweigniederlassung Frankfurt am Main
+  [ ] Raiffeisen Bank International AG, Zweigniederlassung Frankfurt
+  [ ] ReiseBank Aktiengesellschaft
+  [ ] Skandinaviska Enskilda Banken AB (publ) Frankfurt Branch
+  [ ] SMBC Bank EU AG
+  [ ] Sutor Bank GmbH
+  [ ] Triodos Bank N.V. Deutschland
+  [ ] Wells Fargo Bank International UC, Niederlassung Frankfurt
+  [ ] Westpac Europe GmbH
+
+Вакансии только PDF-объявлениями или по e-mail (парсить нечего) (13)
+----------------------------------------------------------------------
+  [ ] akf bank GmbH & Co KG
+  [ ] Bausparkasse Mainz Aktiengesellschaft
+  [ ] Bürgschaftsbank Hessen GmbH
+  [ ] Bürgschaftsbank Nordrhein-Westfalen GmbH Kreditgarantiegemeinschaft
+  [ ] Bürgschaftsbank Rheinland-Pfalz GmbH
+  [ ] China Construction Bank Corporation Niederlassung Frankfurt
+  [ ] CIC Repräsentanz für Deutschland
+  [ ] Deutsche Leasing Finance GmbH
+  [ ] Deutsche Oppenheim Family Office AG
+  [ ] Hyundai Capital Bank Europe GmbH
+  [ ] MCE Bank GmbH
+  [ ] Steyler Bank GmbH
+  [ ] Süd-West-Kreditbank Finanzierung GmbH
+
+Нет собственной страницы вакансий для Германии: представительства, малые банки, банки в ликвидации, вакансии только на сторонних сайтах (57)
+----------------------------------------------------------------------
+  [ ] Agricultural Bank of China Limited Frankfurt Branch
+  [ ] AION Bank S.A. German Branch
+  [ ] Alpen Privatbank Aktiengesellschaft, Zweigniederlassung Deutschland
+  [ ] ALTE LEIPZIGER Bauspar AG
+  [ ] Asian Development Bank European Representative Office
+  [ ] Australia and New Zealand Banking Group Limited Niederlassung Frankfurt am Main
+  [ ] Banco do Brasil S.A. Zweigniederlassung Frankfurt/Main
+  [ ] BANK OF CHINA LIMITED Zweigniederlassung Frankfurt am Main Frankfurt Branch
+  [ ] Bank of Taiwan Frankfurt Representative Office
+  [ ] Bankhaus Werhahn GmbH
+  [ ] C24 Bank GmbH
+  [ ] Caixa Económica Montepio Geral - Repräsentanz Frankfurt
+  [ ] Caixabank, S.A. Zweigniederlassung Deutschland
+  [ ] Cecabank, S.A. Repräsentanz Deutschland
+  [ ] Credit Europe Bank N.V. Niederlassung Deutschland
+  [ ] Deutsch-Schweizerische Bank Aktiengesellschaft
+  [ ] DHB Bank N.V. Niederlassung Deutschland
+  [ ] Essence International Financial Holdings Ltd. - Frankfurt Repräsentanz
+  [ ] Eurocity AG
+  [ ] FIB Frankfurt International Bank AG
+  [ ] First Commercial Bank, Ltd. Frankfurt Branch
+  [ ] FIRST INTERNATIONAL BANK AG
+  [ ] Ford Bank
+  [ ] GarantiBank International N.V. Niederlassung Düsseldorf
+  [ ] Gontard & MetallBank Aktiengesellschaft
+  [ ] Halifax plc Repräsentant: Andrew Peat Finanz Consultants GmbH
+  [ ] Industrial and Commercial Bank of China Limited Frankfurt Branch
+  [ ] International Card Services B.V., Niederlassung Deutschland
+  [ ] Investitions- und Strukturbank Rheinland-Pfalz (ISB)
+  [ ] J&T BANKA, a.s. Zweigniederlassung Deutschland
+  [ ] JCB FINANCE S.A.S. Zweigniederlassung Deutschland
+  [ ] KEB Hana Bank (D) Aktiengesellschaft
+  [ ] KfW
+  [ ] Kommunalkredit Austria AG Zweigstelle Deutschland
+  [ ] Maple GmbH
+  [ ] MEDIOBANCA BANCA DI CREDITO FINANZIARIO SOCIETA' PER AZIONI, Zweigniederlassung Deutschland
+  [ ] MGF S.A.S. Zweigniederlassung Deutschland
+  [ ] MHB-Bank Aktiengesellschaft
+  [ ] norisbank GmbH
+  [ ] North Channel Bank GmbH & Co. KG
+  [ ] OPEN BANK, S.A., Zweigniederlassung Deutschland
+  [ ] OWH SE i.L.
+  [ ] People’s Bank of China Repräsentanz
+  [ ] Portigon AG
+  [ ] RCI Banque S.A. Niederlassung Deutschland
+  [ ] Repräsentanz der Export Development Canada
+  [ ] S Broker AG & Co. KG
+  [ ] SECB Swiss Euro Clearing Bank GmbH
+  [ ] SHINHAN BANK EUROPE GmbH
+  [ ] Spar- und Bauverein Solingen eG Gemeinnützige Wohnungsgenossenschaft
+  [ ] Stellantis Bank SA Niederlassung Deutschland
+  [ ] Sumitomo Mitsui Banking Corporation Fil. Düsseldorf Zweigniederlassung der Sumitomo Mitsui Banking Corporation mit Sitz in Tokio
+  [ ] The Bank of Japan Repräsentanz
+  [ ] The Bank of Korea Repräsentanz
+  [ ] Volks- Bau- und Sparverein Frankfurt am Main eingetragene Genossenschaft
+  [ ] VR Smart Finanz Bank GmbH
+  [ ] Woori Bank Europe GmbH
