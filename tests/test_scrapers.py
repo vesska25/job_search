@@ -104,7 +104,7 @@ def test_tiny_page_raises(bank):
 
 def test_registry_covers_all_types():
     for t in ("personio", "workday", "successfactors", "smartrecruiters", "softgarden", "custom_api",
-              "custom_html", "sparkasse", "proprietary", "beesite"):
+              "custom_html", "sparkasse", "proprietary", "beesite", "sparkasse_jobmarket"):
         assert t in SCRAPERS
     with pytest.raises(ScraperError):
         get_scraper("unknown", None)
@@ -242,3 +242,43 @@ def test_sparkasse_koelnbonn_style_cards(bank):
     jobs = GenericHtmlScraper(None).parse(html, bank)
     assert [j.title for j in jobs][0].startswith("Teamleitung Kreditrisikocontrolling") and len(jobs) == 2
     assert jobs[0].url == "https://karriere.sparkasse-koelnbonn.de/jobs/cb81-00020a/teamleitung-kreditrisikocontrolling/"
+
+
+def test_altays_fragment_with_country_badge(settings, bank):
+    from src.filters.pipeline import evaluate
+    bank.jobs_url = "https://recrutement.altays-progiciels.com/oddo/de/offres.html"
+    bank.options = {"selectors": {"item": "li.jobs__detail", "title": ".jobs__detail__title a",
+                                  "link": ".jobs__detail__title a", "location": ".badges--color-2"}}
+    jobs = GenericHtmlScraper(None).parse(fixture_text("altays_offers.html"), bank)
+    assert [j.location for j in jobs] == ["Deutschland", "Frankreich"]
+    assert jobs[0].url == "https://recrutement.altays-progiciels.com/oddo/de/offres/leiter-mwd-regulatory-reporting-frankfurt-2887001.html"
+    assert evaluate(jobs[0], bank, settings).accepted               # 'Leiter' + Regulatory Reporting + Deutschland
+    assert not evaluate(jobs[1], bank, settings).accepted           # German country name must be recognised as foreign
+
+
+def test_sparkasse_jobmarket_parse_and_filter(bank):
+    from src.scrapers.sparkasse_jobmarket import SparkasseJobMarketScraper
+    bank.options = {"bank_code": "50050201"}
+    jobs, total = SparkasseJobMarketScraper(None).parse(fixture_json("sparkasse_jobmarket.json"), bank)
+    assert total == 3 and [j.source_job_id for j in jobs] == ["212947", "212948"]   # other bank's item dropped
+    assert jobs[0].location == "Frankfurt" and jobs[0].department.startswith("Rechnungswesen")
+    assert jobs[1].location == "Frankfurt am Main"                                   # falls back to the client's city
+    assert jobs[0].url == "https://www.sparkasse.de/jobboerse/jobangebot/leiter-rechnungswesen-w-m-d-212947.html"
+    with pytest.raises(ScraperError):
+        SparkasseJobMarketScraper(None).parse({"x": 1}, bank)
+
+
+def test_sparkasse_jobmarket_pagination(bank):
+    from src.scrapers.sparkasse_jobmarket import SparkasseJobMarketScraper
+    bank.options = {"bank_code": "1", "page_size": 2}
+    mk = lambda i: {"id": i, "title": f"T{i}", "client": {"bankCode": "1"}, "addresses": [{"city": "Hanau"}]}
+    pages = [{"jobs": {"count": 3, "items": [mk(1), mk(2)]}}, {"jobs": {"count": 3, "items": [mk(3)]}}]
+    calls = []
+
+    class Http:
+        def get(self, url, params=None, **kw):
+            calls.append(params)
+            return type("R", (), {"json": lambda self_: pages[len(calls) - 1]})()
+
+    jobs = SparkasseJobMarketScraper(Http()).fetch_jobs(bank)
+    assert len(jobs) == 3 and [c["offset"] for c in calls] == [0, 2] and calls[0]["bankCode"] == "1"

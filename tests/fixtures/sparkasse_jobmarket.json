@@ -1,0 +1,81 @@
+{
+ "jobs": {
+  "count": 3,
+  "items": [
+   {
+    "id": 212947,
+    "title": "Leiter Rechnungswesen (w/m/d)",
+    "contentSections": [],
+    "occupationalCategories": [
+     {
+      "id": 14,
+      "title": "Rechnungswesen/Finanzen/Controlling"
+     }
+    ],
+    "client": {
+     "id": 2307,
+     "name": "Frankfurter Sparkasse",
+     "slug": "frankfurter-sparkasse",
+     "bankCode": "50050201",
+     "address": {
+      "city": "Frankfurt am Main"
+     }
+    },
+    "addresses": [
+     {
+      "city": "Frankfurt"
+     }
+    ],
+    "address": {}
+   },
+   {
+    "id": 212948,
+    "title": "Mitarbeiter Service (w/m/d)",
+    "contentSections": [],
+    "occupationalCategories": [
+     {
+      "id": 14,
+      "title": "Rechnungswesen/Finanzen/Controlling"
+     }
+    ],
+    "client": {
+     "id": 2307,
+     "name": "Frankfurter Sparkasse",
+     "slug": "frankfurter-sparkasse",
+     "bankCode": "50050201",
+     "address": {
+      "city": "Frankfurt am Main"
+     }
+    },
+    "addresses": [],
+    "address": {}
+   },
+   {
+    "id": 1,
+    "title": "Fremde Stelle",
+    "contentSections": [],
+    "occupationalCategories": [
+     {
+      "id": 14,
+      "title": "Rechnungswesen/Finanzen/Controlling"
+     }
+    ],
+    "client": {
+     "id": 2307,
+     "name": "Frankfurter Sparkasse",
+     "slug": "frankfurter-sparkasse",
+     "bankCode": "99999999",
+     "address": {
+      "city": "Frankfurt am Main"
+     }
+    },
+    "addresses": [
+     {
+      "city": "Frankfurt"
+     }
+    ],
+    "address": {}
+   }
+  ]
+ }
+}

@@ -207,7 +207,9 @@ location:
      Warschau, Madrid, Barcelona, Milan, Mailand, Rome, Dublin, Prague, Budapest, Stockholm, Copenhagen,
      Oslo, Helsinki, Lisbon, Athens, Geneva, Genf, Basel, New York, Singapore, Hong Kong, Tokyo, Mumbai,
      Bucharest, Sofia, Istanbul, Bratislava, Vilnius, Riga, Tallinn, Lyon, Rotterdam, Utrecht, Edinburgh,
-     Manchester, Poland, Netherlands, France, Switzerland, Austria, Spain, Italy, Ireland, United Kingdom]
+     Manchester, Poland, Netherlands, France, Switzerland, Austria, Spain, Italy, Ireland, United Kingdom,
+     Frankreich, Schweiz, Österreich, Niederlande, Großbritannien, Vereinigtes Königreich, Spanien, Italien, Irland,
+     Polen, Belgien, Tschechien, Ungarn, Singapur, USA, Vereinigte Staaten]
 
 llm:
   enabled: false               # needs ANTHROPIC_API_KEY when true

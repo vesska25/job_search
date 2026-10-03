@@ -1200,16 +1200,18 @@ banks:
   country: Germany
   address_in_source_list: 60311 Frankfurt am Main
   jobs_url: https://www.sparkasse.de/jobboerse/frankfurter-sparkasse.html
-  source_type: unknown
+  source_type: sparkasse_jobmarket
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: needs_review
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: Uses the Sparkassen job exchange https://www.sparkasse.de/jobboerse/frankfurter-sparkasse.html (Next.js app, data
-    from sparkasse.de/api/job-market/...). Data source still to be diagnosed.
+  notes: Sparkassen job exchange; JSON API sparkasse.de/api/job-market/jobs/search filtered by bankCode (BLZ 50050201, taken
+    from the bank's exchange page). Run Verify to confirm.
   display_name: Frankfurter Sparkasse
+  options:
+    bank_code: '50050201'
 - id: frankfurter_volksbank_rhein_main
   name: Frankfurter Volksbank Rhein/Main eG
   country: Germany
@@ -2116,17 +2118,28 @@ banks:
   name: ODDO BHF SE
   country: Germany
   address_in_source_list: 60329 Frankfurt am Main
-  jobs_url: https://www.oddo-bhf.com/discover-our-jobs/
-  source_type: unknown
+  jobs_url: https://recrutement.altays-progiciels.com/oddo/de/offres.html
+  source_type: custom_html
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: needs_review
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: https://www.oddo-bhf.com/careers/ has no job list; vacancies are behind /discover-our-jobs/ or /experienced-professionals/
-    (external ATS likely). To be diagnosed.
+  notes: 'Vacancies are an iframe from the Altays recruiting service (recrutement.altays-progiciels.com/oddo/de/) embedded
+    in oddo-bhf.com/de/entdecken-sie-unsere-jobs/. The list page itself loads /oddo/de/offres.html (HTML fragment of li.jobs__detail
+    cards, ?page=N); robots.txt of the service: none (404). Card badge 2 = country ("Deutschland"); jobs of other countries
+    are rejected by the Germany filter. Not yet confirmed by a full run.'
   display_name: ODDO BHF
+  options:
+    selectors:
+      item: li.jobs__detail
+      title: .jobs__detail__title a
+      link: .jobs__detail__title a
+      location: .badges--color-2
+    pagination:
+      param: page
+      max_pages: 15
 - id: open_bank_s_a_zweigniederlassung_deutschland
   name: OPEN BANK, S.A., Zweigniederlassung Deutschland
   country: Germany

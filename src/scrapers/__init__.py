@@ -8,6 +8,7 @@ from src.scrapers.rss import RssScraper
 from src.scrapers.smartrecruiters import SmartRecruitersScraper
 from src.scrapers.softgarden import SoftgardenScraper
 from src.scrapers.sparkasse import SparkasseScraper
+from src.scrapers.sparkasse_jobmarket import SparkasseJobMarketScraper
 from src.scrapers.successfactors import SuccessFactorsScraper
 from src.scrapers.workday import WorkdayScraper
 
@@ -22,6 +23,7 @@ SCRAPERS = {
     "rss": RssScraper,
     "custom_html": GenericHtmlScraper,
     "sparkasse": SparkasseScraper,
+    "sparkasse_jobmarket": SparkasseJobMarketScraper,
 }
 # 'proprietary' is a bank-specific site: use custom_html/custom_api options.
 SCRAPERS["proprietary"] = GenericHtmlScraper
