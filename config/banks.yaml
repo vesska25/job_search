@@ -4330,3 +4330,22 @@ banks:
   options:
     link_pattern: -j\d+\.html$
     accept_unknown_location: true
+- id: pruefungsverband_deutscher_banken
+  name: Prüfungsverband deutscher Banken e.V.
+  display_name: Prüfungsverband deutscher Banken
+  country: Germany
+  address_in_source_list: Köln (added by the user, not in the original list; an auditing association of the banks, not a bank)
+  jobs_url: https://jobs.pruefungsverband-banken.de/stellenangebote.html
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Added at the user''s request; employer is the auditing association of the German private banks. rexx portal: vacancy
+    links end in -de-j<number>.html (8 vacancies seen by a probe: IT Auditor, Prüfer, Quantitative Analyst, Wirtschaftsprüfer,
+    ...). Unverified until a Verify run.'
+  options:
+    link_pattern: -j\d+\.html$
+    accept_unknown_location: true
