@@ -2762,6 +2762,7 @@ banks:
   verification_status: alias
   last_verified: null
   notes: Merged into Sparkasse Darmstadt und Dieburg (exchange BLZ 50850150); covered by stadt_und_kreis_sparkasse_darmstadt.
+  alias_of: stadt_und_kreis_sparkasse_darmstadt
 - id: sparkasse_duren
   name: Sparkasse Düren
   country: Germany
