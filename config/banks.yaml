@@ -341,9 +341,10 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: needs_review
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Discovery candidate (2026-10-03): personio https://julius.jobs.personio.de/ - verify it is this bank, then set source_type/jobs_url/enabled.
+    | No official Germany-specific vacancy source verified'
 - id: bank_pictet_cie_europe
   name: Bank Pictet & Cie (Europe) AG
   country: Germany
@@ -1151,9 +1152,10 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: needs_review
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Discovery candidate (2026-10-03): personio https://frankfurter-bankgesellschaft.jobs.personio.de/ - verify it is
+    this bank, then set source_type/jobs_url/enabled. | No official Germany-specific vacancy source verified'
 - id: frankfurter_sparkasse
   name: Frankfurter Sparkasse
   country: Germany
@@ -1216,9 +1218,10 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: needs_review
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Discovery candidate (2026-10-03): personio https://genobroker.jobs.personio.de/ - verify it is this bank, then set
+    source_type/jobs_url/enabled. | No official Germany-specific vacancy source verified'
 - id: gladbacher_bank_von_1922
   name: GLADBACHER BANK AG von 1922
   country: Germany
@@ -2050,9 +2053,10 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: needs_review
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Discovery candidate (2026-10-03): personio https://open.jobs.personio.de/ - verify it is this bank, then set source_type/jobs_url/enabled.
+    | No official Germany-specific vacancy source verified'
 - id: otp_bank_nyrt_niederlassung_deutschland
   name: OTP Bank Nyrt. Niederlassung Deutschland
   country: Germany
