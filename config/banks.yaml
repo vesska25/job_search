@@ -3499,15 +3499,29 @@ banks:
   display_name: BNY Mellon
   country: Germany
   address_in_source_list: 60308 Frankfurt am Main
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://eofe.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/BNY-Careers/jobs?location=Germany&locationId=300000000378221&locationLevel=country&mode=location
+  source_type: custom_api
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'BNY career site on Oracle Cloud HCM (URL supplied by the user). Public REST list confirmed by a probe: items[0].requisitionList
+    with Id/Title/PostedDate/PrimaryLocation, 20 Germany vacancies (country filter locationId 300000000378221). Vacancy URL
+    pattern assumed from the site layout; unverified until a Verify run.'
+  options:
+    api_url: https://eofe.fa.us2.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions
+    params:
+      onlyData: 'true'
+      finder: findReqs;siteNumber=BNY-Careers,locationId=300000000378221,limit=50,sortBy=POSTING_DATES_DESC
+    items_path: items.0.requisitionList
+    fields:
+      title: Title
+      id: Id
+      location: PrimaryLocation
+      date: PostedDate
+    url_template: https://eofe.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/BNY-Careers/job/{id}
 - id: the_bank_of_new_york_mellon_sa_nv_asset_servicin
   name: The Bank of New York Mellon SA/NV, Asset Servicing, Niederlassung Frankfurt am Main
   country: Germany
