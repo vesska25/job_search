@@ -157,8 +157,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Career page supplied by the user; vacancy links /karriere/<title>-m/w/d-standort-<city> (Düsseldorf), confirmed by
     a probe. Title falls back to the URL slug when the link has no text. Unverified until a Verify run.
   options:
@@ -1024,8 +1024,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Career portal of Deutsche Leasing (group portal, example vacancy supplied by the user). robots.txt allows all and
     names sitemap.xml; every vacancy page /offer/<slug>/<uuid> has schema.org JobPosting JSON-LD (confirmed by a probe). The
     portal covers the Deutsche Leasing group, not only the Finance GmbH. Unverified until a Verify run.
@@ -1190,8 +1190,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: 'Career page supplied by the user: the Open Positions section links to PDF job ads (…Recruiting_Stellenanzeige….pdf)
     with the job title as link text; confirmed by a probe. Only vacancies published as PDF there are seen. Unverified until
     a Verify run.'
@@ -1209,8 +1209,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: 'Workday site of Fidelity International (URL supplied by the user: tenant fil, site 001, search text FFB = FIL Fondsbank,
     country facet = Germany). Unverified until a Verify run.'
   options:
@@ -2812,8 +2812,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: SMBC EMEA career site (SuccessFactors / Jobs2web; search URL supplied by the user, locationsearch=frankfurt). Unverified
     until a Verify run.
   options:
@@ -3426,8 +3426,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Career page supplied by the user; vacancy teasers a.teaser-feature__link with the title in the title attribute and
     links /karriere/stellenangebote/<slug>, confirmed by a probe. Unverified until a Verify run.
   options:
@@ -4255,8 +4255,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Page supplied by the user lists links to the Vorwerk group portal jobs.vorwerkgroup.com/akf/job/<city>-<title>/<id>/
     (confirmed by a probe); the link has no text, so the title is taken from the URL slug (city and postcode may remain in
     it). Unverified until a Verify run.
