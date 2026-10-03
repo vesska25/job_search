@@ -1186,15 +1186,24 @@ banks:
   name: FIL Fondsbank GmbH
   country: Germany
   address_in_source_list: 61476 Kronberg im Taunus
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://fil.wd3.myworkdayjobs.com/en-US/001
+  source_type: workday
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Workday site of Fidelity International (URL supplied by the user: tenant fil, site 001, search text FFB = FIL Fondsbank,
+    country facet = Germany). Unverified until a Verify run.'
+  options:
+    tenant: fil
+    site: '001'
+    search_text: FFB
+    applied_facets:
+      locationCountry:
+      - dcc5b7608d8644b3a93716604e78e995
+    max_pages: 10
 - id: first_international_bank
   name: FIRST INTERNATIONAL BANK AG
   country: Germany
