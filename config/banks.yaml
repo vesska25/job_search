@@ -1205,8 +1205,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Sparkassen job exchange; JSON API sparkasse.de/api/job-market/jobs/search filtered by bankCode (BLZ 50050201, taken
     from the bank's exchange page). Run Verify to confirm.
   display_name: Frankfurter Sparkasse
@@ -2124,8 +2124,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: 'Vacancies are an iframe from the Altays recruiting service (recrutement.altays-progiciels.com/oddo/de/) embedded
     in oddo-bhf.com/de/entdecken-sie-unsere-jobs/. The list page itself loads /oddo/de/offres.html (HTML fragment of li.jobs__detail
     cards, ?page=N); robots.txt of the service: none (404). Card badge 2 = country ("Deutschland"); jobs of other countries
