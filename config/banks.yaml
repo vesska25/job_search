@@ -2098,15 +2098,18 @@ banks:
   name: Mizuho Bank, Ltd. Filiale Düsseldorf
   country: Germany
   address_in_source_list: 40213 Düsseldorf
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://careers.mizuhoemea.com/
+  source_type: successfactors
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Mizuho EMEA career site (SuccessFactors / Jobs2web; search URL supplied by the user). Group-wide EMEA list read without
+    a location filter, so the monitor location filter makes the Germany check. Unverified until a Verify run.
+  options:
+    max_pages: 30
 - id: natixis_pfandbriefbank
   name: NATIXIS Pfandbriefbank AG
   country: Germany
