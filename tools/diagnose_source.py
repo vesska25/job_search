@@ -83,6 +83,14 @@ def diagnose(url: str, http: HttpClient, pattern: str = DEFAULT_PATTERN) -> None
               "ask the bank for a feed, or leave disabled.")
         return
     print("JSON-LD JobPosting present:", "JobPosting" in r.text)
+    probe = re.compile(r"m/w/d|w/m/d|m/f/d|Stellenanzeige|Vacancy", re.I)
+    hits = list(probe.finditer(r.text))
+    print(f"job-title markers (m/w/d, Stellenanzeige ...) in raw HTML: {len(hits)}")
+    for m in hits[:4]:
+        snippet = re.sub(r"\s+", " ", r.text[max(0, m.start() - 160): m.end() + 100])
+        print("    ...", snippet, "...")
+    for m in re.finditer(r"(?is)<script([^>]*type=[\"']application/(?:json|ld\+json)[\"'][^>]*)>(.*?)</script>", r.text):
+        print(f"embedded JSON block: attrs={m.group(1).strip()[:80]!r} size={len(m.group(2))}")
     hits = sorted({urljoin(url, m.group(0).strip("\"'()")) for m in API_HINT.finditer(r.text)})
     print(f"API-looking URLs in page source ({len(hits)}):")
     for h in hits[:40]:
