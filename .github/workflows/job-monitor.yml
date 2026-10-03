@@ -14,6 +14,10 @@ on:
         description: "Dry run: scrape and filter, log matches, no Telegram, no database changes"
         type: boolean
         default: false
+      test_telegram:
+        description: "Delivery test: send a sample digest of stored vacancies to Telegram, no scraping, no database changes"
+        type: boolean
+        default: false
 
 permissions:
   contents: write              # needed to commit data/jobs.db back
@@ -38,7 +42,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}   # optional, only if llm.enabled
-        run: python -m src.main ${{ inputs.baseline && '--baseline' || '' }} ${{ inputs.dry_run && '--dry-run --verbose' || '' }}
+        run: python -m src.main ${{ inputs.baseline && '--baseline' || '' }} ${{ inputs.dry_run && '--dry-run --verbose' || '' }} ${{ inputs.test_telegram && '--test-telegram' || '' }}
       - name: Persist database
         if: always()
         run: |

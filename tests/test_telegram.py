@@ -61,3 +61,20 @@ def test_sender_uses_token_without_leaking_in_errors():
 def test_missing_credentials():
     with pytest.raises(ValueError):
         TelegramNotifier("", "")
+
+
+def test_send_test_digest_uses_stored_jobs_and_changes_nothing():
+    from types import SimpleNamespace
+    from src.main import send_test_digest
+    from src.models.job import Job
+    from src.storage.database import JobDatabase
+
+    db = JobDatabase(":memory:")
+    job = Job(bank_id="b1", bank_name="X", title="Leiter Rechnungswesen (m/w/d)", url="https://example.bank/j/1", location="Frankfurt")
+    db.record(job)
+    db.mark_notified([job])
+    sent = []
+    notifier = SimpleNamespace(send_all=lambda msgs: sent.extend(msgs))
+    n = send_test_digest(db, [SimpleNamespace(id="b1", label="Example Bank")], notifier)
+    assert n == 1 and "TEST MESSAGE" in sent[0] and "Example Bank" in sent[0] and "Leiter Rechnungswesen" in sent[0]
+    assert db.count() == 1 and db.conn.execute("SELECT notified FROM jobs").fetchone()[0] == 1

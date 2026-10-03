@@ -15,6 +15,7 @@ from pathlib import Path
 from src.config import CONFIG_DIR, ROOT, Bank, env, load_banks, load_settings
 from src.filters.llm import LlmClassifier
 from src.filters.pipeline import evaluate
+from src.models.job import Job
 from src.notifications.telegram import TelegramNotifier, format_digest, format_job
 from src.scrapers import get_scraper
 from src.storage.database import JobDatabase
@@ -115,6 +116,18 @@ def run(banks, settings, http, db, llm, stats: Stats) -> list:
     return matches
 
 
+def send_test_digest(db, banks, notifier, limit: int = 10) -> int:
+    """Delivery check: send already stored vacancies as a sample digest. Changes nothing in the database."""
+    labels = {b.id: b.label for b in banks}
+    rows = db.conn.execute("SELECT * FROM jobs ORDER BY first_seen DESC, rowid DESC LIMIT ?", (limit,)).fetchall()
+    jobs = [Job(bank_id=r["bank_id"], bank_name=labels.get(r["bank_id"], r["bank_id"]), title=r["title"],
+                url=r["canonical_url"], location=r["location"] or "") for r in rows]
+    messages = format_digest(jobs, max_jobs=limit)
+    messages[0] = "<b>TEST MESSAGE</b> - delivery check, these are already known vacancies, nothing is new.\n\n" + messages[0]
+    notifier.send_all(messages)
+    return len(jobs)
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description="Weekly bank job monitor")
     ap.add_argument("--config-dir", type=Path, default=CONFIG_DIR)
@@ -123,6 +136,8 @@ def main(argv=None) -> int:
     ap.add_argument("--dry-run", action="store_true", help="no Telegram message, no database writes")
     ap.add_argument("--baseline", action="store_true",
                     help="store all current matches as already notified (use for the very first run)")
+    ap.add_argument("--test-telegram", action="store_true",
+                    help="send a sample digest of already stored vacancies to Telegram and exit (no scraping, no DB changes)")
     ap.add_argument("--no-robots", action="store_true", help="debug only; default respects robots.txt")
     ap.add_argument("--verbose", action="store_true")
     args = ap.parse_args(argv)
@@ -134,6 +149,15 @@ def main(argv=None) -> int:
     selected, skipped = select_banks(banks, args.bank)
     log.info("Banks enabled: %d", len(selected))
     log.info("Banks skipped: %d", len(skipped))
+
+    if args.test_telegram:
+        db = JobDatabase(args.db or ROOT / settings["database"]["path"])
+        try:
+            n = send_test_digest(db, banks, TelegramNotifier(env("TELEGRAM_BOT_TOKEN"), env("TELEGRAM_CHAT_ID")))
+        finally:
+            db.close()
+        log.info("Test message sent (%d sample vacancies)", n)
+        return 0
 
     h = settings["http"]
     http = HttpClient(user_agent=h["user_agent"], timeout=h["timeout"], retries=h["retries"],
