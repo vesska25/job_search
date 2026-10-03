@@ -600,16 +600,21 @@ banks:
   country: Germany
   address_in_source_list: 60311 Frankfurt am Main
   jobs_url: https://jobs.commerzbank.com/
-  source_type: custom_api
+  source_type: beesite
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: needs_review
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: Career portal is jobs.commerzbank.com (page lists https://jobs.commerzbank.com/index.php?ac=search_result); the site
-    script references https://api-jobs.commerzbank.com/search/. Request format not yet known; the earlier guessed /karriere/
-    URL was wrong. Disabled until adapter options are configured and verified.
+  notes: BeeSite API found in the career site script (api-jobs.commerzbank.com/search). Request format taken from DB/Commerzbank
+    page scripts; not yet verified by a full run. Germany filtering is client-side on city names (location filter).
+  options:
+    api_url: https://api-jobs.commerzbank.com/search
+    language: DE
+    page_size: 50
+    first_item: 1
+    score_threshold: 100
 - id: cronbank
   name: CRONBANK Aktiengesellschaft
   country: Germany
@@ -789,16 +794,23 @@ banks:
   display_name: Deutsche Bank
   country: Germany
   address_in_source_list: 60325 Frankfurt am Main
-  jobs_url: https://careers.db.com/
-  source_type: custom_api
+  jobs_url: https://careers.db.com/professionals/search-roles
+  source_type: beesite
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: needs_review
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: Global/official career portal exists but needs a Germany filter and adapter configuration before it can be enabled;
-    not tested.
+  notes: BeeSite API found in careers.db.com jobplatform.js (api-deutschebank.beesite.de/search, GET ?data=<json>). Not yet
+    verified by a full run. Germany filtering is client-side on city names; a server-side country criterion can be added via
+    options.criteria once its id is known.
+  options:
+    api_url: https://api-deutschebank.beesite.de/search
+    language: EN
+    page_size: 50
+    first_item: 1
+    max_pages: 60
 - id: dhb_bank_n_v_niederlassung_deutschland
   name: DHB Bank N.V. Niederlassung Deutschland
   country: Germany
@@ -1218,12 +1230,17 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: needs_review
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: 'Career page https://www.genobroker.de/karriere.html (user-supplied; company has vacancies). It is an Angular single-page
-    app: diagnosis (2026-10-03) found no job links in the HTML and no endpoint strings in its scripts, so it cannot be parsed
-    with the current adapters. Disabled until a data endpoint or job-alert e-mail route is found.'
+  notes: 'Career page https://www.genobroker.de/karriere.html (user-supplied). Server-rendered accordion: job titles are in
+    the HTML as <details><summary class="cms-title">; no per-job links, so each job gets ?job=<slug> as identity. robots.txt
+    allows the page. Selectors from diagnosis, not yet verified by a full run.'
+  options:
+    selectors:
+      item: '[data-render-component="okp-akkordeon-tab"] details'
+      title: summary.cms-title
+      no_link: true
 - id: gladbacher_bank_von_1922
   name: GLADBACHER BANK AG von 1922
   country: Germany

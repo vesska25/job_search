@@ -15,6 +15,7 @@ from bs4 import BeautifulSoup
 
 from src.config import Bank
 from src.scrapers.base import BaseScraper, ScraperError
+from src.utils.normalization import slugify
 
 DEFAULT_LINK_PATTERN = r"/(job|jobs|stelle|stellen|stellenangebot|stellenangebote|vacanc\w*|position|positions|karriere/jobs)/[^/?#]+"
 
@@ -83,20 +84,35 @@ class GenericHtmlScraper(BaseScraper):
                 yield from cls._walk(v)
 
     def _from_selectors(self, soup, bank):
+        """Items matched by options.selectors. Without a link element (accordion lists such as
+        <details><summary>Title</summary>...</details>) set selectors.no_link: true; every job then
+        gets a unique URL <jobs_url>?job=<slug-of-title> and the item's text becomes its description."""
         sel = bank.options.get("selectors")
         if not sel or not sel.get("item"):
             return []
         jobs = []
         for item in soup.select(sel["item"]):
+            title_el = item.select_one(sel["title"]) if sel.get("title") else None
+            loc_el = item.select_one(sel["location"]) if sel.get("location") else None
+            location = loc_el.get_text(" ", strip=True) if loc_el else ""
+            if sel.get("no_link"):
+                title = (title_el or item).get_text(" ", strip=True)
+                if not title:
+                    continue
+                slug = slugify(title)[:80]
+                sep = "&" if "?" in bank.jobs_url else "?"
+                text = item.get_text(" ", strip=True)
+                jobs.append(self.make_job(
+                    bank, title=title, url=f"{bank.jobs_url}{sep}job={slug}", location=location,
+                    description=text[:3000] if text != title else "", source_job_id=slug))
+                continue
             link = item.select_one(sel.get("link", "a")) or (item if item.name == "a" else None)
-            title_el = item.select_one(sel["title"]) if sel.get("title") else link
+            title_el = title_el or link
             if not link or not link.get("href") or not title_el:
                 continue
-            loc_el = item.select_one(sel["location"]) if sel.get("location") else None
             jobs.append(self.make_job(
                 bank, title=title_el.get_text(" ", strip=True), url=urljoin(bank.jobs_url, link["href"]),
-                location=loc_el.get_text(" ", strip=True) if loc_el else "",
-            ))
+                location=location))
         return jobs
 
     def _from_links(self, soup, bank):

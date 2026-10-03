@@ -77,15 +77,15 @@ Append to `config/banks.yaml` (unique `id`):
 - id: examplebank
   name: Example Bank AG
   jobs_url: "https://examplebank.jobs.personio.de/"
-  source_type: personio          # personio | smartrecruiters | workday | successfactors | softgarden | custom_api | custom_html | sparkasse
+  source_type: personio          # personio | smartrecruiters | workday | successfactors | softgarden | beesite | custom_api | custom_html | sparkasse
   germany_only: true             # true only if the page itself guarantees Germany-only jobs
   enabled: true
   options: {}
 ```
 Then `python -m src.main --bank examplebank --dry-run --verbose`, and `python -m tools.verify_banks --apply`.
 
-Adapter options: Workday `options.applied_facets` (Germany facet id from the site), SuccessFactors
-`options.params`, SmartRecruiters `options.company`, `custom_html` `options.selectors` / `link_pattern` /
+Adapter options: BeeSite (`source_type: beesite`; used by Commerzbank and Deutsche Bank, `options.api_url`, `language`, `criteria`), Workday `options.applied_facets` (Germany facet id from the site), SuccessFactors
+`options.params`, SmartRecruiters `options.company`, `custom_html` `options.selectors` (`no_link: true` for accordion lists without per-job links) / `link_pattern` /
 `pagination`, `custom_api` `options.api_url/items_path/fields/pagination` (see `src/scrapers/custom_api.py`).
 If a career page is JavaScript-rendered, find the JSON request in the browser's network tab and use `custom_api`.
 
@@ -112,3 +112,7 @@ If a career page is JavaScript-rendered, find the JSON request in the browser's 
 ## Compliance
 robots.txt is checked per host (if it cannot be fetched, the host is skipped), 1 s minimum delay per host,
 explicit User-Agent, retries with backoff. Sites that block automation are not circumvented: leave them disabled.
+
+## Finding a source for a new bank
+Run **Diagnose bank source** (Actions tab) with the career page URL. It reports robots.txt, embedded job data and
+endpoint strings in the site's public scripts; give a `.js` URL plus a regex to see how a page loads its jobs.

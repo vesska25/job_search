@@ -32,7 +32,7 @@ def verify(banks, http, max_pages):
     results = {}
     for b in banks:
         try:
-            jobs = get_scraper(b.source_type, http, max_pages=max_pages).fetch_jobs(b)
+            jobs = get_scraper(b.source_type, http, max_pages=b.options.get("max_pages", max_pages)).fetch_jobs(b)
             status = "ok" if jobs else "empty"
             results[b.id] = (status, len(jobs), "")
         except Exception as exc:  # noqa: BLE001

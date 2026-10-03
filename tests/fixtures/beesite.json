@@ -1,0 +1,6 @@
+{"SearchResult":{"SearchResultCount":3,"SearchResultCountAll":3,"SearchResultItems":[
+ {"MatchedObjectDescriptor":{"PositionID":"R-1001","PositionTitle":"Head of Regulatory Reporting","PositionURI":"https://jobs.example.bank/job/1001",
+  "PositionLocation":[{"CityName":"Frankfurt am Main","CountryCode":"DE"}],"JobCategory":[{"Name":"Finance"}],"ParentOrganizationName":"Example Bank"}},
+ {"MatchedObjectDescriptor":{"PositionID":"R-1002","PositionTitle":"Director Credit Risk","PositionURI":"/job/1002",
+  "PositionLocation":[{"CityName":"London"}],"JobCategory":[{"Name":"Risk"}]}},
+ {"MatchedObjectDescriptor":{"PositionTitle":"Missing URI job"}}]}}

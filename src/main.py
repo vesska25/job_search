@@ -58,7 +58,8 @@ def run(banks, settings, http, db, llm, stats: Stats) -> list:
         stats.processed += 1
         log.info("Scraping %s", bank.label)
         try:
-            scraper = get_scraper(bank.source_type, http, max_pages=settings["http"].get("max_pages", 30))
+            scraper = get_scraper(bank.source_type, http,
+                                  max_pages=bank.options.get("max_pages", settings["http"].get("max_pages", 30)))
             jobs = scraper.fetch_jobs(bank)
         except Exception as exc:  # noqa: BLE001 - isolate per-bank failures by design
             stats.failed += 1

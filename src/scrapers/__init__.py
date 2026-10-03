@@ -1,5 +1,6 @@
 """Scraper registry: maps banks.yaml `source_type` to adapter class."""
 from src.scrapers.base import BaseScraper, ScraperError
+from src.scrapers.beesite import BeeSiteScraper
 from src.scrapers.custom_api import CustomApiScraper
 from src.scrapers.generic_html import GenericHtmlScraper
 from src.scrapers.personio import PersonioScraper
@@ -16,6 +17,7 @@ SCRAPERS = {
     "smartrecruiters": SmartRecruitersScraper,
     "softgarden": SoftgardenScraper,
     "custom_api": CustomApiScraper,
+    "beesite": BeeSiteScraper,
     "custom_html": GenericHtmlScraper,
     "sparkasse": SparkasseScraper,
 }

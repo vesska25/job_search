@@ -104,7 +104,67 @@ def test_tiny_page_raises(bank):
 
 def test_registry_covers_all_types():
     for t in ("personio", "workday", "successfactors", "smartrecruiters", "softgarden", "custom_api",
-              "custom_html", "sparkasse", "proprietary"):
+              "custom_html", "sparkasse", "proprietary", "beesite"):
         assert t in SCRAPERS
     with pytest.raises(ScraperError):
         get_scraper("unknown", None)
+
+
+def test_beesite_parse(bank):
+    from src.scrapers.beesite import BeeSiteScraper
+    bank.jobs_url = "https://jobs.example.bank/"
+    jobs, total = BeeSiteScraper(None).parse(fixture_json("beesite.json"), bank)
+    assert total == 3 and [j.source_job_id for j in jobs] == ["R-1001", "R-1002"]   # job without URI skipped
+    assert jobs[0].location == "Frankfurt am Main" and jobs[0].country == "DE" and jobs[0].department == "Finance"
+    assert jobs[1].url == "https://jobs.example.bank/job/1002" and jobs[1].location == "London"
+    with pytest.raises(ScraperError):
+        BeeSiteScraper(None).parse({"error": "x"}, bank)
+
+
+def test_beesite_request_and_pagination(bank):
+    import json
+    from src.scrapers.beesite import BeeSiteScraper
+    bank.jobs_url = "https://jobs.example.bank/"
+    bank.options = {"api_url": "https://api.example.bank/search", "page_size": 2, "first_item": 1, "score_threshold": 100,
+                    "criteria": [{"CriterionName": "PositionLocation.Country", "CriterionValue": ["X"]}]}
+    pages = [
+        {"SearchResult": {"SearchResultCountAll": 3, "SearchResultItems": [
+            {"MatchedObjectDescriptor": {"PositionID": str(i), "PositionTitle": f"T{i}", "PositionURI": f"/j/{i}"}} for i in (1, 2)]}},
+        {"SearchResult": {"SearchResultCountAll": 3, "SearchResultItems": [
+            {"MatchedObjectDescriptor": {"PositionID": "3", "PositionTitle": "T3", "PositionURI": "/j/3"}}]}},
+    ]
+    calls = []
+
+    class Http:
+        def get(self, url, params=None, **kw):
+            calls.append((url, json.loads(params["data"])))
+            return type("R", (), {"json": lambda s: pages[len(calls) - 1]})()
+
+    jobs = BeeSiteScraper(Http()).fetch_jobs(bank)
+    assert [j.title for j in jobs] == ["T1", "T2", "T3"] and len(calls) == 2
+    url, body = calls[0]
+    assert url == "https://api.example.bank/search/"
+    assert body["SearchParameters"]["FirstItem"] == 1 and body["SearchParameters"]["CountItem"] == 2
+    assert body["ScoreThreshold"] == 100 and body["SearchCriteria"][0]["CriterionName"] == "PositionLocation.Country"
+    assert calls[1][1]["SearchParameters"]["FirstItem"] == 3
+
+
+def test_generic_html_accordion_without_links(bank):
+    bank.jobs_url = "https://www.example.bank/karriere.html"
+    bank.options = {"selectors": {"item": '[data-render-component="okp-akkordeon-tab"] details',
+                                  "title": "summary.cms-title", "no_link": True}}
+    jobs = GenericHtmlScraper(None).parse(fixture_text("accordion.html"), bank)
+    assert [j.title for j in jobs] == ["Senior Manager Finanzcontrolling (m/w/d)", "Mitarbeiter im Kundenservicecenter (m/w/d) in Vollzeit"]
+    assert jobs[0].url == "https://www.example.bank/karriere.html?job=senior_manager_finanzcontrolling_m_w_d"
+    assert jobs[0].canonical_url != jobs[1].canonical_url            # distinct identity -> no dedup collision
+    assert "disziplinarische" in jobs[0].description
+
+
+def test_accordion_job_flows_through_filters(settings, de_bank):
+    from src.filters.pipeline import evaluate
+    de_bank.jobs_url = "https://www.example.bank/karriere.html"
+    de_bank.options = {"selectors": {"item": "details", "title": "summary.cms-title", "no_link": True}}
+    jobs = GenericHtmlScraper(None).parse(fixture_text("accordion.html"), de_bank)
+    d = evaluate(jobs[0], de_bank, settings)
+    assert d.accepted and not d.borderline            # 'Senior Manager' + Finanzcontrolling + management signal
+    assert not evaluate(jobs[1], de_bank, settings).accepted
