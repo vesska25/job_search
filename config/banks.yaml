@@ -107,11 +107,13 @@ banks:
   verification_status: ok
   last_verified: '2026-10-03'
   notes: 'Onlyfy (Prescreen) career site aareal-bank-group.onlyfy.jobs linked from aareal-bank.com; vacancy links /de/job/<id>.
-    Not germany_only: the group has foreign offices, the location filter decides. Run Verify to confirm.'
+    Not germany_only: the group has foreign offices, the location filter decides. Run Verify to confirm. | Fix 2026-10-03:
+    the list has no location, so unknown locations are accepted (the first dry run dropped all 10 vacancies as "not Germany").'
   display_name: Aareal Bank
   options:
     selectors:
       item: a[href*="/de/job/"]
+    accept_unknown_location: true
 - id: agricultural_bank_of_china_limited_frankfurt_bra
   name: Agricultural Bank of China Limited Frankfurt Branch
   country: Germany
@@ -1209,7 +1211,7 @@ banks:
   address_in_source_list: 60311 Frankfurt am Main
   jobs_url: https://www.sparkasse.de/jobboerse/frankfurter-sparkasse.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
@@ -1710,7 +1712,7 @@ banks:
   address_in_source_list: 53474 Bad Neuenahr-Ahrweiler
   jobs_url: https://www.sparkasse.de/jobboerse/kreissparkasse-ahrweiler.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
@@ -1726,7 +1728,7 @@ banks:
   address_in_source_list: 40213 Düsseldorf
   jobs_url: https://www.sparkasse.de/jobboerse/kreissparkasse-duesseldorf.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
@@ -1742,7 +1744,7 @@ banks:
   address_in_source_list: 53879 Euskirchen
   jobs_url: https://www.sparkasse.de/jobboerse/kreissparkasse-euskirchen.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
@@ -1758,7 +1760,7 @@ banks:
   address_in_source_list: 63571 Gelnhausen
   jobs_url: https://www.sparkasse.de/jobboerse/kreissparkasse-gelnhausen.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
@@ -1774,7 +1776,7 @@ banks:
   address_in_source_list: 64521 Groß-Gerau
   jobs_url: https://www.sparkasse.de/jobboerse/kreissparkasse-gross-gerau.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
@@ -1790,7 +1792,7 @@ banks:
   address_in_source_list: 41812 Erkelenz
   jobs_url: https://www.sparkasse.de/jobboerse/kreissparkasse-heinsberg.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
@@ -2611,7 +2613,7 @@ banks:
   address_in_source_list: 55116 Mainz a Rhein
   jobs_url: https://www.sparkasse.de/jobboerse/rheinhessen-sparkasse.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
@@ -2679,7 +2681,7 @@ banks:
   address_in_source_list: 63450 Hanau
   jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-hanau.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
@@ -2833,7 +2835,7 @@ banks:
   address_in_source_list: 63739 Aschaffenburg
   jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-aschaffenburg-miltenberg.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
@@ -2849,7 +2851,7 @@ banks:
   address_in_source_list: 64625 Bensheim
   jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-bensheim.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
@@ -2879,7 +2881,7 @@ banks:
   address_in_source_list: 52349 Düren, Rheinl
   jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-dueren.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
@@ -2895,7 +2897,7 @@ banks:
   address_in_source_list: 51643 Gummersbach
   jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-gummersbach.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
@@ -2911,7 +2913,7 @@ banks:
   address_in_source_list: 42551 Velbert
   jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-hilden-ratingen-velbert.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
@@ -2961,7 +2963,7 @@ banks:
   address_in_source_list: 51373 Leverkusen
   jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-leverkusen.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
@@ -2978,7 +2980,7 @@ banks:
   address_in_source_list: 41460 Neuss
   jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-neuss.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
@@ -2994,7 +2996,7 @@ banks:
   address_in_source_list: 61169 Friedberg (Hessen)
   jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-oberhessen.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
@@ -3010,7 +3012,7 @@ banks:
   address_in_source_list: 58332 Schwelm
   jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-schwelm-sprockhoevel.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
@@ -3026,7 +3028,7 @@ banks:
   address_in_source_list: 64283 Darmstadt
   jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-darmstadt.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
@@ -3042,7 +3044,7 @@ banks:
   address_in_source_list: 42781 Haan, Rheinl
   jobs_url: https://www.sparkasse.de/jobboerse/stadt-sparkasse-haan.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
@@ -3058,7 +3060,7 @@ banks:
   address_in_source_list: 40764 Langenfeld (Rheinland)
   jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-langenfeld.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
@@ -3074,7 +3076,7 @@ banks:
   address_in_source_list: 42651 Solingen
   jobs_url: https://www.sparkasse.de/jobboerse/stadt-sparkasse-solingen.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
@@ -3112,7 +3114,7 @@ banks:
   address_in_source_list: 41061 Mönchengladbach
   jobs_url: https://www.sparkasse.de/jobboerse/stadtsparkasse-moenchengladbach.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
@@ -3128,7 +3130,7 @@ banks:
   address_in_source_list: 42853 Remscheid
   jobs_url: https://www.sparkasse.de/jobboerse/stadtsparkasse-remscheid.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
@@ -3157,7 +3159,7 @@ banks:
   address_in_source_list: 42103 Wuppertal
   jobs_url: https://www.sparkasse.de/jobboerse/stadtsparkasse-wuppertal.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
@@ -3227,7 +3229,7 @@ banks:
   address_in_source_list: 63065 Offenbach am Main
   jobs_url: https://www.sparkasse.de/jobboerse/staedtische-sparkasse-offenbach-am-main.html
   source_type: sparkasse_jobmarket
-  germany_only: false
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
