@@ -1199,7 +1199,7 @@ banks:
   name: Frankfurter Sparkasse
   country: Germany
   address_in_source_list: 60311 Frankfurt am Main
-  jobs_url: https://www.frankfurter-sparkasse.de/karriere/
+  jobs_url: https://www.sparkasse.de/jobboerse/frankfurter-sparkasse.html
   source_type: unknown
   germany_only: false
   germany_filter: ''
@@ -1207,23 +1207,29 @@ banks:
   enabled: false
   verification_status: needs_review
   last_verified: null
-  notes: Career page https://www.frankfurter-sparkasse.de/karriere/. Source type to be diagnosed.
+  notes: Uses the Sparkassen job exchange https://www.sparkasse.de/jobboerse/frankfurter-sparkasse.html (Next.js app, data
+    from sparkasse.de/api/job-market/...). Data source still to be diagnosed.
   display_name: Frankfurter Sparkasse
 - id: frankfurter_volksbank_rhein_main
   name: Frankfurter Volksbank Rhein/Main eG
   country: Germany
   address_in_source_list: 60313 Frankfurt am Main
-  jobs_url: https://www.frankfurter-volksbank.de/karriere.html
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://frankfurter-volksbank.helixjobs.com/_/joblist
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: needs_review
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: Career page https://www.frankfurter-volksbank.de/karriere.html; the job list page found by search returned 404. To
-    be diagnosed.
+  notes: Helix Jobs (helixjobs.com) vacancy list; job links /_/jobad?prj=<id>. URL frankfurter-volksbank.helixjobs.com/_/joblist
+    found in the bank career page; robots.txt of helixjobs.com still to be confirmed by the run. Germany-only employer. Not
+    yet confirmed by a full run.
   display_name: Frankfurter Volksbank
+  options:
+    selectors: &id001
+      item: a[href*="/_/jobad?prj="]
+      title: h3
 - id: freikirchen_bank
   name: Freikirchen.Bank eG
   country: Germany
@@ -1749,16 +1755,19 @@ banks:
   country: Germany
   address_in_source_list: 50667 Köln
   jobs_url: https://www.ksk-koeln.de/de/home/karriere/stellenangebote.html
-  source_type: unknown
-  germany_only: false
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: needs_review
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: Career page https://www.ksk-koeln.de/de/home/karriere/stellenangebote.html ("Onlinebewerbung"). Source type to be
-    diagnosed.
+  notes: Helix Jobs (helixjobs.com) vacancy list; job links /_/jobad?prj=<id>. List embedded in the bank site https://www.ksk-koeln.de/de/home/karriere/stellenangebote.html
+    (robots.txt allows; only /*?sp* and /*.webview.html are disallowed). Germany-only employer. Not yet confirmed by a full
+    run.
   display_name: Kreissparkasse Köln
+  options:
+    selectors: *id001
 - id: landbank_horlofftal_eingetragene_genossenschaft
   name: Landbank Horlofftal eingetragene Genossenschaft
   country: Germany
@@ -3107,16 +3116,20 @@ banks:
   name: Taunus-Sparkasse
   country: Germany
   address_in_source_list: 61352 Bad Homburg v d Höhe
-  jobs_url: https://www.taunussparkasse.de/de/home/ihre-sparkasse/karriere.html
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://taunussparkasse.helixjobs.com/_/joblist
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: needs_review
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: Career page https://www.taunussparkasse.de/de/home/ihre-sparkasse/karriere.html. Source type to be diagnosed.
+  notes: Helix Jobs (helixjobs.com) vacancy list; job links /_/jobad?prj=<id>. URL taunussparkasse.helixjobs.com/_/joblist
+    found in the bank career page; robots.txt of helixjobs.com still to be confirmed by the run. Germany-only employer. Not
+    yet confirmed by a full run.
   display_name: Taunus-Sparkasse
+  options:
+    selectors: *id001
 - id: the_bank_of_japan_reprasentanz
   name: The Bank of Japan Repräsentanz
   country: Germany
@@ -3542,17 +3555,20 @@ banks:
   name: Volksbank Köln Bonn eG
   country: Germany
   address_in_source_list: 53175 Bonn
-  jobs_url: https://www.volksbank-koeln-bonn.de/meine-bank/karriere.html
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://volksbank-koeln-bonn.helixjobs.com/_/joblist
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: needs_review
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: Career page https://www.volksbank-koeln-bonn.de/meine-bank/karriere.html; the job list page found by search returned
-    404 without ?position=. To be diagnosed.
+  notes: Helix Jobs (helixjobs.com) vacancy list; job links /_/jobad?prj=<id>. URL volksbank-koeln-bonn.helixjobs.com/_/joblist
+    found in the bank career page; robots.txt of helixjobs.com still to be confirmed by the run. Germany-only employer. Not
+    yet confirmed by a full run.
   display_name: Volksbank Köln Bonn
+  options:
+    selectors: *id001
 - id: volksbank_mainspitze
   name: Volksbank Mainspitze eG
   country: Germany
