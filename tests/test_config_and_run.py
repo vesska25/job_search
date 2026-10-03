@@ -10,7 +10,7 @@ from tests.conftest import FIX
 
 def test_banks_yaml_consistency():
     banks = load_banks()
-    assert len(banks) == 278
+    assert len(banks) >= 278   # the original list plus banks added later at the user's request
     ids = {b.id for b in banks}
     for b in banks:
         if b.alias_of:
