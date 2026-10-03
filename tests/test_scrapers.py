@@ -105,6 +105,15 @@ def test_generic_html_selector_title_fallbacks(bank):
     assert titles == ["Senior Trade Finance Specialist", "Team Head Export Finance (m/w/d)", "Leiter Risiko"]
 
 
+def test_generic_html_title_from_attribute(bank):
+    html = ('<a class="card" title="Zur Stellenbeschreibung Leitung Innovation Hub (m/w/d)" href="/jobs/detail/leitung/">'
+            '<span>Leitung Innovation Hub</span><span>Köln</span><span>Vollzeit</span></a>')
+    bank.jobs_url = "https://x.example/jobs/"
+    bank.options = {"selectors": {"item": "a.card", "title_attr": "title", "title_strip": "^Zur Stellenbeschreibung\\s+"}}
+    jobs = GenericHtmlScraper(None).parse(html, bank)
+    assert [j.title for j in jobs] == ["Leitung Innovation Hub (m/w/d)"]
+
+
 def test_generic_html_jsonld(bank):
     jobs = GenericHtmlScraper(None).parse(fixture_text("jsonld.html"), bank)
     assert len(jobs) == 1

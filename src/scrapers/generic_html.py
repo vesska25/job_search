@@ -92,7 +92,7 @@ class GenericHtmlScraper(BaseScraper):
 
     def _from_selectors(self, soup, bank):
         """Items matched by options.selectors. Without a link element (accordion lists such as
-        <details><summary>Title</summary>...</details>) set selectors.no_link: true; every job then
+        <details><summary>Title</summary>...</details>) set selectors.no_link: true; title_attr/title_strip read the title from an attribute (card links); every job then
         gets a unique URL <jobs_url>?job=<slug-of-title> and the item's text becomes its description."""
         sel = bank.options.get("selectors")
         if not sel or not sel.get("item"):
@@ -118,6 +118,10 @@ class GenericHtmlScraper(BaseScraper):
             if not link or not link.get("href") or not title_el:
                 continue
             title = title_el.get_text(" ", strip=True)
+            if sel.get("title_attr"):  # the card text is more than the title: read it from an attribute instead
+                title = (title_el.get(sel["title_attr"]) or link.get(sel["title_attr"]) or "").strip()
+                if sel.get("title_strip"):
+                    title = re.sub(sel["title_strip"], "", title).strip()
             if not title:  # icon / arrow links: fall back to the title attribute, then to the URL slug
                 title = (title_el.get("title") or link.get("title") or "").strip()
             if not title:
