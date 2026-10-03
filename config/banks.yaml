@@ -4312,3 +4312,21 @@ banks:
   options:
     max_pages: 20
     accept_unknown_location: true
+- id: dal_deutsche_anlagen_leasing
+  name: DAL Deutsche Anlagen-Leasing GmbH & Co. KG
+  display_name: DAL Deutsche Anlagen-Leasing
+  country: Germany
+  address_in_source_list: 55116 Mainz (added by the user, not in the original list)
+  jobs_url: https://karriere.dal.de/stellenangebote.html
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Added at the user''s request (www.dal.de/de/karriere links to karriere.dal.de/stellenangebote.html). rexx portal,
+    same layout as Bank11 / SozialBank: vacancy links end in -j<number>.html. Unverified until a Verify run.'
+  options:
+    link_pattern: -j\d+\.html$
+    accept_unknown_location: true
