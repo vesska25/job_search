@@ -2780,15 +2780,20 @@ banks:
   name: SMBC Bank EU AG
   country: Germany
   address_in_source_list: 60311 Frankfurt am Main
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://careersemea.smbcgroup.com/
+  source_type: successfactors
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: SMBC EMEA career site (SuccessFactors / Jobs2web; search URL supplied by the user, locationsearch=frankfurt). Unverified
+    until a Verify run.
+  options:
+    params:
+      locationsearch: frankfurt
+    max_pages: 10
 - id: sparkasse_hanau
   name: SPARKASSE HANAU
   country: Germany
