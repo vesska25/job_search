@@ -72,7 +72,7 @@ class GenericHtmlScraper(BaseScraper):
                 ident = node.get("identifier")
                 jid = str(ident.get("value")) if isinstance(ident, dict) and ident.get("value") else None
                 jobs.append(self.make_job(
-                    bank, title=node["title"].strip(), url=urljoin(bank.jobs_url, url),
+                    bank, title=node["title"].strip(), url=urljoin(bank.options.get("base_url") or bank.jobs_url, url),
                     location=addr.get("addressLocality", ""), country=str(country or ""),
                     department=str(node.get("occupationalCategory", "") or ""),
                     description=re.sub(r"<[^>]+>", " ", node.get("description", "") or "")[:5000],
@@ -135,7 +135,7 @@ class GenericHtmlScraper(BaseScraper):
                     location = lines[tl["location"]] if "location" in tl else location
                 else:
                     continue
-            url = urljoin(bank.jobs_url, link["href"])
+            url = urljoin(bank.options.get("base_url") or bank.jobs_url, link["href"])
             if url in seen_urls:  # menus and result lists often repeat the same vacancy
                 continue
             seen_urls.add(url)
@@ -147,7 +147,7 @@ class GenericHtmlScraper(BaseScraper):
         jobs, seen = [], set()
         for a in soup.find_all("a", href=True):
             title = a.get_text(" ", strip=True)
-            href = urljoin(bank.jobs_url, a["href"])
+            href = urljoin(bank.options.get("base_url") or bank.jobs_url, a["href"])
             if len(title) < 8 or not pattern.search(href) or href in seen:
                 continue
             seen.add(href)

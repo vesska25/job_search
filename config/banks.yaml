@@ -350,16 +350,19 @@ banks:
   name: Bank Julius Bär Europe AG
   country: Germany
   address_in_source_list: 60322 Frankfurt am Main
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://juliusbaer.wd3.myworkdayjobs.com/en-US/External
+  source_type: workday
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: 'No official Germany-specific vacancy source verified. Discovery slug on Personio rejected: generic word, likely
-    a different company.'
+  notes: Workday site supplied by the user (tenant juliusbaer, site External). Group-wide list, searched for Frankfurt; the
+    location filter makes the final Germany check. Unverified until a Verify run.
+  options:
+    search_text: Frankfurt
+    max_pages: 10
 - id: bank_pictet_cie_europe
   name: Bank Pictet & Cie (Europe) AG
   country: Germany
@@ -3035,15 +3038,21 @@ banks:
   name: Sparkasse Langen-Seligenstadt
   country: Germany
   address_in_source_list: 63500 Seligenstadt, Hess
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://sls.hrpuls.de/de/
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Own career portal on HRpuls (URL supplied by the user; not on the Sparkassen exchange API, so no BLZ needed). Vacancy
+    links job-offer-list/job-detail/<title>-<id>.html are server-rendered; robots.txt allows them. Unverified until a Verify
+    run.
+  options:
+    link_pattern: job-offer-list/job-detail/[^/?#]+\.html$
+    base_url: https://sls.hrpuls.de/
+    accept_unknown_location: true
 - id: sparkasse_leverkusen
   name: Sparkasse Leverkusen
   country: Germany

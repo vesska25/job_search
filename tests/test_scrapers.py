@@ -114,6 +114,14 @@ def test_generic_html_title_from_attribute(bank):
     assert [j.title for j in jobs] == ["Leitung Innovation Hub (m/w/d)"]
 
 
+def test_generic_html_base_url_option(bank):
+    html = '<a href="de/job-offer-list/job-detail/Teamleitung-Bauorganisation-219.html">Teamleitung (m/w/d) Bauorganisation</a>'
+    bank.jobs_url = "https://sls.example/de/"
+    bank.options = {"link_pattern": r"job-detail/[^/]+\.html$", "base_url": "https://sls.example/"}
+    jobs = GenericHtmlScraper(None).parse(html, bank)
+    assert jobs[0].url == "https://sls.example/de/job-offer-list/job-detail/Teamleitung-Bauorganisation-219.html"
+
+
 def test_generic_html_jsonld(bank):
     jobs = GenericHtmlScraper(None).parse(fixture_text("jsonld.html"), bank)
     assert len(jobs) == 1
