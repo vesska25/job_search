@@ -67,7 +67,13 @@ def main():
         start = text.lower().find("<body")
         print("-- body start --")
         print(re.sub(r"\s+", " ", text[max(start, 0): max(start, 0) + a.show]))
-    if a.grep:
+    if a.grep and re.compile(a.grep).groups:
+        # capture groups: print each distinct tuple once (e.g. id/name/bankCode of every employer in an API dump)
+        uniq = list(dict.fromkeys(m.groups() for m in re.finditer(a.grep, text)))
+        print(f"-- {len(uniq)} distinct capture tuples --")
+        for g in uniq:
+            print("  ", " | ".join(x or "" for x in g))
+    elif a.grep:
         for s in snippets(text, a.grep, a.ctx, a.limit) or ["(no matches in page)"]:
             print("  ", s)
     if a.scripts:
