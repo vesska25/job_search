@@ -2701,8 +2701,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Helix Jobs vacancy list (sparda-sw.helixjobs.com); link found on the bank's own career page / its vr.de vacancy pages.
     Run Verify to confirm.
   options:
@@ -3795,8 +3795,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Helix Jobs vacancy list (wvb.helixjobs.com); link found on the bank's own career page / its vr.de vacancy pages.
     Run Verify to confirm.
   options:
