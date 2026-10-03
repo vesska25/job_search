@@ -188,3 +188,25 @@ def test_link_pattern_umantis_style(bank):
     bank.options = {"link_pattern": r"/Vacancies/\d+/Description/"}
     jobs = GenericHtmlScraper(None).parse(html, bank)
     assert len(jobs) == 1 and jobs[0].url.endswith("/Vacancies/1143/Description/1")
+
+
+def test_successfactors_tile_layout_dedupes_and_reads_location(bank):
+    jobs = SuccessFactorsScraper(None).parse(fixture_text("successfactors_tiles.html"), bank, "https://karriere.nrwbank.de")
+    assert [j.title for j in jobs] == ["IT-Projektmanager Risikosysteme (w/m/d)", "Spezialist IAM (w/m/d)"]
+    assert jobs[0].location == "Düsseldorf, DE" and jobs[1].location == "Münster, DE"
+    assert jobs[0].source_job_id == "1162119801"
+
+
+def test_successfactors_empty_second_page_is_end_of_list(bank):
+    class Http:
+        def __init__(self):
+            self.n = 0
+
+        def get(self, url, params=None, **kw):
+            self.n += 1
+            text = fixture_text("successfactors_tiles.html") if self.n == 1 else "<html><body><p>Seite</p></body></html>"
+            return type("R", (), {"text": text})()
+
+    bank.jobs_url = "https://karriere.nrwbank.de/"
+    jobs = SuccessFactorsScraper(Http()).fetch_jobs(bank)
+    assert len(jobs) == 2          # page 1 results survive the unrecognised page 2
