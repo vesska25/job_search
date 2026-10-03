@@ -1220,8 +1220,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Helix Jobs (helixjobs.com) vacancy list; job links /_/jobad?prj=<id>. URL frankfurter-volksbank.helixjobs.com/_/joblist
     found in the bank career page; robots.txt of helixjobs.com still to be confirmed by the run. Germany-only employer. Not
     yet confirmed by a full run.
@@ -1395,7 +1395,7 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
+  verification_status: ok
   last_verified: '2026-10-03'
   notes: Guidecom job portal "hal-administration" (embedded in hauck-aufhaeuser.com/karriere/stellenanzeigen/, user-supplied).
     List page allowed by robots.txt (the /rss endpoint returned an empty body). The list and detail pages carry no location,
@@ -1469,8 +1469,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Public softgarden vacancy page (company slug ikb-services, found in the IKB career page widget config; softgarden
     robots.txt allows /de/vacancies but disallows /api/, so the widget API is NOT used). German employer (Düsseldorf). Not
     yet confirmed by a full run.
@@ -1760,8 +1760,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Helix Jobs (helixjobs.com) vacancy list; job links /_/jobad?prj=<id>. List embedded in the bank site https://www.ksk-koeln.de/de/home/karriere/stellenangebote.html
     (robots.txt allows; only /*?sp* and /*.webview.html are disallowed). Germany-only employer. Not yet confirmed by a full
     run.
@@ -2007,7 +2007,7 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
+  verification_status: ok
   last_verified: '2026-10-03'
   notes: SAP SuccessFactors career site (karriere.nrwbank.de, robots.txt allows /search/). Germany-only employer. Earlier
     failure was an adapter bug (empty page 2 treated as error), fixed; re-enabled for re-verification.
@@ -2022,8 +2022,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Own job exchange https://www.naspa.de/jobs (server-rendered list; links /naspa/position-<id>; robots.txt allows).
     City is the "in <City>" suffix of the title. Germany-only employer. Parse not yet confirmed by a full run.
   display_name: Naspa
@@ -2776,8 +2776,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Career portal karriere.sparkasse-koelnbonn.de (WordPress, server-rendered, robots.txt allows). Cards div.job__item
     with h3 title and a.button link. Germany-only employer. Includes initiative applications (filtered out by the keyword
     filters). Not yet confirmed by a full run.
@@ -2915,8 +2915,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Career portal karriere.sskduesseldorf.de/job-search (server-rendered; ?page=N linked in the HTML; robots.txt disallows
     only /api/). Job links /job-search/<slug>-<uuid>, title in h4. Germany-only employer. Not yet confirmed by a full run.
   display_name: Stadtsparkasse Düsseldorf
@@ -3122,8 +3122,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Helix Jobs (helixjobs.com) vacancy list; job links /_/jobad?prj=<id>. URL taunussparkasse.helixjobs.com/_/joblist
     found in the bank career page; robots.txt of helixjobs.com still to be confirmed by the run. Germany-only employer. Not
     yet confirmed by a full run.
@@ -3561,8 +3561,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: Helix Jobs (helixjobs.com) vacancy list; job links /_/jobad?prj=<id>. URL volksbank-koeln-bonn.helixjobs.com/_/joblist
     found in the bank career page; robots.txt of helixjobs.com still to be confirmed by the run. Germany-only employer. Not
     yet confirmed by a full run.
