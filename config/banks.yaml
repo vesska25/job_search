@@ -1495,15 +1495,24 @@ banks:
   display_name: ING Deutschland
   country: Germany
   address_in_source_list: 60486 Frankfurt am Main
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://careers.ing.com/de/l%C3%A4nderauswahl/frankfurt-am-main-jobs/2618/2921044-2905330-2925533/4
+  source_type: custom_html
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: careers.ing.com Frankfurt list (URL from the user; ing.de itself is unreachable from the runners). Server-rendered,
+    vacancy links /de/stellenbeschreibung/<city>/<slug>/<n>/<id>. Pagination parameter "pg" is a guess; if it is ignored the
+    scraper stops at the first page (about 10 of ~30 vacancies). Run Verify to confirm.
+  options:
+    selectors:
+      item: a[href*="/de/stellenbeschreibung/"]
+    pagination:
+      param: pg
+      max_pages: 6
+    accept_unknown_location: true
 - id: ikano_bank_ab_publ_zweigniederlassung_deutschlan
   name: Ikano Bank AB (publ), Zweigniederlassung Deutschland
   country: Germany
@@ -1651,15 +1660,16 @@ banks:
   name: KfW IPEX-Bank GmbH
   country: Germany
   address_in_source_list: 60325 Frankfurt am Main
-  jobs_url: ''
+  jobs_url: https://jobs.kfw.de/index.php?ac=search_result
   source_type: unknown
   germany_only: false
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: js_list
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'KfW portal jobs.kfw.de (also covers KfW IPEX-Bank): the result page contains no vacancy links, they are loaded by
+    JavaScript (/resp/api/get/ seen in a script). Needs the endpoint; not worked on yet.'
 - id: kommunalkredit_austria_zweigstelle_deutschland
   name: Kommunalkredit Austria AG Zweigstelle Deutschland
   country: Germany
@@ -1819,15 +1829,21 @@ banks:
   display_name: Helaba
   country: Germany
   address_in_source_list: 60311 Frankfurt am Main
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.helaba.com/de/karriere/jobs-stellenangebote.php
+  source_type: custom_html
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Own career page (URL from the user); server-rendered list, vacancy links /de/karriere/stellenangebote/<slug>.php.
+    No location in the list, so unknown locations are accepted (foreign branches like London/New York are possible). Pagination
+    of the list not checked. Run Verify to confirm.
+  options:
+    selectors:
+      item: a[href*="/de/karriere/stellenangebote/"]
+    accept_unknown_location: true
 - id: landesbausparkasse_hessen_thuringen_abteilung_de
   name: Landesbausparkasse Hessen-Thüringen Abteilung der Landesbank Hessen-Thüringen Girozentrale
   country: Germany
@@ -2714,15 +2730,16 @@ banks:
   name: Société Générale S.A.
   country: Germany
   address_in_source_list: 60311 Frankfurt am Main
-  jobs_url: ''
+  jobs_url: https://careers.societegenerale.com/en/search?query=&refinementList[jobType][0]=STANDARD
   source_type: unknown
   germany_only: false
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: js_list
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: careers.societegenerale.com search is an Algolia InstantSearch app (JavaScript); no vacancies in the static page.
+    Not worked on.
 - id: sozialbank
   name: SozialBank AG
   country: Germany
@@ -3256,15 +3273,16 @@ banks:
   name: TARGOBANK AG
   country: Germany
   address_in_source_list: 40213 Düsseldorf
-  jobs_url: ''
+  jobs_url: https://jobs.targobank.de/stellenangebote/
   source_type: unknown
   germany_only: false
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
+  verification_status: js_list
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: jobs.targobank.de loads the vacancy list with JavaScript (filters in the URL hash); the static page has no vacancies.
+    Needs the endpoint behind the list; not found yet.
 - id: toyota_kreditbank
   name: TOYOTA Kreditbank GmbH
   country: Germany
