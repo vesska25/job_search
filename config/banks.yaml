@@ -1384,18 +1384,23 @@ banks:
   country: Germany
   address_in_source_list: 60311 Frankfurt am Main
   jobs_url: https://jobs.guidecom.de/jobportal/hal-administration/viewAusschreibungen.html
-  source_type: unknown
+  source_type: custom_html
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: needs_review
+  enabled: true
+  verification_status: unverified
   last_verified: '2026-10-03'
-  notes: Guidecom job portal "hal-administration" (embedded in hauck-aufhaeuser.com/karriere/stellenanzeigen/). The /rss endpoint
-    returned an empty body on 2026-10-03; the list page /viewAusschreibungen.html is allowed by robots.txt and still to be
-    diagnosed.
+  notes: Guidecom job portal "hal-administration" (embedded in hauck-aufhaeuser.com/karriere/stellenanzeigen/, user-supplied).
+    List page allowed by robots.txt (the /rss endpoint returned an empty body). The list and detail pages carry no location,
+    so jobs without a location are accepted (accept_unknown_location); a known foreign location would still be rejected. Group
+    also has Luxembourg/Ireland units, so some non-German jobs may appear. Not yet confirmed by a full run.
   display_name: Hauck Aufhäuser Lampe
-  options: {}
+  options:
+    selectors:
+      item: a[href*="/viewAusschreibung/"]
+      title: h5
+    accept_unknown_location: true
 - id: honda_bank
   name: Honda Bank GmbH
   country: Germany
@@ -1452,16 +1457,17 @@ banks:
   name: IKB Deutsche Industriebank Aktiengesellschaft
   country: Germany
   address_in_source_list: 40474 Düsseldorf
-  jobs_url: https://www.ikb.de/karriere/einstiegs-und-stellenangebote/alle-stellenangebote
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://ikb-services.softgarden.io/de/vacancies
+  source_type: softgarden
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: needs_review
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: Career page uses softgarden (references api.softgarden.io/api/rest/v3/frontend/). Company slug/API call still to
-    be determined; ~14 jobs listed. Not enabled yet.
+  notes: Public softgarden vacancy page (company slug ikb-services, found in the IKB career page widget config; softgarden
+    robots.txt allows /de/vacancies but disallows /api/, so the widget API is NOT used). German employer (Düsseldorf). Not
+    yet confirmed by a full run.
   display_name: IKB
 - id: ing_deutschland
   name: ING-DiBa AG

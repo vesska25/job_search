@@ -37,6 +37,6 @@ def is_germany(job, bank, cfg: dict) -> tuple[bool, str]:
     title_desc = normalize_text(job.title + " " + job.description[:300])
     if any(find_terms([w], title_desc) for w in explicit_de):
         return True, "title/description states Germany"
-    if cfg.get("accept_unknown_location", False):
+    if cfg.get("accept_unknown_location", False) or bank.options.get("accept_unknown_location", False):
         return True, "unknown location accepted by config"
     return False, "location unknown or not in Germany"

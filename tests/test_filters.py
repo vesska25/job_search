@@ -154,3 +154,12 @@ def test_ambiguous_needs_function_in_title(settings, bank):
     # configurable: department match allowed when the flag is off
     s2 = {**settings, "filters": {**settings["filters"], "ambiguous_requires_title_function": False}}
     assert evaluate(make_job(bank, "Senior Manager Tax", department="Finance"), bank, s2).accepted
+
+
+def test_bank_option_accepts_unknown_location(settings, bank):
+    j = make_job(bank, "Leiter Fondsbuchhaltung", location="")
+    assert not is_germany(j, bank, settings["location"])[0]
+    bank.options = {"accept_unknown_location": True}
+    assert is_germany(j, bank, settings["location"])[0]
+    # but a known foreign location is still rejected
+    assert not is_germany(make_job(bank, "Leiter X", location="Luxembourg"), bank, settings["location"])[0]
