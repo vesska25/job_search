@@ -1666,8 +1666,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: The KfW job board jobs.kfw.de (milch & zucker) fills its result list with JavaScript, but every vacancy (index.php?ac=jobad&id=N)
     is listed in sitemap.xml (named in robots.txt). One portal for the whole KfW group, so this entry covers KfW itself and
     IPEX-Bank. Title and location are read from the vacancy page; unknown locations are accepted. Run Verify to confirm.
@@ -3287,8 +3287,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-03'
   notes: The list on jobs.targobank.de is loaded by JavaScript, but every vacancy is a WordPress job_offer page listed in
     job_offer-sitemap.xml (robots.txt allows it); title and city come from the page JSON-LD. Training, internships and student
     jobs are skipped by URL. Run Verify to confirm.
