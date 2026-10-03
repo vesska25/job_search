@@ -2695,15 +2695,20 @@ banks:
   name: Sparda-Bank Südwest eG
   country: Germany
   address_in_source_list: 55129 Mainz a Rhein
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://sparda-sw.helixjobs.com/_/joblist
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Helix Jobs vacancy list (sparda-sw.helixjobs.com); link found on the bank's own career page / its vr.de vacancy pages.
+    Run Verify to confirm.
+  options:
+    selectors:
+      item: a[href*="/_/jobad?prj="]
+      title: h3
 - id: sparda_bank_west
   name: Sparda-Bank West eG
   country: Germany
@@ -3784,15 +3789,20 @@ banks:
   name: Wiesbadener Volksbank eG
   country: Germany
   address_in_source_list: 65185 Wiesbaden
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://wvb.helixjobs.com/_/joblist
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: Helix Jobs vacancy list (wvb.helixjobs.com); link found on the bank's own career page / its vr.de vacancy pages.
+    Run Verify to confirm.
+  options:
+    selectors:
+      item: a[href*="/_/jobad?prj="]
+      title: h3
 - id: woori_bank_europe
   name: Woori Bank Europe GmbH
   country: Germany
