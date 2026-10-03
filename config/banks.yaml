@@ -1184,15 +1184,21 @@ banks:
   name: FIB Frankfurt International Bank AG
   country: Germany
   address_in_source_list: 60329 Frankfurt am Main
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.fib-ag.com/careers
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Career page supplied by the user: the Open Positions section links to PDF job ads (…Recruiting_Stellenanzeige….pdf)
+    with the job title as link text; confirmed by a probe. Only vacancies published as PDF there are seen. Unverified until
+    a Verify run.'
+  options:
+    selectors:
+      item: a[href*="Recruiting_Stellenanzeige"]
+    accept_unknown_location: true
 - id: fil_fondsbank
   name: FIL Fondsbank GmbH
   country: Germany
