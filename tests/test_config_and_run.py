@@ -22,7 +22,8 @@ def test_banks_yaml_consistency():
             if not b.alias_of and not b.jobs_url:
                 assert "No official Germany-specific vacancy source verified" in b.notes
             if b.jobs_url and not b.alias_of:
-                assert b.verification_status == "needs_review"   # known page, adapter still to be configured
+                # known page, adapter still to be configured or deliberately not monitored (documented in notes)
+                assert b.verification_status in {"needs_review", "js_list", "js_widget", "blocked_robots", "no_vacancies_now"}
         # nothing may claim verification without a date
         if b.verification_status == "ok":
             assert b.last_verified
