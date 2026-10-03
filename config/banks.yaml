@@ -2642,17 +2642,25 @@ banks:
   name: Raisin Bank AG
   country: Germany
   address_in_source_list: 60325 Frankfurt am Main
-  jobs_url: https://raisin.jobs.personio.de/
-  source_type: personio
+  jobs_url: https://job-boards.eu.greenhouse.io/raisin
+  source_type: custom_api
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: failed
-  last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: RobotsDisallowed: robots.txt disallows or could not be checked for https://raisin.jobs.personio.de/xml
-    | Found by a web search (agent report, page itself not fetched); unverified until a Verify run. Personio feed of the Raisin
-    group; location filter applies.'
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: Greenhouse board of the Raisin group (URL supplied by the user); public JSON API boards-api.greenhouse.io/v1/boards/raisin/jobs
+    confirmed by a probe. Group-wide list, so the location filter applies. Unverified until a Verify run.
+  options:
+    api_url: https://boards-api.greenhouse.io/v1/boards/raisin/jobs
+    items_path: jobs
+    fields:
+      title: title
+      id: id
+      location: location.name
+      url: absolute_url
+      date: first_published
 - id: reisebank
   name: ReiseBank Aktiengesellschaft
   country: Germany
