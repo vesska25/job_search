@@ -3203,11 +3203,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: failed
+  verification_status: js_list
   last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: ScraperError: SuccessFactors: no job links found (layout changed?) | SAP SuccessFactors
-    career site jobs.standardchartered.com (robots.txt only blocks /services/ etc.). Search limited with locationsearch=Germany;
-    the location filter of the monitor does the final Germany check. Run Verify to confirm.'
+  notes: "Not monitored (checked 2026-10-03): SuccessFactors/Jobs2web pages /search/ and /go/<category>/ return HTTP 200 but contain no vacancy links in the HTML (list loaded by JavaScript). No public JSON endpoint found."
   options:
     params:
       locationsearch: Germany
@@ -3457,16 +3455,15 @@ banks:
   display_name: UBS
   country: Germany
   address_in_source_list: 60306 Frankfurt am Main
-  jobs_url: https://www.ubs.com/global/en/careers/search-and-apply.html
+  jobs_url: https://jobs.ubs.com/TGnewUI/Search/home/HomeWithPreLoad?partnerid=25008&siteid=5012&PageType=searchResults&SearchType=linkquery&LinkID=15231
   source_type: proprietary
   germany_only: false
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: needs_review
+  verification_status: js_list
   last_verified: null
-  notes: Global/official career portal exists but needs a Germany filter and adapter configuration before it can be enabled;
-    not tested.
+  notes: "Not monitored (checked 2026-10-03): Brassring TGnewUI portal; the vacancy list and detail pages are rendered by JavaScript with a session token (no JSON-LD, no sitemap, robots.txt 404). Needs a browser-based or API integration."
 - id: volksbank_seligenstadt_eg
   name: VOLKSBANK SELIGENSTADT EG
   country: Germany
