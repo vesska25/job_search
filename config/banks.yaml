@@ -1437,15 +1437,36 @@ banks:
   name: HSBC Continental Europe S.A., Germany
   country: Germany
   address_in_source_list: 40549 Düsseldorf
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://portal.careers.hsbc.com/careers?location=Germany
+  source_type: custom_api
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: HSBC career portal (Eightfold; URL supplied by the user). Public JSON API /api/apply/v2/jobs with location=Germany
+    confirmed by a probe (position names and ids returned); field names location/canonicalPositionUrl follow the Eightfold
+    format and are unproven until a Verify run.
+  options:
+    api_url: https://portal.careers.hsbc.com/api/apply/v2/jobs
+    params:
+      domain: hsbc.com
+      location: Germany
+    items_path: positions
+    fields:
+      title: name
+      id: id
+      location: location
+      url: canonicalPositionUrl
+    url_template: https://portal.careers.hsbc.com/careers/job/{id}
+    pagination:
+      type: offset
+      param: start
+      size_param: num
+      size: 10
+      total_path: count
+      max_pages: 30
 - id: halifax_plc_reprasentant_andrew_peat_finanz_cons
   name: 'Halifax plc Repräsentant: Andrew Peat Finanz Consultants GmbH'
   country: Germany
