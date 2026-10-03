@@ -3699,7 +3699,7 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
+  verification_status: ok
   last_verified: '2026-10-03'
   notes: VR exchange (vr.de); the sitemap still listed an expired 2022 vacancy (404), expired pages are now skipped. Run Verify
     to confirm.
