@@ -3198,18 +3198,19 @@ banks:
   country: Germany
   address_in_source_list: 60325 Frankfurt am Main
   jobs_url: https://jobs.standardchartered.com/
-  source_type: successfactors
-  germany_only: false
+  source_type: sitemap_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: js_list
-  last_verified: '2026-10-03'
-  notes: "Not monitored (checked 2026-10-03): SuccessFactors/Jobs2web pages /search/ and /go/<category>/ return HTTP 200 but contain no vacancy links in the HTML (list loaded by JavaScript). No public JSON endpoint found."
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Official Jobs2web sitemap (the /search and /go pages render the list with JavaScript). Vacancy URLs start with the
+    city, so only German cities are fetched; unverified until a run.'
   options:
-    params:
-      locationsearch: Germany
-    max_pages: 20
+    sitemap_url: https://jobs.standardchartered.com/sitemap.xml
+    url_regex: '/job/(Frankfurt|Duesseldorf|Dusseldorf|Munich|Muenchen|Hamburg|Berlin|Stuttgart|Cologne|Koeln|Eschborn|Bonn)-'
+    max_pages: 80
 - id: state_bank_of_india_indische_staatsbank_zweignie
   name: State Bank of India (Indische Staatsbank) Zweigniederlassung Frankfurt am Main
   country: Germany
