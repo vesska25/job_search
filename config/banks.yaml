@@ -1212,16 +1212,17 @@ banks:
   name: GENO Broker GmbH
   country: Germany
   address_in_source_list: 60325 Frankfurt am Main
-  jobs_url: https://genobroker.jobs.personio.de/
-  source_type: personio
-  germany_only: false
+  jobs_url: https://www.genobroker.de/karriere.html
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: failed
-  last_verified: '2026-10-03'
-  notes: 'Auto-disabled 2026-10-03: source returned 0 vacancies | Personio source found by discovery (slug matches company
-    name); identity and feed not yet confirmed. Run Verify to confirm.'
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: Career page supplied by user (company has vacancies there). Earlier Personio slug discovery returned 0 jobs and was
+    dropped. germany_only set because GENO Broker is a Frankfurt company; parser untested - run Diagnose/Verify, the page
+    may need options.selectors or may not list jobs in parseable HTML.
 - id: gladbacher_bank_von_1922
   name: GLADBACHER BANK AG von 1922
   country: Germany
