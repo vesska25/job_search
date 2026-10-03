@@ -145,6 +145,44 @@ filters:
     - Data Management
     - Finance Data
     - Regulatory Change
+    # Organisation und IT
+    - Organisation
+    - Organisationsentwicklung
+    - Organization
+    - Organisational
+    - IT
+    - IT-Management
+    - IT Management
+    - IT-Strategie
+    - IT Strategy
+    - IT Governance
+    - IT-Steuerung
+    - IT-Betrieb
+    - IT Operations
+    - IT-Sicherheit
+    - IT Security
+    - Informationssicherheit
+    - Information Security
+    - Cybersecurity
+    - Cyber Security
+    - Informationstechnologie
+    - Information Technology
+    - Technology
+    - Technologie
+    - Digitalisierung
+    - Digital Transformation
+    - Prozessmanagement
+    - Process Management
+    - Geschäftsprozess
+    - Business Process
+    - Application Management
+    - Anwendungsentwicklung
+    - Software Development
+    - Software Engineering
+    - Infrastructure
+    - IT-Infrastruktur
+    - Enterprise Architecture
+    - Unternehmensarchitektur
 
   # Phrases removed from the text before function matching (avoids false positives such as "Capital Markets").
   irrelevant_function_phrases:

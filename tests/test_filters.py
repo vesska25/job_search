@@ -78,6 +78,18 @@ def test_function_matching(settings, bank):
     assert f("Head of Operations", department="Risk Management")
 
 
+def test_organisation_and_it_functions(settings, bank):
+    f = lambda t, **k: match_functions(make_job(bank, t, **k), settings["filters"])
+    assert f("Abteilungsleiter IT-Betrieb (m/w/d)")
+    assert f("Head of IT Security")
+    assert f("Bereichsleiter Organisation und Prozessmanagement")
+    assert f("Leiter Informationssicherheit")
+    assert f("Head of Digital Transformation")
+    assert not f("Head of Sales")
+    assert evaluate(make_job(bank, "Teamleiter IT-Infrastruktur (m/w/d)"), bank, settings).accepted
+    assert not evaluate(make_job(bank, "Werkstudent IT"), bank, settings).accepted
+
+
 def test_pipeline_accepts_and_rejects(settings, bank):
     ok = evaluate(make_job(bank, "Head of Regulatory Reporting"), bank, settings)
     assert ok.accepted and ok.germany and ok.leadership and ok.relevant
