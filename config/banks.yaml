@@ -507,18 +507,20 @@ banks:
   name: Budenheimer Volksbank eG
   country: Germany
   address_in_source_list: 55257 Budenheim b Mainz
-  jobs_url: https://www.vr.de/karriere/jobs.html
-  source_type: vr_jobs
+  jobs_url: https://vr.mein-check-in.de/55061303/index
+  source_type: custom_html
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: failed
+  enabled: true
+  verification_status: unverified
   last_verified: '2026-10-03'
-  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
-    website. Needs the bank's vacancy-page URL.
+  notes: CHECK-IN portal vr.mein-check-in.de/55061303 (URL supplied by the user; 55061303 assumed to be the BLZ of this bank,
+    check the sample titles in the Verify log). Vacancies are a.mainmenu_position_link on the index page. Run Verify to confirm.
   options:
-    allow_empty: true
+    selectors:
+      item: a.mainmenu_position_link
+    accept_unknown_location: true
 - id: burgschaftsbank_hessen
   name: Bürgschaftsbank Hessen GmbH
   country: Germany
@@ -1231,18 +1233,20 @@ banks:
   name: Freikirchen.Bank eG
   country: Germany
   address_in_source_list: 61350 Bad Homburg v d Höhe
-  jobs_url: https://www.vr.de/karriere/jobs.html
-  source_type: vr_jobs
+  jobs_url: https://www.freikirchenbank.de/ueber-uns/einer-von-uns.html
+  source_type: custom_html
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: failed
+  enabled: true
+  verification_status: unverified
   last_verified: '2026-10-03'
-  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
-    website. Needs the bank's vacancy-page URL.
+  notes: Own career page (URL from the user); server-rendered tiles with PDF ads (no per-job URL). Run Verify to confirm.
   options:
-    allow_empty: true
+    selectors:
+      item: h2.cms-header
+      no_link: true
+    accept_unknown_location: true
 - id: gefa_bank
   name: GEFA BANK GmbH
   country: Germany
@@ -2239,66 +2243,72 @@ banks:
   name: PSD Bank Hessen-Thüringen eG
   country: Germany
   address_in_source_list: 65760 Eschborn, Taunus
-  jobs_url: https://www.vr.de/karriere/jobs.html
-  source_type: vr_jobs
+  jobs_url: https://psdbank-ht.helixjobs.com/_/joblist
+  source_type: custom_html
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: failed
+  enabled: true
+  verification_status: unverified
   last_verified: '2026-10-03'
-  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
-    website. Needs the bank's vacancy-page URL.
+  notes: Helix Jobs vacancy list (psdbank-ht.helixjobs.com), URL supplied by the user from the bank's own career page. Run
+    Verify to confirm.
   options:
-    allow_empty: true
+    selectors:
+      item: a[href*="/_/jobad?prj="]
+      title: h3
 - id: psd_bank_rhein_ruhr
   name: PSD Bank Rhein-Ruhr eG
   country: Germany
   address_in_source_list: 40210 Düsseldorf
-  jobs_url: https://www.vr.de/karriere/jobs.html
-  source_type: vr_jobs
+  jobs_url: https://psd-rr.stellen.center/
+  source_type: custom_html
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: failed
+  enabled: true
+  verification_status: unverified
   last_verified: '2026-10-03'
-  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
-    website. Needs the bank's vacancy-page URL.
+  notes: stellen.center career portal (psd-rr.stellen.center), URL supplied by the user; server-rendered list, vacancy links
+    look like /<9-char id>/<title-slug>. Run Verify to confirm.
   options:
-    allow_empty: true
+    link_pattern: /[A-Z0-9]{9}/[a-z0-9-]+$
+    accept_unknown_location: true
 - id: psd_bank_west
   name: PSD Bank West eG
   country: Germany
   address_in_source_list: 50667 Köln
-  jobs_url: https://www.vr.de/karriere/jobs.html
-  source_type: vr_jobs
+  jobs_url: https://psd-west.stellen.center/
+  source_type: custom_html
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: failed
+  enabled: true
+  verification_status: unverified
   last_verified: '2026-10-03'
-  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
-    website. Needs the bank's vacancy-page URL.
+  notes: stellen.center career portal (psd-west.stellen.center), URL supplied by the user; server-rendered list, vacancy links
+    look like /<9-char id>/<title-slug>. Run Verify to confirm.
   options:
-    allow_empty: true
+    link_pattern: /[A-Z0-9]{9}/[a-z0-9-]+$
+    accept_unknown_location: true
 - id: pax_bank
   name: Pax-Bank eG
   country: Germany
   address_in_source_list: 50670 Köln
-  jobs_url: https://www.vr.de/karriere/jobs.html
-  source_type: vr_jobs
+  jobs_url: https://vr.mein-check-in.de/pax-bkc
+  source_type: custom_html
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: failed
+  enabled: true
+  verification_status: unverified
   last_verified: '2026-10-03'
-  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
-    website. Needs the bank's vacancy-page URL.
+  notes: CHECK-IN portal (vr.mein-check-in.de/pax-bkc), URL supplied by the user; static HTML, vacancies are a.mainmenu_position_link;
+    the list carries no location, Cologne-based bank. Run Verify to confirm.
   options:
-    allow_empty: true
+    selectors:
+      item: a.mainmenu_position_link
+    accept_unknown_location: true
 - id: peoples_bank_of_china_reprasentanz
   name: People’s Bank of China Repräsentanz
   country: Germany
@@ -2374,10 +2384,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: failed
+  verification_status: out_of_scope
   last_verified: '2026-10-03'
-  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
-    website. Needs the bank's vacancy-page URL.
+  notes: 'Excluded by the user: bank too small to matter for senior Finance/Risk roles.'
   options:
     allow_empty: true
 - id: raiffeisenbank_gravenwiesbach
@@ -2390,28 +2399,30 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: failed
+  verification_status: out_of_scope
   last_verified: '2026-10-03'
-  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
-    website. Needs the bank's vacancy-page URL.
+  notes: 'Excluded by the user: bank too small to matter for senior Finance/Risk roles.'
   options:
     allow_empty: true
 - id: raiffeisenbank_gymnich
   name: Raiffeisenbank Gymnich eG
   country: Germany
   address_in_source_list: 50374 Erftstadt
-  jobs_url: https://www.vr.de/karriere/jobs.html
-  source_type: vr_jobs
+  jobs_url: https://www.rb-gymnich.de/meine-bank/karriere/stellenangebote.html
+  source_type: custom_html
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: failed
+  enabled: true
+  verification_status: unverified
   last_verified: '2026-10-03'
-  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
-    website. Needs the bank's vacancy-page URL.
+  notes: Own career page (URL from the user); server-rendered, each vacancy is an h2.cms-title with a PDF ad (no per-job URL).
+    Run Verify to confirm.
   options:
-    allow_empty: true
+    selectors:
+      item: h2.cms-title
+      no_link: true
+    accept_unknown_location: true
 - id: raiffeisenbank_kaarst
   name: Raiffeisenbank Kaarst eG
   country: Germany
@@ -2470,10 +2481,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: failed
+  verification_status: out_of_scope
   last_verified: '2026-10-03'
-  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
-    website. Needs the bank's vacancy-page URL.
+  notes: 'Excluded by the user: bank too small to matter for senior Finance/Risk roles.'
   options:
     allow_empty: true
 - id: raiffeisenbank
@@ -2499,10 +2509,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: failed
+  verification_status: out_of_scope
   last_verified: '2026-10-03'
-  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
-    website. Needs the bank's vacancy-page URL.
+  notes: 'Excluded by the user: bank too small to matter for senior Finance/Risk roles.'
   options:
     allow_empty: true
 - id: raiffeisenbank_in_rheinhessen
@@ -2727,16 +2736,16 @@ banks:
   name: Sparda-Bank Hessen eG
   country: Germany
   address_in_source_list: 60327 Frankfurt am Main
-  jobs_url: https://www.vr.de/karriere/jobs.html
+  jobs_url: https://sparda-he.pi-asp.de/bewerber-web/?companyEid=50&tenant=&lang=D
   source_type: vr_jobs
   germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: failed
+  verification_status: blocked_robots
   last_verified: '2026-10-03'
-  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
-    website. Needs the bank's vacancy-page URL.
+  notes: 'Vacancies live on sparda-he.pi-asp.de (PI-ASP); its robots.txt disallows automated access, so the bank is not monitored
+    (respecting robots.txt). Option: job-alert e-mail.'
   options:
     allow_empty: true
 - id: sparda_bank_sudwest
@@ -2761,18 +2770,20 @@ banks:
   name: Sparda-Bank West eG
   country: Germany
   address_in_source_list: 40227 Düsseldorf
-  jobs_url: https://www.vr.de/karriere/jobs.html
-  source_type: vr_jobs
+  jobs_url: https://sparda-west.helixjobs.com/_/joblist
+  source_type: custom_html
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: failed
+  enabled: true
+  verification_status: unverified
   last_verified: '2026-10-03'
-  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
-    website. Needs the bank's vacancy-page URL.
+  notes: Helix Jobs vacancy list (sparda-west.helixjobs.com), URL supplied by the user from the bank's own career page. Run
+    Verify to confirm.
   options:
-    allow_empty: true
+    selectors:
+      item: a[href*="/_/jobad?prj="]
+      title: h3
 - id: sparkasse_aschaffenburg_miltenberg
   name: Sparkasse Aschaffenburg-Miltenberg
   country: Germany
@@ -3379,16 +3390,16 @@ banks:
   name: VOLKSBANK SELIGENSTADT EG
   country: Germany
   address_in_source_list: 63500 Seligenstadt, Hess
-  jobs_url: https://www.vr.de/karriere/jobs.html
+  jobs_url: https://www.voba-seligenstadt.de/meine-bank/karriere/stellenangebote.html
   source_type: vr_jobs
   germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: failed
+  verification_status: no_vacancies_now
   last_verified: '2026-10-03'
-  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
-    website. Needs the bank's vacancy-page URL.
+  notes: Own career page (URL from the user) lists no vacancies right now; it uses the same CMS as Volksbank Mainspitze, so
+    the Mainspitze selector can be reused once a vacancy shows up. Not enabled because that cannot be verified today.
   options:
     allow_empty: true
 - id: vr_bank_bad_orb_gelnhausen
@@ -3411,18 +3422,20 @@ banks:
   name: VR Bank Dreieich-Offenbach eG
   country: Germany
   address_in_source_list: 63303 Dreieich
-  jobs_url: https://www.vr.de/karriere/jobs.html
-  source_type: vr_jobs
+  jobs_url: https://vobadreieich.helixjobs.com/_/joblist
+  source_type: custom_html
   germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: ok
+  verification_status: unverified
   last_verified: '2026-10-03'
-  notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
-    sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
+  notes: Helix Jobs vacancy list (vobadreieich.helixjobs.com), URL supplied by the user from the bank's own career page. Run
+    Verify to confirm.
   options:
-    allow_empty: true
+    selectors:
+      item: a[href*="/_/jobad?prj="]
+      title: h3
 - id: vr_bank_main_kinzig_budingen
   name: VR Bank Main-Kinzig-Büdingen eG
   country: Germany
@@ -3498,18 +3511,20 @@ banks:
   name: VR-Bank Bonn Rhein-Sieg eG
   country: Germany
   address_in_source_list: 53721 Siegburg
-  jobs_url: https://www.vr.de/karriere/jobs.html
-  source_type: vr_jobs
+  jobs_url: https://vrbank-brs.helixjobs.com/_/joblist
+  source_type: custom_html
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: failed
+  enabled: true
+  verification_status: unverified
   last_verified: '2026-10-03'
-  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
-    website. Needs the bank's vacancy-page URL.
+  notes: Helix Jobs vacancy list (vrbank-brs.helixjobs.com), URL supplied by the user from the bank's own career page. Run
+    Verify to confirm.
   options:
-    allow_empty: true
+    selectors:
+      item: a[href*="/_/jobad?prj="]
+      title: h3
 - id: vakifbank_international_wien_zweigniederlassung_
   name: VakifBank International AG, Wien, Zweigniederlassung Deutschland
   country: Germany
@@ -3602,10 +3617,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: failed
+  verification_status: out_of_scope
   last_verified: '2026-10-03'
-  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
-    website. Needs the bank's vacancy-page URL.
+  notes: 'Excluded by the user: bank too small to matter for senior Finance/Risk roles.'
   options:
     allow_empty: true
 - id: volksbank_butzbach
@@ -3661,16 +3675,16 @@ banks:
   name: Volksbank Düsseldorf Neuss eG
   country: Germany
   address_in_source_list: 40215 Düsseldorf
-  jobs_url: https://www.vr.de/karriere/jobs.html
+  jobs_url: https://www.vr-karriere.de/profil/165
   source_type: vr_jobs
   germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: failed
+  verification_status: no_vacancies_now
   last_verified: '2026-10-03'
-  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
-    website. Needs the bank's vacancy-page URL.
+  notes: 'Profile page on vr-karriere.de (URL from the user) currently says "Keine Stellenangebote". Not enabled: the vacancy
+    link layout cannot be verified until a vacancy exists. Re-check later.'
   options:
     allow_empty: true
 - id: volksbank_erft
@@ -3715,10 +3729,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: failed
+  verification_status: out_of_scope
   last_verified: '2026-10-03'
-  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
-    website. Needs the bank's vacancy-page URL.
+  notes: 'Excluded by the user: bank too small to matter for senior Finance/Risk roles.'
   options:
     allow_empty: true
 - id: volksbank_kierspe
@@ -3759,18 +3772,20 @@ banks:
   name: Volksbank Mainspitze eG
   country: Germany
   address_in_source_list: 65462 Ginsheim-Gustavsburg
-  jobs_url: https://www.vr.de/karriere/jobs.html
-  source_type: vr_jobs
+  jobs_url: https://www.voba-mainspitze.de/meine-bank/karriere/arbeitgeber-genossenschaftsbank.html
+  source_type: custom_html
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: failed
+  enabled: true
+  verification_status: unverified
   last_verified: '2026-10-03'
-  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
-    website. Needs the bank's vacancy-page URL.
+  notes: Own career page (URL from the user); server-rendered, vacancies are links below /karriere/arbeitgeber-genossenschaftsbank/.
+    Run Verify to confirm.
   options:
-    allow_empty: true
+    selectors:
+      item: a.internal[href*="/karriere/arbeitgeber-genossenschaftsbank/"]
+    accept_unknown_location: true
 - id: volksbank_monchengladbach
   name: Volksbank Mönchengladbach eG
   country: Germany
@@ -3797,10 +3812,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: failed
+  verification_status: out_of_scope
   last_verified: '2026-10-03'
-  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
-    website. Needs the bank's vacancy-page URL.
+  notes: 'Excluded by the user: bank too small to matter for senior Finance/Risk roles.'
   options:
     allow_empty: true
 - id: volksbank_oberberg
@@ -3839,16 +3853,16 @@ banks:
   name: Volksbank Sprockhövel eG.
   country: Germany
   address_in_source_list: 45549 Sprockhövel
-  jobs_url: https://www.vr.de/karriere/jobs.html
+  jobs_url: https://vbsprockhoevel.matchpunktup.de/
   source_type: vr_jobs
   germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: failed
+  verification_status: js_widget
   last_verified: '2026-10-03'
-  notes: Not listed on the vr.de job exchange (checked against its full sitemap), so its vacancies live on the bank's own
-    website. Needs the bank's vacancy-page URL.
+  notes: Scope Recruiting widget (matchpunktup.de, companyId 2258) loaded by JavaScript; the page itself contains no vacancies.
+    Needs an API endpoint, not worked on (small bank).
   options:
     allow_empty: true
 - id: volksbank_im_bergischen_land
