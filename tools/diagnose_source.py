@@ -122,6 +122,11 @@ def diagnose(url: str, http: HttpClient, pattern: str = DEFAULT_PATTERN, ctx: in
     print(f"same-site links ({len(anchors)}), first {15 if brief else 40}:")
     for href, text in list(anchors.items())[: 15 if brief else 40]:
         print("    ", href, "|", text)
+    ext = sorted({urlsplit(urljoin(url, x)).netloc for x in re.findall(r"(?i)<(?:script|iframe|link)[^>]+(?:src|href)=[\"']([^\"']+)", r.text)
+                  if urlsplit(urljoin(url, x)).netloc not in ("", parts.netloc)})
+    print("external hosts referenced by script/iframe/link tags:", ", ".join(ext[:25]) or "-")
+    for fr in re.findall(r"(?i)<iframe[^>]+src=[\"']([^\"']+)", r.text)[:8]:
+        print("iframe:", urljoin(url, fr))
     scripts = [urljoin(url, x) for x in re.findall(r"(?i)<script[^>]+src=[\"']([^\"']+)", r.text)]
     own = [x for x in scripts if urlsplit(x).netloc == parts.netloc][:8]
     print(f"first-party scripts scanned for endpoint strings: {len(own)}")
