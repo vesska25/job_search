@@ -459,15 +459,18 @@ banks:
   name: Bank11 für Privatkunden und Handel GmbH
   country: Germany
   address_in_source_list: 41460 Neuss
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.bank11.de/unternehmen/karriere/stellenangebote.html
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Found by user link and a probe of the page; unverified until a Verify run. rexx portal: vacancy links end in -j<number>.html. '
+  options:
+    link_pattern: /karriere/[^/?#]+-j\d+\.html$
+    accept_unknown_location: true
 - id: bankhaus_werhahn
   name: Bankhaus Werhahn GmbH
   country: Germany
@@ -2821,12 +2824,12 @@ banks:
   enabled: true
   verification_status: unverified
   last_verified: null
-  notes: Found by a web search / user link and a probe of the page; unverified until a Verify run. rexx table rows (tr.alternative_0/1);
-    row layout not yet seen, so selector is unproven.
+  notes: 'Found by user link and a probe of the page; unverified until a Verify run. rexx portal: vacancy links end in -j<number>.html.
+    Same platform as Bank11; table was empty in the probe, so unproven.'
   options:
-    selectors:
-      item: tr.alternative_0, tr.alternative_1
+    link_pattern: -j\d+\.html$
     accept_unknown_location: true
+    allow_empty: true
 - id: spar_und_bauverein_solingen_gemeinnutzige_wohnun
   name: Spar- und Bauverein Solingen eG Gemeinnützige Wohnungsgenossenschaft
   country: Germany
