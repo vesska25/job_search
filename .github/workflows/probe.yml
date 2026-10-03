@@ -1,0 +1,49 @@
+name: Probe URL (manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "URL to probe"
+        required: true
+      grep:
+        description: "Regex to search in the page and its scripts (optional)"
+        required: false
+        default: ""
+      ctx:
+        description: "Characters of context around each match"
+        required: false
+        default: "200"
+      show:
+        description: "Print the first N characters of the body (0 = none)"
+        required: false
+        default: "0"
+      scripts:
+        description: "Also scan up to N scripts of the same domain (0 = none)"
+        required: false
+        default: "0"
+      limit:
+        description: "Max matches shown per file"
+        required: false
+        default: "6"
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Probe
+        env:
+          URL: ${{ inputs.url }}
+          GREP: ${{ inputs.grep }}
+          CTX: ${{ inputs.ctx }}
+          SHOW: ${{ inputs.show }}
+          SCRIPTS: ${{ inputs.scripts }}
+          LIMIT: ${{ inputs.limit }}
+        run: python -m tools.probe --url "$URL" --grep "$GREP" --ctx "$CTX" --show "$SHOW" --scripts "$SCRIPTS" --limit "$LIMIT"
