@@ -1,0 +1,5 @@
+{"offset":0,"limit":100,"totalFound":2,"content":[
+ {"id":"743999","name":"Abteilungsleiter Gesamtbanksteuerung","releasedDate":"2026-09-30T10:00:00.000Z",
+  "location":{"city":"Köln","region":"NW","country":"de"},"department":{"label":"Risk"}},
+ {"id":"744000","name":"Head of Credit Risk","releasedDate":"2026-09-29T10:00:00.000Z",
+  "location":{"city":"Amsterdam","country":"nl"},"department":{"label":"Risk"}}]}

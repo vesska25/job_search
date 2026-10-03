@@ -1,0 +1,224 @@
+# All matching is case-insensitive. Edit freely; no filter logic is hard-coded in Python.
+
+filters:
+  # Titles containing one of these are clearly leadership roles.
+  seniority_keywords:
+    - Head
+    - Head of
+    - Director
+    - Executive Director
+    - Managing Director
+    - Department Head
+    - Function Head
+    - Team Lead
+    - Team Leader
+    - Lead
+    - Leiter
+    - Leiterin
+    - Leitung
+    - Bereichsleiter
+    - Bereichsleiterin
+    - Bereichsdirektor
+    - Bereichsdirektorin
+    - Abteilungsleiter
+    - Abteilungsleiterin
+    - Abteilungsleitung
+    - Gruppenleiter
+    - Gruppenleiterin
+    - Gruppenleitung
+    - Teamleiter
+    - Teamleiterin
+    - Teamleitung
+    - Referatsleiter
+    - Referatsleiterin
+    - Direktor
+    - Direktorin
+    - Prokurist
+    - Chief
+    - Geschäftsführer
+    - Geschäftsführerin
+
+  # German compounds: these also match as the END of a longer word (e.g. "Risikobereichsleiter").
+  compound_suffix_keywords: [Leiter, Leiterin, Leitung, Direktor, Direktorin, Gruppenleiter, Teamleiter]
+  # ...except for these words (false friends / project roles that are not people leadership).
+  compound_exclusions: [Anleitung, Einleitung, Ableitung, Projektleiter, Projektleiterin, Projektleitung, Produktleiter]
+
+  # Titles that MAY be leadership. Accepted only if the description shows management
+  # responsibility (see management_signals); otherwise treated as borderline (see borderline_policy).
+  ambiguous_seniority_keywords:
+    - Senior Manager
+    - Manager
+    - Group Manager
+    - Vice President
+    - VP
+    - Principal
+    - Projektleiter
+    - Projektleiterin
+    - Projektleitung
+
+  # Phrases in the description signalling people management.
+  management_signals:
+    - disziplinarische
+    - Personalverantwortung
+    - Führungsverantwortung
+    - fachliche Führung
+    - Führung eines Teams
+    - Mitarbeiterführung
+    - direct reports
+    - line management
+    - people management
+    - leading a team
+    - lead a team
+    - manage a team
+    - team of
+
+  # What to do with ambiguous-seniority roles that have a relevant function but no clear signal:
+  #   include = report them, flagged "(borderline)"; reject = drop them. (An LLM, if enabled, decides first.)
+  borderline_policy: include
+
+  # Relevant functions. Words shorter than 5 characters must match as whole words;
+  # longer ones match as substrings (so "Controlling" also matches "Risikocontrolling").
+  relevant_functions:
+    # Finance
+    - Finance
+    - Finanzen
+    - Financial Controlling
+    - Controlling
+    - Group Controlling
+    - Finance Steering
+    - FP&A
+    - CFO
+    - CFO Office
+    - Financial Planning
+    - Management Reporting
+    # Risk
+    - Risk
+    - Risiko
+    - Risk Management
+    - Risikomanagement
+    - Risk Controlling
+    - Risikocontrolling
+    - CRO
+    - CRO Office
+    - ICAAP
+    - Capital Management
+    - Capital Planning
+    - Capital Adequacy
+    - Kapitalmanagement
+    - Risk Appetite
+    - Enterprise Risk Management
+    - Gesamtbanksteuerung
+    - Banksteuerung
+    - Gesamtbankcontrolling
+    - Bankcontrolling
+    # Regulatory
+    - Regulatory Reporting
+    - Prudential Reporting
+    - Regulatory Affairs
+    - Regulatory
+    - Aufsichtsrecht
+    - Meldewesen
+    - COREP
+    - FINREP
+    - CRR
+    - CRR3
+    - Capital Requirements
+    - RWA
+    # Other
+    - Treasury
+    - Liquidity
+    - Liquidität
+    - Balance Sheet Management
+    - Bilanzstrukturmanagement
+    - BCBS239
+    - BCBS 239
+    - Finance Transformation
+    - Data Management
+    - Finance Data
+    - Regulatory Change
+
+  # Phrases removed from the text before function matching (avoids false positives such as "Capital Markets").
+  irrelevant_function_phrases:
+    - Capital Markets
+    - Kapitalmarkt
+    - Private Equity
+    - Venture Capital
+    - Human Capital
+
+  # Where functions are searched. If none found there, the description counts only with >= N hits.
+  function_fields: [title, department]
+  description_min_hits: 3
+
+  # Always rejected, even if a leadership word is present.
+  hard_exclusions:
+    - Intern
+    - Internship
+    - Praktikant
+    - Praktikantin
+    - Praktikum
+    - Werkstudent
+    - Werkstudentin
+    - Working Student
+    - Junior
+    - Trainee
+    - Auszubildende
+    - Azubi
+    - Duales Studium
+
+  # Rejected unless a STRONG leadership keyword is also in the title
+  # ("Senior Specialist ..." is out; "Head of Expert Network" stays in).
+  exclusions:
+    - Analyst
+    - Specialist
+    - Senior Specialist
+    - Expert
+    - Senior Expert
+    - Consultant
+    - Associate
+    - Referent
+    - Sachbearbeiter
+    - Spezialist
+    - Experte
+
+location:
+  # Used when the bank source is not guaranteed Germany-only.
+  accept_unknown_location: false
+  german_locations:
+    [Germany, Deutschland, Frankfurt, Frankfurt am Main, Frankfurt a.M., Köln, Cologne, Düsseldorf, Duesseldorf,
+     Wiesbaden, Mainz, Bonn, Hamburg, Berlin, München, Munich, Stuttgart, Leipzig, Dresden, Hannover, Hanover,
+     Nürnberg, Nuremberg, Bremen, Essen, Dortmund, Duisburg, Bochum, Wuppertal, Bielefeld, Münster, Karlsruhe,
+     Mannheim, Augsburg, Kassel, Darmstadt, Offenbach, Eschborn, Bad Homburg, Neu-Isenburg, Oberursel, Kronberg,
+     Hanau, Aschaffenburg, Neuss, Leverkusen, Bergisch Gladbach, Mönchengladbach, Solingen, Remscheid, Krefeld,
+     Aachen, Koblenz, Trier, Ludwigshafen, Heidelberg, Freiburg, Ulm, Regensburg, Würzburg, Erfurt, Potsdam,
+     Rostock, Kiel, Lübeck, Magdeburg, Halle, Chemnitz, Saarbrücken, Oldenburg, Osnabrück, Braunschweig,
+     Wolfsburg, Ingolstadt, Heilbronn, Pforzheim, Göttingen, Siegburg, Hürth, Brühl, Monheim, Ratingen, Velbert,
+     Dreieich, Langen, Rüsselsheim, Hofheim, Taunus, Gießen, Fulda, Düren, Euskirchen, Troisdorf]
+  foreign_locations:
+    [Amsterdam, London, Paris, Luxembourg, Luxemburg, Brussels, Brüssel, Zurich, Zürich, Vienna, Wien, Warsaw,
+     Warschau, Madrid, Barcelona, Milan, Mailand, Rome, Dublin, Prague, Budapest, Stockholm, Copenhagen,
+     Oslo, Helsinki, Lisbon, Athens, Geneva, Genf, Basel, New York, Singapore, Hong Kong, Tokyo, Mumbai,
+     Bucharest, Sofia, Istanbul, Bratislava, Vilnius, Riga, Tallinn, Lyon, Rotterdam, Utrecht, Edinburgh,
+     Manchester, Poland, Netherlands, France, Switzerland, Austria, Spain, Italy, Ireland, United Kingdom]
+
+llm:
+  enabled: false               # needs ANTHROPIC_API_KEY when true
+  model: claude-haiku-4-5-20251001
+  min_confidence: 0.7
+  max_calls_per_run: 50        # hard cap so costs stay predictable
+  timeout: 30
+
+http:
+  user_agent: "bank-job-monitor/1.0 (personal job-alert tool; weekly run; respects robots.txt)"
+  timeout: 20
+  retries: 3
+  min_delay_seconds: 1.0       # per host
+  respect_robots_txt: true
+  max_pages: 30
+
+telegram:
+  mode: digest                 # digest | individual
+  send_empty_digest: true
+  max_jobs_in_digest: 40
+
+database:
+  path: data/jobs.db

@@ -1,0 +1,3676 @@
+# Bank list (278 institutions from the supplied list).
+# verification_status: unverified | needs_review | no_source_found | alias | ok | failed
+#   - 'ok' is written ONLY by `python -m tools.verify_banks --apply` after a successful live fetch.
+#   - As built, no source has been verified: the build sandbox could not reach any career site.
+# Fields: id, name, display_name, country, address_in_source_list, jobs_url, source_type, germany_only
+#   (source page already guarantees Germany-only jobs), germany_filter (how Germany is selected at the
+#   source), location_filter, enabled, alias_of (same employer monitored under another id),
+#   verification_status, last_verified, notes, options (scraper-specific settings).
+banks:
+- id: abanca_corporacion_bancaria_s_a_reprasentanz
+  name: ABANCA Corporación Bancaria, S.A. Repräsentanz
+  country: Germany
+  address_in_source_list: 60596 Frankfurt
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+- id: abn_amro_asset_based_finance_n_v_niederlassung_d
+  name: ABN AMRO Asset Based Finance N.V., Niederlassung Deutschland
+  country: Germany
+  address_in_source_list: 60329 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_filter: ''
+  germany_only: false
+  location_filter: []
+  enabled: false
+  alias_of: abn_amro
+  verification_status: alias
+  last_verified: null
+  notes: Same employer/careers portal as ABN AMRO Bank N.V. Frankfurt Branch (not monitored separately to avoid duplicate
+    notifications)
+- id: abn_amro
+  name: ABN AMRO Bank N.V. Frankfurt Branch
+  display_name: ABN AMRO
+  country: Germany
+  address_in_source_list: 60329 Frankfurt am Main
+  jobs_url: https://karriere.abnamro.de/stellenangebote/land/deutschland-1
+  source_type: custom_html
+  germany_only: true
+  germany_filter: url (land/deutschland-1)
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: URL supplied by user. Parser untested; page may be JavaScript-rendered -> if verify reports 0 jobs, find its JSON
+    endpoint and switch to custom_api.
+- id: aion_bank_s_a_german_branch
+  name: AION Bank S.A. German Branch
+  country: Germany
+  address_in_source_list: 60329 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: aka_ausfuhrkredit_gesellschaft_mit_beschrankter_
+  name: AKA Ausfuhrkredit-Gesellschaft mit beschränkter Haftung
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: akbank
+  name: AKBANK AG
+  country: Germany
+  address_in_source_list: 65760 Eschborn, Taunus
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: alte_leipziger_bauspar
+  name: ALTE LEIPZIGER Bauspar AG
+  country: Germany
+  address_in_source_list: 61440 Oberursel (Taunus)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: aareal_bank
+  name: Aareal Bank AG
+  country: Germany
+  address_in_source_list: 65189 Wiesbaden
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: agricultural_bank_of_china_limited_frankfurt_bra
+  name: Agricultural Bank of China Limited Frankfurt Branch
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: aktivbank
+  name: Aktivbank Aktiengesellschaft
+  display_name: AKTIVBANK
+  country: Germany
+  address_in_source_list: 60528 Frankfurt am Main
+  jobs_url: https://aktivbank.jobs.personio.de/
+  source_type: personio
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: URL supplied by user. Personio XML feed (/xml) not yet tested live.
+- id: alpen_privatbank_zweigniederlassung_deutschland
+  name: Alpen Privatbank Aktiengesellschaft, Zweigniederlassung Deutschland
+  country: Germany
+  address_in_source_list: 40213 Düsseldorf
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: arab_banking_corp
+  name: Arab Banking Corporation SA, Zweigniederlassung Frankfurt
+  display_name: Arab Banking Corporation
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: arab_banking_corporation_daus_co
+  name: Arab Banking Corporation, Daus & Co. GmbH
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_filter: ''
+  germany_only: false
+  location_filter: []
+  enabled: false
+  alias_of: arab_banking_corp
+  verification_status: alias
+  last_verified: null
+  notes: Group entity of Arab Banking Corporation (not monitored separately to avoid duplicate notifications)
+- id: asian_development_bank_european_representative_o
+  name: Asian Development Bank European Representative Office
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+- id: attijariwafa_bank_europe
+  name: Attijariwafa Bank Europe
+  country: Germany
+  address_in_source_list: 60329 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: australia_and_new_zealand_banking_group_limited_
+  name: Australia and New Zealand Banking Group Limited Niederlassung Frankfurt am Main
+  country: Germany
+  address_in_source_list: 60327 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: b_metzler_seel_sohn_co
+  name: B. Metzler seel. Sohn & Co. Aktiengesellschaft
+  country: Germany
+  address_in_source_list: 60329 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: bank_of_china_limited_zweigniederlassung_frankfu
+  name: BANK OF CHINA LIMITED Zweigniederlassung Frankfurt am Main Frankfurt Branch
+  country: Germany
+  address_in_source_list: 60323 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: bnp_paribas_lease_group_s_a_zweigniederlassung_d
+  name: BNP PARIBAS LEASE GROUP S.A. Zweigniederlassung Deutschland
+  country: Germany
+  address_in_source_list: 50674 Köln
+  jobs_url: ''
+  source_type: unknown
+  germany_filter: ''
+  germany_only: false
+  location_filter: []
+  enabled: false
+  alias_of: bnp_paribas
+  verification_status: alias
+  last_verified: null
+  notes: BNP Paribas Group entity; vacancies appear on the BNP Paribas Germany portal (not monitored separately to avoid duplicate
+    notifications)
+- id: bnp_paribas
+  name: BNP Paribas S.A. Niederlassung Deutschland
+  display_name: BNP Paribas
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: https://group.bnpparibas/en/careers/all-job-offers/germany
+  source_type: custom_html
+  germany_only: true
+  germany_filter: url (/germany)
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: URL supplied by user. Parser untested; if verify reports 0 jobs, locate the JSON endpoint behind the page and switch
+    to custom_api.
+- id: banco_bilbao_vizcaya_argentaria_s_a_niederlassun
+  name: Banco Bilbao Vizcaya Argentaria, S.A., Niederlassung Deutschland
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: banco_pastor_reprasentanz
+  name: Banco Pastor Repräsentanz
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+- id: banco_do_brasil_s_a_zweigniederlassung_frankfurt
+  name: Banco do Brasil S.A. Zweigniederlassung Frankfurt/Main
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: bank_gospodarstwa_krajowego_reprasentanz
+  name: Bank Gospodarstwa Krajowego „Repräsentanz“
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+- id: bank_julius_bar_europe
+  name: Bank Julius Bär Europe AG
+  country: Germany
+  address_in_source_list: 60322 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: bank_pictet_cie_europe
+  name: Bank Pictet & Cie (Europe) AG
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: bank_sepah_iran_filiale_frankfurt
+  name: Bank Sepah-Iran, Filiale Frankfurt
+  country: Germany
+  address_in_source_list: 60327 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Sanctioned institution; irrelevant.
+- id: bank_of_america
+  name: Bank of America Europe Designated Activity Company Zweigniederlassung Frankfurt am Main
+  display_name: Bank of America
+  country: Germany
+  address_in_source_list: 60329 Frankfurt am Main
+  jobs_url: https://careers.bankofamerica.com/
+  source_type: proprietary
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: needs_review
+  last_verified: null
+  notes: Global/official career portal exists but needs a Germany filter and adapter configuration before it can be enabled;
+    not tested.
+- id: bank_of_communications_co_ltd_frankfurt_branch
+  name: Bank of Communications Co., Ltd. Frankfurt branch
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: bank_of_ireland_niederlassung_frankfurt
+  name: Bank of Ireland, Niederlassung Frankfurt
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: bank_of_taiwan_frankfurt_representative_office
+  name: Bank of Taiwan Frankfurt Representative Office
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+- id: bank11_fur_privatkunden_und_handel
+  name: Bank11 für Privatkunden und Handel GmbH
+  country: Germany
+  address_in_source_list: 41460 Neuss
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: bankhaus_werhahn
+  name: Bankhaus Werhahn GmbH
+  country: Germany
+  address_in_source_list: 41460 Neuss
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: banque_chaabi_du_maroc_s_a_zweigniederlassung_de
+  name: Banque Chaabi du Maroc S. A. Zweigniederlassung Deutschland
+  country: Germany
+  address_in_source_list: 60329 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: bausparkasse_mainz
+  name: Bausparkasse Mainz Aktiengesellschaft
+  country: Germany
+  address_in_source_list: 55122 Mainz a Rhein
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: bensberger_bank_e_g
+  name: Bensberger Bank e.G.
+  country: Germany
+  address_in_source_list: 51429 Bergisch Gladbach
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: bruhler_bank
+  name: Brühler Bank eG
+  country: Germany
+  address_in_source_list: 50321 Brühl, Rheinl
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: budenheimer_volksbank
+  name: Budenheimer Volksbank eG
+  country: Germany
+  address_in_source_list: 55257 Budenheim b Mainz
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: burgschaftsbank_hessen
+  name: Bürgschaftsbank Hessen GmbH
+  country: Germany
+  address_in_source_list: 65189 Wiesbaden
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: burgschaftsbank_nordrhein_westfalen_kreditgarant
+  name: Bürgschaftsbank Nordrhein-Westfalen GmbH Kreditgarantiegemeinschaft
+  country: Germany
+  address_in_source_list: 41460 Neuss
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: burgschaftsbank_rheinland_pfalz
+  name: Bürgschaftsbank Rheinland-Pfalz GmbH
+  country: Germany
+  address_in_source_list: 55116 Mainz a Rhein
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: c24_bank
+  name: C24 Bank GmbH
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: cic_reprasentanz_fur_deutschland
+  name: CIC Repräsentanz für Deutschland
+  country: Germany
+  address_in_source_list: 60329 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+- id: claas_financial_services_s_zweigniederlassung_de
+  name: CLAAS FINANCIAL SERVICES S.A.S. Zweigniederlassung Deutschland
+  country: Germany
+  address_in_source_list: 50674 Köln
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: commerzbank
+  name: COMMERZBANK Aktiengesellschaft
+  display_name: Commerzbank
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: https://www.commerzbank.de/karriere/
+  source_type: proprietary
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: needs_review
+  last_verified: null
+  notes: Global/official career portal exists but needs a Germany filter and adapter configuration before it can be enabled;
+    not tested.
+- id: cronbank
+  name: CRONBANK Aktiengesellschaft
+  country: Germany
+  address_in_source_list: 63303 Dreieich
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: caixa_economica_montepio_geral_reprasentanz_fran
+  name: Caixa Económica Montepio Geral - Repräsentanz Frankfurt
+  country: Germany
+  address_in_source_list: 60313 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+- id: caixabank_s_a_zweigniederlassung_deutschland
+  name: Caixabank, S.A. Zweigniederlassung Deutschland
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: cecabank_s_a_reprasentanz_deutschland
+  name: Cecabank, S.A. Repräsentanz Deutschland
+  country: Germany
+  address_in_source_list: 60596 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+- id: china_construction_bank_corporation_niederlassun
+  name: China Construction Bank Corporation Niederlassung Frankfurt
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: citi
+  name: Citibank Europe plc, Germany Branch
+  display_name: Citi
+  country: Germany
+  address_in_source_list: 60323 Frankfurt am Main
+  jobs_url: https://jobs.citi.com/
+  source_type: proprietary
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: needs_review
+  last_verified: null
+  notes: Global/official career portal exists but needs a Germany filter and adapter configuration before it can be enabled;
+    not tested.
+- id: citigroup_global_markets_europe
+  name: Citigroup Global Markets Europe AG
+  country: Germany
+  address_in_source_list: 60323 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_filter: ''
+  germany_only: false
+  location_filter: []
+  enabled: false
+  alias_of: citi
+  verification_status: alias
+  last_verified: null
+  notes: Citigroup entity; same careers portal as Citi (not monitored separately to avoid duplicate notifications)
+- id: clearstream_banking
+  name: Clearstream Banking Aktiengesellschaft
+  country: Germany
+  address_in_source_list: 65760 Eschborn, Taunus
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: cooperatieve_rabobank_u_a_zweigniederlassung_fra
+  name: Coöperatieve Rabobank U.A. Zweigniederlassung Frankfurt am Main
+  country: Germany
+  address_in_source_list: 60486 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: credit_europe_bank_n_v_niederlassung_deutschland
+  name: Credit Europe Bank N.V. Niederlassung Deutschland
+  country: Germany
+  address_in_source_list: 60327 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: credit_suisse_deutschland
+  name: Credit Suisse (Deutschland) Aktiengesellschaft
+  country: Germany
+  address_in_source_list: 60306 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_filter: ''
+  germany_only: false
+  location_filter: []
+  enabled: false
+  alias_of: ubs_europe
+  verification_status: alias
+  last_verified: null
+  notes: 'MERGED: Credit Suisse (Deutschland) AG was absorbed into UBS Europe SE after the UBS takeover; monitor UBS, not
+    Credit Suisse (not monitored separately to avoid duplicate notifications)'
+- id: credit_agricole_corporate_and_investment_bank_de
+  name: Crédit Agricole Corporate and Investment Bank Deutschland, Niederlassung einer französischen Société Anonyme
+  country: Germany
+  address_in_source_list: 60327 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: deutsche_apotheker_und_arztebank_eg
+  name: DEUTSCHE APOTHEKER- UND ÄRZTEBANK EG
+  country: Germany
+  address_in_source_list: 40547 Düsseldorf
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: deutsche_bank
+  name: DEUTSCHE BANK AKTIENGESELLSCHAFT
+  display_name: Deutsche Bank
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: https://careers.db.com/
+  source_type: custom_api
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: needs_review
+  last_verified: null
+  notes: Global/official career portal exists but needs a Germany filter and adapter configuration before it can be enabled;
+    not tested.
+- id: dhb_bank_n_v_niederlassung_deutschland
+  name: DHB Bank N.V. Niederlassung Deutschland
+  country: Germany
+  address_in_source_list: 40213 Düsseldorf
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: dz_bank_deutsche_zentral_genossenschaftsbank_fra
+  name: DZ BANK AG Deutsche Zentral-Genossenschaftsbank, Frankfurt am Main
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: dzb_bank
+  name: DZB BANK GmbH
+  country: Germany
+  address_in_source_list: 63533 Mainhausen
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: de_lage_landen_international_b_v_deutsche_nieder
+  name: De Lage Landen International B.V. Deutsche Niederlassung
+  country: Germany
+  address_in_source_list: 40549 Düsseldorf
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: demir_halk_bank_nederland_n_v_filiale_dusseldorf
+  name: Demir-Halk Bank (Nederland) N.V. Filiale Düsseldorf
+  country: Germany
+  address_in_source_list: 40213 Düsseldorf
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: denizbank_wien_zweigniederlassung_frankfurt_am_m
+  name: DenizBank (Wien) AG, Zweigniederlassung Frankfurt am Main
+  country: Germany
+  address_in_source_list: 60329 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: deutsch_schweizerische_bank
+  name: Deutsch-Schweizerische Bank Aktiengesellschaft
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: deutsche_bank_europe
+  name: Deutsche Bank Europe GmbH
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_filter: ''
+  germany_only: false
+  location_filter: []
+  enabled: false
+  alias_of: deutsche_bank
+  verification_status: alias
+  last_verified: null
+  notes: Deutsche Bank group entity; same careers portal as Deutsche Bank AG (not monitored separately to avoid duplicate
+    notifications)
+- id: deutsche_leasing_finance
+  name: Deutsche Leasing Finance GmbH
+  country: Germany
+  address_in_source_list: 61352 Bad Homburg v d Höhe
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: deutsche_oppenheim_family_office
+  name: Deutsche Oppenheim Family Office AG
+  country: Germany
+  address_in_source_list: 50668 Köln
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: deutsche_wertpapierservice_bank
+  name: Deutsche WertpapierService Bank AG
+  country: Germany
+  address_in_source_list: 60487 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: etris_bank
+  name: ETRIS Bank GmbH
+  country: Germany
+  address_in_source_list: 42389 Wuppertal
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: eurex_clearing
+  name: EUREX Clearing Aktiengesellschaft
+  country: Germany
+  address_in_source_list: 65760 Eschborn, Taunus
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: elavon_financial_services_designated_activity_co
+  name: Elavon Financial Services Designated Activity Company, Niederlassung Deutschland
+  country: Germany
+  address_in_source_list: 60528 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: emporiki_bank_germany
+  name: Emporiki Bank - Germany GmbH
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Emporiki was integrated into Alpha Bank (2013); status of this
+    German entity not verified.
+- id: erste_abwicklungsanstalt
+  name: Erste Abwicklungsanstalt
+  country: Germany
+  address_in_source_list: 40217 Düsseldorf
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Resolution agency (winding-down institution); likely no regular
+    vacancies.
+- id: essence_international_financial_holdings_ltd_fra
+  name: Essence International Financial Holdings Ltd. - Frankfurt Repräsentanz
+  country: Germany
+  address_in_source_list: 60313 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+- id: eurocity
+  name: Eurocity AG
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: euroclear_bank_sa_nv_reprasentanz
+  name: Euroclear Bank SA/NV Repräsentanz
+  country: Germany
+  address_in_source_list: 60313 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+- id: europe_arab_bank_sa_niederlassung_frankfurt
+  name: Europe Arab Bank SA, Niederlassung Frankfurt
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: fib_frankfurt_international_bank
+  name: FIB Frankfurt International Bank AG
+  country: Germany
+  address_in_source_list: 60329 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: fil_fondsbank
+  name: FIL Fondsbank GmbH
+  country: Germany
+  address_in_source_list: 61476 Kronberg im Taunus
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: first_international_bank
+  name: FIRST INTERNATIONAL BANK AG
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: first_commercial_bank_ltd_frankfurt_branch
+  name: First Commercial Bank, Ltd. Frankfurt Branch
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: ford_bank
+  name: Ford Bank GmbH
+  display_name: Ford Bank
+  country: Germany
+  address_in_source_list: 50735 Köln
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: ford_bank_niederlassung_der_fce_bank_plc
+  name: Ford Bank Niederlassung der FCE Bank plc
+  country: Germany
+  address_in_source_list: 50735 Köln
+  jobs_url: ''
+  source_type: unknown
+  germany_filter: ''
+  germany_only: false
+  location_filter: []
+  enabled: false
+  alias_of: ford_bank
+  verification_status: alias
+  last_verified: null
+  notes: Same employer as Ford Bank GmbH (not monitored separately to avoid duplicate notifications)
+- id: frankfurter_bankgesellschaft_deutschland
+  name: Frankfurter Bankgesellschaft (Deutschland) AG
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: frankfurter_sparkasse
+  name: Frankfurter Sparkasse
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: frankfurter_volksbank_rhein_main
+  name: Frankfurter Volksbank Rhein/Main eG
+  country: Germany
+  address_in_source_list: 60313 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: freikirchen_bank
+  name: Freikirchen.Bank eG
+  country: Germany
+  address_in_source_list: 61350 Bad Homburg v d Höhe
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: gefa_bank
+  name: GEFA BANK GmbH
+  country: Germany
+  address_in_source_list: 42117 Wuppertal
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: geno_broker
+  name: GENO Broker GmbH
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: gladbacher_bank_von_1922
+  name: GLADBACHER BANK AG von 1922
+  country: Germany
+  address_in_source_list: 41061 Mönchengladbach
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: garantibank_international_n_v_niederlassung_duss
+  name: GarantiBank International N.V. Niederlassung Düsseldorf
+  country: Germany
+  address_in_source_list: 40474 Düsseldorf
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: gemeinnutzige_bau_und_siedlungsgenossenschaft_wi
+  name: Gemeinnützige Bau- und Siedlungsgenossenschaft Wiesbaden 1950 eG
+  country: Germany
+  address_in_source_list: 65187 Wiesbaden
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Housing cooperative, not a bank; likely irrelevant for this
+    profile.
+- id: goldman_sachs
+  name: Goldman Sachs Bank Europe SE
+  display_name: Goldman Sachs
+  country: Germany
+  address_in_source_list: 60329 Frankfurt am Main
+  jobs_url: https://higher.gs.com/
+  source_type: custom_api
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: needs_review
+  last_verified: null
+  notes: Global/official career portal exists but needs a Germany filter and adapter configuration before it can be enabled;
+    not tested.
+- id: goldman_sachs_international_bank_zweigniederlass
+  name: Goldman Sachs International Bank Zweigniederlassung Frankfurt
+  country: Germany
+  address_in_source_list: 60329 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_filter: ''
+  germany_only: false
+  location_filter: []
+  enabled: false
+  alias_of: goldman_sachs
+  verification_status: alias
+  last_verified: null
+  notes: Goldman Sachs entity; same careers portal (not monitored separately to avoid duplicate notifications)
+- id: gontard_metallbank
+  name: Gontard & MetallBank Aktiengesellschaft
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: hsbc_continental_europe_s_a_germany
+  name: HSBC Continental Europe S.A., Germany
+  country: Germany
+  address_in_source_list: 40549 Düsseldorf
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: halifax_plc_reprasentant_andrew_peat_finanz_cons
+  name: 'Halifax plc Repräsentant: Andrew Peat Finanz Consultants GmbH'
+  country: Germany
+  address_in_source_list: 41068 Mönchengladbach
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies. Appears
+    to be a consultancy acting as representative, not a bank; likely irrelevant.
+- id: hauck_aufhauser_lampe_privatbank
+  name: Hauck Aufhäuser Lampe Privatbank AG
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: honda_bank
+  name: Honda Bank GmbH
+  country: Germany
+  address_in_source_list: 60314 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: hyundai_capital_bank_europe
+  name: Hyundai Capital Bank Europe GmbH
+  country: Germany
+  address_in_source_list: 60327 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: huttenberger_bank
+  name: Hüttenberger Bank eG
+  country: Germany
+  address_in_source_list: 35625 Hüttenberg, Hess
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: icici_bank_uk_plc_germany_branch
+  name: ICICI Bank UK PLC, Germany Branch
+  country: Germany
+  address_in_source_list: 65760 Eschborn, Taunus
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: ikb_deutsche_industriebank
+  name: IKB Deutsche Industriebank Aktiengesellschaft
+  country: Germany
+  address_in_source_list: 40474 Düsseldorf
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: ing_deutschland
+  name: ING-DiBa AG
+  display_name: ING Deutschland
+  country: Germany
+  address_in_source_list: 60486 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: ikano_bank_ab_publ_zweigniederlassung_deutschlan
+  name: Ikano Bank AB (publ), Zweigniederlassung Deutschland
+  country: Germany
+  address_in_source_list: 65189 Wiesbaden
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: industrial_and_commercial_bank_of_china_limited_
+  name: Industrial and Commercial Bank of China Limited Frankfurt Branch
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: international_card_services_b_v_niederlassung_de
+  name: International Card Services B.V., Niederlassung Deutschland
+  country: Germany
+  address_in_source_list: 40468 Düsseldorf
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: intesa_sanpaolo_s_p_a_filiale_frankfurt_am_main
+  name: Intesa Sanpaolo S.p.A. Filiale Frankfurt am Main
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: investitions_und_strukturbank_rheinland_pfalz_is
+  name: Investitions- und Strukturbank Rheinland-Pfalz (ISB)
+  country: Germany
+  address_in_source_list: 55116 Mainz a Rhein
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: isbank
+  name: Isbank AG
+  country: Germany
+  address_in_source_list: 60313 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: j_t_banka_a_s_zweigniederlassung_deutschland
+  name: J&T BANKA, a.s. Zweigniederlassung Deutschland
+  country: Germany
+  address_in_source_list: 60486 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: jcb_finance_s_zweigniederlassung_deutschland
+  name: JCB FINANCE S.A.S. Zweigniederlassung Deutschland
+  country: Germany
+  address_in_source_list: 50674 Köln
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: kbc_bank_nv_niederlassung_deutschland
+  name: KBC Bank NV, Niederlassung Deutschland
+  country: Germany
+  address_in_source_list: 40215 Düsseldorf
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: keb_hana_bank_d
+  name: KEB Hana Bank (D) Aktiengesellschaft
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: kt_bank
+  name: KT Bank AG
+  country: Germany
+  address_in_source_list: 60327 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: kfw_ipex_bank
+  name: KfW IPEX-Bank GmbH
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: kommunalkredit_austria_zweigstelle_deutschland
+  name: Kommunalkredit Austria AG Zweigstelle Deutschland
+  country: Germany
+  address_in_source_list: 60313 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: kfw
+  name: Kreditanstalt für Wiederaufbau
+  display_name: KfW
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: kreissparkasse_ahrweiler
+  name: Kreissparkasse Ahrweiler
+  country: Germany
+  address_in_source_list: 53474 Bad Neuenahr-Ahrweiler
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: kreissparkasse_dusseldorf
+  name: Kreissparkasse Düsseldorf
+  country: Germany
+  address_in_source_list: 40213 Düsseldorf
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: kreissparkasse_euskirchen
+  name: Kreissparkasse Euskirchen
+  country: Germany
+  address_in_source_list: 53879 Euskirchen
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: kreissparkasse_gelnhausen
+  name: Kreissparkasse Gelnhausen
+  country: Germany
+  address_in_source_list: 63571 Gelnhausen
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: kreissparkasse_gro_gerau
+  name: Kreissparkasse Groß-Gerau
+  country: Germany
+  address_in_source_list: 64521 Groß-Gerau
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: kreissparkasse_heinsberg_zweckverbandssparkasse_
+  name: Kreissparkasse Heinsberg - Zweckverbandssparkasse des Kreises Heinsberg und der Stadt Erkelenz -
+  country: Germany
+  address_in_source_list: 41812 Erkelenz
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: kreissparkasse_koln
+  name: Kreissparkasse Köln
+  country: Germany
+  address_in_source_list: 50667 Köln
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: landbank_horlofftal_eingetragene_genossenschaft
+  name: Landbank Horlofftal eingetragene Genossenschaft
+  country: Germany
+  address_in_source_list: 61203 Reichelsheim (Wetterau)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: helaba
+  name: Landesbank Hessen-Thüringen Girozentrale
+  display_name: Helaba
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: landesbausparkasse_hessen_thuringen_abteilung_de
+  name: Landesbausparkasse Hessen-Thüringen Abteilung der Landesbank Hessen-Thüringen Girozentrale
+  country: Germany
+  address_in_source_list: 63067 Offenbach am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_filter: ''
+  germany_only: false
+  location_filter: []
+  enabled: false
+  alias_of: helaba
+  verification_status: alias
+  last_verified: null
+  notes: Legally a department (Abteilung) of Landesbank Hessen-Thüringen (not monitored separately to avoid duplicate notifications)
+- id: landwirtschaftliche_rentenbank
+  name: Landwirtschaftliche Rentenbank
+  country: Germany
+  address_in_source_list: 60486 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: liechtensteinische_landesbank_zweigniederlassung
+  name: Liechtensteinische Landesbank AG, Zweigniederlassung Deutschland
+  country: Germany
+  address_in_source_list: 60313 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: mce_bank
+  name: MCE Bank GmbH
+  country: Germany
+  address_in_source_list: 65439 Flörsheim am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: mediobanca_banca_di_credito_finanziario_societa_
+  name: MEDIOBANCA BANCA DI CREDITO FINANZIARIO SOCIETA' PER AZIONI, Zweigniederlassung Deutschland
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: mgf_s_zweigniederlassung_deutschland
+  name: MGF S.A.S. Zweigniederlassung Deutschland
+  country: Germany
+  address_in_source_list: 50674 Köln
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: mhb_bank
+  name: MHB-Bank Aktiengesellschaft
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: mufg_bank_europe_n_v_germany_branch
+  name: MUFG Bank (Europe) N.V. Germany Branch
+  country: Germany
+  address_in_source_list: 40213 Düsseldorf
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: macquarie_bank_europe_designated_activity_compan
+  name: Macquarie Bank Europe Designated Activity Company, Frankfurt Branch
+  country: Germany
+  address_in_source_list: 60306 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: maple
+  name: Maple GmbH
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: misr_bank_europe
+  name: Misr Bank - Europe GmbH
+  country: Germany
+  address_in_source_list: 60329 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: mizuho_bank_ltd_filiale_dusseldorf
+  name: Mizuho Bank, Ltd. Filiale Düsseldorf
+  country: Germany
+  address_in_source_list: 40213 Düsseldorf
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: natixis_pfandbriefbank
+  name: NATIXIS Pfandbriefbank AG
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_filter: ''
+  germany_only: false
+  location_filter: []
+  enabled: false
+  alias_of: natixis
+  verification_status: alias
+  last_verified: null
+  notes: Natixis group entity; same careers portal (not monitored separately to avoid duplicate notifications)
+- id: natixis
+  name: NATIXIS Zweigniederlassung Deutschland
+  display_name: Natixis
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: nibc_bank_n_v_zweigniederlassung_frankfurt_am_ma
+  name: NIBC BANK N.V. Zweigniederlassung Frankfurt am Main
+  country: Germany
+  address_in_source_list: 60322 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: nrw_bank_44
+  name: NRW.BANK 44
+  country: Germany
+  address_in_source_list: 40213 Düsseldorf
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: nassauische_sparkasse
+  name: Nassauische Sparkasse
+  country: Germany
+  address_in_source_list: 65185 Wiesbaden
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: natwest
+  name: NatWest Bank Europe GmbH
+  display_name: NatWest
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: natwest_markets_n_v_niederlassung_deutschland
+  name: NatWest Markets N.V. Niederlassung Deutschland
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_filter: ''
+  germany_only: false
+  location_filter: []
+  enabled: false
+  alias_of: natwest
+  verification_status: alias
+  last_verified: null
+  notes: NatWest group entity; same employer as NatWest Bank Europe GmbH (not monitored separately to avoid duplicate notifications)
+- id: natwest_markets_plc_niederlassung_frankfurt
+  name: NatWest Markets Plc Niederlassung Frankfurt
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_filter: ''
+  germany_only: false
+  location_filter: []
+  enabled: false
+  alias_of: natwest
+  verification_status: alias
+  last_verified: null
+  notes: NatWest group entity; same employer as NatWest Bank Europe GmbH (not monitored separately to avoid duplicate notifications)
+- id: national_bank_of_pakistan_filiale_frankfurt_am_m
+  name: National Bank of Pakistan Filiale Frankfurt am Main
+  country: Germany
+  address_in_source_list: 60313 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: national_westminster_bank_plc_niederlassung_deut
+  name: National Westminster Bank Plc Niederlassung Deutschland
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_filter: ''
+  germany_only: false
+  location_filter: []
+  enabled: false
+  alias_of: natwest
+  verification_status: alias
+  last_verified: null
+  notes: NatWest group entity; same employer as NatWest Bank Europe GmbH (not monitored separately to avoid duplicate notifications)
+- id: north_channel_bank_co_kg
+  name: North Channel Bank GmbH & Co. KG
+  country: Germany
+  address_in_source_list: 55116 Mainz a Rhein
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: oddo_bhf
+  name: ODDO BHF SE
+  country: Germany
+  address_in_source_list: 60329 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: open_bank_s_a_zweigniederlassung_deutschland
+  name: OPEN BANK, S.A., Zweigniederlassung Deutschland
+  country: Germany
+  address_in_source_list: 60322 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: otp_bank_nyrt_niederlassung_deutschland
+  name: OTP Bank Nyrt. Niederlassung Deutschland
+  country: Germany
+  address_in_source_list: 65760 Eschborn, Taunus
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: owh_i_l
+  name: OWH SE i.L.
+  country: Germany
+  address_in_source_list: 60329 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. In liquidation (i.L.); no vacancies expected.
+- id: oyak_anker_bank
+  name: OYAK ANKER Bank GmbH
+  country: Germany
+  address_in_source_list: 60528 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: piraeus_bank_a_e_athen_zweigniederlassung_frankf
+  name: PIRAEUS BANK A.E., Athen Zweigniederlassung Frankfurt am Main
+  country: Germany
+  address_in_source_list: 60329 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: pko_bank_polski_s_a_niederlassung_deutschland
+  name: PKO Bank Polski S.A. Niederlassung Deutschland
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: psd_bank_hessen_thuringen
+  name: PSD Bank Hessen-Thüringen eG
+  country: Germany
+  address_in_source_list: 65760 Eschborn, Taunus
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: psd_bank_rhein_ruhr
+  name: PSD Bank Rhein-Ruhr eG
+  country: Germany
+  address_in_source_list: 40210 Düsseldorf
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: psd_bank_west
+  name: PSD Bank West eG
+  country: Germany
+  address_in_source_list: 50667 Köln
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: pax_bank
+  name: Pax-Bank eG
+  country: Germany
+  address_in_source_list: 50670 Köln
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: peoples_bank_of_china_reprasentanz
+  name: People’s Bank of China Repräsentanz
+  country: Germany
+  address_in_source_list: 60322 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+- id: portigon
+  name: Portigon AG
+  country: Germany
+  address_in_source_list: 40219 Düsseldorf
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Winding-down institution; likely no regular vacancies.
+- id: procredit_bank
+  name: ProCredit Bank AG
+  country: Germany
+  address_in_source_list: 60486 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: rci_banque_s_a_niederlassung_deutschland
+  name: RCI Banque S.A. Niederlassung Deutschland
+  country: Germany
+  address_in_source_list: 41468 Neuss
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: raiffeisen_bank_international_zweigniederlassung
+  name: Raiffeisen Bank International AG, Zweigniederlassung Frankfurt
+  country: Germany
+  address_in_source_list: 60329 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: raiffeisenbank_frechen_hurth
+  name: Raiffeisenbank Frechen-Hürth eG
+  country: Germany
+  address_in_source_list: 50354 Hürth, Rheinl
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: raiffeisenbank_gravenwiesbach
+  name: Raiffeisenbank Grävenwiesbach eG
+  country: Germany
+  address_in_source_list: 61279 Grävenwiesbach
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: raiffeisenbank_gymnich
+  name: Raiffeisenbank Gymnich eG
+  country: Germany
+  address_in_source_list: 50374 Erftstadt
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: raiffeisenbank_kaarst
+  name: Raiffeisenbank Kaarst eG
+  country: Germany
+  address_in_source_list: 41564 Kaarst
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: raiffeisenbank_neustadt
+  name: Raiffeisenbank Neustadt eG
+  country: Germany
+  address_in_source_list: 53577 Neustadt (Wied)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: raiffeisenbank_nordliche_bergstrae
+  name: Raiffeisenbank Nördliche Bergstraße eG
+  country: Germany
+  address_in_source_list: 64665 Alsbach-Hähnlein
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: raiffeisenbank_schaafheim
+  name: Raiffeisenbank Schaafheim eG
+  country: Germany
+  address_in_source_list: 64850 Schaafheim
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: raiffeisenbank
+  name: Raiffeisenbank eG
+  country: Germany
+  address_in_source_list: 63517 Rodenbach b Hanau
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: raiffeisenbank_im_hochtaunus
+  name: Raiffeisenbank im Hochtaunus eG
+  country: Germany
+  address_in_source_list: 61352 Bad Homburg v d Höhe
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: raiffeisenbank_in_rheinhessen
+  name: Raiffeisenbank in Rheinhessen eG
+  country: Germany
+  address_in_source_list: 55120 Mainz a Rhein
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: raisin_bank
+  name: Raisin Bank AG
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: reisebank
+  name: ReiseBank Aktiengesellschaft
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: reprasentanz_der_export_development_canada
+  name: Repräsentanz der Export Development Canada
+  country: Germany
+  address_in_source_list: 40213 Düsseldorf
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+- id: rheinhessen_sparkasse
+  name: Rheinhessen Sparkasse
+  country: Germany
+  address_in_source_list: 55116 Mainz a Rhein
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: s_broker_co_kg
+  name: S Broker AG & Co. KG
+  country: Germany
+  address_in_source_list: 65203 Wiesbaden
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: secb_swiss_euro_clearing_bank
+  name: SECB Swiss Euro Clearing Bank GmbH
+  country: Germany
+  address_in_source_list: 60318 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: shinhan_bank_europe
+  name: SHINHAN BANK EUROPE GmbH
+  country: Germany
+  address_in_source_list: 60322 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: smbc_bank_eu
+  name: SMBC Bank EU AG
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: sparkasse_hanau
+  name: SPARKASSE HANAU
+  country: Germany
+  address_in_source_list: 63450 Hanau
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: saman_bank_niederlassung_frankfurt
+  name: Saman Bank Niederlassung Frankfurt
+  country: Germany
+  address_in_source_list: 60323 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: santander_consumer_bank
+  name: Santander Consumer Bank Aktiengesellschaft
+  country: Germany
+  address_in_source_list: 41061 Mönchengladbach
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: skandinaviska_enskilda_banken_ab_publ_frankfurt_
+  name: Skandinaviska Enskilda Banken AB (publ) Frankfurt Branch
+  country: Germany
+  address_in_source_list: 60313 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: societe_generale_s_a
+  name: Société Générale S.A.
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: sozialbank
+  name: SozialBank AG
+  country: Germany
+  address_in_source_list: 50668 Köln
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: spar_und_bauverein_solingen_gemeinnutzige_wohnun
+  name: Spar- und Bauverein Solingen eG Gemeinnützige Wohnungsgenossenschaft
+  country: Germany
+  address_in_source_list: 42651 Solingen
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Housing cooperative, not a bank; likely irrelevant for this
+    profile.
+- id: sparda_bank_hessen
+  name: Sparda-Bank Hessen eG
+  country: Germany
+  address_in_source_list: 60327 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: sparda_bank_sudwest
+  name: Sparda-Bank Südwest eG
+  country: Germany
+  address_in_source_list: 55129 Mainz a Rhein
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: sparda_bank_west
+  name: Sparda-Bank West eG
+  country: Germany
+  address_in_source_list: 40227 Düsseldorf
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: sparkasse_aschaffenburg_miltenberg
+  name: Sparkasse Aschaffenburg-Miltenberg
+  country: Germany
+  address_in_source_list: 63739 Aschaffenburg
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: sparkasse_bensheim
+  name: Sparkasse Bensheim
+  country: Germany
+  address_in_source_list: 64625 Bensheim
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: sparkasse_dieburg_zweckverbandssparkasse
+  name: Sparkasse Dieburg - Zweckverbandssparkasse -
+  country: Germany
+  address_in_source_list: 64823 Groß-Umstadt
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: sparkasse_duren
+  name: Sparkasse Düren
+  country: Germany
+  address_in_source_list: 52349 Düren, Rheinl
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: sparkasse_gummersbach
+  name: Sparkasse Gummersbach
+  country: Germany
+  address_in_source_list: 51643 Gummersbach
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: sparkasse_hilden_ratingen_velbert
+  name: Sparkasse Hilden Ratingen Velbert
+  country: Germany
+  address_in_source_list: 42551 Velbert
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: sparkasse_kolnbonn
+  name: Sparkasse KölnBonn
+  country: Germany
+  address_in_source_list: 50667 Köln
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: sparkasse_langen_seligenstadt
+  name: Sparkasse Langen-Seligenstadt
+  country: Germany
+  address_in_source_list: 63500 Seligenstadt, Hess
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: sparkasse_leverkusen
+  name: Sparkasse Leverkusen
+  country: Germany
+  address_in_source_list: 51373 Leverkusen
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: sparkasse_neuss_zweckverbandssparkasse_des_rhein
+  name: Sparkasse Neuss - Zweckverbandssparkasse des Rhein-Kreises Neuss, der Stadt Neuss, der Stadt Korschenbroich und der
+    Stadt Kaarst
+  country: Germany
+  address_in_source_list: 41460 Neuss
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: sparkasse_oberhessen
+  name: Sparkasse Oberhessen
+  country: Germany
+  address_in_source_list: 61169 Friedberg (Hessen)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: sparkasse_schwelm_sprockhovel_zweckverbandsspark
+  name: Sparkasse Schwelm-Sprockhövel - Zweckverbandssparkasse der Städte Schwelm und Sprockhövel
+  country: Germany
+  address_in_source_list: 58332 Schwelm
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: stadt_und_kreis_sparkasse_darmstadt
+  name: Stadt- und Kreis-Sparkasse Darmstadt
+  country: Germany
+  address_in_source_list: 64283 Darmstadt
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: stadt_sparkasse_haan_rheinl
+  name: Stadt-Sparkasse Haan (Rheinl.)
+  country: Germany
+  address_in_source_list: 42781 Haan, Rheinl
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: stadt_sparkasse_langenfeld_rhld
+  name: Stadt-Sparkasse Langenfeld (Rhld.)
+  country: Germany
+  address_in_source_list: 40764 Langenfeld (Rheinland)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: stadt_sparkasse_solingen
+  name: Stadt-Sparkasse Solingen
+  country: Germany
+  address_in_source_list: 42651 Solingen
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: stadtsparkasse_dusseldorf
+  name: Stadtsparkasse Düsseldorf
+  country: Germany
+  address_in_source_list: 40212 Düsseldorf
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: stadtsparkasse_monchengladbach
+  name: Stadtsparkasse Mönchengladbach
+  country: Germany
+  address_in_source_list: 41061 Mönchengladbach
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: stadtsparkasse_remscheid
+  name: Stadtsparkasse Remscheid
+  country: Germany
+  address_in_source_list: 42853 Remscheid
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: stadtsparkasse_wermelskirchen
+  name: Stadtsparkasse Wermelskirchen
+  country: Germany
+  address_in_source_list: 42929 Wermelskirchen
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: stadtsparkasse_wuppertal
+  name: Stadtsparkasse Wuppertal
+  country: Germany
+  address_in_source_list: 42103 Wuppertal
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: standard_chartered
+  name: Standard Chartered Bank AG
+  display_name: Standard Chartered
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: https://jobs.standardchartered.com/
+  source_type: proprietary
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: needs_review
+  last_verified: null
+  notes: Global/official career portal exists but needs a Germany filter and adapter configuration before it can be enabled;
+    not tested.
+- id: state_bank_of_india_indische_staatsbank_zweignie
+  name: State Bank of India (Indische Staatsbank) Zweigniederlassung Frankfurt am Main
+  country: Germany
+  address_in_source_list: 60329 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: stellantis_bank_sa_niederlassung_deutschland
+  name: Stellantis Bank SA Niederlassung Deutschland
+  country: Germany
+  address_in_source_list: 63263 Neu-Isenburg
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: steyler_bank
+  name: Steyler Bank GmbH
+  country: Germany
+  address_in_source_list: 53757 Sankt Augustin
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: stadtische_sparkasse_offenbach_a_m
+  name: Städtische Sparkasse Offenbach a. M.
+  country: Germany
+  address_in_source_list: 63065 Offenbach am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: sumitomo_mitsui_banking_corporation_fil_dusseldo
+  name: Sumitomo Mitsui Banking Corporation Fil. Düsseldorf Zweigniederlassung der Sumitomo Mitsui Banking Corporation mit
+    Sitz in Tokio
+  country: Germany
+  address_in_source_list: 40549 Düsseldorf
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: sutor_bank
+  name: Sutor Bank GmbH
+  country: Germany
+  address_in_source_list: 60313 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: sud_west_kreditbank_finanzierung
+  name: Süd-West-Kreditbank Finanzierung GmbH
+  country: Germany
+  address_in_source_list: 55124 Mainz a Rhein
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: targobank
+  name: TARGOBANK AG
+  country: Germany
+  address_in_source_list: 40213 Düsseldorf
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: toyota_kreditbank
+  name: TOYOTA Kreditbank GmbH
+  country: Germany
+  address_in_source_list: 50858 Köln
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: taunus_sparkasse
+  name: Taunus-Sparkasse
+  country: Germany
+  address_in_source_list: 61352 Bad Homburg v d Höhe
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: the_bank_of_japan_reprasentanz
+  name: The Bank of Japan Repräsentanz
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+- id: the_bank_of_korea_reprasentanz
+  name: The Bank of Korea Repräsentanz
+  country: Germany
+  address_in_source_list: 60308 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+- id: bny_mellon
+  name: The Bank of New York Mellon Filiale Frankfurt am Main
+  display_name: BNY Mellon
+  country: Germany
+  address_in_source_list: 60308 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: the_bank_of_new_york_mellon_sa_nv_asset_servicin
+  name: The Bank of New York Mellon SA/NV, Asset Servicing, Niederlassung Frankfurt am Main
+  country: Germany
+  address_in_source_list: 60308 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_filter: ''
+  germany_only: false
+  location_filter: []
+  enabled: false
+  alias_of: bny_mellon
+  verification_status: alias
+  last_verified: null
+  notes: Same employer as BNY Mellon Filiale Frankfurt (not monitored separately to avoid duplicate notifications)
+- id: the_korea_development_bank_frankfurt_representat
+  name: The Korea Development Bank Frankfurt Representative Office
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+- id: triodos_bank_n_v_deutschland
+  name: Triodos Bank N.V. Deutschland
+  country: Germany
+  address_in_source_list: 60487 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: turkiye_cumhuriyet_merkez_bankasi_reprasentanz
+  name: Türkiye Cumhuriyet Merkez Bankasi Repräsentanz
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+- id: ubs_europe
+  name: UBS Europe SE
+  display_name: UBS
+  country: Germany
+  address_in_source_list: 60306 Frankfurt am Main
+  jobs_url: https://www.ubs.com/global/en/careers/search-and-apply.html
+  source_type: proprietary
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: needs_review
+  last_verified: null
+  notes: Global/official career portal exists but needs a Germany filter and adapter configuration before it can be enabled;
+    not tested.
+- id: volksbank_seligenstadt_eg
+  name: VOLKSBANK SELIGENSTADT EG
+  country: Germany
+  address_in_source_list: 63500 Seligenstadt, Hess
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: vr_bank_bad_orb_gelnhausen
+  name: VR Bank Bad Orb-Gelnhausen eG
+  country: Germany
+  address_in_source_list: 63571 Gelnhausen
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: vr_bank_dreieich_offenbach
+  name: VR Bank Dreieich-Offenbach eG
+  country: Germany
+  address_in_source_list: 63303 Dreieich
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: vr_bank_main_kinzig_budingen
+  name: VR Bank Main-Kinzig-Büdingen eG
+  country: Germany
+  address_in_source_list: 63654 Büdingen, Hess
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: vr_bank
+  name: VR Bank eG
+  country: Germany
+  address_in_source_list: 40789 Monheim am Rhein
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: vr_bank_alsheim_rheinhess
+  name: VR Bank eG
+  country: Germany
+  address_in_source_list: 67577 Alsheim, Rheinhess
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: vr_bank_bergisch_gladbach_leverkusen
+  name: VR Bank eG Bergisch Gladbach-Leverkusen
+  country: Germany
+  address_in_source_list: 51465 Bergisch Gladbach
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: vr_smart_finanz_bank
+  name: VR Smart Finanz Bank GmbH
+  country: Germany
+  address_in_source_list: 65760 Eschborn, Taunus
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: vr_bank_bonn_rhein_sieg
+  name: VR-Bank Bonn Rhein-Sieg eG
+  country: Germany
+  address_in_source_list: 53721 Siegburg
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: vakifbank_international_wien_zweigniederlassung_
+  name: VakifBank International AG, Wien, Zweigniederlassung Deutschland
+  country: Germany
+  address_in_source_list: 50667 Köln
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: vereinigte_volksbank_raiffeisenbank
+  name: Vereinigte Volksbank Raiffeisenbank eG
+  country: Germany
+  address_in_source_list: 64354 Reinheim, Odenw
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: vietnam_joint_stock_commercial_bank_for_industry
+  name: Vietnam Joint Stock Commercial Bank for Industry and Trade (VietinBank), Filiale Deutschland
+  country: Germany
+  address_in_source_list: 60322 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: vnesheconombank_bank_fur_entwicklung_und_auenwir
+  name: Vnesheconombank (Bank für Entwicklung und Außenwirtschaft) Repräsentanz in der Bundesrepublik Deutschland
+  country: Germany
+  address_in_source_list: 60329 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Representative office; unlikely to publish vacancies.
+- id: volks_bau_und_sparverein_frankfurt_am_main_einge
+  name: Volks- Bau- und Sparverein Frankfurt am Main eingetragene Genossenschaft
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Housing cooperative, not a bank; likely irrelevant for this
+    profile.
+- id: volksbank_berg
+  name: Volksbank Berg eG
+  country: Germany
+  address_in_source_list: 51688 Wipperfürth
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: volksbank_brandoberndorf
+  name: Volksbank Brandoberndorf eG
+  country: Germany
+  address_in_source_list: 35647 Waldsolms
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: volksbank_butzbach
+  name: Volksbank Butzbach eG
+  country: Germany
+  address_in_source_list: 35510 Butzbach
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: volksbank_darmstadt_sudhessen
+  name: Volksbank Darmstadt-Südhessen eG
+  country: Germany
+  address_in_source_list: 64283 Darmstadt
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: volksbank_dunnwald_holweide
+  name: Volksbank Dünnwald-Holweide eG
+  country: Germany
+  address_in_source_list: 51069 Köln
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: volksbank_dusseldorf_neuss
+  name: Volksbank Düsseldorf Neuss eG
+  country: Germany
+  address_in_source_list: 40215 Düsseldorf
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: volksbank_erft
+  name: Volksbank Erft eG
+  country: Germany
+  address_in_source_list: 50189 Elsdorf, Rheinl
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: volksbank_euskirchen
+  name: Volksbank Euskirchen eG
+  country: Germany
+  address_in_source_list: 53879 Euskirchen
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: volksbank_heimbach
+  name: Volksbank Heimbach eG
+  country: Germany
+  address_in_source_list: 52396 Heimbach
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: volksbank_kierspe
+  name: Volksbank Kierspe eG
+  country: Germany
+  address_in_source_list: 58566 Kierspe
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: volksbank_koln_bonn
+  name: Volksbank Köln Bonn eG
+  country: Germany
+  address_in_source_list: 53175 Bonn
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: volksbank_mainspitze
+  name: Volksbank Mainspitze eG
+  country: Germany
+  address_in_source_list: 65462 Ginsheim-Gustavsburg
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: volksbank_monchengladbach
+  name: Volksbank Mönchengladbach eG
+  country: Germany
+  address_in_source_list: 41066 Mönchengladbach
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: volksbank_ober_morlen
+  name: Volksbank Ober-Mörlen eG
+  country: Germany
+  address_in_source_list: 61239 Ober-Mörlen
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: volksbank_oberberg
+  name: Volksbank Oberberg eG
+  country: Germany
+  address_in_source_list: 51674 Wiehl
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: volksbank_rhein_erft_koln
+  name: Volksbank Rhein-Erft-Köln eG
+  country: Germany
+  address_in_source_list: 50354 Hürth, Rheinl
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: volksbank_sprockhovel
+  name: Volksbank Sprockhövel eG.
+  country: Germany
+  address_in_source_list: 45549 Sprockhövel
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: volksbank_im_bergischen_land
+  name: Volksbank im Bergischen Land eG
+  country: Germany
+  address_in_source_list: 42897 Remscheid
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: wells_fargo_bank_international_uc_niederlassung_
+  name: Wells Fargo Bank International UC, Niederlassung Frankfurt
+  country: Germany
+  address_in_source_list: 60308 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: westend_bank
+  name: Westend Bank AG
+  country: Germany
+  address_in_source_list: 60599 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: westpac_europe
+  name: Westpac Europe GmbH
+  country: Germany
+  address_in_source_list: 60325 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: wiesbadener_volksbank
+  name: Wiesbadener Volksbank eG
+  country: Germany
+  address_in_source_list: 65185 Wiesbaden
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: woori_bank_europe
+  name: Woori Bank Europe GmbH
+  country: Germany
+  address_in_source_list: 60308 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: ziraat_bank_international_aktiengesellschaft
+  name: ZIRAAT BANK INTERNATIONAL AKTIENGESELLSCHAFT
+  country: Germany
+  address_in_source_list: 60323 Frankfurt am Main
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: abcbank
+  name: abcbank GmbH
+  country: Germany
+  address_in_source_list: 50672 Köln
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: akf_bank_co_kg
+  name: akf bank GmbH & Co KG
+  country: Germany
+  address_in_source_list: 42277 Wuppertal
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: noa_bank_co_kg
+  name: noa bank GmbH & Co. KG
+  country: Germany
+  address_in_source_list: 40213 Düsseldorf
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified
+- id: norisbank
+  name: norisbank GmbH
+  country: Germany
+  address_in_source_list: 53113 Bonn
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified

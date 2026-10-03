@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workzag-jobs>
+  <position>
+    <id>1001</id><office>Frankfurt am Main</office><department>Finance &amp; Controlling</department>
+    <name>Head of Regulatory Reporting (m/w/d)</name>
+    <jobDescriptions><jobDescription><name>Aufgaben</name><value>&lt;p&gt;Fachliche und disziplinarische Führung eines Teams.&lt;/p&gt;</value></jobDescription></jobDescriptions>
+    <createdAt>2026-09-28T09:00:00+00:00</createdAt>
+  </position>
+  <position>
+    <id>1002</id><office>Wiesbaden</office><department>IT</department>
+    <name>Werkstudent Controlling (m/w/d)</name>
+    <jobDescriptions></jobDescriptions><createdAt>2026-09-20T09:00:00+00:00</createdAt>
+  </position>
+</workzag-jobs>
