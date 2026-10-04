@@ -295,8 +295,8 @@ banks:
   verification_status: failed
   last_verified: '2026-10-03'
   notes: 'Auto-disabled 2026-10-03: HTTPError: 403 Client Error: Forbidden for url: https://group.bnpparibas/en/careers/all-job-offers/germany
-    | URL supplied by user. Parser untested; if verify reports 0 jobs, locate the JSON endpoint behind the page and switch
-    to custom_api.'
+    | URL supplied by user. 2026-10-04: probe from GitHub Actions gets Akamai "Access Denied" (403); bnpparibas.de/karriere only
+    links to this same portal, no other official source found. Not circumvented. Also covers BNP Paribas Lease Group (Köln).'
 - id: banco_bilbao_vizcaya_argentaria_s_a_niederlassun
   name: Banco Bilbao Vizcaya Argentaria, S.A., Niederlassung Deutschland
   country: Germany
@@ -1428,10 +1428,10 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: needs_review
-  last_verified: null
-  notes: Global/official career portal exists but needs a Germany filter and adapter configuration before it can be enabled;
-    not tested.
+  verification_status: blocked_by_site
+  last_verified: '2026-10-04'
+  notes: 'higher.gs.com is closed to automated access: the probe is refused by robots.txt (even robots.txt itself is skipped).
+    Not circumvented. Left disabled; check the portal manually or provide an official feed.'
 - id: goldman_sachs_international_bank_zweigniederlass
   name: Goldman Sachs International Bank Zweigniederlassung Frankfurt
   country: Germany
@@ -4346,6 +4346,24 @@ banks:
   notes: 'Added at the user''s request; employer is the auditing association of the German private banks. rexx portal: vacancy
     links end in -de-j<number>.html (8 vacancies seen by a probe: IT Auditor, Prüfer, Quantitative Analyst, Wirtschaftsprüfer,
     ...). Unverified until a Verify run.'
+  options:
+    link_pattern: -j\d+\.html$
+    accept_unknown_location: true
+- id: deg_deutsche_investitions_und_entwicklungsgesellschaft
+  name: DEG - Deutsche Investitions- und Entwicklungsgesellschaft mbH
+  display_name: DEG (KfW Gruppe)
+  country: Germany
+  address_in_source_list: 50668 Köln (added by the user, not in the original list)
+  jobs_url: https://deginvest-recruiting.de/stellenangebote.html
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Added at the user''s request (www.deginvest.de/Karriere links to deginvest-recruiting.de). rexx portal, same layout
+    as DAL / Bank11: vacancy links end in -j<number>.html (probe saw 9 links on the front page). Unverified until a Verify run.'
   options:
     link_pattern: -j\d+\.html$
     accept_unknown_location: true
