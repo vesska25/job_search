@@ -278,6 +278,13 @@ filters:
     - Python
     - Mainframe
     - Secure Software
+    # IT operations / service roles (not wanted either)
+    - Application Manager
+    - Application Management
+    - Service Continuity
+    - Customer Relationship Manager
+    - Berechtigungen
+    - Berechtigungsmanagement
 
   # Rejected unless a STRONG leadership keyword is also in the title
   # ("Senior Specialist ..." is out; "Head of Expert Network" stays in).

@@ -222,3 +222,15 @@ def test_system_and_workflow_management_counts_as_function(settings, bank):
 def test_technical_exclusions_keep_soft_it(settings, bank, title, ok):
     from src.filters.pipeline import evaluate
     assert evaluate(make_job(bank, title, location="Frankfurt"), bank, settings).accepted is ok
+
+
+@pytest.mark.parametrize("title", [
+    "IT Application Manager (w/m/d) Schwerpunkt SDM",
+    "IT Service Continuity Manager (m/w/d)",
+    "IT Customer Relationship Manager*in",
+    "Teamleitung IT-Berechtigungen & Service Management (m/w/d)",
+    "Teamleitung (m/w/d) IT-Berechtigungsmanagement",
+])
+def test_it_operations_titles_are_excluded(settings, bank, title):
+    from src.filters.pipeline import evaluate
+    assert not evaluate(make_job(bank, title, location="Frankfurt"), bank, settings).accepted
