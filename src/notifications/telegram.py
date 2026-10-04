@@ -73,6 +73,8 @@ def _split(header: str, blocks: list[str]) -> list[str]:
             current = ""
         current += b
     messages.append(current)
+    if len(messages) > 1:     # label the parts so a missing one is noticed ("2/3" without "3/3")
+        messages = [f"<i>Part {i}/{len(messages)}</i>\n{m}" for i, m in enumerate(messages, 1)]
     return messages
 
 

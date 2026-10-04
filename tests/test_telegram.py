@@ -78,3 +78,16 @@ def test_send_test_digest_uses_stored_jobs_and_changes_nothing():
     n = send_test_digest(db, [SimpleNamespace(id="b1", label="Example Bank")], notifier)
     assert n == 1 and "TEST MESSAGE" in sent[0] and "Example Bank" in sent[0] and "Leiter Rechnungswesen" in sent[0]
     assert db.count() == 1 and db.conn.execute("SELECT notified FROM jobs").fetchone()[0] == 1
+
+
+def test_long_digest_is_split_into_labelled_parts_and_loses_no_vacancy():
+    import re
+
+    from src.models.job import Job
+    from src.notifications.telegram import format_digest
+    jobs = [Job(bank_id="b", bank_name=f"Bank {i}", title=f"Abteilungsleiter Risikomanagement {i} (m/w/d)",
+                url=f"https://example.com/jobs/{i}", location="Frankfurt am Main") for i in range(43)]
+    msgs = format_digest(jobs, max_jobs=150)
+    assert len(msgs) > 1 and all(f"Part {i}/{len(msgs)}" in m for i, m in enumerate(msgs, 1))
+    assert sum(len(re.findall(r"^\d+\. ", m, re.M)) for m in msgs) == 43
+    assert all(len(m) < 4096 for m in msgs)
