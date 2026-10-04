@@ -11,14 +11,26 @@ import re
 
 from src.utils.normalization import normalize_text
 
-_GENDER = re.compile(r"\((?:[mwdfxi*:/ _-]|gn|all genders){2,}\)|\b[mwdfx]\s*/\s*[mwdfx](?:\s*/\s*[mwdfx])?\b", re.I)
+_GENDER = re.compile(r"\((?:[mwdfxi*:/ _-]|gn|all genders)+\)|\b[mwdfx]\s*/\s*[mwdfx](?:\s*/\s*[mwdfx])?\b", re.I)
 _GENERIC = {"bank", "ag", "gmbh", "se", "eg", "kg", "co", "und", "via", "bundesagentur", "group", "gruppe", "the", "of"}
+
+
+_LEVEL_PREFIX = re.compile(r"^(?:(?:assistant |senior |executive |managing )?(?:vice president|director)|mid senior|senior director"
+                           r"|senior experienced professional|associate)\s+(?=\S)")
+_SUFFIX = re.compile(r"\s+(?:permanent|fixed[- ]term|interim|befristet|unbefristet)\b.*$")
 
 
 def norm_title(title: str) -> str:
     t = _GENDER.sub(" ", normalize_text(title))
+    t = _SUFFIX.sub("", t)
     t = re.sub(r"[*:]in\b", "", t)
-    return re.sub(r"[^a-z0-9äöüß]+", " ", t).strip()
+    t = re.sub(r"[^a-z0-9äöüß]+", " ", t).strip()
+    t = re.sub(r"leiter(?:in)?\b", "leitung", t)
+    while True:       # drop leading level labels ("Vice President Vice President - X"), keeping at least two words
+        stripped = _LEVEL_PREFIX.sub("", t, count=1)
+        if stripped == t or len(stripped.split()) < 2:
+            return t
+        t = stripped
 
 
 def norm_city(location: str) -> str:
@@ -29,6 +41,11 @@ def norm_city(location: str) -> str:
 def _employer_words(name: str) -> set:
     name = re.sub(r"\(via [^)]*\)", " ", normalize_text(name))
     return {w for w in re.findall(r"[a-zäöüß0-9]{3,}", name) if w not in _GENERIC}
+
+
+def _same_place(a, b) -> bool:
+    ca, cb = norm_city(a.location), norm_city(b.location)
+    return not ca or not cb or ca == cb               # an unknown city never contradicts a known one
 
 
 def _same_employer(agg, primary) -> bool:
@@ -42,13 +59,13 @@ def dedupe(jobs: list) -> list:
     primaries, kept, seen_agg = {}, [], {}
     for j in jobs:
         if not getattr(j, "aggregator", False):
-            primaries.setdefault((norm_title(j.title), norm_city(j.location)), []).append(j)
+            primaries.setdefault(norm_title(j.title), []).append(j)
     for j in jobs:
         if getattr(j, "aggregator", False):
-            key = (norm_title(j.title), norm_city(j.location))
-            if any(_same_employer(j, p) for p in primaries.get(key, [])):
+            key = norm_title(j.title)
+            if any(_same_place(j, p) and _same_employer(j, p) for p in primaries.get(key, [])):
                 continue
-            if any(_same_employer(j, o) and _same_employer(o, j) for o in seen_agg.get(key, [])):
+            if any(_same_place(j, o) and _same_employer(j, o) and _same_employer(o, j) for o in seen_agg.get(key, [])):
                 continue
             seen_agg.setdefault(key, []).append(j)
         kept.append(j)

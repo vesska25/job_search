@@ -536,3 +536,18 @@ def test_cross_source_dedup_primary_wins(bank):
     assert agg not in out and other in out                # same employer words -> dropped; different employer stays
     assert agency in out and agency2 not in out           # aggregators dedupe among themselves
     assert dup is not None
+
+
+def test_dedup_unknown_city_and_agency_title_noise(bank):
+    from src.dedup import dedupe
+    from tests.conftest import make_job
+
+    own = make_job(bank, "Abteilungsleiter (m/w/d) Informationssicherheit & Drittparteienrisikomanagement", location="")
+    agency = make_job(bank, "Mid-Senior Abteilungsleitung (m/w/d) Informationssicherheit & Drittparteienrisikomanagement Permanent", location="")
+    agency.aggregator = True
+    ba = make_job(bank, "IT-Service Continuity Manager (m/w/d)", location="Düsseldorf, NORDRHEIN_WESTFALEN")
+    ba.aggregator, ba.bank_name = True, "Deutsche WertpapierService Bank AG (via Bundesagentur)"
+    own2 = make_job(bank, "IT-Service Continuity Manager (m/w/d)", location="")
+    own2.bank_name = "Deutsche WertpapierService Bank AG"
+    out = dedupe([own, agency, own2, ba])
+    assert out == [own, own2]
