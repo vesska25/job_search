@@ -1,4 +1,4 @@
-БАНКИ ИЗ ВАШЕГО ФАЙЛА, КОТОРЫЕ НЕ ПОДКЛЮЧЕНЫ (Stand 2026-10-03)
+БАНКИ ИЗ ВАШЕГО ФАЙЛА, КОТОРЫЕ НЕ ПОДКЛЮЧЕНЫ (Stand 2026-10-04)
 ======================================================================
 
 Сайт блокирует автоматические запросы или запрещает их в robots.txt (не обходим) (2)
@@ -118,3 +118,11 @@
   [ ] Volks- Bau- und Sparverein Frankfurt am Main eingetragene Genossenschaft
   [ ] VR Smart Finanz Bank GmbH
   [ ] Woori Bank Europe GmbH
+
+Банки, которые вы просили подключить отдельно, и которые не подключены (2)
+----------------------------------------------------------------------
+  [ ] BNP Paribas (вместе с BNP PARIBAS LEASE GROUP, Köln): сайт отдаёт Akamai "Access Denied" (403) серверам GitHub Actions,
+      в браузере страница открывается. Решение только с вашего компьютера/сервера (self-hosted runner). Не обходим.
+  [ ] Goldman Sachs: robots.txt higher.gs.com запрещает всё, кроме /roles/. Не обходим.
+
+Подключены по вашей просьбе 2026-10-04: Union Investment (Beesite API), DEG, DAL, Prüfungsverband deutscher Banken.

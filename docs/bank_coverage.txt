@@ -1,9 +1,9 @@
 ÜBERSICHT: BANKEN AUS IHRER LISTE UND IHR STATUS IM MONITORING
-Stand: 2026-10-03   |   Quelle: config/banks.yaml (278 Einträge aus Ihrer Liste)
+Stand: 2026-10-04   |   Quelle: config/banks.yaml (278 Einträge aus Ihrer Liste)
 ==============================================================================
 
-Banken in Ihrer Liste ........................ 279
-  im Monitoring (aktiv, geprüft) ............. 117
+Banken in Ihrer Liste ........................ 283
+  im Monitoring (aktiv, geprüft) ............. 121
   Dubletten (durch anderen Eintrag abgedeckt)  17
   nicht aktiv, Quelle bekannt, aber Problem .. 57
   nicht aktiv, keine Quelle gefunden ......... 88
@@ -13,10 +13,10 @@ Einige Banken (PSD Hessen-Thüringen, Budenheimer Volksbank) haben aktuell keine
 ihr Aufbau ist daher noch nicht live bestätigt. Sie sind mit * markiert.
 
 ==============================================================================
-1. IM MONITORING (117)
+1. IM MONITORING (121)
 ==============================================================================
 
---- eigene Karriereseite / Helix Jobs / Check-In / stellen.center / Onlyfy  (44) ---
+--- eigene Karriereseite / Helix Jobs / Check-In / stellen.center / Onlyfy  (47) ---
   [x] Aareal Bank   (65189 Wiesbaden)
   [x] abcbank GmbH   (50672 Köln)
   [x] AKA Ausfuhrkredit-Gesellschaft mit beschränkter Haftung   (60311 Frankfurt am Main)
@@ -26,6 +26,8 @@ ihr Aufbau ist daher noch nicht live bestätigt. Sie sind mit * markiert.
   [x] Bank11 für Privatkunden und Handel GmbH   (41460 Neuss)
   [x] Budenheimer Volksbank eG *   (55257 Budenheim b Mainz)
   [x] CRONBANK Aktiengesellschaft   (63303 Dreieich)
+  [x] DAL Deutsche Anlagen-Leasing   (55116 Mainz (added by the user, not in the original list))
+  [x] DEG (KfW Gruppe)   (50668 Köln (added by the user, not in the original list))
   [x] Deutsche Börse Group   (65760 Eschborn, Taunus)
   [x] DZB BANK GmbH   (63533 Mainhausen)
   [x] FIB Frankfurt International Bank AG   (60329 Frankfurt am Main)
@@ -41,6 +43,7 @@ ihr Aufbau ist daher noch nicht live bestätigt. Sie sind mit * markiert.
   [x] ODDO BHF   (60329 Frankfurt am Main)
   [x] Pax-Bank eG   (50670 Köln)
   [x] ProCredit Bank AG   (60486 Frankfurt am Main)
+  [x] Prüfungsverband deutscher Banken   (Köln (added by the user, not in the original list; an auditing association of the banks, not a bank))
   [x] PSD Bank Hessen-Thüringen eG *   (65760 Eschborn, Taunus)
   [x] PSD Bank Rhein-Ruhr eG   (40210 Düsseldorf)
   [x] PSD Bank West eG   (50667 Köln)
@@ -145,9 +148,10 @@ ihr Aufbau ist daher noch nicht live bestätigt. Sie sind mit * markiert.
   [x] FIL Fondsbank GmbH   (61476 Kronberg im Taunus)
   [x] Santander Consumer Bank   (41061 Mönchengladbach)
 
---- BeeSite-API  (2) ---
+--- BeeSite-API  (3) ---
   [x] Commerzbank   (60311 Frankfurt am Main)
   [x] Deutsche Bank   (60325 Frankfurt am Main)
+  [x] Union Investment   (60329 Frankfurt am Main (added by the user, not in the original list))
 
 --- Softgarden  (2) ---
   [x] Deutsche WertpapierService Bank AG   (60487 Frankfurt am Main)
@@ -226,7 +230,7 @@ ihr Aufbau ist daher noch nicht live bestätigt. Sie sind mit * markiert.
   [ ] GLADBACHER BANK AG von 1922
         Grund: von Ihnen ausgeschlossen (zu klein / nicht von Interesse)
   [ ] Goldman Sachs
-        Grund: Karriereseite bekannt, globaler Anbieter, Adapter noch nicht eingerichtet
+        Grund: blocked_by_site
         Seite: https://higher.gs.com/
   [ ] Hüttenberger Bank eG
         Grund: Quelle liefert nichts / blockiert den automatischen Zugriff

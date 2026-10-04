@@ -4327,7 +4327,7 @@ banks:
   verification_status: ok
   last_verified: '2026-10-04'
   notes: 'Added at the user''s request (www.dal.de/de/karriere links to karriere.dal.de/stellenangebote.html). rexx portal,
-    same layout as Bank11 / SozialBank: vacancy links end in -j<number>.html. Unverified until a Verify run.'
+    same layout as Bank11 / SozialBank: vacancy links end in -j<number>.html. Verified 2026-10-04.'
   options:
     link_pattern: -j\d+\.html$
     accept_unknown_location: true
@@ -4384,7 +4384,7 @@ banks:
   last_verified: '2026-10-04'
   notes: Added at the user's request. Beesite Stellenmarkt portal; the vacancy list is loaded by JavaScript from the site's
     own public API (jobapi.union-investment.de/search, GET ?data=<json>, found by the user in browser DevTools). The user's
-    page filters PublicationChannel.Code=12 (38 hits at the time). Unverified until a Verify run.
+    page filters PublicationChannel.Code=12 (38 hits at the time). Verified 2026-10-04.
   options:
     api_url: https://jobapi.union-investment.de/search
     language: DE
