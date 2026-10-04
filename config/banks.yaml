@@ -4396,3 +4396,39 @@ banks:
       CriterionValue:
       - '12'
     accept_unknown_location: true
+- id: morgan_stanley
+  name: Morgan Stanley Europe SE
+  display_name: Morgan Stanley
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main (added by the user, not in the original list)
+  jobs_url: https://morganstanley.eightfold.ai/careers?source=mscom&start=0&pid=549800585340&sort_by=timestamp
+  source_type: custom_api
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Added at the user''s request. Eightfold PCSX career site. The older /api/apply/v2/jobs endpoint answers 403 "Not authorized
+    for PCSX" (not used); the career page itself loads its list from /api/pcsx/search, which returned JSON for location=Germany
+    in a probe (data.positions[]: id, name, locations, department, positionUrl). Unverified until a Verify run.'
+  options:
+    api_url: https://morganstanley.eightfold.ai/api/pcsx/search
+    params:
+      domain: morganstanley.com
+      query: ''
+      location: Germany
+      sort_by: timestamp
+    items_path: data.positions
+    fields:
+      title: name
+      id: id
+      location: locations
+      department: department
+    url_template: https://morganstanley.eightfold.ai/careers/job/{id}
+    pagination:
+      type: offset
+      param: start
+      size: 10
+      total_path: data.count
+      max_pages: 30
