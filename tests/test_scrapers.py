@@ -460,3 +460,14 @@ def test_sitemap_jobs_key_uses_query_when_id_is_in_query(bank):
              "https://jobs.kfw.de/index.php?ac=jobad&id=2": "<h1>Teamleiter (m/w/d) Risiko</h1>"}
     jobs = SitemapJobsScraper(_sm_http(pages)).fetch_jobs(bank)
     assert [j.job_id.split(":", 1)[1] for j in jobs] == ["ac=jobad&id=1", "ac=jobad&id=2"] and len({j.job_id for j in jobs}) == 2
+
+
+def test_custom_api_url_template_with_own_id_field(bank):
+    # Eightfold PCSX style: the item has its own 'id' and no url field -> url_template must not clash with it
+    bank.options = {"api_url": "https://x/api", "items_path": "data.positions",
+                    "fields": {"title": "name", "id": "id", "location": "locations", "department": "department"},
+                    "url_template": "https://x/careers/job/{id}"}
+    data = {"data": {"positions": [{"id": 549799566259, "name": "Treasury Capital Planning and Management - VP",
+                                    "locations": ["Frankfurt, Germany"], "department": "Corporate Treasury"}]}}
+    jobs = CustomApiScraper(None).parse(data, bank)
+    assert jobs[0].url == "https://x/careers/job/549799566259" and jobs[0].location == "Frankfurt, Germany"

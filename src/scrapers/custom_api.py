@@ -63,8 +63,8 @@ class CustomApiScraper(BaseScraper):
         jobs = []
         for it in items:
             title, jid = dig(it, f["title"]), dig(it, f["id"])
-            url = dig(it, f["url"]) or (o.get("url_template", "").format(id=jid, **{
-                k: v for k, v in it.items() if isinstance(v, (str, int))}) if o.get("url_template") else None)
+            url = dig(it, f["url"]) or (o["url_template"].format(**{
+                **{k: v for k, v in it.items() if isinstance(v, (str, int))}, "id": jid}) if o.get("url_template") else None)
             if not title or not url:
                 continue
             loc = dig(it, f["location"], "")
