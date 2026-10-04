@@ -126,6 +126,8 @@ def run(banks, settings, http, db, llm, stats: Stats, extra: dict | None = None,
                 log.error("Filtering failed for '%s' (%s): %s", job.title, bank.label, exc)
                 continue
             n_de += d.germany
+            if d.germany and not d.accepted:
+                log.debug("REJECT %s | %s | %s | %s", bank.label, job.title, job.location, d.reason)
             n_lead += d.leadership and d.germany
             n_rel += d.accepted
             if d.accepted and job.job_id not in seen_ids:
