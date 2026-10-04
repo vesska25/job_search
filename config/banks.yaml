@@ -4551,3 +4551,21 @@ banks:
     aggregator: true
     accept_unknown_location: true
     link_pattern: /jobs/\d+$
+
+- id: wibank_hessen
+  name: Wirtschafts- und Infrastrukturbank Hessen (WIBank)
+  display_name: WIBank
+  country: Germany
+  address_in_source_list: Wiesbaden (added by the user, not in the original list; a legally dependent institution within Helaba)
+  jobs_url: https://www.wibank.de/wibank/diewibank/karriere
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Added at the user''s request. Vacancies are server-rendered links /wibank/diewibank/karriere/<title>-2026-NNN--<id>
+    on the career page. Wiesbaden employer, so germany_only. Unverified until a run confirms the parse.'
+  options:
+    link_pattern: /wibank/diewibank/karriere/[^/]+-\d{4}-\d+--\d+$
