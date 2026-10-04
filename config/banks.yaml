@@ -67,7 +67,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Found by a web search and a probe of the page; unverified until a Verify run. Job profile pages listed in the career
     menu (a.ce-menu-subpages__item__title, title attribute).
   options:
@@ -111,7 +111,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'Onlyfy (Prescreen) career site aareal-bank-group.onlyfy.jobs linked from aareal-bank.com; vacancy links /de/job/<id>.
     Not germany_only: the group has foreign offices, the location filter decides. Run Verify to confirm. | Fix 2026-10-03:
     the list has no location, so unknown locations are accepted (the first dry run dropped all 10 vacancies as "not Germany").'
@@ -145,7 +145,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: URL supplied by user. Personio XML feed verified live 2026-10-03 (returned vacancies).
 - id: alpen_privatbank_zweigniederlassung_deutschland
   name: Alpen Privatbank Aktiengesellschaft, Zweigniederlassung Deutschland
@@ -158,7 +158,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Career page supplied by the user; vacancy links /karriere/<title>-m/w/d-standort-<city> (Düsseldorf), confirmed by
     a probe. Title falls back to the URL slug when the link has no text. Unverified until a Verify run.
   options:
@@ -243,7 +243,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Own career page (Next.js, server-rendered list, robots.txt allows). Job links /karriere/offene-stellen/<slug>; link
     text = city line then title line. Selector from diagnosis, text_lines split not yet confirmed by a full run.
   display_name: Metzler
@@ -295,8 +295,9 @@ banks:
   verification_status: failed
   last_verified: '2026-10-03'
   notes: 'Auto-disabled 2026-10-03: HTTPError: 403 Client Error: Forbidden for url: https://group.bnpparibas/en/careers/all-job-offers/germany
-    | URL supplied by user. 2026-10-04: probe from GitHub Actions gets Akamai "Access Denied" (403); bnpparibas.de/karriere only
-    links to this same portal, no other official source found. Not circumvented. Also covers BNP Paribas Lease Group (Köln).'
+    | URL supplied by user. 2026-10-04: probe from GitHub Actions gets Akamai "Access Denied" (403); bnpparibas.de/karriere
+    only links to this same portal, no other official source found. Not circumvented. Also covers BNP Paribas Lease Group
+    (Köln).'
 - id: banco_bilbao_vizcaya_argentaria_s_a_niederlassun
   name: Banco Bilbao Vizcaya Argentaria, S.A., Niederlassung Deutschland
   country: Germany
@@ -362,7 +363,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Workday site supplied by the user (tenant juliusbaer, site External). Group-wide list, searched for Frankfurt; the
     location filter makes the final Germany check. Unverified until a Verify run.
   options:
@@ -425,7 +426,7 @@ banks:
       max_pages: 25
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Official careers JSON servlet (global list, country filter parameter is ignored by the server), filtered by the item
     country field. Earlier run failed because of an adapter bug (fixed); awaiting a verified run.
 - id: bank_of_communications_co_ltd_frankfurt_branch
@@ -478,7 +479,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'Found by user link and a probe of the page; unverified until a Verify run. rexx portal: vacancy links end in -j<number>.html. '
   options:
     link_pattern: /karriere/[^/?#]+-j\d+\.html$
@@ -569,7 +570,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'CHECK-IN portal vr.mein-check-in.de/55061303 (URL supplied by the user; 55061303 assumed to be the BLZ of this bank,
     check the sample titles in the Verify log). Vacancies are a.mainmenu_position_link on the index page. Run Verify to confirm.
     | Checked 2026-10-03: the page loads but lists no vacancies at the moment, so the selectors are unproven for this bank;
@@ -669,7 +670,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: BeeSite API found in the career site script (api-jobs.commerzbank.com/search). Request format taken from DB/Commerzbank
     page scripts; not yet verified by a full run. Germany filtering is client-side on city names (location filter).
   options:
@@ -689,7 +690,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Found by a web search (agent report, page itself not fetched); unverified until a Verify run. CHECK-IN portal; same
     selector as the verified Check-In banks.
   options:
@@ -760,7 +761,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Radancy site jobs.citi.com. robots.txt forbids /search-jobs/ (not used), but allows the vacancy pages and sitemap.xml.
     The sitemap lists every Citi vacancy worldwide as /job/<city>/<title>/287/<id>; only German cities are fetched (URL filter),
     so a vacancy in a German city that is missing from the regex would be missed. Run Verify to confirm.
@@ -793,7 +794,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Group portal for Deutsche Börse AG, Clearstream and Eurex Clearing (one source, no duplicate monitoring). List has
     titles only; for jobs passing the seniority/function filter the city is read from the vacancy page <title> ("... (Frankfurt
     am Main) › Deutsche Börse Group"). Jobs also in Prague/Luxembourg/Cork are rejected by the Germany filter. Not yet confirmed
@@ -868,7 +869,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Own career portal (Next.js, robots.txt allows). Only the first page (~16 most recent of ~160 jobs) is present in
     the HTML; ?page=N returns the same page, so the list is read without pagination. Enough to catch NEW jobs weekly unless
     >16 appear in one week. Germany filter is client-side on city.
@@ -890,7 +891,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: BeeSite API found in careers.db.com jobplatform.js (api-deutschebank.beesite.de/search, GET ?data=<json>). Not yet
     verified by a full run. Germany filtering is client-side on city names; a server-side country criterion can be added via
     options.criteria once its id is known.
@@ -924,7 +925,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: SAP SuccessFactors career site jobs.dzbank.de (vacancy URLs /job/<city>-<title>/<id> seen in search results). Run
     Verify to confirm.
   display_name: DZ BANK
@@ -940,7 +941,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Vacancies are on the ANWR GROUP portal (URL supplied by the user), a rexx portal shared by the whole group; only
     links whose slug starts with "DZB-" are taken, so jobs of DZB posted without that prefix are missed. robots.txt of the
     portal only blocks generic HTTP libraries by name; the project uses its own User-Agent. Unverified until a Verify run.
@@ -1025,7 +1026,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Career portal of Deutsche Leasing (group portal, example vacancy supplied by the user). robots.txt allows all and
     names sitemap.xml; every vacancy page /offer/<slug>/<uuid> has schema.org JobPosting JSON-LD (confirmed by a probe). The
     portal covers the Deutsche Leasing group, not only the Finance GmbH. Unverified until a Verify run.
@@ -1057,7 +1058,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: softgarden vacancy page found in the career page source (https://www.dwpbank.de/karriere/professionals/). Adapter
     parse unverified; Germany-only employer (Frankfurt/Münster sites).
 - id: etris_bank
@@ -1191,7 +1192,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'Career page supplied by the user: the Open Positions section links to PDF job ads (…Recruiting_Stellenanzeige….pdf)
     with the job title as link text; confirmed by a probe. Only vacancies published as PDF there are seen. Unverified until
     a Verify run.'
@@ -1210,7 +1211,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'Workday site of Fidelity International (URL supplied by the user: tenant fil, site 001, search text FFB = FIL Fondsbank,
     country facet = Germany). Unverified until a Verify run.'
   options:
@@ -1286,7 +1287,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Personio source found by discovery (slug matches company name); identity and feed not yet confirmed. Run Verify to
     confirm.
 - id: frankfurter_sparkasse
@@ -1300,7 +1301,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange; JSON API sparkasse.de/api/job-market/jobs/search filtered by bankCode (BLZ 50050201, taken
     from the bank's exchange page). Run Verify to confirm.
   display_name: Frankfurter Sparkasse
@@ -1317,7 +1318,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Helix Jobs (helixjobs.com) vacancy list; job links /_/jobad?prj=<id>. URL frankfurter-volksbank.helixjobs.com/_/joblist
     found in the bank career page; robots.txt of helixjobs.com still to be confirmed by the run. Germany-only employer. Not
     yet confirmed by a full run.
@@ -1337,7 +1338,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Own career page (URL from the user); server-rendered tiles with PDF ads (no per-job URL). Run Verify to confirm.
   options:
     selectors:
@@ -1368,7 +1369,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'Career page https://www.genobroker.de/karriere.html (user-supplied). Server-rendered accordion: job titles are in
     the HTML as <details><summary class="cms-title">; no per-job links, so each job gets ?job=<slug> as identity. robots.txt
     allows the page. Selectors from diagnosis, not yet verified by a full run.'
@@ -1470,7 +1471,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: HSBC career portal (Eightfold; URL supplied by the user). Public JSON API /api/apply/v2/jobs with location=Germany
     confirmed by a probe (position names and ids returned); field names location/canonicalPositionUrl follow the Eightfold
     format and are unproven until a Verify run.
@@ -1518,7 +1519,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Guidecom job portal "hal-administration" (embedded in hauck-aufhaeuser.com/karriere/stellenanzeigen/, user-supplied).
     List page allowed by robots.txt (the /rss endpoint returned an empty body). The list and detail pages carry no location,
     so jobs without a location are accepted (accept_unknown_location); a known foreign location would still be rejected. Group
@@ -1596,7 +1597,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Public softgarden vacancy page (company slug ikb-services, found in the IKB career page widget config; softgarden
     robots.txt allows /de/vacancies but disallows /api/, so the widget API is NOT used). German employer (Düsseldorf). Not
     yet confirmed by a full run.
@@ -1613,7 +1614,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: careers.ing.com Frankfurt list (URL from the user; ing.de itself is unreachable from the runners). Server-rendered,
     vacancy links /de/stellenbeschreibung/<city>/<slug>/<n>/<id>. Pagination parameter "pg" is a guess; if it is ignored the
     scraper stops at the first page (about 10 of ~30 vacancies). Run Verify to confirm.
@@ -1674,7 +1675,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Search URL supplied by the user (SuccessFactors/Jobs2web, locationsearch=frankfurt); the earlier sitemap attempt
     returned no URLs. Unverified until a Verify run.
   options:
@@ -1783,7 +1784,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: The KfW job board jobs.kfw.de (milch & zucker) fills its result list with JavaScript, but every vacancy (index.php?ac=jobad&id=N)
     is listed in sitemap.xml (named in robots.txt). One portal for the whole KfW group, so this entry covers KfW itself and
     IPEX-Bank. Title and location are read from the vacancy page; unknown locations are accepted. Run Verify to confirm.
@@ -1832,7 +1833,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 57751310, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -1848,7 +1849,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 30150200, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -1864,7 +1865,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 38250110, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -1880,7 +1881,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 50750094, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -1896,7 +1897,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 50852553, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -1912,7 +1913,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 31251220, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -1928,7 +1929,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Helix Jobs (helixjobs.com) vacancy list; job links /_/jobad?prj=<id>. List embedded in the bank site https://www.ksk-koeln.de/de/home/karriere/stellenangebote.html
     (robots.txt allows; only /*?sp* and /*.webview.html are disallowed). Germany-only employer. Not yet confirmed by a full
     run.
@@ -1964,7 +1965,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Own career page (URL from the user); server-rendered list, vacancy links /de/karriere/stellenangebote/<slug>.php.
     No location in the list, so unknown locations are accepted (foreign branches like London/New York are possible). Pagination
     of the list not checked. Run Verify to confirm.
@@ -1997,7 +1998,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Vacancies are embedded from Umantis (Abacus). Using the public list page /Jobs/1 (robots.txt allows; the /VacanciesIntraxData/
     endpoint is disallowed and not used). Frankfurt employer, so germany_only. Parse not yet confirmed by a full run.
   display_name: Rentenbank
@@ -2131,7 +2132,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Mizuho EMEA career site (SuccessFactors / Jobs2web; search URL supplied by the user). Group-wide EMEA list read without
     a location filter, so the monitor location filter makes the Germany check. Unverified until a Verify run.
   options:
@@ -2188,7 +2189,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: SAP SuccessFactors career site (karriere.nrwbank.de, robots.txt allows /search/). Germany-only employer. Earlier
     failure was an adapter bug (empty page 2 treated as error), fixed; re-enabled for re-verification.
   display_name: NRW.BANK
@@ -2203,7 +2204,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Own job exchange https://www.naspa.de/jobs (server-rendered list; links /naspa/position-<id>; robots.txt allows).
     City is the "in <City>" suffix of the title. Germany-only employer. Parse not yet confirmed by a full run.
   display_name: Naspa
@@ -2303,7 +2304,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'Vacancies are an iframe from the Altays recruiting service (recrutement.altays-progiciels.com/oddo/de/) embedded
     in oddo-bhf.com/de/entdecken-sie-unsere-jobs/. The list page itself loads /oddo/de/offres.html (HTML fragment of li.jobs__detail
     cards, ?page=N); robots.txt of the service: none (404). Card badge 2 = country ("Deutschland"); jobs of other countries
@@ -2408,7 +2409,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'Helix Jobs vacancy list (psdbank-ht.helixjobs.com), URL supplied by the user from the bank''s own career page. Run
     Verify to confirm. | Checked 2026-10-03: the page loads but lists no vacancies at the moment, so the selectors are unproven
     for this bank; same platform and selectors are verified on other banks. Kept enabled with allow_empty.'
@@ -2428,7 +2429,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: stellen.center career portal (psd-rr.stellen.center), URL supplied by the user; server-rendered list, vacancy links
     look like /<9-char id>/<title-slug>. Run Verify to confirm.
   options:
@@ -2445,7 +2446,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: stellen.center career portal (psd-west.stellen.center), URL supplied by the user; server-rendered list, vacancy links
     look like /<9-char id>/<title-slug>. Run Verify to confirm.
   options:
@@ -2462,7 +2463,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: CHECK-IN portal (vr.mein-check-in.de/pax-bkc), URL supplied by the user; static HTML, vacancies are a.mainmenu_position_link;
     the list carries no location, Cologne-based bank. Run Verify to confirm.
   options:
@@ -2506,7 +2507,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Found by a web search and a probe of the page; unverified until a Verify run. Vacancy links a.job-entry__link (title
     taken from the URL slug).
   options:
@@ -2580,7 +2581,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Own career page (URL from the user); server-rendered, each vacancy is an h2.cms-title with a PDF ad (no per-job URL).
     Run Verify to confirm.
   options:
@@ -2599,7 +2600,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
     sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
   options:
@@ -2615,7 +2616,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
     sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
   options:
@@ -2631,7 +2632,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
     sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
   options:
@@ -2662,7 +2663,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not
     fetched); unverified until a Verify run. '
   options:
@@ -2693,7 +2694,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
     sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
   options:
@@ -2709,7 +2710,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Greenhouse board of the Raisin group (URL supplied by the user); public JSON API boards-api.greenhouse.io/v1/boards/raisin/jobs
     confirmed by a probe. Group-wide list, so the location filter applies. Unverified until a Verify run.
   options:
@@ -2758,7 +2759,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 55350010, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -2813,7 +2814,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: SMBC EMEA career site (SuccessFactors / Jobs2web; search URL supplied by the user, locationsearch=frankfurt). Unverified
     until a Verify run.
   options:
@@ -2831,7 +2832,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 50650023, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -2860,7 +2861,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Workday career site linked from santander.de/karriere (santander.wd3.myworkdayjobs.com/de-DE/SantanderCareers). The
     tenant is group-wide, so the search is limited to the bank's seat Mönchengladbach; other German locations of the group
     would be missed. Run Verify to confirm.
@@ -2906,7 +2907,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'Found by user link and a probe of the page; unverified until a Verify run. rexx portal: vacancy links end in -j<number>.html.
     Same platform as Bank11; table was empty in the probe, so unproven.'
   options:
@@ -2954,7 +2955,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Helix Jobs vacancy list (sparda-sw.helixjobs.com); link found on the bank's own career page / its vr.de vacancy pages.
     Run Verify to confirm.
   options:
@@ -2972,7 +2973,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Helix Jobs vacancy list (sparda-west.helixjobs.com), URL supplied by the user from the bank's own career page. Run
     Verify to confirm.
   options:
@@ -2990,7 +2991,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 79550000, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -3006,7 +3007,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 50950068, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -3036,7 +3037,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 39550110, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -3052,7 +3053,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 38450000, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -3068,7 +3069,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 33450000, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -3084,7 +3085,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Career portal karriere.sparkasse-koelnbonn.de (WordPress, server-rendered, robots.txt allows). Cards div.job__item
     with h3 title and a.button link. Germany-only employer. Includes initiative applications (filtered out by the keyword
     filters). Not yet confirmed by a full run.
@@ -3105,7 +3106,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Own career portal on HRpuls (URL supplied by the user; not on the Sparkassen exchange API, so no BLZ needed). Vacancy
     links job-offer-list/job-detail/<title>-<id>.html are server-rendered; robots.txt allows them. Unverified until a Verify
     run.
@@ -3124,7 +3125,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 37551440, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -3141,7 +3142,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 30550000, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -3157,7 +3158,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 51850079, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -3173,7 +3174,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 45451555, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -3189,7 +3190,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 50850150, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -3205,7 +3206,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 30351220, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -3221,7 +3222,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 37551780, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -3237,7 +3238,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 34250000, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -3253,7 +3254,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Career portal karriere.sskduesseldorf.de/job-search (server-rendered; ?page=N linked in the HTML; robots.txt disallows
     only /api/). Job links /job-search/<slug>-<uuid>, title in h4. Germany-only employer. Not yet confirmed by a full run.
   display_name: Stadtsparkasse Düsseldorf
@@ -3275,7 +3276,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 31050000, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -3291,7 +3292,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 34050000, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -3323,7 +3324,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 33050000, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -3340,7 +3341,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Official Jobs2web sitemap (the /search and /go pages render the list with JavaScript). Vacancy URLs start with the
     city, so only German cities are fetched; unverified until a run.
   options:
@@ -3397,7 +3398,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Sparkassen job exchange (JSON API filtered by bankCode 50550020, from the exchange's own client list). Covers vacancies
     the bank publishes on the exchange. Run Verify to confirm.
   options:
@@ -3427,7 +3428,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Career page supplied by the user; vacancy teasers a.teaser-feature__link with the title in the title attribute and
     links /karriere/stellenangebote/<slug>, confirmed by a probe. Unverified until a Verify run.
   options:
@@ -3459,7 +3460,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: The list on jobs.targobank.de is loaded by JavaScript, but every vacancy is a WordPress job_offer page listed in
     job_offer-sitemap.xml (robots.txt allows it); title and city come from the page JSON-LD. Training, internships and student
     jobs are skipped by URL. Run Verify to confirm.
@@ -3480,7 +3481,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Found by a web search and a probe of the page; unverified until a Verify run. Jobs2web category page, links a.jobTitle-link
     (first page only).
   options:
@@ -3498,7 +3499,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Helix Jobs (helixjobs.com) vacancy list; job links /_/jobad?prj=<id>. URL taunussparkasse.helixjobs.com/_/joblist
     found in the bank career page; robots.txt of helixjobs.com still to be confirmed by the run. Germany-only employer. Not
     yet confirmed by a full run.
@@ -3543,7 +3544,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'BNY career site on Oracle Cloud HCM (URL supplied by the user). Public REST list; the vacancy list is only returned
     with expand=requisitionList.workLocation (confirmed by a probe: Id/Title/PostedDate/PrimaryLocation, 20 Germany vacancies).
     First attempt failed without expand. Vacancy URL pattern assumed from the site layout; unverified until a Verify run.'
@@ -3641,7 +3642,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Own career page (the user supplied voba-seligenstadt.de/.../stellenangebote.html, which lists no vacancies and links
     to this page). Same CMS and selector as Volksbank Mainspitze (verified live). The bank has no vacancies at the moment,
     so the setup is unproven for this bank; enabled with allow_empty.
@@ -3661,7 +3662,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
     sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
   options:
@@ -3677,7 +3678,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Helix Jobs vacancy list (vobadreieich.helixjobs.com), URL supplied by the user from the bank's own career page. Run
     Verify to confirm.
   options:
@@ -3695,7 +3696,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
     sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
   options:
@@ -3711,7 +3712,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not
     fetched); unverified until a Verify run. '
   options:
@@ -3728,7 +3729,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not
     fetched); unverified until a Verify run. '
   options:
@@ -3744,7 +3745,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
     sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
   options:
@@ -3773,7 +3774,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Helix Jobs vacancy list (vrbank-brs.helixjobs.com), URL supplied by the user from the bank's own career page. Run
     Verify to confirm.
   options:
@@ -3804,7 +3805,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not
     fetched); unverified until a Verify run. '
   options:
@@ -3821,7 +3822,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Found by a web search (agent report, page itself not fetched); unverified until a Verify run. Personio feed of the
     Frankfurt branch.
 - id: vnesheconombank_bank_fur_entwicklung_und_auenwir
@@ -3863,7 +3864,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
     sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
   options:
@@ -3894,7 +3895,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
     sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
   options:
@@ -3910,7 +3911,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
     sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
   options:
@@ -3927,7 +3928,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
     sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
   options:
@@ -3959,7 +3960,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
     sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
   options:
@@ -3975,7 +3976,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: VR exchange (vr.de); the sitemap still listed an expired 2022 vacancy (404), expired pages are now skipped. Run Verify
     to confirm.
   options:
@@ -4006,7 +4007,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
     sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
   options:
@@ -4022,7 +4023,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Helix Jobs (helixjobs.com) vacancy list; job links /_/jobad?prj=<id>. URL volksbank-koeln-bonn.helixjobs.com/_/joblist
     found in the bank career page; robots.txt of helixjobs.com still to be confirmed by the run. Germany-only employer. Not
     yet confirmed by a full run.
@@ -4040,7 +4041,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Own career page (URL from the user); server-rendered, vacancies are links below /karriere/arbeitgeber-genossenschaftsbank/.
     Run Verify to confirm.
   options:
@@ -4058,7 +4059,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
     sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
   options:
@@ -4089,7 +4090,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
     sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
   options:
@@ -4105,7 +4106,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
     sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
   options:
@@ -4137,7 +4138,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: 'Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs): vacancies are found through the exchange
     sitemap by the bank name in the URL, details come from JSON-LD. Run Verify to confirm.'
   options:
@@ -4192,7 +4193,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Helix Jobs vacancy list (wvb.helixjobs.com); link found on the bank's own career page / its vr.de vacancy pages.
     Run Verify to confirm.
   options:
@@ -4236,7 +4237,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Found by a web search / user link and a probe of the page; unverified until a Verify run. Job cards a.job-list-item,
     title read from the title attribute.
   options:
@@ -4256,7 +4257,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Page supplied by the user lists links to the Vorwerk group portal jobs.vorwerkgroup.com/akf/job/<city>-<title>/<id>/
     (confirmed by a probe); the link has no text, so the title is taken from the URL slug (city and postcode may remain in
     it). Unverified until a Verify run.
@@ -4303,7 +4304,7 @@ banks:
   location_filter: []
   enabled: true
   verification_status: ok
-  last_verified: '2026-10-03'
+  last_verified: '2026-10-04'
   notes: Added at the user's request. Official portal karriere.deka.de (linked from dekabank.de/karriere); robots.txt blocks
     only service paths. Treated as SAP SuccessFactors/Jobs2web (standard /search/ list); the format is unproven until a Verify
     run. Group-wide list, the location filter makes the Germany check. Location text is not recognised by the parser (0 of
@@ -4323,8 +4324,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-04'
   notes: 'Added at the user''s request (www.dal.de/de/karriere links to karriere.dal.de/stellenangebote.html). rexx portal,
     same layout as Bank11 / SozialBank: vacancy links end in -j<number>.html. Unverified until a Verify run.'
   options:
@@ -4341,8 +4342,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-04'
   notes: 'Added at the user''s request; employer is the auditing association of the German private banks. rexx portal: vacancy
     links end in -de-j<number>.html (8 vacancies seen by a probe: IT Auditor, Prüfer, Quantitative Analyst, Wirtschaftsprüfer,
     ...). Unverified until a Verify run.'
@@ -4360,10 +4361,11 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-04'
   notes: 'Added at the user''s request (www.deginvest.de/Karriere links to deginvest-recruiting.de). rexx portal, same layout
-    as DAL / Bank11: vacancy links end in -j<number>.html (probe saw 9 links on the front page). Unverified until a Verify run.'
+    as DAL / Bank11: vacancy links end in -j<number>.html (probe saw 9 links on the front page). Unverified until a Verify
+    run.'
   options:
     link_pattern: -j\d+\.html$
     accept_unknown_location: true
@@ -4380,7 +4382,7 @@ banks:
   enabled: false
   verification_status: no_source_found
   last_verified: '2026-10-04'
-  notes: 'Added at the user''s request. Beesite Stellenmarkt portal (milch & zucker): the result page is a shell, the vacancy list
-    is loaded by JavaScript (js-gjb-hits shows 0 in the static HTML, no vacancy links). assets/js/jobboard.config.json holds only
-    widget settings (map tiles), no search endpoint. Left disabled until the XHR URL that returns the list is known (browser
-    DevTools, Network, Fetch/XHR).'
+  notes: 'Added at the user''s request. Beesite Stellenmarkt portal (milch & zucker): the result page is a shell, the vacancy
+    list is loaded by JavaScript (js-gjb-hits shows 0 in the static HTML, no vacancy links). assets/js/jobboard.config.json
+    holds only widget settings (map tiles), no search endpoint. Left disabled until the XHR URL that returns the list is known
+    (browser DevTools, Network, Fetch/XHR).'
