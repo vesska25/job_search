@@ -14,6 +14,7 @@ from dataclasses import dataclass, replace
 from pathlib import Path
 
 from src.config import CONFIG_DIR, ROOT, Bank, env, load_banks, load_settings
+from src.dedup import dedupe
 from src.filters.llm import LlmClassifier
 from src.filters.pipeline import evaluate
 from src.filters.profile import evaluate_keywords
@@ -98,6 +99,9 @@ def run(banks, settings, http, db, llm, stats: Stats, extra: dict | None = None,
             continue
         stats.successful += 1
         log.info("Found %d vacancies", len(jobs))
+        if bank.options.get("aggregator"):
+            for job in jobs:
+                job.aggregator = True
         n_de = n_lead = n_rel = 0
         for job in jobs:
             for pname, pcfg in profiles.items():
@@ -147,6 +151,12 @@ def run(banks, settings, http, db, llm, stats: Stats, extra: dict | None = None,
     for name, (with_tech, junior) in funnel.items():
         log.info("Profile %s funnel: %d Germany vacancies with a technology term in the title, %d of them junior-level",
                  name, with_tech, junior)
+    before = len(matches)
+    matches = dedupe(matches)
+    for name in list(extra):
+        extra[name] = dedupe(extra[name])
+    if before != len(matches):
+        log.info("Cross-source duplicates removed: %d", before - len(matches))
     return matches
 
 

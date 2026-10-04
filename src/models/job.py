@@ -24,6 +24,7 @@ class Job:
     # filled in by the filter pipeline
     matched_functions: list = field(default_factory=list)
     borderline: bool = False
+    aggregator: bool = False  # posted by a job board / agency, not by the bank itself (see src/dedup.py)
 
     @property
     def canonical_url(self) -> str:

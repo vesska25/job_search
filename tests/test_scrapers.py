@@ -515,3 +515,24 @@ def test_bundesagentur_parse_and_pagination(bank):
     assert jobs[0].bank_name == "Beispiel Bank AG (via Bundesagentur)" and jobs[0].location == "Frankfurt am Main, Hessen"
     params, headers = FakeHttp.calls[0]
     assert params["branche"] == 6 and params["wo"] == "Köln" and headers["X-API-Key"] == "jobboerse-jobsuche"
+
+
+def test_cross_source_dedup_primary_wins(bank):
+    from src.dedup import dedupe
+    from tests.conftest import make_job
+
+    own = make_job(bank, "Abteilungsleiter ICAAP & Adressausfallrisiken (m/w/d)", location="Hanau")
+    own.bank_name = "Frankfurter Volksbank"
+    dup = make_job(bank, "Abteilungsleiter (m/w/d) ICAAP & Adressausfallrisiken", location="Hanau, HESSEN")
+    agg = make_job(bank, "Abteilungsleiter ICAAP & Adressausfallrisiken (w/m/d)", location="Hanau, HESSEN")
+    agg.aggregator, agg.bank_name = True, "Frankfurter Volksbank Rhein/Main eG (via Bundesagentur)"
+    other = make_job(bank, "Abteilungsleiter ICAAP & Adressausfallrisiken (m/w/d)", location="Hanau")
+    other.aggregator, other.bank_name = True, "Andere Sparkasse (via Bundesagentur)"
+    agency = make_job(bank, "Head of Risk", location="Frankfurt am Main")
+    agency.aggregator = True
+    agency2 = make_job(bank, "Head of Risk (m/w/d)", location="Frankfurt")
+    agency2.aggregator = True
+    out = dedupe([own, agg, other, agency, agency2])
+    assert agg not in out and other in out                # same employer words -> dropped; different employer stays
+    assert agency in out and agency2 not in out           # aggregators dedupe among themselves
+    assert dup is not None

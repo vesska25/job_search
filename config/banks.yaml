@@ -4452,6 +4452,7 @@ banks:
     (mandate-sitemap.xml) lists every position page /executive-positions/<slug>/, which the sitemap_jobs adapter reads. Unverified
     until a Verify run.'
   options:
+    aggregator: true
     sitemap_url: https://ifp-online.com/mandate-sitemap.xml
     url_regex: /executive-positions/[^/]+/?$
     detail: true
@@ -4519,6 +4520,7 @@ banks:
     Main, Düsseldorf, Köln within 30 km, one query per leadership search word. Includes insurers/real-estate employers; the
     normal filters then apply. Unverified until a Verify run.'
   options:
+    aggregator: true
     branche: 6
     size: 100
     max_pages: 3
