@@ -4638,12 +4638,14 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: true
-  verification_status: unverified
+  enabled: false
+  verification_status: needs_review
   last_verified: null
   notes: 'Back office of the Sparkassen. www.dsgf.de sends an incomplete TLS chain (wrong intermediate); fixed client-side by the
-    public Sectigo DV R36 intermediate in config/ca (verification stays on). Vacancies are listed on /karriere/stellenangebote/ (check-in portal embedded under www.dsgf.de), job pages
-    /dsgf/x/stellenangebote/<id> (found by probe; vr.mein-check-in.de/dsgf returns 404). Unverified until a dry-run.'
+    public Sectigo DV R36 intermediate in config/ca (verification stays on). /karriere/stellenangebote/ lists only job categories
+    (Marktfolge Aktiv, Zentralfunktionen, ...); each category opens through a POST form (/dsgf/start, form-<id>) of a stateful
+    application, the category URLs /dsgf/x/stellenangebote/<id> return 404 on GET. Disabled: individual vacancies are not reachable
+    with a plain GET; needs a manual look at the form flow.'
   options:
     link_pattern: /dsgf/x/stellenangebote/\d+
     accept_unknown_location: true
