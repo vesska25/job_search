@@ -2815,12 +2815,13 @@ banks:
   enabled: true
   verification_status: ok
   last_verified: '2026-10-04'
-  notes: SMBC EMEA career site (SuccessFactors / Jobs2web; search URL supplied by the user, locationsearch=frankfurt). Unverified
-    until a Verify run.
+  notes: SMBC EMEA career site (SuccessFactors / Jobs2web; search URL supplied by the user, locationsearch=frankfurt). The list has no
+    location field, so accept_unknown_location is on (the search is already limited to Frankfurt).
   options:
     params:
       locationsearch: frankfurt
     max_pages: 10
+    accept_unknown_location: true
 - id: sparkasse_hanau
   name: SPARKASSE HANAU
   country: Germany
