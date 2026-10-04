@@ -471,3 +471,10 @@ def test_custom_api_url_template_with_own_id_field(bank):
                                     "locations": ["Frankfurt, Germany"], "department": "Corporate Treasury"}]}}
     jobs = CustomApiScraper(None).parse(data, bank)
     assert jobs[0].url == "https://x/careers/job/549799566259" and jobs[0].location == "Frankfurt, Germany"
+
+
+def test_successfactors_city_from_url():
+    from src.scrapers.successfactors import city_from_url
+    assert city_from_url("https://careersemea.smbcgroup.com/job/Frankfurt-Director-Finance-and-Regulatory-Reporting-Technology-Lead-%28mwd%29-HE-60311/1412998233/") == "Frankfurt"
+    assert city_from_url("https://x.example/job/London-Loans-Trading-Executive-Director-EC2/1555555555/") == "London"
+    assert city_from_url("https://x.example/search/") == ""

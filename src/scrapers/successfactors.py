@@ -10,6 +10,13 @@ from src.config import Bank
 from src.scrapers.base import BaseScraper, ScraperError
 
 
+def city_from_url(href: str) -> str:
+    """Jobs2web vacancy URLs are /job/<City>-<Title>-<postal code>/<id>: the first word of the slug is the city.
+    Used only when the listing itself shows no location (e.g. SMBC, Mizuho)."""
+    m = re.search(r"/job/([^/]+)/\d{5,}", href)
+    return m.group(1).split("-")[0] if m else ""
+
+
 class SuccessFactorsScraper(BaseScraper):
     source_type = "successfactors"
     page_size = 25
@@ -69,7 +76,7 @@ class SuccessFactorsScraper(BaseScraper):
             date = row.select_one(".jobDate")
             jobs.append(self.make_job(
                 bank, title=a.get_text(" ", strip=True), url=href,
-                location=loc.get_text(" ", strip=True) if loc else "",
+                location=(loc.get_text(" ", strip=True) if loc else "") or city_from_url(href),
                 department=dept.get_text(" ", strip=True) if dept else "",
                 source_job_id=m.group(1) if m else None,
                 published_date=date.get_text(strip=True) if date else None,
