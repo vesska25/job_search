@@ -4478,3 +4478,25 @@ banks:
     url_regex: ac=jobad
     max_pages: 100
     accept_unknown_location: true
+- id: deutsche_bundesbank
+  name: Deutsche Bundesbank
+  display_name: Bundesbank
+  country: Germany
+  address_in_source_list: 60431 Frankfurt am Main (added by the user, not in the original list; a central bank)
+  jobs_url: https://jobportal.bundesbank.de/index.php?ac=search_result
+  source_type: sitemap_jobs
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Added at the user''s request (www.bundesbank.de/de/karriere/jobboerse). The vacancies are on jobportal.bundesbank.de (Beesite
+    Stellenmarkt, same platform as BaFin and KfW); its result list is filled by JavaScript, so the vacancy pages are read through
+    sitemap.xml. The bank says part of the vacancies are still on an old portal while the new one is being built. Unverified until
+    a Verify run.'
+  options:
+    sitemap_url: https://jobportal.bundesbank.de/sitemap.xml
+    url_regex: ac=jobad
+    max_pages: 150
+    accept_unknown_location: true
