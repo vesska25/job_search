@@ -51,6 +51,19 @@ def test_level_word_in_description(settings, pcfg, bank):
     assert d.accepted and not d.borderline
 
 
+def test_generic_developer_title_needs_java_in_description(settings, pcfg, bank):
+    java = make_job(bank, "Software Engineer (m/w/d)", description="Du entwickelst Backend-Services mit Java und Spring.")
+    d = evaluate_keywords(java, bank, settings, pcfg)
+    assert d.accepted and d.borderline
+    assert not evaluate_keywords(make_job(bank, "Software Engineer (m/w/d)", description="Python und Go."), bank, settings, pcfg).accepted
+    nodesc = evaluate_keywords(make_job(bank, "Tester (m/w/d)", description=""), bank, settings, pcfg)
+    assert nodesc.accepted and "Java not verified" in nodesc.functions[0]
+    assert not evaluate_keywords(make_job(bank, "Senior Software Engineer", description="Java"), bank, settings, pcfg).accepted
+    junior = make_job(bank, "Junior Backend Developer", description="Java, Spring Boot")
+    assert evaluate_keywords(junior, bank, settings, pcfg).accepted
+    assert not evaluate_keywords(make_job(bank, "Entwickler Fondsbuchhaltung"), bank, settings, {**pcfg, "role_terms": []}).accepted
+
+
 def test_keyword_profile_needs_germany(settings, pcfg, bank):
     assert not evaluate_keywords(make_job(bank, "Junior Java Developer", location="London"), bank, settings, pcfg).accepted
     assert evaluate_keywords(make_job(bank, "Junior Java Developer", location="Köln"), bank, settings, pcfg).accepted

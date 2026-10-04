@@ -287,6 +287,19 @@ profiles:
     level_in_description: true        # also look for the level words in the first 600 characters of the description
     accept_unspecified_level: true    # Java title without a level word is shown too, flagged (borderline)
     tech: [Java, J2EE, Jakarta EE, Spring Boot]
+    role_terms:                       # generic developer titles: accepted only if Java is in the description
+      - Software Engineer
+      - Software Developer
+      - Softwareentwickler
+      - Softwareentwicklerin
+      - Backend Developer
+      - Backend Engineer
+      - Entwickler
+      - Entwicklerin
+      - Tester
+      - Testerin
+      - Software Tester
+      - QA Engineer
     level:
       - Junior
       - Jr

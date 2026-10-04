@@ -34,6 +34,18 @@ def evaluate_keywords(job, bank, settings: dict, cfg: dict) -> Decision:
         d.reason = f"excluded term: {excluded[0]}"
         return d
     tech = find_terms(cfg.get("tech", []), scope)
+    if not tech:
+        # Generic developer titles (Software Engineer, Entwickler, Tester...) count only with Java in the description;
+        # if the source gives no description, Java cannot be checked: keep it, flagged.
+        role = find_terms(cfg.get("role_terms", []), scope)
+        if role:
+            desc = normalize_text(job.description or "")
+            if desc:
+                tech_desc = find_terms(cfg.get("tech", []), desc)
+                if tech_desc:
+                    tech = [f"{tech_desc[0]} (description)"]
+            else:
+                tech = [f"{role[0]} (Java not verified)"]
     d.relevant = bool(tech)
     if not tech:
         d.reason = "no technology term in title"
