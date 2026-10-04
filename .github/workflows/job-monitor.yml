@@ -22,6 +22,10 @@ on:
         description: "Only this recipient profile (main = leadership, sergey = junior Java); empty = all"
         type: string
         default: ""
+      banks:
+        description: "Only these bank ids, comma-separated (e.g. commerzbank,deutsche_bank); empty = all enabled banks"
+        type: string
+        default: ""
       test_telegram:
         description: "Delivery test: send a sample digest of stored vacancies to Telegram, no scraping, no database changes"
         type: boolean
@@ -51,7 +55,11 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           TELEGRAM_CHAT_ID_SERGEY: ${{ secrets.TELEGRAM_CHAT_ID_SERGEY }}   # second recipient (profile "sergey")
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}   # optional, only if llm.enabled
-        run: python -m src.main ${{ inputs.baseline && '--baseline' || '' }} ${{ inputs.dry_run && '--dry-run --verbose' || '' }} ${{ inputs.test_telegram && '--test-telegram' || '' }} ${{ inputs.resend && '--resend' || '' }} ${{ inputs.profile && format('--profile {0}', inputs.profile) || '' }}
+          BANKS: ${{ inputs.banks }}
+        run: |
+          ARGS=""
+          for b in ${BANKS//,/ }; do ARGS="$ARGS --bank $b"; done
+          python -m src.main ${{ inputs.baseline && '--baseline' || '' }} ${{ inputs.dry_run && '--dry-run --verbose' || '' }} ${{ inputs.test_telegram && '--test-telegram' || '' }} ${{ inputs.resend && '--resend' || '' }} ${{ inputs.profile && format('--profile {0}', inputs.profile) || '' }} $ARGS
       - name: Persist database
         if: always()
         run: |
