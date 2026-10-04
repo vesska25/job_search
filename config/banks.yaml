@@ -4571,3 +4571,664 @@ banks:
     on the career page. Wiesbaden employer, so germany_only. Unverified until a run confirms the parse.'
   options:
     link_pattern: /wibank/diewibank/karriere/[^/]+-\d{4}-\d+--\d+$
+
+- id: finanz_informatik
+  name: Finanz Informatik GmbH & Co. KG
+  display_name: Finanz Informatik
+  country: Germany
+  address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://www.f-i.de/karriere/offene-stellen
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: Added from the user's list of banking-related organisations (not banks). Careers page found by web search (not yet
+    confirmed by a run). IT provider of the Sparkassen group; ~225 openings per search; several sites, location filter not
+    applied (germany_only).
+  options:
+    accept_unknown_location: true
+- id: ratiodata
+  name: Ratiodata SE
+  display_name: Ratiodata
+  country: Germany
+  address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://karriere.ratiodata.de/jobs/
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: Added from the user's list of banking-related organisations (not banks). Careers page found by web search (not yet
+    confirmed by a run). IT service provider of the cooperative banks; job detail pattern /job/?loc=..&vacancieid=..
+  options:
+    link_pattern: /job/\?
+    accept_unknown_location: true
+- id: siz
+  name: SIZ GmbH
+  display_name: SIZ
+  country: Germany
+  address_in_source_list: Bonn (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://karriere.siz.de/jobs/
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Added from the user''s list of banking-related organisations (not banks). Careers page found by web search (not
+    yet confirmed by a run). IT security of the Sparkassen group. Alternative list: https://jobs.siz.de/de/jobs'
+  options:
+    accept_unknown_location: true
+- id: dsgf
+  name: DSGF Deutsche Sparkassen Gesellschaft für Finanzdienstleistungen
+  display_name: DSGF
+  country: Germany
+  address_in_source_list: Köln (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://www.dsgf.de/karriere/stellenangebote/
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: Added from the user's list of banking-related organisations (not banks). Careers page found by web search (not yet
+    confirmed by a run). Back office of the Sparkassen; application portal, list probably rexx-like.
+  options:
+    accept_unknown_location: true
+- id: wm_datenservice
+  name: WM Datenservice
+  display_name: WM Datenservice
+  country: Germany
+  address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://www.wmdatenservice.com/de/ueber-uns/karriere/
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: Added from the user's list of banking-related organisations (not banks). Careers page found by web search (not yet
+    confirmed by a run). Securities data (WKN/ISIN); job pages /karriere/jobs/<id>. Shared with WM Gruppe https://www.wmgruppe.de/de/karriere/
+  options:
+    link_pattern: /karriere/jobs/
+    accept_unknown_location: true
+- id: dg_nexolution
+  name: DG Nexolution eG
+  display_name: DG Nexolution
+  country: Germany
+  address_in_source_list: Wiesbaden (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://www.dg-nexolution.de/karriere/stellenboerse
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: Added from the user's list of banking-related organisations (not banks). Careers page found by web search (not yet
+    confirmed by a run). Service provider of the cooperative group; ~15 openings.
+  options:
+    accept_unknown_location: true
+- id: parcit
+  name: parcIT GmbH
+  display_name: parcIT
+  country: Germany
+  address_in_source_list: Köln (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://www.parcit.de/ueber-parcit/karriere/stellenangebote/
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: Added from the user's list of banking-related organisations (not banks). Careers page found by web search (not yet
+    confirmed by a run). Risk methods for Volksbanken; own online application portal, list may load by JS.
+  options:
+    accept_unknown_location: true
+- id: threesixtyt
+  name: 360 Treasury Systems AG (360T)
+  display_name: 360T
+  country: Germany
+  address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://360t.jobs.personio.de/
+  source_type: personio
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: Added from the user's list of banking-related organisations (not banks). Careers page found by web search (not yet
+    confirmed by a run). FX platform; Personio list (also .com).
+- id: vr_payment
+  name: VR Payment GmbH
+  display_name: VR Payment
+  country: Germany
+  address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://jobs.vr-payment.de/
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: Added from the user's list of banking-related organisations (not banks). Careers page found by web search (not yet
+    confirmed by a run). Payments of the cooperative group; job pages /jobs/<id>/<title>/
+  options:
+    link_pattern: /jobs/\d+
+    accept_unknown_location: true
+- id: euro_kartensysteme
+  name: EURO Kartensysteme GmbH
+  display_name: EURO Kartensysteme
+  country: Germany
+  address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://www.eurokartensysteme.de/de/karriere/vakanzen/
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: Added from the user's list of banking-related organisations (not banks). Careers page found by web search (not yet
+    confirmed by a run). girocard / Mastercard licences; job posts also on girocard.eu/stellenanzeigen/
+  options:
+    accept_unknown_location: true
+- id: schufa
+  name: SCHUFA Holding AG
+  display_name: SCHUFA
+  country: Germany
+  address_in_source_list: Wiesbaden (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://www.schufa.de/ueber-uns/karriere/stellenboerse/
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: Added from the user's list of banking-related organisations (not banks). Careers page found by web search (not yet
+    confirmed by a run). Credit bureau; list page derived from a job-detail URL (JSP), karriere.schufa.de is the landing page.
+  options:
+    link_pattern: stellenanzeigen_detailseite_\d+\.jsp
+    accept_unknown_location: true
+- id: universal_investment
+  name: Universal Investment
+  display_name: Universal Investment
+  country: Germany
+  address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://www.universal-investment.com/de/Unternehmen/Karriere/Stellenangebote
+  source_type: custom_html
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: Added from the user's list of banking-related organisations (not banks). Careers page found by web search (not yet
+    confirmed by a run). Fund platform; seen as a search result 'Jobs bei Universal Investment'. Foreign sites possible, so
+    location is checked.
+  options:
+    accept_unknown_location: true
+- id: ruv_versicherung
+  name: R+V Versicherung AG
+  display_name: R+V
+  country: Germany
+  address_in_source_list: Wiesbaden (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://www.ruv.de/karriere/stellenanzeigen
+  source_type: custom_html
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: Added from the user's list of banking-related organisations (not banks). Careers page found by web search (not yet
+    confirmed by a run). Insurer of the cooperative group; list URL inferred from a job-ad path (ref…-wiesbaden). Also reached
+    through Bundesagentur.
+  options:
+    link_pattern: /karriere/stellenanzeigen/
+    accept_unknown_location: true
+- id: payone
+  name: PAYONE GmbH
+  display_name: PAYONE
+  country: Germany
+  address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://jobs.worldline.com/payone
+  source_type: successfactors
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: Added from the user's list of banking-related organisations (not banks). Careers page found by web search (not yet
+    confirmed by a run). Acquirer (Worldline/Sparkassen); Worldline career portal, list may load by JS.
+- id: equensworldline
+  name: equensWorldline
+  display_name: equensWorldline
+  country: Germany
+  address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://jobs.worldline.com/equensWorldline
+  source_type: successfactors
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: Added from the user's list of banking-related organisations (not banks). Careers page found by web search (not yet
+    confirmed by a run). Payment processing; Worldline career portal (base URL inferred from seen job URLs).
+- id: fitch_ratings
+  name: Fitch Ratings / Fitch Group
+  display_name: Fitch
+  country: Germany
+  address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://careers.fitch.group/
+  source_type: successfactors
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: Added from the user's list of banking-related organisations (not banks). Careers page found by web search (not yet
+    confirmed by a run). Rating agency; global portal, job URLs /job/<City>-<Title>/<id> (SuccessFactors-style). Germany only
+    via location in the URL.
+- id: ecb
+  name: Europäische Zentralbank (EZB)
+  display_name: EZB
+  country: Germany
+  address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://www.ecb.europa.eu/careers
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: js_list
+  last_verified: null
+  notes: EU institution; vacancy list is linked from the careers page, direct list URL not found. Not connected.
+- id: amla
+  name: AMLA (EU Anti-Money Laundering Authority)
+  display_name: AMLA
+  country: Germany
+  address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://www.amla.europa.eu/careers
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: needs_review
+  last_verified: null
+  notes: Posts also on the EU agencies portal (agencies-network.europa.eu). Not connected.
+- id: eiopa
+  name: EIOPA
+  display_name: EIOPA
+  country: Germany
+  address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://eiopa.europa.eu/about/careers_en
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: needs_review
+  last_verified: null
+  notes: EU agency; list sits on/under the careers page. Not connected.
+- id: finanzagentur_des_bundes
+  name: Bundesrepublik Deutschland - Finanzagentur GmbH
+  display_name: Finanzagentur des Bundes
+  country: Germany
+  address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://deutsche-finanzagentur.de/de/karriere
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: needs_review
+  last_verified: null
+  notes: Job ads are PDFs (no list to parse). Not connected.
+- id: fiu_zoll
+  name: Financial Intelligence Unit (FIU, Zoll)
+  display_name: FIU
+  country: Germany
+  address_in_source_list: Köln (from the user's list of banking-related organisations; address not verified)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. No official vacancy URL found (federal portals interamt.de
+    / service.bund.de / zoll-karriere.de not confirmed).
+- id: moodys
+  name: Moody's
+  display_name: Moody's
+  country: Germany
+  address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://careers.moodys.com/en/location/frankfurt-am-main-hesse-germany-jobs/49841/2921044-2905330-2925533/4
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: js_list
+  last_verified: null
+  notes: Official Frankfurt location listing, Phenom-type JS site. Not connected.
+- id: sp_global_ratings
+  name: S&P Global Ratings
+  display_name: S&P
+  country: Germany
+  address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://www.spglobal.com/careers
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: js_list
+  last_verified: null
+  notes: Global portal, Germany filter not confirmed. Not connected.
+- id: nexi_germany
+  name: Nexi Germany (ex Concardis)
+  display_name: Nexi Germany
+  country: Germany
+  address_in_source_list: Eschborn (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://www.nexigroup.com/en/people/careers/job-openings/
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: js_list
+  last_verified: null
+  notes: Group portal without a Germany page; list probably an embedded external ATS. Not connected.
+- id: telecash_fiserv
+  name: TeleCash / Fiserv
+  display_name: TeleCash
+  country: Germany
+  address_in_source_list: Bad Homburg (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://www.careers.fiserv.com
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: js_list
+  last_verified: null
+  notes: Fiserv global portal, no TeleCash-specific page; JS list. Not connected.
+- id: finanz_informatik_solutions_plus
+  name: Finanz Informatik Solutions Plus
+  display_name: FI Solutions Plus
+  country: Germany
+  address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Merged with Finanz Informatik careers (see finanz_informatik).
+- id: bank_verlag
+  name: Bank-Verlag GmbH
+  display_name: Bank-Verlag
+  country: Germany
+  address_in_source_list: Köln (from the user's list of banking-related organisations; address not verified)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Only job detail pages seen (bank-verlag.de/index.php?id=38xx),
+    no list page.
+- id: gbb_rating
+  name: GBB-Rating
+  display_name: GBB-Rating
+  country: Germany
+  address_in_source_list: Köln (from the user's list of banking-related organisations; address not verified)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. No careers page found.
+- id: dsgv_bonn
+  name: Deutscher Sparkassen- und Giroverband (Bonn)
+  display_name: DSGV
+  country: Germany
+  address_in_source_list: Bonn (from the user's list of banking-related organisations; address not verified)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. dsgv.de/karriere not reachable in the search tool; only third-party
+    StepStone profile (Berlin roles).
+- id: bvr_bonn
+  name: Bundesverband der Deutschen Volksbanken und Raiffeisenbanken (Bonn)
+  display_name: BVR
+  country: Germany
+  address_in_source_list: Bonn (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://www.vr.de/karriere/berufserfahrene/karrierechancen.html
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: needs_review
+  last_verified: null
+  notes: Group career portal, no BVR-specific list confirmed.
+- id: voeb_service
+  name: VÖB-Service GmbH
+  display_name: VÖB-Service
+  country: Germany
+  address_in_source_list: Bonn (from the user's list of banking-related organisations; address not verified)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Careers URL named only in text (voeb-service.de/karriere),
+    not confirmed.
+- id: sgv_hessen_thueringen
+  name: Sparkassen- und Giroverband Hessen-Thüringen
+  display_name: SGVHT
+  country: Germany
+  address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Jobs appear on the sparkasse.de job market, no SGVHT list URL
+    seen.
+- id: rsgv
+  name: Rheinischer Sparkassen- und Giroverband (RSGV)
+  display_name: RSGV
+  country: Germany
+  address_in_source_list: Düsseldorf (from the user's list of banking-related organisations; address not verified)
+  jobs_url: https://www.sparkasse.de/jobboerse/unternehmen/rheinischer-sparkassen-und-giroverband.html
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: needs_review
+  last_verified: null
+  notes: Company page on the Sparkasse job board (seen in search); adapter sparkasse_jobmarket needs a bank_code, not verified.
+    Not connected.
+- id: genossenschaftsverband
+  name: Genossenschaftsverband - Verband der Regionen
+  display_name: Genossenschaftsverband
+  country: Germany
+  address_in_source_list: Neu-Isenburg (from the user's list of banking-related organisations; address not verified)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Careers URL named only in text (genossenschaftsverband.de/karriere),
+    not confirmed.
+- id: awado
+  name: AWADO
+  display_name: AWADO
+  country: Germany
+  address_in_source_list: Neu-Isenburg (from the user's list of banking-related organisations; address not verified)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. No official careers page found (only an Indeed profile).
+- id: dz_compliancepartner
+  name: DZ CompliancePartner
+  display_name: DZ CompliancePartner
+  country: Germany
+  address_in_source_list: Neu-Isenburg (from the user's list of banking-related organisations; address not verified)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. No official careers page found (only a StepStone profile).
+- id: verband_der_auslandsbanken
+  name: Verband der Auslandsbanken
+  display_name: Verband der Auslandsbanken
+  country: Germany
+  address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. No careers page found.
+- id: bankenverband_mitte
+  name: Bankenverband Mitte
+  display_name: Bankenverband Mitte
+  country: Germany
+  address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. No careers page found.
+- id: bvi
+  name: BVI Bundesverband Investment und Asset Management
+  display_name: BVI
+  country: Germany
+  address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. No careers list found.
+- id: deutsches_aktieninstitut
+  name: Deutsches Aktieninstitut
+  display_name: Deutsches Aktieninstitut
+  country: Germany
+  address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Applications by e-mail only (bewerbung@dai.de); no list.
+- id: true_sale_international
+  name: True Sale International
+  display_name: TSI
+  country: Germany
+  address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. No official careers page found.
+- id: deka_investment
+  name: Deka Investment GmbH
+  display_name: Deka Investment
+  country: Germany
+  address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Part of the Deka group; vacancies are covered by the DekaBank
+    source (karriere.deka.de).
+- id: helaba_invest
+  name: Helaba Invest
+  display_name: Helaba Invest
+  country: Germany
+  address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: No official Germany-specific vacancy source verified. Part of the Helaba group; vacancies are covered by the Helaba
+    source.
