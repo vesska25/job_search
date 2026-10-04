@@ -195,3 +195,11 @@ def test_plain_manager_with_risk_or_it_in_title_is_borderline(settings, bank):
 def test_german_digital_transformation_counts_as_function(settings, bank):
     d = evaluate(make_job(bank, "Gruppenleiter*in Digitale Transformation und Enabling"), bank, settings)
     assert d.accepted and not d.borderline
+
+
+def test_lead_leiter_digital_titles_are_accepted(settings, bank):
+    for title in ("Head of Digital Banking", "Digital Lead (m/w/d)", "Leiter*in Digitalisierung", "Teamleiter Digital Channels",
+                  "Lead Digital Product Owner"):
+        assert evaluate(make_job(bank, title), bank, settings).accepted, title
+    # no leadership word -> still not accepted
+    assert not evaluate(make_job(bank, "Digital Marketing Specialist"), bank, settings).accepted
