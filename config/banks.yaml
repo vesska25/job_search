@@ -4375,14 +4375,24 @@ banks:
   country: Germany
   address_in_source_list: 60329 Frankfurt am Main (added by the user, not in the original list)
   jobs_url: https://jobs.union-investment.de/index.php?ac=search_result&search_criterion_channel%5B%5D=12
-  source_type: custom_html
+  source_type: beesite
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
-  last_verified: '2026-10-04'
-  notes: 'Added at the user''s request. Beesite Stellenmarkt portal (milch & zucker): the result page is a shell, the vacancy
-    list is loaded by JavaScript (js-gjb-hits shows 0 in the static HTML, no vacancy links). assets/js/jobboard.config.json
-    holds only widget settings (map tiles), no search endpoint. Left disabled until the XHR URL that returns the list is known
-    (browser DevTools, Network, Fetch/XHR).'
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: Added at the user's request. Beesite Stellenmarkt portal; the vacancy list is loaded by JavaScript from the site's
+    own public API (jobapi.union-investment.de/search, GET ?data=<json>, found by the user in browser DevTools). The user's
+    page filters PublicationChannel.Code=12 (38 hits at the time). Unverified until a Verify run.
+  options:
+    api_url: https://jobapi.union-investment.de/search
+    language: DE
+    page_size: 50
+    first_item: 1
+    max_pages: 10
+    criteria:
+    - CriterionName: PublicationChannel.Code
+      CriterionValue:
+      - '12'
+    accept_unknown_location: true
