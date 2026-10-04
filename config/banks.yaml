@@ -4407,11 +4407,12 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'Added at the user''s request. Eightfold PCSX career site. The older /api/apply/v2/jobs endpoint answers 403 "Not authorized
-    for PCSX" (not used); the career page itself loads its list from /api/pcsx/search, which returned JSON for location=Germany
-    in a probe (data.positions[]: id, name, locations, department, positionUrl). Unverified until a Verify run.'
+  verification_status: ok
+  last_verified: '2026-10-04'
+  notes: 'Added at the user''s request. Eightfold PCSX career site. The older /api/apply/v2/jobs endpoint answers 403 "Not
+    authorized for PCSX" (not used); the career page itself loads its list from /api/pcsx/search, which returned JSON for
+    location=Germany in a probe (data.positions[]: id, name, locations, department, positionUrl). Unverified until a Verify
+    run.'
   options:
     api_url: https://morganstanley.eightfold.ai/api/pcsx/search
     params:
