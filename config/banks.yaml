@@ -4633,21 +4633,21 @@ banks:
   display_name: DSGF
   country: Germany
   address_in_source_list: Köln (from the user's list of banking-related organisations; address not verified)
-  jobs_url: https://www.dsgf.de/karriere/stellenangebote/
+  jobs_url: https://sparkasse.mein-check-in.de/dsgf/index
   source_type: custom_html
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: needs_review
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: 'Back office of the Sparkassen. www.dsgf.de sends an incomplete TLS chain (wrong intermediate); fixed client-side by the
-    public Sectigo DV R36 intermediate in config/ca (verification stays on). /karriere/stellenangebote/ lists only job categories
-    (Marktfolge Aktiv, Zentralfunktionen, ...); each category opens through a POST form (/dsgf/start, form-<id>) of a stateful
-    application, the category URLs /dsgf/x/stellenangebote/<id> return 404 on GET. Disabled: individual vacancies are not reachable
-    with a plain GET; needs a manual look at the form flow.'
+  notes: 'Back office of the Sparkassen. Vacancies are on the Sparkassen check-in portal sparkasse.mein-check-in.de/dsgf (the host
+    was found by the user in the browser DevTools; www.dsgf.de only embeds it). Job pages are /dsgf/position-<id> with readable
+    titles (probe of a category page showed 18 positions). The list page /dsgf/index ("Alle Stellenangebote") is used; unverified
+    until a dry-run. www.dsgf.de itself sends an incomplete TLS chain, fixed client-side by the public Sectigo DV R36
+    intermediate in config/ca (verification stays on).'
   options:
-    link_pattern: /dsgf/x/stellenangebote/\d+
+    link_pattern: /dsgf/position-\d+
     accept_unknown_location: true
 - id: wm_datenservice
   name: WM Datenservice
