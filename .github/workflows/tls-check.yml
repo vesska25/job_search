@@ -1,0 +1,23 @@
+name: TLS check (manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      host:
+        description: "Host to inspect (certificate chain and verification result only)"
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  tls:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Certificate chain
+        run: |
+          echo | openssl s_client -connect "${{ inputs.host }}:443" -servername "${{ inputs.host }}" -showcerts 2>&1 \
+            | grep -E "^( [0-9] s:|   i:|Verif|verify|depth|subject|issuer|Certificate chain)|notAfter|notBefore" | head -40
+      - name: curl with verification (no bypass)
+        run: |
+          curl -sS -m 20 -o /dev/null -w "HTTP %{http_code}, ssl_verify_result=%{ssl_verify_result}\n" "https://${{ inputs.host }}/robots.txt" || true
