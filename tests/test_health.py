@@ -72,3 +72,40 @@ def test_report_html_lists_problems_disabled_and_working():
     assert "List is loaded by JavaScript" in out and "Bank C" in out          # disabled, with the reason
     assert "Bank &lt;B&gt;" in out and "Bank <B>" not in out                    # escaped
     assert "Enabled but not measured yet" in out and "Bank D" in out
+
+
+def test_previous_run_prefers_a_week_old_row_and_falls_back(tmp_path):
+    from datetime import datetime, timedelta, timezone
+    import sqlite3
+    from src.health import SCHEMA
+    db = tmp_path / "jobs.db"
+    conn = sqlite3.connect(db)
+    conn.executescript(SCHEMA)
+    now = datetime(2026, 10, 9, 15, tzinfo=timezone.utc)
+    for days, found in ((14, 40), (7, 38), (1, 10)):
+        conn.execute("INSERT INTO source_runs VALUES (?, ?, ?, ?, ?, NULL)",
+                     ("a", (now - timedelta(days=days)).isoformat(timespec="seconds"), found, 30, 2))
+    conn.commit()
+    conn.close()
+    h = HealthStore(db)
+    assert h.previous("a", now)["found"] == 38              # a week ago, not yesterday's ad-hoc run
+    assert h.previous("zzz", now) is None
+
+
+def test_report_per_bank_table_shows_now_before_and_relevant():
+    from src.config import Bank
+    from src.report import render_html
+    banks = [Bank(id="a", name="Bank A", enabled=True, jobs_url="https://a.test/jobs")]
+    rows = {"a": {"baseline": 30, "last_count": 28, "issue_kind": None, "issue_since": None, "last_error": None}}
+
+    class H:
+        current = {"a": {"found": 28, "germany": 20, "relevant": 2, "error": None}}
+
+        def previous(self, bank_id, now=None):
+            return {"run_at": "2026-10-02T15:00:00+00:00", "found": 31, "germany": 22, "relevant": 3}
+
+    out = render_html(banks, rows, today=date(2026, 10, 9), health=H(),
+                      matches_by_bank={"a": [("Head of Risk", "https://a.test/1", "Frankfurt")]})
+    assert "All enabled sources (1)" in out and ">28<" in out and ">31<" in out and ">-3<" in out and ">20<" in out
+    assert "title='2026-10-02'" in out
+    assert "Relevant vacancies by source (1)" in out and "Head of Risk" in out

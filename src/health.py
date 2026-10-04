@@ -11,7 +11,7 @@ from __future__ import annotations
 
 import sqlite3
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 EMPTY_MIN_BASELINE = 3
@@ -29,7 +29,17 @@ CREATE TABLE IF NOT EXISTS source_health (
     last_error  TEXT,
     updated     TEXT
 );
+CREATE TABLE IF NOT EXISTS source_runs (
+    bank_id  TEXT NOT NULL,
+    run_at   TEXT NOT NULL,
+    found    INTEGER,
+    germany  INTEGER,
+    relevant INTEGER,
+    error    TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_source_runs ON source_runs(bank_id, run_at);
 """
+WEEK_AGO_MIN_DAYS = 5     # "a week ago" = the newest stored run that is at least this old (fallback: the previous run)
 
 
 @dataclass
@@ -75,22 +85,45 @@ class HealthStore:
     def __init__(self, path, writable: bool = True):
         self.path, self.writable = path, writable
         self.rows: dict[str, dict] = {}
+        self.history: dict[str, list[dict]] = {}
+        self.current: dict[str, dict] = {}       # this run: found / germany / relevant / error per source
         self.touched: set[str] = set()
         self.issues: list[Issue] = []
-        if str(path) == ":memory:" or not Path(path).exists():
-            return
-        try:
+        if str(path) != ":memory:" and Path(path).exists():
             conn = sqlite3.connect(f"file:{path}?mode=ro", uri=True)
             conn.row_factory = sqlite3.Row
-            self.rows = {r["bank_id"]: dict(r) for r in conn.execute("SELECT * FROM source_health")}
+            try:
+                self.rows = {r["bank_id"]: dict(r) for r in conn.execute("SELECT * FROM source_health")}
+            except sqlite3.Error:
+                self.rows = {}        # table not created yet (first run with this feature)
+            try:
+                for r in conn.execute("SELECT * FROM source_runs ORDER BY run_at"):
+                    self.history.setdefault(r["bank_id"], []).append(dict(r))
+            except sqlite3.Error:
+                self.history = {}
             conn.close()
-        except sqlite3.Error:
-            self.rows = {}        # table not created yet (first run with this feature)
+        self.initial = {k: dict(v) for k, v in self.rows.items()}   # state before this run: the fallback for "last time"
 
-    def record(self, bank_id: str, label: str, count: int | None = None, error: str | None = None) -> Issue | None:
+    def previous(self, bank_id: str, now: datetime | None = None) -> dict | None:
+        """The run to compare with: newest stored run >= 5 days old, else the latest stored run, else the count the
+        health table kept before this run. Returns {run_at, found, germany, relevant} or None."""
+        runs = self.history.get(bank_id) or []
+        cutoff = ((now or datetime.now(timezone.utc)) - timedelta(days=WEEK_AGO_MIN_DAYS)).isoformat(timespec="seconds")
+        older = [r for r in runs if r["run_at"] <= cutoff and r.get("error") is None]
+        pick = older[-1] if older else next((r for r in reversed(runs) if r.get("error") is None), None)
+        if pick:
+            return pick
+        init = self.initial.get(bank_id)
+        if init and init.get("last_count") is not None:
+            return {"run_at": init.get("updated"), "found": init["last_count"], "germany": None, "relevant": None}
+        return None
+
+    def record(self, bank_id: str, label: str, count: int | None = None, error: str | None = None,
+               germany: int | None = None, relevant: int | None = None) -> Issue | None:
         row, kind, detail = assess(self.rows.get(bank_id), count, error)
         self.rows[bank_id] = row
         self.touched.add(bank_id)
+        self.current[bank_id] = {"found": count, "germany": germany, "relevant": relevant, "error": error}
         if not kind:
             return None
         issue = Issue(bank_id, label, kind, detail, row["issue_since"])
@@ -112,5 +145,8 @@ class HealthStore:
                 "last_count=excluded.last_count, issue_kind=excluded.issue_kind, issue_since=excluded.issue_since, "
                 "last_error=excluded.last_error, updated=excluded.updated",
                 (bid, r["baseline"], r["last_count"], r["issue_kind"], r["issue_since"], r["last_error"], now))
+            c = self.current[bid]
+            conn.execute("INSERT INTO source_runs (bank_id, run_at, found, germany, relevant, error) VALUES (?, ?, ?, ?, ?, ?)",
+                         (bid, now, c["found"], c["germany"], c["relevant"], (c["error"] or None) and c["error"][:160]))
         conn.commit()
         conn.close()

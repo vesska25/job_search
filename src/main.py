@@ -11,7 +11,7 @@ import copy
 import html as htmllib
 import re
 import sys
-from dataclasses import dataclass, replace
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 
 from src.config import CONFIG_DIR, ROOT, Bank, env, load_banks, load_settings
@@ -41,6 +41,7 @@ class Stats:
     leadership: int = 0
     relevant: int = 0
     new: int = 0
+    matches_by_bank: dict = field(default_factory=dict)    # bank id -> [(title, url, location)] accepted this run
 
     def summary(self) -> str:
         return (f"Banks processed: {self.processed}\nSuccessful: {self.successful}\nFailed: {self.failed}\n"
@@ -105,12 +106,11 @@ def run(banks, settings, http, db, llm, stats: Stats, extra: dict | None = None,
             continue
         stats.successful += 1
         log.info("Found %d vacancies", len(jobs))
-        if health is not None:
-            health.record(bank.id, bank.label, count=len(jobs))
         if bank.options.get("aggregator"):
             for job in jobs:
                 job.aggregator = True
         n_de = n_lead = n_rel = 0
+        bank_matches = []
         for job in jobs:
             for pname, pcfg in profiles.items():
                 try:
@@ -144,6 +144,8 @@ def run(banks, settings, http, db, llm, stats: Stats, extra: dict | None = None,
                 log.debug("REJECT %s | %s | %s | %s", bank.label, job.title, job.location, d.reason)
             n_lead += d.leadership and d.germany
             n_rel += d.accepted
+            if d.accepted:
+                bank_matches.append((job.title, job.url, job.location))
             if d.accepted and job.job_id not in seen_ids:
                 seen_ids.add(job.job_id)
                 job.matched_functions, job.borderline = d.functions, d.borderline
@@ -152,6 +154,9 @@ def run(banks, settings, http, db, llm, stats: Stats, extra: dict | None = None,
         log.info("Germany vacancies: %d", n_de)
         log.info("Seniority matches: %d", n_lead)
         log.info("Relevant matches: %d", n_rel)
+        if health is not None:
+            health.record(bank.id, bank.label, count=len(jobs), germany=n_de, relevant=n_rel)
+        stats.matches_by_bank[bank.id] = bank_matches
         stats.scanned += len(jobs)
         stats.germany += n_de
         stats.leadership += n_lead
@@ -302,7 +307,8 @@ def main(argv=None) -> int:
         log.warning("SOURCE NEEDS ATTENTION: %s", issue.line())
     report_html = None
     if args.report:
-        report_html = render_html(banks, health.rows, run_summary=stats.summary())
+        report_html = render_html(banks, health.rows, run_summary=stats.summary(), health=health,
+                                  matches_by_bank=stats.matches_by_bank)
         args.report.parent.mkdir(parents=True, exist_ok=True)
         args.report.write_text(report_html, encoding="utf-8")
         log.info("Health report written to %s", args.report)

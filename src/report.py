@@ -29,7 +29,7 @@ main{max-width:1000px;margin:0 auto;padding:24px 16px 48px}h1{font-size:22px;mar
 .kpi b{display:block;font-size:22px}.kpi.bad b{color:var(--bad)}.kpi.ok b{color:var(--ok)}
 table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--muted);font-weight:600}
 .tag{display:inline-block;padding:1px 8px;border-radius:99px;font-size:12px;font-weight:600}.tag.bad{background:var(--badbg);color:var(--bad)}.tag.warn{background:var(--warnbg);color:var(--warn)}.tag.ok{background:var(--okbg);color:var(--ok)}
-.num{text-align:right;white-space:nowrap}details{margin-top:8px}summary{cursor:pointer;font-weight:600;padding:6px 0}
+.num{text-align:right;white-space:nowrap}td.bad{color:var(--bad);font-weight:700}td.warn{color:var(--warn)}details{margin-top:8px}summary{cursor:pointer;font-weight:600;padding:6px 0}
 .wrap{overflow-x:auto}a{color:inherit}
 """
 
@@ -66,8 +66,59 @@ def _link(b) -> str:
     return f'<a href="{_e(b.jobs_url)}">{name}</a>' if b.jobs_url.startswith("http") else name
 
 
-def render_html(banks: list, rows: dict, today: date | None = None, run_summary: str = "") -> str:
+def _delta(now, before) -> tuple[str, str]:
+    """('+3', 'ok') / ('-12', 'bad') / ('', '')  - bad when the count fell by more than 70% from >= 3."""
+    if now is None or before is None:
+        return "", ""
+    d = now - before
+    cls = "bad" if before >= 3 and now < before * 0.3 else ("warn" if d < 0 else "")
+    return f"{d:+d}" if d else "0", cls
+
+
+def _per_bank_table(g: dict, current: dict, health) -> str:
+    """Every enabled source: found now, found last week, Germany, relevant for the profile, change."""
+    items = g["problems"] + g["working"]
+    if not items:
+        return ""
+    trs = []
+    for b, r in sorted(items, key=lambda x: (not x[1].get("issue_kind"), x[0].label.lower())):
+        cur = current.get(b.id) or {}
+        found = cur.get("found") if cur else r.get("last_count")
+        prev = health.previous(b.id) if health is not None else None
+        before = prev.get("found") if prev else None
+        when = (prev.get("run_at") or "")[:10] if prev else ""
+        delta, cls = _delta(found, before)
+        status = (f"<span class='tag {'bad' if r['issue_kind'] == 'error' else 'warn'}'>{_e(KIND_TEXT.get(r['issue_kind']))}</span>"
+                  if r.get("issue_kind") else "<span class='tag ok'>ok</span>")
+        trs.append(
+            f"<tr><td>{_link(b)}</td><td>{status}</td><td class='num'>{_e(found if found is not None else '–')}</td>"
+            f"<td class='num' title='{_e(when)}'>{_e(before if before is not None else '–')}</td>"
+            f"<td class='num {cls}'>{_e(delta)}</td><td class='num'>{_e(cur.get('germany') if cur.get('germany') is not None else '–')}</td>"
+            f"<td class='num'><b>{_e(cur.get('relevant') if cur.get('relevant') is not None else '–')}</b></td></tr>")
+    return (f"<h2>All enabled sources ({len(items)})</h2><p class='muted'>Found = vacancies the source returned now; "
+            "Before = the run about a week ago (hover for its date); Germany = of them in Germany; Relevant = match your profile.</p>"
+            "<div class='wrap'><table><tr><th>Source</th><th>Status</th><th class='num'>Found</th><th class='num'>Before</th>"
+            "<th class='num'>Change</th><th class='num'>Germany</th><th class='num'>Relevant</th></tr>" + "".join(trs) + "</table></div>")
+
+
+def _relevant_section(banks: list, matches_by_bank: dict) -> str:
+    labels = {b.id: b for b in banks}
+    rows = sorted(((bid, m) for bid, m in matches_by_bank.items() if m and bid in labels), key=lambda x: (-len(x[1]), x[0]))
+    total = sum(len(m) for _, m in rows)
+    if not rows:
+        return "<h2>Relevant vacancies</h2><p class='muted'>None in this run.</p>"
+    out = [f"<h2>Relevant vacancies by source ({total})</h2>"]
+    for bid, m in rows:
+        li = "".join(f"<li><a href='{_e(u)}'>{_e(t)}</a> <span class='muted'>{_e(loc)}</span></li>" for t, u, loc in m)
+        out.append(f"<details><summary>{_e(labels[bid].label)} ({len(m)})</summary><ul>{li}</ul></details>")
+    return "".join(out)
+
+
+def render_html(banks: list, rows: dict, today: date | None = None, run_summary: str = "", health=None,
+                matches_by_bank: dict | None = None) -> str:
     today = today or date.today()
+    matches_by_bank = matches_by_bank or {}
+    current = health.current if health is not None else {}
     g = classify(banks, rows)
     total = sum((r.get("last_count") or 0) for _, r in g["working"] + g["problems"])
     bad = len(g["problems"])
@@ -112,13 +163,8 @@ def render_html(banks: list, rows: dict, today: date | None = None, run_summary:
         parts.append(f"<details><summary>{_e(STATUS_TEXT.get(status, status))} ({len(items)})</summary>"
                      f"<div class='wrap'><table>{trs}</table></div></details>")
 
-    trs = "".join(
-        f"<tr><td>{_link(b)}</td><td>{_e(b.source_type)}</td><td class='num'>{_e(r.get('last_count'))}</td>"
-        f"<td class='num'>{_e(r.get('baseline'))}</td><td class='num muted'>{_e((r.get('updated') or '')[:10])}</td></tr>"
-        for b, r in sorted(g["working"], key=lambda x: x[0].label.lower()))
-    parts.append(f"<h2>Working sources ({len(g['working'])})</h2><details><summary>Show the table</summary><div class='wrap'><table>"
-                 "<tr><th>Source</th><th>Adapter</th><th class='num'>Found</th><th class='num'>Usual</th><th class='num'>Measured</th></tr>"
-                 f"{trs}</table></div></details>")
+    parts.append(_per_bank_table(g, current, health))
+    parts.append(_relevant_section(banks, matches_by_bank))
     if run_summary:
         parts.append(f"<h2>Run</h2><pre class='muted'>{_e(run_summary)}</pre>")
     return ("<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>"
