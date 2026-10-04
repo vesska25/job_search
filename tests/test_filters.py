@@ -241,3 +241,9 @@ def test_it_operations_titles_are_excluded(settings, bank, title):
 def test_sales_titles_are_excluded(settings, bank, title):
     from src.filters.pipeline import evaluate
     assert not evaluate(make_job(bank, title, location="Frankfurt"), bank, settings).accepted
+
+
+def test_entwicklung_title_is_excluded_but_compounds_are_not(settings, bank):
+    from src.filters.pipeline import evaluate
+    assert not evaluate(make_job(bank, "Solution Architekt (w/m/d) – Lead Entwicklung JobRouter", location="Frankfurt"), bank, settings).accepted
+    assert evaluate(make_job(bank, "Leiter Organisationsentwicklung und Digitalisierung", location="Frankfurt"), bank, settings).accepted
