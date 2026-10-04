@@ -4457,3 +4457,24 @@ banks:
     detail: true
     accept_unknown_location: true
     max_pages: 150
+- id: bafin_bundesanstalt_fuer_finanzdienstleistungsaufsicht
+  name: Bundesanstalt für Finanzdienstleistungsaufsicht (BaFin)
+  display_name: BaFin
+  country: Germany
+  address_in_source_list: 60439 Frankfurt am Main / 53117 Bonn (added by the user, not in the original list; a supervisory authority, not a bank)
+  jobs_url: https://team.bafin.de/index.php?ac=search_result&search_criterion_channel%5B%5D=12
+  source_type: sitemap_jobs
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Added at the user''s request. Career portal team.bafin.de (Beesite Stellenmarkt, same platform as KfW): the result list
+    is filled by JavaScript, but robots.txt only names sitemap.xml, which lists every vacancy page (index.php?ac=jobad&id=N).
+    The vacancy pages are read through the sitemap. Unverified until a Verify run.'
+  options:
+    sitemap_url: https://team.bafin.de/sitemap.xml
+    url_regex: ac=jobad
+    max_pages: 100
+    accept_unknown_location: true
