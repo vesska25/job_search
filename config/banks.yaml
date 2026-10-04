@@ -4380,8 +4380,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: '2026-10-04'
   notes: Added at the user's request. Beesite Stellenmarkt portal; the vacancy list is loaded by JavaScript from the site's
     own public API (jobapi.union-investment.de/search, GET ?data=<json>, found by the user in browser DevTools). The user's
     page filters PublicationChannel.Code=12 (38 hits at the time). Unverified until a Verify run.
