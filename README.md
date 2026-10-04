@@ -40,6 +40,14 @@ main profile is never affected.
 - First run of a new profile: a normal run (no `--baseline`) sends its current openings once; with `--baseline` they are only stored.
 - Another recipient: add a block under `profiles:` (copy `sergey`), add a secret and the env line in `.github/workflows/job-monitor.yml`.
 
+## Source health (a career page changed)
+
+Every run stores how many vacancies each source returned (table `source_health` in `data/jobs.db`). A source is flagged in the log
+and in the Telegram digest ("Sources need attention") when it raised an error, found 0 vacancies although it usually finds
+3 or more, or fell below 30% of its usual count (usual 10 or more). A flagged source stays flagged every week, with the date
+it started, until it recovers; fix its adapter/options in `config/banks.yaml` or disable it. Baselines are learned by any normal
+run; to learn them without sending anything, run the workflow once with `learn_health` (or `python -m src.main --learn-health`).
+
 ## 1. Install locally
 ```bash
 python -m venv .venv && source .venv/bin/activate

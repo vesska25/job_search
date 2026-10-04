@@ -26,6 +26,10 @@ on:
         description: "Only these bank ids, comma-separated (e.g. commerzbank,deutsche_bank); empty = all enabled banks"
         type: string
         default: ""
+      learn_health:
+        description: "Scrape everything and store each source's vacancy count as the health baseline (no Telegram, no vacancy records); run once so later changes of a career page are flagged"
+        type: boolean
+        default: false
       test_telegram:
         description: "Delivery test: send a sample digest of stored vacancies to Telegram, no scraping, no database changes"
         type: boolean
@@ -59,7 +63,7 @@ jobs:
         run: |
           ARGS=""
           for b in ${BANKS//,/ }; do ARGS="$ARGS --bank $b"; done
-          python -m src.main ${{ inputs.baseline && '--baseline' || '' }} ${{ inputs.dry_run && '--dry-run --verbose' || '' }} ${{ inputs.test_telegram && '--test-telegram' || '' }} ${{ inputs.resend && '--resend' || '' }} ${{ inputs.profile && format('--profile {0}', inputs.profile) || '' }} $ARGS
+          python -m src.main ${{ inputs.baseline && '--baseline' || '' }} ${{ inputs.dry_run && '--dry-run --verbose' || '' }} ${{ inputs.test_telegram && '--test-telegram' || '' }} ${{ inputs.learn_health && '--learn-health' || '' }} ${{ inputs.resend && '--resend' || '' }} ${{ inputs.profile && format('--profile {0}', inputs.profile) || '' }} $ARGS
       - name: Persist database
         if: always()
         run: |

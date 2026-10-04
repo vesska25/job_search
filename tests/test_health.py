@@ -1,0 +1,58 @@
+from datetime import date
+
+from src.health import HealthStore, assess
+from src.notifications.telegram import format_digest
+
+
+def test_assess_healthy_tracks_baseline_with_decay():
+    row, kind, _ = assess({"baseline": 50}, 45, None)
+    assert kind is None and row["baseline"] == 45
+    row, kind, _ = assess({"baseline": 50}, 30, None)      # shrinks within ratio: healthy, baseline decays slowly
+    assert kind is None and row["baseline"] == 40
+
+
+def test_assess_flags_empty_drop_and_error():
+    assert assess({"baseline": 12}, 0, None)[1] == "empty"
+    assert assess({"baseline": 40}, 5, None)[1] == "drop"
+    assert assess({"baseline": 40}, 20, None)[1] is None
+    row, kind, detail = assess({"baseline": 12}, None, "HTTPError: 404 for url")
+    assert kind == "error" and "404" in detail and row["baseline"] == 12
+
+
+def test_assess_small_or_new_sources_are_not_flagged():
+    assert assess(None, 0, None)[1] is None                # never found anything: nothing to compare with
+    assert assess({"baseline": 2}, 0, None)[1] is None     # a handful of vacancies may all close
+    assert assess({"baseline": 9}, 2, None)[1] is None
+
+
+def test_flag_persists_and_keeps_baseline_and_since_date():
+    first, kind, _ = assess({"baseline": 20}, 0, None, today="2026-10-04")
+    assert kind == "empty" and first["issue_since"] == "2026-10-04" and first["baseline"] == 20
+    again, kind, _ = assess(first, 0, None, today="2026-10-11")
+    assert kind == "empty" and again["issue_since"] == "2026-10-04"      # still broken since the first day
+    ok, kind, _ = assess(again, 18, None, today="2026-10-18")
+    assert kind is None and ok["issue_kind"] is None and ok["issue_since"] is None
+
+
+def test_store_roundtrip_and_dry_run_never_writes(tmp_path):
+    db = tmp_path / "jobs.db"
+    learn = HealthStore(db)
+    learn.record("a", "Bank A", count=30)
+    learn.save()
+    nxt = HealthStore(db)
+    issue = nxt.record("a", "Bank A", count=0)
+    assert issue and issue.kind == "empty"
+    nxt.save()
+    assert HealthStore(db).rows["a"]["issue_kind"] == "empty"
+    dry = HealthStore(db, writable=False)
+    dry.record("a", "Bank A", count=40)
+    dry.save()                                             # no write
+    assert HealthStore(db).rows["a"]["issue_kind"] == "empty"
+
+
+def test_digest_shows_health_block_also_without_new_jobs():
+    from src.health import Issue
+    issues = [Issue("a", "Bank A", "empty", "found 0 vacancies, usually ~30", "2026-10-04")]
+    msgs = format_digest([], today=date(2026, 10, 9), health_issues=issues)
+    assert "Sources need attention" in msgs[0] and "Bank A" in msgs[0]
+    assert "Sources need attention" not in format_digest([], today=date(2026, 10, 9))[0]

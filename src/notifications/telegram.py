@@ -36,11 +36,21 @@ def format_job(job) -> str:
     )
 
 
+def format_health(issues: list) -> str:
+    """Block listing sources whose career page probably changed (see src/health.py). Empty string if all is well."""
+    if not issues:
+        return ""
+    lines = "\n".join(f"• {_e(i.line())}" for i in issues[:25])
+    more = f"\n… and {len(issues) - 25} more (see the run log)." if len(issues) > 25 else ""
+    return f"\n⚠️ <b>Sources need attention</b> (the career page may have changed):\n{lines}{more}\n"
+
+
 def format_digest(jobs: list, today: date | None = None, max_jobs: int = 40, failed_sources: int = 0,
-                  title: str = "BANK JOB MONITOR", empty_text: str = EMPTY_TEXT) -> list[str]:
+                  title: str = "BANK JOB MONITOR", empty_text: str = EMPTY_TEXT, health_issues: list | None = None) -> list[str]:
     """Return one or more messages (split below Telegram's length limit)."""
+    health = format_health(health_issues or [])
     if not jobs:
-        return [empty_text]
+        return [empty_text + ("\n" + health if health else "")]
     header = f"<b>{_e(title)}</b>\nWeek of {week_of(today)}\nNew matching vacancies: {len(jobs)}\n"
     blocks = []
     for i, j in enumerate(jobs[:max_jobs], 1):
@@ -48,7 +58,9 @@ def format_digest(jobs: list, today: date | None = None, max_jobs: int = 40, fai
         blocks.append(f"\n{i}. <b>{_e(j.bank_name)}</b> — {_e(j.title)}{flag}\n{_e(j.location or 'Germany')}\n{_e(j.url)}\n")
     if len(jobs) > max_jobs:
         blocks.append(f"\n… and {len(jobs) - max_jobs} more (see the run log).\n")
-    if failed_sources:
+    if health:
+        blocks.append(health)
+    elif failed_sources:
         blocks.append(f"\n⚠️ {failed_sources} source(s) failed this run; check the log.")
     return _split(header, blocks)
 

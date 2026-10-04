@@ -22,6 +22,7 @@ from src.models.job import Job
 from src.notifications.telegram import TelegramNotifier, format_digest, format_job
 from src.scrapers import get_scraper
 from src.storage.database import JobDatabase
+from src.health import HealthStore
 from src.utils.http import HttpClient
 from src.utils.logging import get_logger, setup_logging
 
@@ -75,7 +76,8 @@ def resolve_location(job, bank, http) -> None:
         log.warning("Could not resolve location for '%s': %s", job.title, exc)
 
 
-def run(banks, settings, http, db, llm, stats: Stats, extra: dict | None = None, profiles: dict | None = None) -> list:
+def run(banks, settings, http, db, llm, stats: Stats, extra: dict | None = None, profiles: dict | None = None,
+        health=None) -> list:
     """Scrape + filter every bank. Errors in one bank never stop the run. Returns the jobs matching the main
     (leadership) profile. Every bank is scraped once; with `profiles` ({name: keyword config}) the same vacancies
     are also evaluated per extra profile and collected into `extra[name]`."""
@@ -96,9 +98,13 @@ def run(banks, settings, http, db, llm, stats: Stats, extra: dict | None = None,
         except Exception as exc:  # noqa: BLE001 - isolate per-bank failures by design
             stats.failed += 1
             log.error("%s scraper failed: %s: %s", bank.label, type(exc).__name__, exc)
+            if health is not None:
+                health.record(bank.id, bank.label, error=f"{type(exc).__name__}: {exc}")
             continue
         stats.successful += 1
         log.info("Found %d vacancies", len(jobs))
+        if health is not None:
+            health.record(bank.id, bank.label, count=len(jobs))
         if bank.options.get("aggregator"):
             for job in jobs:
                 job.aggregator = True
@@ -226,9 +232,13 @@ def main(argv=None) -> int:
     ap.add_argument("--profile", action="append",
                     help="only this recipient profile (repeatable): 'main' (leadership) or a name from settings.yaml 'profiles'; "
                          "default: all")
+    ap.add_argument("--learn-health", action="store_true",
+                    help="dry run that still stores each source's vacancy count (health baseline); no Telegram, no vacancy records")
     ap.add_argument("--no-robots", action="store_true", help="debug only; default respects robots.txt")
     ap.add_argument("--verbose", action="store_true")
     args = ap.parse_args(argv)
+    if args.learn_health:
+        args.dry_run = True
 
     setup_logging("DEBUG" if args.verbose else "INFO")
     log.info("Starting job monitor")
@@ -281,7 +291,11 @@ def main(argv=None) -> int:
     db = JobDatabase(":memory:" if args.dry_run and not args.db else db_path)
     stats = Stats()
     extra: dict = {}
-    matches = run(selected, settings, http, db, llm, stats, extra=extra, profiles=profiles)
+    health = HealthStore(db_path, writable=not args.dry_run or args.learn_health)
+    matches = run(selected, settings, http, db, llm, stats, extra=extra, profiles=profiles, health=health)
+    health.save()
+    for issue in health.issues:
+        log.warning("SOURCE NEEDS ATTENTION: %s", issue.line())
 
     # Deduplicate against the database: new jobs, or earlier jobs whose notification failed.
     if not run_main:
@@ -303,14 +317,14 @@ def main(argv=None) -> int:
         if args.baseline:
             db.mark_notified(matches)
             log.info("Baseline stored: %d vacancies marked as notified", len(matches))
-        elif to_notify or tcfg.get("send_empty_digest", True):
+        elif to_notify or health.issues or tcfg.get("send_empty_digest", True):
             try:
                 notifier = TelegramNotifier(env("TELEGRAM_BOT_TOKEN"), env("TELEGRAM_CHAT_ID"))
                 if tcfg["mode"] == "individual" and to_notify:
                     notifier.send_all(format_job(j) for j in to_notify)
                 else:
                     notifier.send_all(format_digest(to_notify, max_jobs=tcfg["max_jobs_in_digest"],
-                                                    failed_sources=stats.failed))
+                                                    failed_sources=stats.failed, health_issues=health.issues))
                 db.mark_notified(to_notify)
                 log.info("Telegram notification sent")
             except Exception as exc:  # noqa: BLE001
@@ -319,7 +333,7 @@ def main(argv=None) -> int:
     for name, pcfg in profiles.items():
         exit_code = deliver_profile(name, pcfg, extra.get(name, []), db, args, tcfg) or exit_code
     db.close()
-    log.info("Summary:\n%s", stats.summary())
+    log.info("Summary:\n%s\nSources needing attention: %d", stats.summary(), len(health.issues))
     if stats.processed and stats.failed == stats.processed:
         log.error("Every source failed - check network access and banks.yaml")
         exit_code = exit_code or 2
