@@ -203,3 +203,8 @@ def test_lead_leiter_digital_titles_are_accepted(settings, bank):
         assert evaluate(make_job(bank, title), bank, settings).accepted, title
     # no leadership word -> still not accepted
     assert not evaluate(make_job(bank, "Digital Marketing Specialist"), bank, settings).accepted
+
+
+def test_system_and_workflow_management_counts_as_function(settings, bank):
+    d = evaluate(make_job(bank, "Abteilungsleiter (m/w/d) System- und Workflowmanagement"), bank, settings)
+    assert d.accepted and not d.borderline
