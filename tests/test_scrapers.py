@@ -478,3 +478,12 @@ def test_successfactors_city_from_url():
     assert city_from_url("https://careersemea.smbcgroup.com/job/Frankfurt-Director-Finance-and-Regulatory-Reporting-Technology-Lead-%28mwd%29-HE-60311/1412998233/") == "Frankfurt"
     assert city_from_url("https://x.example/job/London-Loans-Trading-Executive-Director-EC2/1555555555/") == "London"
     assert city_from_url("https://x.example/search/") == ""
+
+
+def test_sitemap_jobs_clean_title():
+    from src.scrapers.sitemap_jobs import clean_title
+    raw = ("IT-Support Spezialist*in (w/m/d) für den Bereich „IT-Service Desk“ - "
+           "&lt;strong&gt;für den Bereich „IT-Service Desk“&lt;/strong&gt;&lt;br /&gt;")
+    assert clean_title(raw) == "IT-Support Spezialist*in (w/m/d) für den Bereich „IT-Service Desk“"
+    assert clean_title("Head of Finance - Frankfurt") == "Head of Finance - Frankfurt"
+    assert clean_title("Teamleiter  Treasury (m/w/d)") == "Teamleiter Treasury (m/w/d)"

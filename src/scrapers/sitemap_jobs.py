@@ -37,6 +37,18 @@ def slug_of(url: str) -> str:
     return segs[-1] if segs else ""
 
 
+def clean_title(title: str) -> str:
+    """Some portals put escaped HTML into the title (BaFin: 'IT-Support ... - &lt;strong&gt;...&lt;/strong&gt;&lt;br /&gt;'):
+    unescape, drop the tags, and drop a trailing ' - <text>' that merely repeats a part of the title."""
+    t = htmllib.unescape(htmllib.unescape(title or ""))
+    t = re.sub(r"<[^>]+>", " ", t)
+    t = re.sub(r"\s+", " ", t).strip()
+    head, sep, tail = t.rpartition(" - ")
+    if sep and tail.strip() and tail.strip() in head:
+        t = head.strip()
+    return t
+
+
 def title_from_slug(slug: str) -> str:
     return re.sub(r"\s+", " ", re.sub(r"[-_=&]", " ", slug)).strip().title()
 
@@ -88,11 +100,13 @@ class SitemapJobsScraper(BaseScraper):
         if ld:
             job = ld[0]
             job.url, job.source_job_id, job.source_type = url, slug_of(url), self.source_type
+            job.title = clean_title(job.title) or job.title
             return job
         h1 = soup.find("h1")
         og = soup.find("meta", attrs={"property": "og:title"})
         title = (h1.get_text(" ", strip=True) if h1 else "") or (og.get("content", "").strip() if og else "") \
             or (soup.title.get_text(" ", strip=True) if soup.title else "")
+        title = clean_title(title)
         if not title:
             return None
         location = ""
