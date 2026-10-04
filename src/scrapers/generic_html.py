@@ -143,11 +143,17 @@ class GenericHtmlScraper(BaseScraper):
         return jobs
 
     def _from_links(self, soup, bank):
+        """Anchors whose href matches link_pattern. options.title_url_regex (one capture group) builds the title from
+        the URL instead of the link text, for pages whose links all read 'Download (PDF)': the group's underscores/
+        hyphens become spaces ('..._Stellenausschreibung_Associate_Director.pdf' -> 'Associate Director')."""
         pattern = re.compile(bank.options.get("link_pattern") or DEFAULT_LINK_PATTERN, re.I)
+        title_rx = re.compile(bank.options["title_url_regex"], re.I) if bank.options.get("title_url_regex") else None
         jobs, seen = [], set()
         for a in soup.find_all("a", href=True):
             title = a.get_text(" ", strip=True)
             href = urljoin(bank.options.get("base_url") or bank.jobs_url, a["href"])
+            if title_rx and (m := title_rx.search(href)):
+                title = re.sub(r"[_\-]+", " ", m.group(1)).strip()
             if len(title) < 8 or not pattern.search(href) or href in seen:
                 continue
             seen.add(href)

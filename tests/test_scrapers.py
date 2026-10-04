@@ -595,3 +595,11 @@ def test_custom_api_schema_org_datafeed(bank):
     jobs = CustomApiScraper(None).parse(data, bank)
     assert [j.title for j in jobs] == ["Stabsleiter Risikomanagement (w/m/d)"]
     assert jobs[0].published_date == "2026-09-15" and jobs[0].job_id.endswith("67671672")
+
+
+def test_generic_html_title_from_url(bank):
+    bank.jobs_url = "https://tsi.example/ueber-uns/karriere"
+    bank.options = {"link_pattern": r"Stellenausschreibung[^\"]*\.pdf", "title_url_regex": r"Stellenausschreibung_([^/]+?)\.pdf"}
+    html = '<a href="/fileadmin/Job_offer/2026-07-20_TSI_Stellenausschreibung_Associate_Director.pdf">Download Job offer (PDF)</a>'
+    jobs = GenericHtmlScraper(None).parse(html, bank)
+    assert [j.title for j in jobs] == ["Associate Director"]

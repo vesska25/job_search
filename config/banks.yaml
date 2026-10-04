@@ -5065,11 +5065,13 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: true
-  verification_status: unverified
+  enabled: false
+  verification_status: needs_review
   last_verified: null
-  notes: Added from the user's list. DSGV vacancies are on the Guidecom portal jobs.guidecom.de/jobportal/dsgv (one posting
-    2025-004 seen; the link text may be empty). Unverified until a run.
+  notes: 'Added from the user''s list. DSGV vacancies are on the Guidecom portal jobs.guidecom.de/jobportal/dsgv (one posting
+    2025-004 seen; the link text may be empty). Unverified until a run. Disabled: the Guidecom list has one posting (ref 2025-004,
+    https://jobs.guidecom.de/jobportal/dsgv/viewAusschreibung/2025-004.html) but no title in the list, so the adapter only
+    read the footer text "Die passende Stelle ist nicht dabei? ..."; check that posting by hand.'
   options:
     link_pattern: viewAusschreibung/
     accept_unknown_location: true
@@ -5263,10 +5265,12 @@ banks:
   verification_status: unverified
   last_verified: null
   notes: Added from the user's list. Careers page links a PDF posting (2026-07-20_TSI_Stellenausschreibung_Associate_Director.pdf);
-    the title comes from the link/slug. Unverified until a run.
+    the title comes from the link/slug. Unverified until a run. Title is built from the PDF file name (options.title_url_regex)
+    because the link text is just "Download Job offer (PDF)".
   options:
     link_pattern: Stellenausschreibung[^"]*\.pdf
     accept_unknown_location: true
+    title_url_regex: Stellenausschreibung_([^/]+?)\.pdf
 - id: deka_investment
   name: Deka Investment GmbH
   display_name: Deka Investment
