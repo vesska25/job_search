@@ -6,6 +6,7 @@
 from __future__ import annotations
 
 import argparse
+from datetime import date
 import copy
 import html as htmllib
 import re
@@ -23,6 +24,7 @@ from src.notifications.telegram import TelegramNotifier, format_digest, format_j
 from src.scrapers import get_scraper
 from src.storage.database import JobDatabase
 from src.health import HealthStore
+from src.report import render_html
 from src.utils.http import HttpClient
 from src.utils.logging import get_logger, setup_logging
 
@@ -232,6 +234,8 @@ def main(argv=None) -> int:
     ap.add_argument("--profile", action="append",
                     help="only this recipient profile (repeatable): 'main' (leadership) or a name from settings.yaml 'profiles'; "
                          "default: all")
+    ap.add_argument("--report", type=Path, metavar="FILE",
+                    help="write the source-health report (HTML) to FILE; on a full non-dry run it is also sent to the main Telegram chat")
     ap.add_argument("--learn-health", action="store_true",
                     help="dry run that still stores each source's vacancy count (health baseline); no Telegram, no vacancy records")
     ap.add_argument("--no-robots", action="store_true", help="debug only; default respects robots.txt")
@@ -296,6 +300,12 @@ def main(argv=None) -> int:
     health.save()
     for issue in health.issues:
         log.warning("SOURCE NEEDS ATTENTION: %s", issue.line())
+    report_html = None
+    if args.report:
+        report_html = render_html(banks, health.rows, run_summary=stats.summary())
+        args.report.parent.mkdir(parents=True, exist_ok=True)
+        args.report.write_text(report_html, encoding="utf-8")
+        log.info("Health report written to %s", args.report)
 
     # Deduplicate against the database: new jobs, or earlier jobs whose notification failed.
     if not run_main:
@@ -330,6 +340,14 @@ def main(argv=None) -> int:
             except Exception as exc:  # noqa: BLE001
                 log.error("Telegram notification failed (jobs stay pending for next run): %s", exc)
                 exit_code = 1
+    if report_html and run_main and not args.dry_run and not args.bank and settings["telegram"].get("send_health_report", True):
+        try:
+            TelegramNotifier(env("TELEGRAM_BOT_TOKEN"), env("TELEGRAM_CHAT_ID")).send_document(
+                f"source-health-{date.today().isoformat()}.html", report_html.encode("utf-8"),
+                caption=f"Source health: {len(health.issues)} need attention, see the attached report.")
+            log.info("Health report sent to Telegram")
+        except Exception as exc:  # noqa: BLE001
+            log.error("Sending the health report failed: %s", exc)
     for name, pcfg in profiles.items():
         exit_code = deliver_profile(name, pcfg, extra.get(name, []), db, args, tcfg) or exit_code
     db.close()

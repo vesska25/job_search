@@ -56,3 +56,19 @@ def test_digest_shows_health_block_also_without_new_jobs():
     msgs = format_digest([], today=date(2026, 10, 9), health_issues=issues)
     assert "Sources need attention" in msgs[0] and "Bank A" in msgs[0]
     assert "Sources need attention" not in format_digest([], today=date(2026, 10, 9))[0]
+
+
+def test_report_html_lists_problems_disabled_and_working():
+    from src.config import Bank
+    from src.report import render_html
+    banks = [Bank(id="a", name="Bank A", enabled=True, jobs_url="https://a.test/jobs", source_type="custom_html"),
+             Bank(id="b", name="Bank <B>", enabled=True, source_type="personio"),
+             Bank(id="c", name="Bank C", enabled=False, verification_status="js_list", notes="List is rendered by JS."),
+             Bank(id="d", name="Bank D", enabled=True)]
+    rows = {"a": {"baseline": 30, "last_count": 0, "issue_kind": "empty", "issue_since": "2026-10-04", "last_error": None},
+            "b": {"baseline": 12, "last_count": 12, "issue_kind": None, "issue_since": None, "last_error": None}}
+    out = render_html(banks, rows, today=date(2026, 10, 9))
+    assert "Needs attention" in out and "Found nothing" in out and "usually ~30" in out and "2026-10-04" in out
+    assert "List is loaded by JavaScript" in out and "Bank C" in out          # disabled, with the reason
+    assert "Bank &lt;B&gt;" in out and "Bank <B>" not in out                    # escaped
+    assert "Enabled but not measured yet" in out and "Bank D" in out

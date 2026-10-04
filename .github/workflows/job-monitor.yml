@@ -63,7 +63,15 @@ jobs:
         run: |
           ARGS=""
           for b in ${BANKS//,/ }; do ARGS="$ARGS --bank $b"; done
-          python -m src.main ${{ inputs.baseline && '--baseline' || '' }} ${{ inputs.dry_run && '--dry-run --verbose' || '' }} ${{ inputs.test_telegram && '--test-telegram' || '' }} ${{ inputs.learn_health && '--learn-health' || '' }} ${{ inputs.resend && '--resend' || '' }} ${{ inputs.profile && format('--profile {0}', inputs.profile) || '' }} $ARGS
+          python -m src.main ${{ inputs.baseline && '--baseline' || '' }} ${{ inputs.dry_run && '--dry-run --verbose' || '' }} ${{ inputs.test_telegram && '--test-telegram' || '' }} ${{ inputs.learn_health && '--learn-health' || '' }} --report reports/source-health.html ${{ inputs.resend && '--resend' || '' }} ${{ inputs.profile && format('--profile {0}', inputs.profile) || '' }} $ARGS
+      - name: Upload health report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-health-report
+          path: reports/source-health.html
+          if-no-files-found: ignore
+          retention-days: 90
       - name: Persist database
         if: always()
         run: |

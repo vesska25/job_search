@@ -1,0 +1,49 @@
+name: Capture contract fixtures (manual)
+
+# Records the real responses of each source into tests/contracts/<bank>.json.gz; tests/test_contracts.py replays them
+# against the adapters (no network). Re-run after a bank changed its page and the adapter was fixed, or for new sources.
+on:
+  workflow_dispatch:
+    inputs:
+      banks:
+        description: "Only these bank ids, comma-separated; empty = all enabled banks"
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: capture-contracts
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Capture
+        env:
+          BANKS: ${{ inputs.banks }}
+        run: |
+          ARGS=""
+          for b in ${BANKS//,/ }; do ARGS="$ARGS --bank $b"; done
+          python -m tools.capture_fixtures $ARGS
+      - name: Run the contract tests on what was captured
+        run: python -m pytest tests/test_contracts.py -q
+      - name: Commit fixtures
+        run: |
+          if [ -n "$(git status --porcelain tests/contracts)" ]; then
+            git config user.name "job-monitor-bot"
+            git config user.email "job-monitor-bot@users.noreply.github.com"
+            git add tests/contracts
+            git commit -m "test: update recorded contract fixtures [skip ci]"
+            git pull --rebase origin "${GITHUB_REF_NAME}" || true
+            git push
+          fi

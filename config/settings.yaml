@@ -362,6 +362,7 @@ telegram:
   mode: digest                 # digest | individual
   send_empty_digest: true
   max_jobs_in_digest: 40
+  send_health_report: true     # attach the HTML source-health report to the main chat after every full run
 
 database:
   path: data/jobs.db

@@ -93,6 +93,13 @@ class TelegramNotifier:
             # Never log the URL: it contains the bot token.
             raise RuntimeError(f"Telegram API error {resp.status_code}: {resp.text[:200]}")
 
+    def send_document(self, filename: str, data: bytes, caption: str = "", mime: str = "text/html") -> None:
+        resp = self.session.post(
+            f"https://api.telegram.org/bot{self.token}/sendDocument", timeout=max(self.timeout, 60),
+            data={"chat_id": self.chat_id, "caption": caption[:1000]}, files={"document": (filename, data, mime)})
+        if resp.status_code != 200:
+            raise RuntimeError(f"Telegram API error {resp.status_code}: {resp.text[:200]}")
+
     def send_all(self, messages: Iterable[str]) -> None:
         for m in messages:
             self.send(m)
