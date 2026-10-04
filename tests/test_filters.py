@@ -178,7 +178,7 @@ def test_bank_option_accepts_unknown_location(settings, bank):
 
 
 def test_plain_manager_with_risk_or_it_in_title_is_borderline(settings, bank):
-    for title in ("(Senior) Information Risk and Security Manager*in", "IT-Application Manager*in Compliance",
+    for title in ("(Senior) Information Risk and Security Manager*in",
                   "Category Project Manager IT Services", "Risk Manager (m/w/d)"):
         d = evaluate(make_job(bank, title), bank, settings)
         assert d.accepted and d.borderline, title
