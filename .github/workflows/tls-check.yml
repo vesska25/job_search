@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       host:
-        description: "Host to inspect (certificate chain and verification result only)"
+        description: "Host to inspect (certificate chain, missing intermediate; verification is never disabled)"
         required: true
 
 permissions:
@@ -14,10 +14,20 @@ jobs:
   tls:
     runs-on: ubuntu-latest
     steps:
-      - name: Certificate chain
+      - name: Certificate chain as sent by the server
         run: |
           echo | openssl s_client -connect "${{ inputs.host }}:443" -servername "${{ inputs.host }}" -showcerts 2>&1 \
-            | grep -E "^( [0-9] s:|   i:|Verif|verify|depth|subject|issuer|Certificate chain)|notAfter|notBefore" | head -40
-      - name: curl with verification (no bypass)
+            | grep -E "^( [0-9] s:|   i:|Verification|Verify return)" | head -20
+      - name: Issuer certificate named in the leaf (AIA), as PEM
         run: |
-          curl -sS -m 20 -o /dev/null -w "HTTP %{http_code}, ssl_verify_result=%{ssl_verify_result}\n" "https://${{ inputs.host }}/robots.txt" || true
+          echo | openssl s_client -connect "${{ inputs.host }}:443" -servername "${{ inputs.host }}" 2>/dev/null | openssl x509 > leaf.pem
+          openssl x509 -in leaf.pem -noout -subject -issuer -dates
+          URL=$(openssl x509 -in leaf.pem -noout -ext authorityInfoAccess | grep "CA Issuers" | head -1 | sed 's/.*URI://')
+          echo "AIA issuer URL: $URL"
+          curl -sS -m 20 -L "$URL" -o ca.bin
+          (openssl x509 -inform DER -in ca.bin 2>/dev/null || openssl x509 -in ca.bin) > ca.pem
+          openssl x509 -in ca.pem -noout -subject -issuer -dates
+          echo "----- PEM -----"
+          cat ca.pem
+          echo "----- verify leaf with this intermediate + system roots -----"
+          openssl verify -untrusted ca.pem leaf.pem
