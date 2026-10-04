@@ -603,3 +603,11 @@ def test_generic_html_title_from_url(bank):
     html = '<a href="/fileadmin/Job_offer/2026-07-20_TSI_Stellenausschreibung_Associate_Director.pdf">Download Job offer (PDF)</a>'
     jobs = GenericHtmlScraper(None).parse(html, bank)
     assert [j.title for j in jobs] == ["Associate Director"]
+
+
+def test_generic_html_title_cut_regex_sets_location(bank):
+    bank.jobs_url = "https://rsgv.example/_/joblist"
+    bank.options = {"link_pattern": r"/_/jobad\?prj=", "title_cut_regex": r"\s+(Düsseldorf|Köln)\s+(?:Vollzeit|Teilzeit).*$"}
+    html = '<a href="/_/jobad?prj=1"><span>Stabsstellenleitung (w/m/d) Präsidialbüro</span> Düsseldorf Vollzeit oder Teilzeit Festanstellung</a>'
+    jobs = GenericHtmlScraper(None).parse(html, bank)
+    assert [(j.title, j.location) for j in jobs] == [("Stabsstellenleitung (w/m/d) Präsidialbüro", "Düsseldorf")]

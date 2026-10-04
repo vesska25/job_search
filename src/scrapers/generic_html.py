@@ -41,6 +41,15 @@ class GenericHtmlScraper(BaseScraper):
         jobs = self._from_jsonld(soup, bank) or self._from_selectors(soup, bank) or self._from_links(soup, bank)
         if not jobs and len(html) < 500:
             raise ScraperError("Page nearly empty (blocked or JavaScript-rendered?)")
+        cut = bank.options.get("title_cut_regex")  # card text = "Title City Vollzeit ... Festanstellung": keep the part before the match, group 1 = location
+        if cut:
+            cut_rx = re.compile(cut)
+            for j in jobs:
+                m = cut_rx.search(j.title)
+                if m and m.start() > 0:
+                    if m.groups() and m.group(1) and not j.location:
+                        j.location = m.group(1).strip()
+                    j.title = j.title[:m.start()].strip()
         rx = bank.options.get("location_regex")  # e.g. "\\bin ([A-ZÄÖÜ][^()]*)$" for titles like "Leiter X (m/w/d) in Wiesbaden"
         if rx:
             pattern = re.compile(rx)

@@ -4633,7 +4633,7 @@ banks:
   display_name: DSGF
   country: Germany
   address_in_source_list: Köln (from the user's list of banking-related organisations; address not verified)
-  jobs_url: https://vr.mein-check-in.de/dsgf/x/stellenangebote
+  jobs_url: https://www.dsgf.de/karriere/stellenangebote/
   source_type: custom_html
   germany_only: true
   germany_filter: ''
@@ -4642,8 +4642,8 @@ banks:
   verification_status: unverified
   last_verified: null
   notes: 'Back office of the Sparkassen. www.dsgf.de sends an incomplete TLS chain (wrong intermediate); fixed client-side by the
-    public Sectigo DV R36 intermediate in config/ca (verification stays on). Vacancies are on the check-in portal, job pages
-    /dsgf/x/stellenangebote/<id> (found by probe). Unverified until a dry-run.'
+    public Sectigo DV R36 intermediate in config/ca (verification stays on). Vacancies are listed on /karriere/stellenangebote/ (check-in portal embedded under www.dsgf.de), job pages
+    /dsgf/x/stellenangebote/<id> (found by probe; vr.mein-check-in.de/dsgf returns 404). Unverified until a dry-run.'
   options:
     link_pattern: /dsgf/x/stellenangebote/\d+
     accept_unknown_location: true
@@ -5147,6 +5147,7 @@ banks:
     /_/jobad?prj=<id> found by probe; titles are read from the link text. Unverified until a dry-run.'
   options:
     link_pattern: /_/jobad\?prj=
+    title_cut_regex: \s+(Düsseldorf|Köln|Bonn|Frankfurt[^ ]*|Berlin)\s+(?:Vollzeit|Teilzeit).*$
     accept_unknown_location: true
 - id: genossenschaftsverband
   name: Genossenschaftsverband - Verband der Regionen
