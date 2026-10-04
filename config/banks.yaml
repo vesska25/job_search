@@ -4432,3 +4432,26 @@ banks:
       size: 10
       total_path: data.count
       max_pages: 30
+- id: ifp_executive_search
+  name: ifp Executive Search (Personalberatung)
+  display_name: ifp (executive search)
+  country: Germany
+  address_in_source_list: Köln (added by the user, not in the original list; a recruitment agency, not a bank - positions are mandates of its clients)
+  jobs_url: https://ifp-online.com/executive-positions/
+  source_type: sitemap_jobs
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Added at the user''s request (third-party executive search agency, clients of all industries). The position list on
+    the page is loaded through wp-admin/admin-ajax.php, which robots.txt forbids (not used). The sitemap named in robots.txt
+    (mandate-sitemap.xml) lists every position page /executive-positions/<slug>/, which the sitemap_jobs adapter reads. Unverified
+    until a Verify run.'
+  options:
+    sitemap_url: https://ifp-online.com/mandate-sitemap.xml
+    url_regex: /executive-positions/[^/]+/?$
+    detail: true
+    accept_unknown_location: true
+    max_pages: 150
