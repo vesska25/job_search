@@ -4603,10 +4603,11 @@ banks:
   enabled: true
   verification_status: unverified
   last_verified: null
-  notes: Added from the user's list of banking-related organisations (not banks). Careers page found by web search (not yet
-    confirmed by a run). IT service provider of the cooperative banks; job detail pattern /job/?loc=..&vacancieid=..
+  notes: 'Added from the user''s list of banking-related organisations (not banks). Careers page found by web search (not
+    yet confirmed by a run). IT service provider of the cooperative banks; job detail pattern /job/?loc=..&vacancieid=.. Fixed:
+    job links look like /job?vacancieid=2026-107 (found by diagnose).'
   options:
-    link_pattern: /job/\?
+    link_pattern: /job\?vacancieid=
     accept_unknown_location: true
 - id: siz
   name: SIZ GmbH
@@ -4647,7 +4648,7 @@ banks:
   display_name: WM Datenservice
   country: Germany
   address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
-  jobs_url: https://www.wmdatenservice.com/de/ueber-uns/karriere/
+  jobs_url: https://jobs.wmgruppe.de/
   source_type: custom_html
   germany_only: true
   germany_filter: ''
@@ -4655,10 +4656,12 @@ banks:
   enabled: true
   verification_status: unverified
   last_verified: null
-  notes: Added from the user's list of banking-related organisations (not banks). Careers page found by web search (not yet
-    confirmed by a run). Securities data (WKN/ISIN); job pages /karriere/jobs/<id>. Shared with WM Gruppe https://www.wmgruppe.de/de/karriere/
+  notes: 'Added from the user''s list of banking-related organisations (not banks). Careers page found by web search (not
+    yet confirmed by a run). Securities data (WKN/ISIN); job pages /karriere/jobs/<id>. Shared with WM Gruppe https://www.wmgruppe.de/de/karriere/
+    Fixed: the list is the rexx portal jobs.wmgruppe.de (job pages ...-de-j174.html), embedded on the WM Datenservice karriere
+    page.'
   options:
-    link_pattern: /karriere/jobs/
+    link_pattern: -j\d+\.html
     accept_unknown_location: true
 - id: dg_nexolution
   name: DG Nexolution eG
