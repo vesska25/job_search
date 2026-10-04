@@ -1,5 +1,6 @@
 """Scraper registry: maps banks.yaml `source_type` to adapter class."""
 from src.scrapers.base import BaseScraper, ScraperError
+from src.scrapers.bundesagentur import BundesagenturScraper
 from src.scrapers.beesite import BeeSiteScraper
 from src.scrapers.custom_api import CustomApiScraper
 from src.scrapers.generic_html import GenericHtmlScraper
@@ -28,6 +29,7 @@ SCRAPERS = {
     "sparkasse_jobmarket": SparkasseJobMarketScraper,
     "vr_jobs": VrJobsScraper,
     "sitemap_jobs": SitemapJobsScraper,
+    "bundesagentur": BundesagenturScraper,
 }
 # 'proprietary' is a bank-specific site: use custom_html/custom_api options.
 SCRAPERS["proprietary"] = GenericHtmlScraper

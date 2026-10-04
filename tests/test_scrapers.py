@@ -487,3 +487,31 @@ def test_sitemap_jobs_clean_title():
     assert clean_title(raw) == "IT-Support Spezialist*in (w/m/d) für den Bereich „IT-Service Desk“"
     assert clean_title("Head of Finance - Frankfurt") == "Head of Finance - Frankfurt"
     assert clean_title("Teamleiter  Treasury (m/w/d)") == "Teamleiter Treasury (m/w/d)"
+
+
+def test_bundesagentur_parse_and_pagination(bank):
+    from src.scrapers.bundesagentur import BundesagenturScraper
+
+    class Resp:
+        def __init__(self, d):
+            self.d = d
+
+        def json(self):
+            return self.d
+
+    class FakeHttp:
+        calls = []
+
+        def request(self, method, url, params=None, headers=None, **kw):
+            FakeHttp.calls.append((params, headers))
+            return Resp({"maxErgebnisse": 1, "stellenangebote": [
+                {"refnr": "10001-1-S", "titel": "Abteilungsleiter Risikocontrolling (m/w/d)", "arbeitgeber": "Beispiel Bank AG",
+                 "arbeitsort": {"ort": "Frankfurt am Main", "region": "Hessen"}}]})
+
+    bank.options = {"branche": 6, "terms": ["Leiter", "Head"], "regions": [{"wo": "Köln", "umkreis": 30}]}
+    jobs = BundesagenturScraper(FakeHttp()).fetch_jobs(bank)
+    assert len(jobs) == 1                                    # same refnr from both terms is kept once
+    assert jobs[0].url == "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1-S"
+    assert jobs[0].bank_name == "Beispiel Bank AG (via Bundesagentur)" and jobs[0].location == "Frankfurt am Main, Hessen"
+    params, headers = FakeHttp.calls[0]
+    assert params["branche"] == 6 and params["wo"] == "Köln" and headers["X-API-Key"] == "jobboerse-jobsuche"

@@ -4500,3 +4500,30 @@ banks:
     url_regex: ac=jobad
     max_pages: 150
     accept_unknown_location: true
+
+- id: bundesagentur_fuer_arbeit
+  name: Bundesagentur für Arbeit - Jobbörse (Branche Banken/Finanzdienstleistungen/Versicherungen)
+  display_name: Bundesagentur (Finanzbranche)
+  country: Germany
+  address_in_source_list: Nürnberg (added by the user, not in the original list; public job board, not a bank)
+  jobs_url: https://www.arbeitsagentur.de/jobsuche/
+  source_type: bundesagentur
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Added at the user''s request. Official Jobsuche API v6 (rest.arbeitsagentur.de, public X-API-Key from the API
+    documentation). Industry filter branche=6 (Banken, Finanzdienstleistungen, Immobilien, Versicherungen), regions Frankfurt am
+    Main, Düsseldorf, Köln within 30 km, one query per leadership search word. Includes insurers/real-estate employers; the
+    normal filters then apply. Unverified until a Verify run.'
+  options:
+    branche: 6
+    size: 100
+    max_pages: 3
+    terms: [Leiter, Abteilungsleiter, Teamleiter, Bereichsleiter, Gruppenleiter, Head, Lead, Director, Direktor, Vice President]
+    regions:
+      - {wo: Frankfurt am Main, umkreis: 30}
+      - {wo: Düsseldorf, umkreis: 30}
+      - {wo: Köln, umkreis: 30}
