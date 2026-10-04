@@ -17,7 +17,8 @@ import requests
 
 from src.utils.http import HttpClient
 
-MAX_BODY = 3_000_000          # a single response larger than this is not stored
+MAX_BODY = 6_000_000          # a single response larger than this is not stored
+SHARED_MIN = 400_000          # bodies at least this large are stored once in tests/contracts/_shared/<sha>.json.gz
 MAX_ENTRIES = 150
 
 
@@ -56,12 +57,18 @@ def _response(e: dict, url: str) -> requests.Response:
 class RecordingHttpClient(HttpClient):
     """Real client (robots.txt, throttling and all) that remembers what it fetched."""
 
-    def __init__(self, *a, **kw):
+    def __init__(self, *a, cache: dict | None = None, **kw):
         super().__init__(*a, **kw)
         self.entries: list[dict] = []
         self.skipped: int = 0
+        self.cache = cache if cache is not None else {}     # shared across banks of one capture run: big GETs are downloaded once
 
     def request(self, method, url, **kwargs):
+        key = request_key(method, url, kwargs)
+        if method.upper() == "GET" and key in self.cache:
+            e = self.cache[key]
+            self.entries.append(e)
+            return _response(e, url)
         try:
             resp = super().request(method, url, **kwargs)
         except requests.HTTPError as exc:          # adapters often catch a 404 and carry on: record it so the replay does the same
@@ -75,7 +82,10 @@ class RecordingHttpClient(HttpClient):
         if len(resp.content) > MAX_BODY or len(self.entries) >= MAX_ENTRIES:
             self.skipped += 1                      # the replay will miss it: the capture is then not usable for this bank
         else:
-            self.entries.append(_entry(resp, request_key(method, url, kwargs)))
+            e = _entry(resp, request_key(method, url, kwargs))
+            self.entries.append(e)
+            if method.upper() == "GET" and resp.status_code == 200 and len(resp.content) >= SHARED_MIN:
+                self.cache[e["key"]] = e
 
 
 class ReplayHttpClient:
@@ -101,17 +111,42 @@ class ReplayHttpClient:
         return self.request("POST", url, **kwargs)
 
 
+def _gz(doc) -> bytes:
+    return gzip.compress(json.dumps(doc, ensure_ascii=False, sort_keys=True).encode("utf-8"), mtime=0)
+
+
 def save_contract(path: Path, bank_id: str, jobs: list, entries: list[dict], captured: str) -> int:
+    """Writes the contract; large response bodies go to <dir>/_shared/<sha1>.json.gz (identical downloads, such as the vr.de
+    sitemap used by 22 banks, are stored once). Returns the size of the bank's own file."""
+    import hashlib
+    shared_dir = path.parent / "_shared"
+    slim = []
+    for e in entries:
+        body = e.get("text") or e.get("b64") or ""
+        if len(body) >= SHARED_MIN:
+            sha = hashlib.sha1((e["key"] + body).encode("utf-8", "replace")).hexdigest()
+            shared_dir.mkdir(parents=True, exist_ok=True)
+            f = shared_dir / f"{sha}.json.gz"
+            if not f.exists():
+                f.write_bytes(_gz(e))
+            slim.append({"key": e["key"], "shared": sha})
+        else:
+            slim.append(e)
     doc = {"bank_id": bank_id, "captured": captured, "count": len(jobs),
-           "sample_titles": [j.title for j in jobs[:3]], "entries": entries}
+           "sample_titles": [j.title for j in jobs[:3]], "entries": slim}
     path.parent.mkdir(parents=True, exist_ok=True)
-    data = gzip.compress(json.dumps(doc, ensure_ascii=False, sort_keys=True).encode("utf-8"), mtime=0)
+    data = _gz(doc)
     path.write_bytes(data)
     return len(data)
 
 
 def load_contract(path: Path) -> dict:
-    return json.loads(gzip.decompress(Path(path).read_bytes()).decode("utf-8"))
+    path = Path(path)
+    doc = json.loads(gzip.decompress(path.read_bytes()).decode("utf-8"))
+    for i, e in enumerate(doc["entries"]):
+        if "shared" in e:
+            doc["entries"][i] = json.loads(gzip.decompress((path.parent / "_shared" / f"{e['shared']}.json.gz").read_bytes()).decode("utf-8"))
+    return doc
 
 
 def check_contract(bank, doc: dict, max_pages: int) -> list[str]:

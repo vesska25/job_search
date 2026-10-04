@@ -38,16 +38,18 @@ def url_slug(name: str) -> str:
 
 class VrJobsScraper(BaseScraper):
     source_type = "vr_jobs"
-    _sitemap_cache: dict = {}   # one sitemap download per process, shared by all VR banks
 
     def sitemap_entries(self) -> list:
-        if SITEMAP_URL not in self._sitemap_cache:
+        # One sitemap download per run, shared by all VR banks: the cache lives on the (per-run) HTTP client, not on the
+        # class, so a fresh client (contract test, capture) never inherits another bank's download.
+        cache = self.http.__dict__.setdefault("_vr_sitemap_cache", {})
+        if SITEMAP_URL not in cache:
             text = self.http.get(SITEMAP_URL).text
             entries = LOC.findall(text)
             if not entries:
                 raise ScraperError("vr.de jobs sitemap lists no vacancy pages (layout change?)")
-            self._sitemap_cache[SITEMAP_URL] = entries
-        return self._sitemap_cache[SITEMAP_URL]
+            cache[SITEMAP_URL] = entries
+        return cache[SITEMAP_URL]
 
     def bank_entries(self, bank: Bank, entries: list) -> list:
         frag = bank.options.get("vr_slug") or url_slug(bank.name)

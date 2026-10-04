@@ -355,7 +355,6 @@ def _vr_http(pages):
 
 def test_vr_jobs_matches_bank_by_slug_and_reads_jsonld(bank):
     from src.scrapers.vr_jobs import SITEMAP_URL, VrJobsScraper
-    VrJobsScraper._sitemap_cache.clear()
     bank.name, bank.options = "Wiesbadener Volksbank eG", {}
     detail = "https://www.vr.de/karriere/jobs/leiter-rechnungswesen-m-w-d-wiesbadener-volksbank-eg-abc123.html"
     http = _vr_http({SITEMAP_URL: VR_SITEMAP, detail: VR_PAGE})
@@ -366,7 +365,6 @@ def test_vr_jobs_matches_bank_by_slug_and_reads_jsonld(bank):
 
 def test_vr_jobs_unknown_bank_is_an_error_but_bank_without_vacancies_is_not(bank):
     from src.scrapers.vr_jobs import SITEMAP_URL, VrJobsScraper
-    VrJobsScraper._sitemap_cache.clear()
     http = _vr_http({SITEMAP_URL: VR_SITEMAP})
     bank.name, bank.options = "Gibt Es Nicht eG", {}
     with pytest.raises(ScraperError):
@@ -379,7 +377,6 @@ def test_vr_jobs_unknown_bank_is_an_error_but_bank_without_vacancies_is_not(bank
 def test_vr_jobs_skips_expired_vacancy_pages(bank):
     import requests
     from src.scrapers.vr_jobs import SITEMAP_URL, VrJobsScraper
-    VrJobsScraper._sitemap_cache.clear()
     bank.name, bank.options = "Wiesbadener Volksbank eG", {}
 
     class Http:

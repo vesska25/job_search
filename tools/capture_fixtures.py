@@ -22,11 +22,11 @@ OUT = ROOT / "tests" / "contracts"
 MAX_FILE = 4_000_000      # compressed bytes per bank
 
 
-def capture(bank, settings) -> tuple[str, int, int]:
+def capture(bank, settings, cache: dict | None = None) -> tuple[str, int, int]:
     """Returns (status, vacancies, bytes). status: saved | empty | too_big | failed: <reason>"""
     h = settings["http"]
     http = RecordingHttpClient(user_agent=h["user_agent"], timeout=h["timeout"], retries=h["retries"],
-                               min_delay=h["min_delay_seconds"], respect_robots=h["respect_robots_txt"])
+                               min_delay=h["min_delay_seconds"], respect_robots=h["respect_robots_txt"], cache=cache)
     try:
         scraper = get_scraper(bank.source_type, http, max_pages=bank.options.get("max_pages", h.get("max_pages", 30)))
         jobs = scraper.fetch_jobs(bank)
@@ -55,9 +55,9 @@ def main(argv=None) -> int:
     setup_logging("INFO")
     settings = load_settings(CONFIG_DIR / "settings.yaml")
     banks = [b for b in load_banks() if (b.id in args.bank if args.bank else b.enabled)]
-    saved = 0
+    saved, cache = 0, {}
     for b in banks:
-        status, n, size = capture(b, settings)
+        status, n, size = capture(b, settings, cache)
         saved += status == "saved"
         log.info("%-40s %-10s vacancies=%-4d %s", b.id, status.split(":")[0], n, f"{size/1024:.0f} KiB" if size else status)
     log.info("Saved %d of %d contracts", saved, len(banks))
