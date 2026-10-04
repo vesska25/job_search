@@ -285,6 +285,8 @@ filters:
     - Customer Relationship Manager
     - Berechtigungen
     - Berechtigungsmanagement
+    # Sales roles (not wanted)
+    - Sales
 
   # Rejected unless a STRONG leadership keyword is also in the title
   # ("Senior Specialist ..." is out; "Head of Expert Network" stays in).

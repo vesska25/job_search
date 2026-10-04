@@ -234,3 +234,10 @@ def test_technical_exclusions_keep_soft_it(settings, bank, title, ok):
 def test_it_operations_titles_are_excluded(settings, bank, title):
     from src.filters.pipeline import evaluate
     assert not evaluate(make_job(bank, title, location="Frankfurt"), bank, settings).accepted
+
+
+@pytest.mark.parametrize("title", ["Vice President Trade Finance Sales (m/w/d)", "Global Solution Sales Manager (Director)",
+                                   "Head of Sales Operations"])
+def test_sales_titles_are_excluded(settings, bank, title):
+    from src.filters.pipeline import evaluate
+    assert not evaluate(make_job(bank, title, location="Frankfurt"), bank, settings).accepted
