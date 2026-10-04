@@ -5223,11 +5223,12 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: true
-  verification_status: unverified
+  enabled: false
+  verification_status: js_list
   last_verified: null
-  notes: Added from the user's list. bankenverband.de/ueber-uns/karriere-und-offene-stellen links to the external portal 8105102442.karriereportal.cloud;
-    layout unknown. Unverified until a run.
+  notes: 'Portal 8105102442.karriereportal.cloud (linked from bankenverband.de/ueber-uns/karriere-und-offene-stellen, also sent
+    by the user). Disabled: it is a JavaScript single-page app (the static HTML is only an empty root div plus noscript, the dry-run
+    found 0 vacancies); no JSON endpoint found in the first scripts. Needs a known API URL to connect.'
   options:
     accept_unknown_location: true
 - id: bvi
