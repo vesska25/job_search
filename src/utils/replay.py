@@ -62,12 +62,20 @@ class RecordingHttpClient(HttpClient):
         self.skipped: int = 0
 
     def request(self, method, url, **kwargs):
-        resp = super().request(method, url, **kwargs)
+        try:
+            resp = super().request(method, url, **kwargs)
+        except requests.HTTPError as exc:          # adapters often catch a 404 and carry on: record it so the replay does the same
+            if exc.response is not None:
+                self._keep(exc.response, method, url, kwargs)
+            raise
+        self._keep(resp, method, url, kwargs)
+        return resp
+
+    def _keep(self, resp, method, url, kwargs):
         if len(resp.content) > MAX_BODY or len(self.entries) >= MAX_ENTRIES:
             self.skipped += 1                      # the replay will miss it: the capture is then not usable for this bank
         else:
             self.entries.append(_entry(resp, request_key(method, url, kwargs)))
-        return resp
 
 
 class ReplayHttpClient:
@@ -104,3 +112,28 @@ def save_contract(path: Path, bank_id: str, jobs: list, entries: list[dict], cap
 
 def load_contract(path: Path) -> dict:
     return json.loads(gzip.decompress(Path(path).read_bytes()).decode("utf-8"))
+
+
+def check_contract(bank, doc: dict, max_pages: int) -> list[str]:
+    """Replay a recorded contract through the real adapter. Returns a list of problems (empty = the contract holds)."""
+    from src.scrapers import get_scraper
+    scraper = get_scraper(bank.source_type, ReplayHttpClient(doc["entries"]), max_pages=max_pages)
+    try:
+        jobs = scraper.fetch_jobs(bank)
+    except ReplayMiss as exc:
+        return [f"the adapter requests something that was not recorded: {exc}"]
+    except Exception as exc:  # noqa: BLE001
+        return [f"the adapter fails on the recorded responses: {type(exc).__name__}: {exc}"]
+    problems = []
+    if len(jobs) != doc["count"]:
+        problems.append(f"{len(jobs)} vacancies, recorded {doc['count']}")
+    if [j.title for j in jobs[:3]] != doc["sample_titles"]:
+        problems.append("the first titles differ from the recorded ones")
+    if any(len(j.title.strip()) < 3 for j in jobs):
+        problems.append("empty or tiny title")
+    if any(not j.url.startswith("http") for j in jobs):
+        problems.append("relative or empty URL")
+    ids = [j.job_id for j in jobs]
+    if len(ids) != len(set(ids)):
+        problems.append(f"duplicate job ids ({len(ids) - len(set(ids))})")
+    return problems

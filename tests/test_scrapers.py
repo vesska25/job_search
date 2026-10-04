@@ -611,3 +611,23 @@ def test_generic_html_title_cut_regex_sets_location(bank):
     html = '<a href="/_/jobad?prj=1"><span>Stabsstellenleitung (w/m/d) Präsidialbüro</span> Düsseldorf Vollzeit oder Teilzeit Festanstellung</a>'
     jobs = GenericHtmlScraper(None).parse(html, bank)
     assert [(j.title, j.location) for j in jobs] == [("Stabsstellenleitung (w/m/d) Präsidialbüro", "Düsseldorf")]
+
+
+def test_workday_id_ignores_a_location_in_bullet_fields(bank):
+    from src.scrapers.workday import WorkdayScraper
+    data = {"jobPostings": [
+        {"title": "Risk Manager", "externalPath": "/job/Kronberg-Office/Risk-Manager_J66174", "bulletFields": ["Kronberg Office"]},
+        {"title": "Head of X", "externalPath": "/job/Kronberg-Office/Head-of-X_J66175", "bulletFields": ["Kronberg Office"]},
+        {"title": "Real id", "externalPath": "/job/a/Real-id_R-1", "bulletFields": ["R-19566"]}]}
+    jobs = WorkdayScraper(None).parse(data, bank, "https://w.example", "site")
+    assert [j.job_id.split(":")[1] for j in jobs] == ["J66174", "J66175", "R-19566"]
+
+
+def test_generic_html_page_dedupes_repeated_vacancy_links(bank):
+    from unittest.mock import MagicMock
+    bank.jobs_url = "https://x.example/jobs"
+    bank.options = {"link_pattern": r"/jobs/\d+"}
+    html = '<a href="/jobs/1">Teamleiter Risiko</a><a href="/jobs/1">Teamleiter Risiko</a><a href="/jobs/2">Abteilungsleiter Recht</a>'
+    http = MagicMock()
+    http.get.return_value.text = html
+    assert len(GenericHtmlScraper(http).fetch_jobs(bank)) == 2

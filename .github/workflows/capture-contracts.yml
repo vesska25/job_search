@@ -35,8 +35,6 @@ jobs:
           ARGS=""
           for b in ${BANKS//,/ }; do ARGS="$ARGS --bank $b"; done
           python -m tools.capture_fixtures $ARGS
-      - name: Run the contract tests on what was captured
-        run: python -m pytest tests/test_contracts.py -q
       - name: Commit fixtures
         run: |
           if [ -n "$(git status --porcelain tests/contracts)" ]; then
@@ -47,3 +45,6 @@ jobs:
             git pull --rebase origin "${GITHUB_REF_NAME}" || true
             git push
           fi
+
+      - name: Run the contract tests on what was captured
+        run: python -m pytest tests/test_contracts.py -q

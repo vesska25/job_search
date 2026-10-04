@@ -47,10 +47,13 @@ class WorkdayScraper(BaseScraper):
             if not path or not p.get("title"):
                 continue
             ids = p.get("bulletFields") or []
+            # bulletFields[0] is a requisition id on some tenants, but a plain location on others ("Kronberg Office"),
+            # which made every vacancy share one id. Use it only if it looks like an id (has a digit, no spaces).
+            ref = str(ids[0]) if ids and re.fullmatch(r"\S*\d\S*", str(ids[0])) else path.rsplit("_", 1)[-1]
             jobs.append(self.make_job(
                 bank, title=p["title"], url=f"{base}/{site}{path}",
                 location=p.get("locationsText", ""),
-                source_job_id=str(ids[0]) if ids else path.rsplit("_", 1)[-1],
+                source_job_id=ref,
                 published_date=None,
             ))
         return jobs

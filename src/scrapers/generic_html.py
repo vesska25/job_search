@@ -29,10 +29,13 @@ class GenericHtmlScraper(BaseScraper):
         for page in range(1, (pg.get("max_pages", 1) if pg else 1) + 1):
             params = {pg["param"]: page} if pg and page > 1 else {}
             html = self.http.get(bank.jobs_url, params=params).text
-            found = [j for j in self.parse(html, bank) if j.job_id not in seen]
+            found = []
+            for j in self.parse(html, bank):       # the same vacancy is often linked twice on one page
+                if j.job_id not in seen:
+                    seen.add(j.job_id)
+                    found.append(j)
             if not found:
                 break
-            seen.update(j.job_id for j in found)
             jobs.extend(found)
         return jobs
 

@@ -15,7 +15,7 @@ from src.config import CONFIG_DIR, ROOT, load_banks, load_settings
 from src.scrapers import get_scraper
 from src.utils.http import HttpClient
 from src.utils.logging import get_logger, setup_logging
-from src.utils.replay import RecordingHttpClient, save_contract
+from src.utils.replay import RecordingHttpClient, check_contract, load_contract, save_contract
 
 log = get_logger("capture")
 OUT = ROOT / "tests" / "contracts"
@@ -36,10 +36,15 @@ def capture(bank, settings) -> tuple[str, int, int]:
         return "empty", 0, 0
     if http.skipped:
         return f"too_big: {http.skipped} responses over the size/entry cap", len(jobs), 0
-    size = save_contract(OUT / f"{bank.id}.json.gz", bank.id, jobs, http.entries, date.today().isoformat())
+    path = OUT / f"{bank.id}.json.gz"
+    size = save_contract(path, bank.id, jobs, http.entries, date.today().isoformat())
     if size > MAX_FILE:
-        (OUT / f"{bank.id}.json.gz").unlink()
+        path.unlink()
         return "too_big", len(jobs), size
+    problems = check_contract(bank, load_contract(path), bank.options.get("max_pages", h.get("max_pages", 30)))
+    if problems:                                   # a contract that does not hold is a finding, not a fixture
+        path.unlink()
+        return "invalid: " + "; ".join(problems)[:160], len(jobs), 0
     return "saved", len(jobs), size
 
 
