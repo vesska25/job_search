@@ -26,6 +26,10 @@ on:
         description: "Max matches shown per file"
         required: false
         default: "6"
+      header:
+        description: 'Extra request header "Name: value" (optional, e.g. a public API key)'
+        required: false
+        default: ""
 
 jobs:
   probe:
@@ -46,4 +50,5 @@ jobs:
           SHOW: ${{ inputs.show }}
           SCRIPTS: ${{ inputs.scripts }}
           LIMIT: ${{ inputs.limit }}
-        run: python -m tools.probe --url "$URL" --grep "$GREP" --ctx "$CTX" --show "$SHOW" --scripts "$SCRIPTS" --limit "$LIMIT"
+          HEADER: ${{ inputs.header }}
+        run: python -m tools.probe --url "$URL" --grep "$GREP" --ctx "$CTX" --show "$SHOW" --scripts "$SCRIPTS" --limit "$LIMIT" ${HEADER:+--header "$HEADER"}

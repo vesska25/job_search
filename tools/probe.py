@@ -55,9 +55,13 @@ def main():
     ap.add_argument("--limit", type=int, default=6, help="max snippets per file")
     ap.add_argument("--show", type=int, default=0, help="print the first N characters of the body")
     ap.add_argument("--scripts", type=int, default=0, help="also grep up to N scripts of the same registrable domain")
+    ap.add_argument("--header", action="append", default=[], help='extra request header "Name: value" (e.g. a public API key)')
     a = ap.parse_args()
     h = load_settings()["http"]
     http = HttpClient(user_agent=h["user_agent"], timeout=h["timeout"], retries=1, min_delay=0.3, respect_robots=True)
+    for hv in a.header:
+        name, _, value = hv.partition(":")
+        http.session.headers[name.strip()] = value.strip()
     r = fetch(http, a.url)
     if r is None:
         return
