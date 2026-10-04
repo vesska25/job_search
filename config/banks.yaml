@@ -4529,3 +4529,25 @@ banks:
       - {wo: Frankfurt am Main, umkreis: 30}
       - {wo: Düsseldorf, umkreis: 30}
       - {wo: Köln, umkreis: 30}
+
+- id: blackbull_executive_search
+  name: Blackbull International (Personalberatung, Stella-Portal)
+  display_name: Blackbull (executive search)
+  country: Germany
+  address_in_source_list: added by the user, not in the original list; a recruitment agency, not a bank - positions are mandates of its clients
+  jobs_url: https://stella.blackbull-international.com/jobs/1569641096
+  source_type: custom_html
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Added at the user''s request (third-party agency, clients of all industries). The page is server-rendered and links
+    to the other mandates (/jobs/<id>); the link text carries level and title. Location is not in the list, so vacancies with
+    unknown location are accepted (flagged by the usual rules). Mandates that duplicate a bank''s own posting are removed by
+    the cross-source de-duplication. Unverified until a Verify run.'
+  options:
+    aggregator: true
+    accept_unknown_location: true
+    link_pattern: /jobs/\d+$
