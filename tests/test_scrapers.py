@@ -551,3 +551,34 @@ def test_dedup_unknown_city_and_agency_title_noise(bank):
     own2.bank_name = "Deutsche WertpapierService Bank AG"
     out = dedupe([own, agency, own2, ba])
     assert out == [own, own2]
+
+
+def test_sitemap_industry_filter_keeps_only_banks(bank):
+    from src.scrapers.sitemap_jobs import SitemapJobsScraper
+    bank.options = {"industry_filter": {"href_regex": "/executive-search/", "text_regex": "^Banks"}}
+    banks_page = '<a href="https://x.example/executive-search/banks-building-societies/">Banks and building societies</a>'
+    energy_page = '<a href="https://x.example/executive-search/energy-industry/">Energy Industry</a>'
+    assert SitemapJobsScraper.industry_ok(banks_page, bank)
+    assert not SitemapJobsScraper.industry_ok(energy_page, bank)
+    assert not SitemapJobsScraper.industry_ok("<p>no industry</p>", bank)
+    bank.options = {}
+    assert SitemapJobsScraper.industry_ok(energy_page, bank)           # no filter configured: everything passes
+
+
+def test_bundesagentur_employers_query(bank):
+    from src.scrapers.bundesagentur import BundesagenturScraper
+
+    class R:
+        def json(self):
+            return {"maxErgebnisse": 0, "stellenangebote": []}
+
+    class H:
+        calls = []
+
+        def request(self, method, url, params=None, headers=None, **kw):
+            H.calls.append(params)
+            return R()
+
+    bank.options = {"employers": ["Sparda-Bank Hessen eG"]}
+    BundesagenturScraper(H()).fetch_jobs(bank)
+    assert H.calls == [{"arbeitgeber": "Sparda-Bank Hessen eG", "size": 100, "page": 1}]

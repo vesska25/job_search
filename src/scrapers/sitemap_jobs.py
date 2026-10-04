@@ -10,6 +10,9 @@ banks.yaml options:
   skip_slug: "^(ausbildung|praktikum|student|werkstudent)"        (regex on the last path segment: pages never worth a request)
   detail: true                                                    (false: build the title from the URL slug, no page requests)
   location_regex: "\\bin ([A-ZÄÖÜ][^()]*)$"                       (applied to the title when the page has no location)
+  industry_filter: {href_regex: "/executive-search/", text_regex: "^Banks"}
+                                                                  (keep a page only if it links to an industry whose href and
+                                                                  text match; pages without such a link are dropped)
   max_pages: 250                                                  (safety cap on page requests, via the usual max_pages option)
 """
 from __future__ import annotations
@@ -88,10 +91,24 @@ class SitemapJobsScraper(BaseScraper):
                 if exc.response is not None and exc.response.status_code in (404, 410):
                     continue  # sitemap may still list expired vacancies
                 raise
+            if not self.industry_ok(html, bank):
+                continue
             job = self.parse_page(html, u, bank, parser)
             if job:
                 jobs.append(job)
         return jobs
+
+    @staticmethod
+    def industry_ok(html: str, bank: Bank) -> bool:
+        """True when no industry_filter is set, or the page links to an industry matching it (e.g. 'Banks and building societies')."""
+        f = bank.options.get("industry_filter")
+        if not f:
+            return True
+        href_rx, text_rx = re.compile(f.get("href_regex", "")), re.compile(f.get("text_regex", ""), re.I)
+        for a in BeautifulSoup(html, "html.parser").find_all("a", href=True):
+            if href_rx.search(a["href"]) and text_rx.search(a.get_text(" ", strip=True)):
+                return True
+        return False
 
     def parse_page(self, html: str, url: str, bank: Bank, parser=None):
         soup = BeautifulSoup(html, "html.parser")

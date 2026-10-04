@@ -4453,6 +4453,7 @@ banks:
     until a Verify run.'
   options:
     aggregator: true
+    industry_filter: {href_regex: "/executive-search/", text_regex: "^Banks"}   # only mandates of the industry 'Banks and building societies'
     sitemap_url: https://ifp-online.com/mandate-sitemap.xml
     url_regex: /executive-positions/[^/]+/?$
     detail: true
@@ -4521,6 +4522,7 @@ banks:
     normal filters then apply. Unverified until a Verify run.'
   options:
     aggregator: true
+    employers: [Sparda-Bank Hessen eG]    # exact employer names read in full (PI-ASP forbids robots; this is the official API)
     branche: 6
     size: 100
     max_pages: 3

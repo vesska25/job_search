@@ -7,6 +7,7 @@ banks.yaml options:
       regions: [{wo: Frankfurt am Main, umkreis: 30}]
       size: 100                          # page size (API maximum 100)
       max_pages: 5                       # per term and region
+      employers: [Sparda-Bank Hessen eG] # exact employer names (arbeitgeber), read in full, no search word or region needed
       api_key: jobboerse-jobsuche        # public key published in the API documentation
 The employer name from the posting is shown as the job's bank name (not as department, so employer words such as
 'Personalmanagement' cannot match a function); results are de-duplicated by `refnr`.
@@ -26,26 +27,27 @@ class BundesagenturScraper(BaseScraper):
     def fetch_jobs(self, bank: Bank) -> list:
         o = bank.options
         terms, regions = o.get("terms") or [], o.get("regions") or []
-        if not terms or not regions:
-            raise ScraperError("bundesagentur requires options.terms and options.regions")
+        employers = o.get("employers") or []
+        if not employers and (not terms or not regions):
+            raise ScraperError("bundesagentur requires options.terms and options.regions (or options.employers)")
         size = min(int(o.get("size", 100)), 100)
         headers = {"X-API-Key": o.get("api_key", "jobboerse-jobsuche"), "Accept": "application/json"}
         jobs, seen = [], set()
-        for region in regions:
-            for term in terms:
-                for page in range(1, min(int(o.get("max_pages", 5)), self.max_pages) + 1):
-                    params = {"was": term, "wo": region["wo"], "umkreis": region.get("umkreis", 30),
-                              "size": size, "page": page}
-                    if o.get("branche") is not None:
-                        params["branche"] = o["branche"]
-                    data = self.http.request("GET", o.get("api_url", API_URL), params=params, headers=headers).json()
-                    batch = self.parse(data, bank)
-                    new = [j for j in batch if j.job_id not in seen]
-                    seen.update(j.job_id for j in new)
-                    jobs.extend(new)
-                    total = int(data.get("maxErgebnisse") or 0)
-                    if not batch or page * size >= total:
-                        break
+        queries = [{"was": t, "wo": r["wo"], "umkreis": r.get("umkreis", 30),
+                    **({"branche": o["branche"]} if o.get("branche") is not None else {})}
+                   for r in regions for t in terms]
+        queries += [{"arbeitgeber": e} for e in employers]
+        for query in queries:
+            for page in range(1, min(int(o.get("max_pages", 5)), self.max_pages) + 1):
+                params = {**query, "size": size, "page": page}
+                data = self.http.request("GET", o.get("api_url", API_URL), params=params, headers=headers).json()
+                batch = self.parse(data, bank)
+                new = [j for j in batch if j.job_id not in seen]
+                seen.update(j.job_id for j in new)
+                jobs.extend(new)
+                total = int(data.get("maxErgebnisse") or 0)
+                if not batch or page * size >= total:
+                    break
         return jobs
 
     def parse(self, data, bank: Bank) -> list:
