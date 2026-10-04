@@ -361,7 +361,7 @@ http:
 telegram:
   mode: digest                 # digest | individual
   send_empty_digest: true
-  max_jobs_in_digest: 40
+  max_jobs_in_digest: 150      # the digest is split into several messages; a lower cap would hide the rest
   send_health_report: true     # attach the HTML source-health report to the main chat after every full run
 
 database:
