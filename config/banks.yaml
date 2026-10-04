@@ -4453,7 +4453,7 @@ banks:
     until a Verify run.'
   options:
     aggregator: true
-    industry_filter: {href_regex: "/executive-search/", text_regex: "^Banks"}   # only mandates of the industry 'Banks and building societies'
+    industry_filter: {selector: "span.meta-category", text_regex: "Banks"}   # only mandates of the industry 'Banks and building societies'
     sitemap_url: https://ifp-online.com/mandate-sitemap.xml
     url_regex: /executive-positions/[^/]+/?$
     detail: true

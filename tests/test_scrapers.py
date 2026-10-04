@@ -555,14 +555,15 @@ def test_dedup_unknown_city_and_agency_title_noise(bank):
 
 def test_sitemap_industry_filter_keeps_only_banks(bank):
     from src.scrapers.sitemap_jobs import SitemapJobsScraper
-    bank.options = {"industry_filter": {"href_regex": "/executive-search/", "text_regex": "^Banks"}}
-    banks_page = '<a href="https://x.example/executive-search/banks-building-societies/">Banks and building societies</a>'
-    energy_page = '<a href="https://x.example/executive-search/energy-industry/">Energy Industry</a>'
+    bank.options = {"industry_filter": {"selector": "span.meta-category", "text_regex": "Banks"}}
+    nav = '<a href="/executive-search/banks-building-societies/">Banks and building societies</a>'    # menu on every page
+    banks_page = nav + '<span class="meta-category">Region West, Banks and building societies</span>'
+    other_page = nav + '<span class="meta-category">Region West, Industrial SMEs</span>'
     assert SitemapJobsScraper.industry_ok(banks_page, bank)
-    assert not SitemapJobsScraper.industry_ok(energy_page, bank)
+    assert not SitemapJobsScraper.industry_ok(other_page, bank)              # the menu link must not count
     assert not SitemapJobsScraper.industry_ok("<p>no industry</p>", bank)
     bank.options = {}
-    assert SitemapJobsScraper.industry_ok(energy_page, bank)           # no filter configured: everything passes
+    assert SitemapJobsScraper.industry_ok(other_page, bank)                  # no filter configured: everything passes
 
 
 def test_bundesagentur_employers_query(bank):
