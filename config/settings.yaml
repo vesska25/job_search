@@ -210,13 +210,15 @@ filters:
     - Workflowmanagement
     - Workflow Management
     - Systemmanagement
+    - Automatisierung
+    - Prozessautomatisierung
+    - Automation
+    - Process Automation
+    - RPA
     - Process Management
     - Geschäftsprozess
     - Business Process
     - Application Management
-    - Anwendungsentwicklung
-    - Software Development
-    - Software Engineering
     - Infrastructure
     - IT-Infrastruktur
     - Enterprise Architecture
@@ -249,6 +251,33 @@ filters:
     - Auszubildende
     - Azubi
     - Duales Studium
+
+  # Hands-on software/engineering roles are not wanted in the main profile (soft IT: leading, automation, digitalisation).
+  # Checked against the TITLE only and applied even to leadership titles ("Teamleiter Anwendungsentwicklung" is out).
+  technical_exclusions:
+    - Softwareentwicklung
+    - Software-Entwicklung
+    - Anwendungsentwicklung
+    - Softwareentwickler
+    - Softwareentwicklerin
+    - Software Development
+    - Software Engineering
+    - Software Engineer
+    - Software Developer
+    - Developer
+    - Entwickler
+    - Entwicklerin
+    - Engineer
+    - Engineering
+    - Backend
+    - Frontend
+    - Fullstack
+    - Full Stack
+    - DevOps
+    - Java
+    - Python
+    - Mainframe
+    - Secure Software
 
   # Rejected unless a STRONG leadership keyword is also in the title
   # ("Senior Specialist ..." is out; "Head of Expert Network" stays in).

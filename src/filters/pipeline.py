@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
+from src.filters.matching import find_terms
 from src.filters.function import match_functions, weak_function_hits
 from src.filters.location import is_germany
 from src.filters.seniority import classify_seniority
@@ -45,6 +46,11 @@ def evaluate(job, bank, settings: dict, llm=None) -> Decision:
 
     if sen.level in ("excluded", "none"):
         d.reason = sen.reason
+        return d
+
+    technical = find_terms(fcfg.get("technical_exclusions", []), normalize_text(job.title))
+    if technical:
+        d.reason = f"technical role: {technical[0]}"
         return d
 
     if sen.level == "strong":

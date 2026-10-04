@@ -208,3 +208,17 @@ def test_lead_leiter_digital_titles_are_accepted(settings, bank):
 def test_system_and_workflow_management_counts_as_function(settings, bank):
     d = evaluate(make_job(bank, "Abteilungsleiter (m/w/d) System- und Workflowmanagement"), bank, settings)
     assert d.accepted and not d.borderline
+
+
+@pytest.mark.parametrize("title,ok", [
+    ("Teamleiter/-in Anwendungsentwicklung (m/w/d)", False),
+    ("Lead Java Backend Engineer (f/m/x)", False),
+    ("Gruppenleiter Softwareentwicklung Java / Cloud", False),
+    ("Director – Java Backend Engineering", False),
+    ("Teamleiter Prozessautomatisierung (m/w/d)", True),
+    ("Head of Digitalisierung (m/w/d)", True),
+    ("Gruppenleiter Digitale Transformation und Enabling", True),
+])
+def test_technical_exclusions_keep_soft_it(settings, bank, title, ok):
+    from src.filters.pipeline import evaluate
+    assert evaluate(make_job(bank, title, location="Frankfurt"), bank, settings).accepted is ok
