@@ -190,3 +190,8 @@ def test_plain_manager_with_risk_or_it_in_title_is_borderline(settings, bank):
     assert not evaluate(make_job(bank, "Customer Manager", department="IT"), bank, settings).accepted
     off = {**settings, "filters": {**settings["filters"], "weak_borderline_functions": []}}
     assert not evaluate(make_job(bank, "IT-Application Manager*in Compliance"), bank, off).accepted
+
+
+def test_german_digital_transformation_counts_as_function(settings, bank):
+    d = evaluate(make_job(bank, "Gruppenleiter*in Digitale Transformation und Enabling"), bank, settings)
+    assert d.accepted and not d.borderline
