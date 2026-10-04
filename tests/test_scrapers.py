@@ -583,3 +583,15 @@ def test_bundesagentur_employers_query(bank):
     bank.options = {"employers": ["Sparda-Bank Hessen eG"]}
     BundesagenturScraper(H()).fetch_jobs(bank)
     assert H.calls == [{"arbeitgeber": "Sparda-Bank Hessen eG", "size": 100, "page": 1}]
+
+
+def test_custom_api_schema_org_datafeed(bank):
+    """VR Payment publishes a schema.org DataFeed (items under dataFeedElement[].item)."""
+    bank.options = {"api_url": "x", "items_path": "dataFeedElement",
+                    "fields": {"title": "item.title", "url": "item.url", "id": "item.identifier.value", "date": "item.datePosted"}}
+    data = {"dataFeedElement": [{"@type": "DataFeedItem", "item": {
+        "title": "Stabsleiter Risikomanagement (w/m/d)", "url": "https://jobs.vr-payment.de/jobs/67671672/x/",
+        "datePosted": "2026-09-15T15:32:29.389+02:00", "identifier": {"value": 67671672}}}]}
+    jobs = CustomApiScraper(None).parse(data, bank)
+    assert [j.title for j in jobs] == ["Stabsleiter Risikomanagement (w/m/d)"]
+    assert jobs[0].published_date == "2026-09-15" and jobs[0].job_id.endswith("67671672")

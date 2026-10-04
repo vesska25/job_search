@@ -4585,10 +4585,12 @@ banks:
   enabled: true
   verification_status: unverified
   last_verified: null
-  notes: Added from the user's list of banking-related organisations (not banks). Careers page found by web search (not yet
-    confirmed by a run). IT provider of the Sparkassen group; ~225 openings per search; several sites, location filter not
-    applied (germany_only).
+  notes: 'Added from the user''s list of banking-related organisations (not banks). Careers page found by web search (not
+    yet confirmed by a run). IT provider of the Sparkassen group; ~225 openings per search; several sites, location filter
+    not applied (germany_only). Fixed: job links are /karriere/offene-stellen/<city>/<slug>; only the user''s region cities
+    (Frankfurt, Köln, Wiesbaden, Düsseldorf) are matched, Hannover/Münster etc. are skipped by the pattern.'
   options:
+    link_pattern: /karriere/offene-stellen/(?:frankfurt|koeln|wiesbaden|duesseldorf)/[^/]+$
     accept_unknown_location: true
 - id: ratiodata
   name: Ratiodata SE
@@ -4685,7 +4687,7 @@ banks:
   display_name: parcIT
   country: Germany
   address_in_source_list: Köln (from the user's list of banking-related organisations; address not verified)
-  jobs_url: https://www.parcit.de/ueber-parcit/karriere/stellenangebote/
+  jobs_url: https://vr.mein-check-in.de/parcit/x/stellenangebote
   source_type: custom_html
   germany_only: true
   germany_filter: ''
@@ -4693,9 +4695,11 @@ banks:
   enabled: true
   verification_status: unverified
   last_verified: null
-  notes: Added from the user's list of banking-related organisations (not banks). Careers page found by web search (not yet
-    confirmed by a run). Risk methods for Volksbanken; own online application portal, list may load by JS.
+  notes: 'Added from the user''s list of banking-related organisations (not banks). Careers page found by web search (not
+    yet confirmed by a run). Risk methods for Volksbanken; own online application portal, list may load by JS. Fixed: vacancies
+    are on the VR check-in portal vr.mein-check-in.de/parcit (job pages /x/stellenangebote/<id>); the old URL returned 404.'
   options:
+    link_pattern: /parcit/x/stellenangebote/\d+
     accept_unknown_location: true
 - id: threesixtyt
   name: 360 Treasury Systems AG (360T)
@@ -4718,17 +4722,24 @@ banks:
   country: Germany
   address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
   jobs_url: https://jobs.vr-payment.de/
-  source_type: custom_html
+  source_type: custom_api
   germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
   verification_status: unverified
   last_verified: null
-  notes: Added from the user's list of banking-related organisations (not banks). Careers page found by web search (not yet
-    confirmed by a run). Payments of the cooperative group; job pages /jobs/<id>/<title>/
+  notes: 'Added from the user''s list of banking-related organisations (not banks). Careers page found by web search (not
+    yet confirmed by a run). Payments of the cooperative group; job pages /jobs/<id>/<title>/ Fixed: the site publishes an
+    official schema.org JSON feed (jobs.feed.json, ~33 postings) - read via custom_api.'
   options:
-    link_pattern: /jobs/\d+
+    api_url: https://jobs.vr-payment.de/jobs.feed.json
+    items_path: dataFeedElement
+    fields:
+      title: item.title
+      url: item.url
+      id: item.identifier.value
+      date: item.datePosted
     accept_unknown_location: true
 - id: euro_kartensysteme
   name: EURO Kartensysteme GmbH
@@ -4753,17 +4764,27 @@ banks:
   country: Germany
   address_in_source_list: Wiesbaden (from the user's list of banking-related organisations; address not verified)
   jobs_url: https://www.schufa.de/ueber-uns/karriere/stellenboerse/
-  source_type: custom_html
+  source_type: custom_api
   germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
   verification_status: unverified
   last_verified: null
-  notes: Added from the user's list of banking-related organisations (not banks). Careers page found by web search (not yet
-    confirmed by a run). Credit bureau; list page derived from a job-detail URL (JSP), karriere.schufa.de is the landing page.
+  notes: 'Added from the user''s list of banking-related organisations (not banks). Careers page found by web search (not
+    yet confirmed by a run). Credit bureau; list page derived from a job-detail URL (JSP), karriere.schufa.de is the landing
+    page. Fixed: the list is a JSON endpoint https://www.schufa.de/jobssearch/ ({found, results[]}). PARTIAL: it returns only
+    the 10 newest of `found` (18 seen); parameters page/start are ignored, so pagination is unknown and older postings are
+    missed.'
   options:
-    link_pattern: stellenanzeigen_detailseite_\d+\.jsp
+    api_url: https://www.schufa.de/jobssearch/
+    items_path: results
+    fields:
+      title: lang_title
+      id: id
+      location: m_str_locations_id
+      department: m_str_fachbereiche_id
+    url_template: https://www.schufa.de{str_url}
     accept_unknown_location: true
 - id: universal_investment
   name: Universal Investment
@@ -4793,12 +4814,14 @@ banks:
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: true
-  verification_status: unverified
+  enabled: false
+  verification_status: js_list
   last_verified: null
-  notes: Added from the user's list of banking-related organisations (not banks). Careers page found by web search (not yet
-    confirmed by a run). Insurer of the cooperative group; list URL inferred from a job-ad path (ref…-wiesbaden). Also reached
-    through Bundesagentur.
+  notes: 'Added from the user''s list of banking-related organisations (not banks). Careers page found by web search (not
+    yet confirmed by a run). Insurer of the cooperative group; list URL inferred from a job-ad path (ref…-wiesbaden). Also
+    reached through Bundesagentur. Disabled: the list on /karriere/jobsuche is loaded by JavaScript (no static links); the
+    old /karriere/stellenanzeigen returned 404. R+V vacancies in the user''s region still arrive through the Bundesagentur
+    source.'
   options:
     link_pattern: /karriere/stellenanzeigen/
     accept_unknown_location: true
