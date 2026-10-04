@@ -57,6 +57,12 @@ class JobDatabase:
         row = self.find(job)
         return row is None or not row["notified"]
 
+    def notified_before(self, job, cutoff: str) -> bool:
+        """Known job whose stored notification date is earlier than `cutoff` (ISO date/time). Used to re-send what an
+        earlier baseline run only marked as sent."""
+        row = self.find(job)
+        return bool(row and row["notified"] and (row["notification_date"] or "") < cutoff)
+
     def record(self, job) -> bool:
         """Insert new job or refresh last_seen. Returns True if the job was new."""
         row = self.find(job)

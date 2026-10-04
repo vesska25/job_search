@@ -57,3 +57,19 @@ def test_last_seen_updates():
     db.conn.execute("UPDATE jobs SET last_seen = '2000-01-01T00:00:00+00:00'")
     db.record(j)
     assert db.find(j)["last_seen"] > "2000"
+
+
+def test_notified_before_finds_jobs_a_baseline_run_marked_as_sent(tmp_path):
+    from src.models.job import Job
+    from src.storage.database import JobDatabase
+    db = JobDatabase(tmp_path / "j.db")
+    old = Job(bank_id="b", bank_name="B", title="Head of Risk", url="https://x.test/1", location="Frankfurt")
+    db.record(old)
+    db.mark_notified([old])
+    db.conn.execute("UPDATE jobs SET notification_date = '2026-10-03T16:26:30+00:00'")
+    db.conn.commit()
+    fresh = Job(bank_id="b", bank_name="B", title="Head of Audit", url="https://x.test/2", location="Frankfurt")
+    db.record(fresh)
+    db.mark_notified([fresh])
+    assert db.notified_before(old, "2026-10-04") and not db.notified_before(fresh, "2026-10-04")
+    assert not db.notified_before(Job(bank_id="b", bank_name="B", title="New", url="https://x.test/3"), "2026-10-04")

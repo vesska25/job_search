@@ -234,6 +234,9 @@ def main(argv=None) -> int:
                     help="store all current matches as already notified (use for the very first run)")
     ap.add_argument("--resend", action="store_true",
                     help="send ALL current matches of the selected profiles, not only the new ones (they are then stored as sent)")
+    ap.add_argument("--resend-before", metavar="DATE",
+                    help="besides the new vacancies, also send known ones whose stored 'sent' date is earlier than DATE (YYYY-MM-DD); "
+                         "e.g. to deliver what a --baseline run only marked as sent")
     ap.add_argument("--test-telegram", action="store_true",
                     help="send a sample digest of already stored vacancies to Telegram and exit (no scraping, no DB changes)")
     ap.add_argument("--profile", action="append",
@@ -316,7 +319,9 @@ def main(argv=None) -> int:
     # Deduplicate against the database: new jobs, or earlier jobs whose notification failed.
     if not run_main:
         matches = []
-    to_notify = list(matches) if args.resend else [j for j in matches if db.needs_notification(j)]
+    to_notify = list(matches) if args.resend else [
+        j for j in matches
+        if db.needs_notification(j) or (args.resend_before and db.notified_before(j, args.resend_before))]
     stats.new = sum(1 for j in matches if db.find(j) is None)
     log.info("New vacancies: %d", stats.new)
 
@@ -346,7 +351,7 @@ def main(argv=None) -> int:
             except Exception as exc:  # noqa: BLE001
                 log.error("Telegram notification failed (jobs stay pending for next run): %s", exc)
                 exit_code = 1
-    if report_html and run_main and not args.dry_run and not args.bank and settings["telegram"].get("send_health_report", True):
+    if report_html and run_main and not args.dry_run and not args.bank and not args.resend_before and settings["telegram"].get("send_health_report", True):
         try:
             TelegramNotifier(env("TELEGRAM_BOT_TOKEN"), env("TELEGRAM_CHAT_ID")).send_document(
                 f"source-health-{date.today().isoformat()}.html", report_html.encode("utf-8"),

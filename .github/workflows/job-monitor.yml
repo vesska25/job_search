@@ -18,6 +18,10 @@ on:
         description: "Send ALL current matches (not only new ones) to the selected profiles, then store them as sent"
         type: boolean
         default: false
+      resend_before:
+        description: "Also send known vacancies whose stored 'sent' date is before this date (YYYY-MM-DD), e.g. what a baseline run only marked as sent"
+        type: string
+        default: ""
       profile:
         description: "Only this recipient profile (main = leadership, sergey = junior Java); empty = all"
         type: string
@@ -63,7 +67,7 @@ jobs:
         run: |
           ARGS=""
           for b in ${BANKS//,/ }; do ARGS="$ARGS --bank $b"; done
-          python -m src.main ${{ inputs.baseline && '--baseline' || '' }} ${{ inputs.dry_run && '--dry-run --verbose' || '' }} ${{ inputs.test_telegram && '--test-telegram' || '' }} ${{ inputs.learn_health && '--learn-health' || '' }} --report reports/source-health.html ${{ inputs.resend && '--resend' || '' }} ${{ inputs.profile && format('--profile {0}', inputs.profile) || '' }} $ARGS
+          python -m src.main ${{ inputs.baseline && '--baseline' || '' }} ${{ inputs.dry_run && '--dry-run --verbose' || '' }} ${{ inputs.test_telegram && '--test-telegram' || '' }} ${{ inputs.learn_health && '--learn-health' || '' }} --report reports/source-health.html ${{ inputs.resend && '--resend' || '' }} ${{ inputs.resend_before && format('--resend-before {0}', inputs.resend_before) || '' }} ${{ inputs.profile && format('--profile {0}', inputs.profile) || '' }} $ARGS
       - name: Upload health report
         if: always()
         uses: actions/upload-artifact@v4
