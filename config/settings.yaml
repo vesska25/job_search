@@ -288,6 +288,23 @@ filters:
     - Berechtigungsmanagement
     # Sales roles (not wanted)
     - Sales
+    # IT-oriented roles (not wanted: the profile is soft IT, not systems/security/service operations)
+    - Systemtechnik
+    - IT-Security
+    - IT Security
+    - BCM
+    - Wertpapierabwicklung
+    - IT Strategie
+    - IT-Strategie
+    - IT Strategy
+    - IT Service
+    - IT-Service
+    # Off-topic roles (retail, facility, purchasing, account management)
+    - Account Manager
+    - Filialleitung
+    - Gebäudemanagement
+    - Regionalleiter
+    - Lead Buyer
 
   # Rejected unless a STRONG leadership keyword is also in the title
   # ("Senior Specialist ..." is out; "Head of Expert Network" stays in).

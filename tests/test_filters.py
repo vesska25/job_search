@@ -247,3 +247,23 @@ def test_entwicklung_title_is_excluded_but_compounds_are_not(settings, bank):
     from src.filters.pipeline import evaluate
     assert not evaluate(make_job(bank, "Solution Architekt (w/m/d) – Lead Entwicklung JobRouter", location="Frankfurt"), bank, settings).accepted
     assert evaluate(make_job(bank, "Leiter Organisationsentwicklung und Digitalisierung", location="Frankfurt"), bank, settings).accepted
+
+
+@pytest.mark.parametrize("title", [
+    "Leitung Abteilung IT-Systemtechnik (m/w/d)", "Teamleiter/-in IT-Security & BCM (m/w/d)",
+    "Gruppenleitung (w/m/d) IT Wertpapierabwicklung", "Manager (w/m/d) IT Strategie", "IT-Service-Manager (w/m/d)",
+    "Senior Manager IT Service / Managed Workplace / Cloud m/w/d",
+    "Account Manager (m/w/d) IT-Leasing Region Südwest", "Filialleitung (#Mensch) für Crivitz und Plate",
+    "Abteilungsleiter*in Kaufmännisches und Infrastrukturelles Gebäudemanagement", "Regionalleiter (m/w/d) für unsere Region",
+    "Lead Buyer IT Professional Services (m/w/d)",
+])
+def test_user_rejected_it_and_offtopic_titles_are_excluded(settings, bank, title):
+    from src.filters.pipeline import evaluate
+    assert not evaluate(make_job(bank, title, location="Frankfurt"), bank, settings).accepted
+
+
+def test_soft_it_titles_survive_the_new_exclusions(settings, bank):
+    from src.filters.pipeline import evaluate
+    for title in ("Gruppenleiter*in Digitale Transformation und Enabling", "Abteilungsleiter Organisation und Digitalisierung (m/w/d)",
+                  "Abteilungsleiter (m/w/d) System- und Workflowmanagement", "Leitung Controlling & Betriebssteuerung"):
+        assert evaluate(make_job(bank, title, location="Frankfurt"), bank, settings).accepted, title
