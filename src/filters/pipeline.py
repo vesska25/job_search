@@ -6,6 +6,7 @@ from dataclasses import dataclass, field
 from src.filters.function import match_functions, weak_function_hits
 from src.filters.location import is_germany
 from src.filters.seniority import classify_seniority
+from src.utils.normalization import normalize_text
 
 
 @dataclass
@@ -85,6 +86,14 @@ def evaluate(job, bank, settings: dict, llm=None) -> Decision:
             d.reason = f"LLM: {verdict.reason}"
             return d
     if weak:
+        # Plain "Manager" with a Risk / IT term in the TITLE is shown as borderline (flagged), not dropped.
+        wanted = {normalize_text(x) for x in fcfg.get("weak_borderline_functions", [])}
+        hit = [f for f in match_functions(job, fcfg, title_only=True) if normalize_text(f) in wanted]
+        if hit and fcfg.get("borderline_policy", "include") == "include":
+            d.leadership = d.accepted = d.borderline = True
+            d.functions = hit
+            d.reason = f"{sen.reason}; borderline: {hit[0]} in title, no management signal found"
+            return d
         d.reason = f"{sen.reason}; no management signal in description"
         return d
     if fcfg.get("borderline_policy", "include") == "include":

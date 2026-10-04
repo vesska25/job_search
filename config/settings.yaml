@@ -81,6 +81,38 @@ filters:
     - manage a team
     - team of
 
+  # A plain "Manager" title (weak) with one of these functions IN THE TITLE and no management signal is shown as
+  # borderline instead of being dropped (Risk and IT only; "Fund Manager ... Infrastructure" etc. stay out).
+  weak_borderline_functions:
+    - Risk
+    - Risiko
+    - Risk Management
+    - Risikomanagement
+    - Risk Controlling
+    - Risikocontrolling
+    - CRO
+    - Enterprise Risk Management
+    - IT
+    - IT-Management
+    - IT Management
+    - IT-Strategie
+    - IT Strategy
+    - IT Governance
+    - IT-Steuerung
+    - IT-Betrieb
+    - IT Operations
+    - IT-Sicherheit
+    - IT Security
+    - Informationssicherheit
+    - Information Security
+    - Cybersecurity
+    - Cyber Security
+    - Informationstechnologie
+    - Information Technology
+    - Application Management
+    - IT-Infrastruktur
+    - Enterprise Architecture
+
   # What to do with ambiguous-seniority roles that have a relevant function but no clear signal:
   #   include = report them, flagged "(borderline)"; reject = drop them. (An LLM, if enabled, decides first.)
   borderline_policy: include

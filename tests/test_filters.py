@@ -175,3 +175,18 @@ def test_bank_option_accepts_unknown_location(settings, bank):
     assert is_germany(j, bank, settings["location"])[0]
     # but a known foreign location is still rejected
     assert not is_germany(make_job(bank, "Leiter X", location="Luxembourg"), bank, settings["location"])[0]
+
+
+def test_plain_manager_with_risk_or_it_in_title_is_borderline(settings, bank):
+    for title in ("(Senior) Information Risk and Security Manager*in", "IT-Application Manager*in Compliance",
+                  "Category Project Manager IT Services", "Risk Manager (m/w/d)"):
+        d = evaluate(make_job(bank, title), bank, settings)
+        assert d.accepted and d.borderline, title
+    # other functions and non-Risk/IT words stay out: no flood of fund/investment/account managers
+    for title in ("Fund Manager – Renewables and Infrastructure", "(Senior) Investment Manager*in Infrastructure Investments",
+                  "(Senior) Bank Account Manager*in", "Manager Regulatory Reporting", "Praktikant IT Manager"):
+        assert not evaluate(make_job(bank, title), bank, settings).accepted, title
+    # the department alone does not count, and the feature can be switched off
+    assert not evaluate(make_job(bank, "Customer Manager", department="IT"), bank, settings).accepted
+    off = {**settings, "filters": {**settings["filters"], "weak_borderline_functions": []}}
+    assert not evaluate(make_job(bank, "IT-Application Manager*in Compliance"), bank, off).accepted
