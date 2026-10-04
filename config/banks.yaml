@@ -4367,3 +4367,20 @@ banks:
   options:
     link_pattern: -j\d+\.html$
     accept_unknown_location: true
+- id: union_investment
+  name: Union Investment
+  display_name: Union Investment
+  country: Germany
+  address_in_source_list: 60329 Frankfurt am Main (added by the user, not in the original list)
+  jobs_url: https://jobs.union-investment.de/index.php?ac=search_result&search_criterion_channel%5B%5D=12
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: '2026-10-04'
+  notes: 'Added at the user''s request. Beesite Stellenmarkt portal (milch & zucker): the result page is a shell, the vacancy list
+    is loaded by JavaScript (js-gjb-hits shows 0 in the static HTML, no vacancy links). assets/js/jobboard.config.json holds only
+    widget settings (map tiles), no search endpoint. Left disabled until the XHR URL that returns the list is known (browser
+    DevTools, Network, Fetch/XHR).'
