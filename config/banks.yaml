@@ -4633,18 +4633,19 @@ banks:
   display_name: DSGF
   country: Germany
   address_in_source_list: Köln (from the user's list of banking-related organisations; address not verified)
-  jobs_url: https://www.dsgf.de/karriere/stellenangebote/
+  jobs_url: https://vr.mein-check-in.de/dsgf/x/stellenangebote
   source_type: custom_html
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: blocked_robots
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: 'Added from the user''s list of banking-related organisations (not banks). Careers page found by web search (not
-    yet confirmed by a run). Back office of the Sparkassen; application portal, list probably rexx-like. Disabled: robots.txt
-    of www.dsgf.de could not be read (SSL certificate error in the run), so access cannot be confirmed and is not forced.'
+  notes: 'Back office of the Sparkassen. www.dsgf.de sends an incomplete TLS chain (wrong intermediate); fixed client-side by the
+    public Sectigo DV R36 intermediate in config/ca (verification stays on). Vacancies are on the check-in portal, job pages
+    /dsgf/x/stellenangebote/<id> (found by probe). Unverified until a dry-run.'
   options:
+    link_pattern: /dsgf/x/stellenangebote/\d+
     accept_unknown_location: true
 - id: wm_datenservice
   name: WM Datenservice
@@ -4829,21 +4830,26 @@ banks:
     link_pattern: /karriere/stellenanzeigen/
     accept_unknown_location: true
 - id: payone
-  name: PAYONE GmbH
-  display_name: PAYONE
+  name: PAYONE GmbH / Worldline (Germany)
+  display_name: PAYONE / Worldline
   country: Germany
   address_in_source_list: Frankfurt (from the user's list of banking-related organisations; address not verified)
-  jobs_url: https://jobs.worldline.com/payone
-  source_type: successfactors
-  germany_only: false
+  jobs_url: https://jobs.worldline.com/search/?q=&locationsearch=&searchResultView=LIST
+  source_type: sitemap_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: js_list
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: 'Added from the user''s list of banking-related organisations (not banks). Careers page found by web search (not
-    yet confirmed by a run). Acquirer (Worldline/Sparkassen); Worldline career portal, list may load by JS. Disabled: jobs.worldline.com/payone/search/
-    is rendered by JavaScript (no /payone/job/ links in the static HTML; SuccessFactors adapter found none).'
+  notes: 'The Worldline search page is JavaScript-rendered, but https://jobs.worldline.com/sitemap.xml lists every vacancy
+    (/job/<City>-<Title>-<State>/<id>/, PAYONE ones under /payone/job/). Only German cities are requested (url_regex on the
+    city prefix); title/location are read from each page. Also covers equensWorldline and PAYONE. Unverified until a dry-run.'
+  options:
+    sitemap_url: https://jobs.worldline.com/sitemap.xml
+    url_regex: /job/(?:Frankfurt|Aachen|Munich|M%C3%BCnchen|Eschborn|Hamburg|Berlin|Duesseldorf|D%C3%BCsseldorf|Cologne|K%C3%B6ln|Stuttgart|Dortmund|Bonn|Hannover|Nuremberg|N%C3%BCrnberg|Leipzig|Dresden)[^/]*/\d+
+    max_pages: 60
+    accept_unknown_location: true
 - id: equensworldline
   name: equensWorldline
   display_name: equensWorldline
@@ -4859,7 +4865,7 @@ banks:
   last_verified: null
   notes: 'Added from the user''s list of banking-related organisations (not banks). Careers page found by web search (not
     yet confirmed by a run). Payment processing; Worldline career portal (base URL inferred from seen job URLs). Disabled:
-    same Worldline portal as PAYONE, JS-rendered list (SuccessFactors adapter found no job links).'
+    same Worldline portal as PAYONE, JS-rendered list; now covered by the sitemap-based entry "payone" (all Worldline Germany).'
 - id: fitch_ratings
   name: Fitch Ratings / Fitch Group
   display_name: Fitch
@@ -5129,17 +5135,19 @@ banks:
   display_name: RSGV
   country: Germany
   address_in_source_list: Düsseldorf (from the user's list of banking-related organisations; address not verified)
-  jobs_url: https://www.sparkasse.de/jobboerse/unternehmen/rheinischer-sparkassen-und-giroverband.html
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://rsgv.helixjobs.com/_/joblist
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: js_list
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: Company page on the Sparkasse job board (seen in search); adapter sparkasse_jobmarket needs a bank_code, not verified.
-    Not connected. Company page on the Sparkasse job board has no static job links (JS list); sparkasse_jobmarket needs a
-    bank_code, not known.
+  notes: 'Official RSGV portal (Concludis/helixjobs, linked from rsgv.de/karriere), given by the user. Static HTML list: 7 links
+    /_/jobad?prj=<id> found by probe; titles are read from the link text. Unverified until a dry-run.'
+  options:
+    link_pattern: /_/jobad\?prj=
+    accept_unknown_location: true
 - id: genossenschaftsverband
   name: Genossenschaftsverband - Verband der Regionen
   display_name: Genossenschaftsverband
