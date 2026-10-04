@@ -59,13 +59,17 @@ def main():
     a = ap.parse_args()
     h = load_settings()["http"]
     http = HttpClient(user_agent=h["user_agent"], timeout=h["timeout"], retries=1, min_delay=0.3, respect_robots=True)
-    for hv in a.header:
+    for hv in [x for chunk in a.header for x in chunk.split("||")]:
         name, _, value = hv.partition(":")
-        http.session.headers[name.strip()] = value.strip()
+        if name.strip():
+            http.session.headers[name.strip()] = value.strip()
     r = fetch(http, a.url)
     if r is None:
         return
     print(f"== {a.url}\nHTTP {r.status_code}, {r.headers.get('content-type')}, {len(r.text)} bytes")
+    if r.status_code >= 400:
+        keep = ("server", "via", "x-cache", "x-amz-cf-id", "x-akamai", "cf-ray", "x-request-id", "www-authenticate", "x-error", "content-length")
+        print("  response headers:", {k: v for k, v in r.headers.items() if k.lower().startswith(keep)})
     text = r.text
     if a.show:
         start = text.lower().find("<body")
