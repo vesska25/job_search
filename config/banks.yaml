@@ -6729,9 +6729,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'Official BARMER job portal (linked from barmer.de/karriere). Same milch & zucker job board as KfW: the result list is filled by JavaScript with a session-bound search, but every vacancy (index.php?ac=jobad&id=N) is listed in the public sitemap.xml (probe: 6+ urls seen). Title and location are read from the vacancy page. Regions filter Frankfurt/Koeln +-30 km; no unknown locations accepted. Unverified until a dry-run.'
+  verification_status: ok
+  last_verified: '2026-10-05'
+  notes: 'Official BARMER job portal (linked from barmer.de/karriere). Same milch & zucker job board as KfW: the result list is filled by JavaScript with a session-bound search, but every vacancy (index.php?ac=jobad&id=N) is listed in the public sitemap.xml (probe: 6+ urls seen). Title and location are read from the vacancy page. Regions filter Frankfurt/Koeln +-30 km; no unknown locations accepted. Dry-run 2026-10-05: 56 vacancies read, 6 in the Frankfurt/Koeln regions (Ausbildung, Kundenberater; 0 leadership).'
   options:
     sitemap_url: https://jobs.barmer.de/sitemap.xml
     url_regex: ac=jobad
