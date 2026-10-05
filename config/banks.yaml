@@ -6347,8 +6347,9 @@ banks:
   enabled: false
   verification_status: blocked_robots
   last_verified: null
-  notes: 'Probe of https://www.axa.de/karriere was "skipped by robots.txt": robots.txt of www.axa.de was unreachable (HTTP 503 after retries), the probe tool
-    then acts conservatively. Not worked around. Retry later (a 503 may be temporary); jobs are also on a separate career portal not yet identified.'
+  notes: 'Career portal identified by the user: https://careers-de-axa.icims.com/jobs/search (iCIMS). Probes of the search page and of its robots.txt were "skipped by robots.txt":
+    the tool treats an unreadable or disallowing robots.txt as a stop (www.axa.de/karriere earlier: robots.txt HTTP 503). Not worked around (tracking parameters of the supplied link were not used).
+    Cannot tell from the probe whether the portal disallows bots or just blocks the runner; retry later, otherwise the vacancies stay unmonitored.'
   options:
     regions: [rhein_main, koeln]
 - id: zurich_deutschland
