@@ -6328,13 +6328,13 @@ banks:
   verification_status: unverified
   last_verified: null
   notes: 'The Jobboerse page embeds a d.vinci job widget (generali-gruppe.dvinci-hr.com, loader jobWidgetLoader/<id>.js); the widget config names the data URL
-    https://generali-gruppe.dvinci-hr.com/jobPublication/list.json (language de). Probe: HTTP 200, JSON array (1.6 MB) of {id, position, jobPublicationURL, location, locations[], company, categories[]};
+    https://generali-gruppe.dvinci-hr.com/jobPublication/list.json (language de). Probe: HTTP 200, JSON array (1.6 MB) of {id, position, jobPublicationURL, jobOpening{location, locations[], department, company, categories[]}};
     robots.txt of the d.vinci host is "Allow: /". custom_api reads the array itself (items_path empty). Unverified until a dry-run.'
   options:
     api_url: https://generali-gruppe.dvinci-hr.com/jobPublication/list.json
     params: {language: de}
     items_path: ''
-    fields: {title: position, id: id, location: locations, url: jobPublicationURL}
+    fields: {title: position, id: id, location: jobOpening.location, department: jobOpening.department, url: jobPublicationURL}
     regions: [rhein_main, koeln]
 - id: axa_deutschland
   name: AXA Konzern AG
