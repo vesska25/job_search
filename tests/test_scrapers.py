@@ -78,6 +78,15 @@ def test_custom_api(bank):
         CustomApiScraper(None).parse(fixture_json("custom_api.json"), bank)
 
 
+def test_custom_api_response_that_is_the_list_itself(bank):
+    bank.options = {"api_url": "https://x/list.json", "items_path": "",
+                    "fields": {"title": "position", "id": "id", "url": "jobPublicationURL"}}
+    data = [{"id": 1, "position": "Leiter Controlling (m/w/d)", "jobPublicationURL": "https://x/jobs/1"},
+            {"id": 2, "position": "Teamleiter Risiko (m/w/d)", "jobPublicationURL": "https://x/jobs/2"}]
+    jobs = CustomApiScraper(None).parse(data, bank)
+    assert [j.source_job_id for j in jobs] == ["1", "2"] and jobs[0].url == "https://x/jobs/1"
+
+
 def test_custom_api_offset_pagination_without_total_path(bank):
     pages = {0: [{"t": "A", "i": "1", "u": "/a"}, {"t": "B", "i": "2", "u": "/b"}], 2: [{"t": "C", "i": "3", "u": "/c"}], 4: []}
 
@@ -640,3 +649,10 @@ def test_sitemap_jobs_slug_strip_regex_removes_id_and_gender_suffix(bank):
     http.get.return_value.text = "<urlset><url><loc>https://x.example/job/37596-gruppenleitung-personal-m-w-d/</loc></url></urlset>"
     jobs = SitemapJobsScraper(http).fetch_jobs(bank)
     assert [j.title for j in jobs] == ["Gruppenleitung Personal"]
+
+
+def test_link_title_from_url_is_percent_decoded(bank):
+    bank.options = {"link_pattern": "job\\.x/job/", "title_url_regex": "/job/([^/]+)/\\d+"}
+    html = '<a href="https://job.x/job/Cologne-%28Senior%29-Kaufm%C3%A4nnischer-Controller/123/?a=1">x</a>'
+    jobs = GenericHtmlScraper(None).parse(html, bank)
+    assert jobs[0].title == "Cologne (Senior) Kaufmännischer Controller"

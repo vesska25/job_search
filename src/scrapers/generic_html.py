@@ -165,7 +165,7 @@ class GenericHtmlScraper(BaseScraper):
             title = a.get_text(" ", strip=True)
             href = urljoin(bank.options.get("base_url") or bank.jobs_url, a["href"])
             if title_rx and (m := title_rx.search(href)):
-                title = re.sub(r"[_\-]+", " ", m.group(1)).strip()
+                title = re.sub(r"[_\-]+", " ", unquote(m.group(1))).strip()
             if len(title) < 8 or not pattern.search(href) or href in seen:
                 continue
             seen.add(href)

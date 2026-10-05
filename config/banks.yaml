@@ -6322,17 +6322,21 @@ banks:
   country: Germany
   address_in_source_list: Köln (user-requested; address not verified)
   jobs_url: https://www.generali.de/karriere/jobboerse
-  source_type: unknown
+  source_type: custom_api
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: js_list
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: 'Official career page www.generali.de/karriere (probe HTTP 200). The Jobboerse page /karriere/jobboerse (HTTP 200, 175 KB) contains no static vacancy
-    links (only 4 hrefs: self, /karriere, karriere.generali.at/aktuelle-jobs, generali.ch) -> the list is JavaScript-rendered; no JSON/sitemap endpoint
-    found in 2 probes. Revisit with a browser-network look at the Jobboerse page; regions filter rhein_main/koeln would then apply.'
+  notes: 'The Jobboerse page embeds a d.vinci job widget (generali-gruppe.dvinci-hr.com, loader jobWidgetLoader/<id>.js); the widget config names the data URL
+    https://generali-gruppe.dvinci-hr.com/jobPublication/list.json (language de). Probe: HTTP 200, JSON array (1.6 MB) of {id, position, jobPublicationURL, location, locations[], company, categories[]};
+    robots.txt of the d.vinci host is "Allow: /". custom_api reads the array itself (items_path empty). Unverified until a dry-run.'
   options:
+    api_url: https://generali-gruppe.dvinci-hr.com/jobPublication/list.json
+    params: {language: de}
+    items_path: ''
+    fields: {title: position, id: id, location: location, url: jobPublicationURL}
     regions: [rhein_main, koeln]
 - id: axa_deutschland
   name: AXA Konzern AG

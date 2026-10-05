@@ -6,7 +6,7 @@ banks.yaml options example:
       api_url: https://example.com/search
       params: {country: DE}
       json_body: {pageSize: 50}
-      items_path: data.jobs              # dotted path to the list of postings
+      items_path: data.jobs              # dotted path to the list of postings; "" when the response itself is the list
       fields: {title: title, id: id, location: city, department: team, date: posted, url: link}
       url_template: "https://example.com/job/{id}"   # used when no 'url' field
       pagination: {type: offset|page, param: offset, size_param: limit, size: 50,
@@ -23,7 +23,7 @@ class CustomApiScraper(BaseScraper):
 
     def fetch_jobs(self, bank: Bank) -> list:
         o = bank.options
-        if not o.get("api_url") or not o.get("items_path"):
+        if not o.get("api_url") or o.get("items_path") is None:
             raise ScraperError("custom_api requires options.api_url and options.items_path")
         method = o.get("method", "GET").upper()
         pg = o.get("pagination") or {}
