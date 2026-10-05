@@ -6430,19 +6430,43 @@ banks:
   country: Germany
   address_in_source_list: Frankfurt am Main / Köln (user-requested; address not verified)
   jobs_url: https://careers.allianz.com/de/de/search-results
-  source_type: unknown
-  germany_only: false
+  source_type: custom_api
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: js_list
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: 'Official portal careers.allianz.com (Phenom People platform), Germany site /de/de/ (search-results page HTTP 200, 443 KB). The list is rendered by JavaScript:
-    the page HTML embeds totalHits":0 and no jobs. robots.txt lists sitemaps; https://careers.allianz.com/de/de/sitemap_index.xml (HTTP 200) -> sitemap1..4.xml, and
-    sitemap1.xml lists vacancies as /de/de/job/<id>/<Title-Slug> (e.g. /de/de/job/107226/Cyber-Defense-Specialist) but for ALL countries (also Stevenage, MX...), without city
-    in the URL, so a sitemap_jobs adapter would need thousands of detail requests and the index has 4 files (the adapter reads one). Phenom also has a JSON widgets API
-    but its request format was not seen in a response, so it was not guessed. Not enabled.'
+  notes: 'Phenom People site careers.allianz.com (/de/de/). The sitemap is global and has no city, so this reads the same JSON widgets endpoint the search page itself calls
+    (POST https://careers.allianz.com/widgets, ddoKey refineSearch, filtered to country Germany). robots.txt of the site does not disallow /widgets (it disallows */px-widgets, */apply, */jobcart ...).
+    The request body follows the standard Phenom refineSearch format and was NOT yet seen in a response: unverified until a dry-run; if it answers with no jobs or an error the body needs the real request from the browser.'
   options:
+    method: POST
+    api_url: https://careers.allianz.com/widgets
+    json_body:
+      lang: de_de
+      deviceType: desktop
+      country: de
+      pageName: search-results
+      ddoKey: refineSearch
+      sortBy: ''
+      subsearch: ''
+      jobs: true
+      counts: true
+      all_fields: [category, country, state, city, type, jobLevel]
+      clearAll: false
+      jdsource: facets
+      isSliderEnable: false
+      pageId: page61
+      siteType: external
+      keywords: ''
+      global: true
+      selected_fields: {country: [Germany]}
+      locationData: {}
+    items_path: refineSearch.data.jobs
+    fields: {title: title, id: jobId, location: cityState, department: category, url: applyUrl}
+    url_template: https://careers.allianz.com/de/de/job/{id}
+    pagination: {type: offset, param: from, size_param: size, size: 50, total_path: refineSearch.totalHits, in: json_body, start: 0, max_pages: 30}
     regions: [rhein_main, koeln]
 - id: swiss_re_deutschland
   name: Swiss Re (Germany - Frankfurt, Munich)
