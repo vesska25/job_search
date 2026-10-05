@@ -6496,17 +6496,15 @@ banks:
   display_name: Deutsche Familienversicherung
   country: Germany
   address_in_source_list: Frankfurt am Main (user-requested; address not verified)
-  jobs_url: https://deutsche-familienversicherung.jobs.personio.de/
+  jobs_url: https://dfvag.jobs.personio.de/
   source_type: personio
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: blocked_robots
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: 'A web search says DFV uses Personio for applications. The tenant name deutsche-familienversicherung was a guess from that and not confirmed: the probe of
-    https://deutsche-familienversicherung.jobs.personio.de/xml was "skipped by robots.txt" (also happens for tenants that do not exist), so neither the tenant nor the feed could
-    be verified; not worked around. Confirm the real tenant on deutsche-familienversicherung.de/karriere, then set enabled true (personio adapter reads /xml).'
+  notes: 'Real Personio tenant dfvag (URL supplied by the user; the earlier guess deutsche-familienversicherung was wrong, hence the robots stop). personio adapter reads https://dfvag.jobs.personio.de/xml. Unverified until a dry-run.'
   options:
     regions: [rhein_main, koeln]
 - id: frankfurter_leben_versicherung
