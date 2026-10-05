@@ -6705,9 +6705,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'Official TK Stellenmarkt (linked from tk.de karriere page). Server-rendered JSF list, probe saw "Es wurden 74 Stellenangebote gefunden"; each item is li.stellenmarkt-anzeige__liste-item with an anchor /stellenangebote/<Title>-TK<id>, title h4 and location "in <City>". robots.txt allowed the probe. Regions filter Frankfurt/Koeln +-30 km. Dry-run #1 with plain custom_html returned only the first 10 of 74 (rest load via the JSF/PrimeFaces "Mehr laden" ajax button), so the source now uses the jsf_loadmore adapter, which repeats that click (partial-ajax POST with session + ViewState) until the link disappears. Unverified until a dry-run.'
+  verification_status: ok
+  last_verified: '2026-10-05'
+  notes: 'Official TK Stellenmarkt (linked from tk.de karriere page). Server-rendered JSF list, probe saw "Es wurden 74 Stellenangebote gefunden"; each item is li.stellenmarkt-anzeige__liste-item with an anchor /stellenangebote/<Title>-TK<id>, title h4 and location "in <City>". robots.txt allowed the probe. Regions filter Frankfurt/Koeln +-30 km. Dry-run #1 with plain custom_html returned only the first 10 of 74 (rest load via the JSF/PrimeFaces "Mehr laden" ajax button), so the source now uses the jsf_loadmore adapter, which repeats that click (partial-ajax POST with session + ViewState) until the link disappears. Dry-run 2026-10-05: all 74 of 74 read, 7 in the Frankfurt/Koeln regions (Ausbildung/Praktikum only, 0 leadership).'
   options:
     base_url: https://www.tk.de
     selectors:
