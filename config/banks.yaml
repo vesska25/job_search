@@ -6472,18 +6472,23 @@ banks:
   display_name: Gothaer
   country: Germany
   address_in_source_list: Köln (user-requested; address not verified)
-  jobs_url: https://karriere.gothaer.de/stellenmarkt/
-  source_type: unknown
+  jobs_url: https://karriere.barmeniagothaer.de/stellenmarkt/?filterType=all
+  source_type: custom_api
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: js_list
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: 'Official career site karriere.gothaer.de (found by web search; shared Barmenia Gothaer portal). /stellenmarkt/ (probe HTTP 200, 75 KB) contains only navigation
-    (/jobwelten/..., /vertriebskarriere/...) and no static vacancy links; a grep for external ATS hosts (softgarden, personio, rexx, successfactors, join, onlyfy, jobs.*) and
-    iframes found nothing -> the list is JavaScript-rendered, JSON endpoint not discovered in 3 probes (/job-welten pages not checked). Needs a browser look at the network calls.'
+  notes: 'Shared Barmenia Gothaer portal karriere.barmeniagothaer.de (URL supplied by the user). Its Vue job search loads one public JSON
+    https://karriere.barmeniagothaer.de/results.json?filterType=all (probe HTTP 200, 186 KB, {status, jobs[{uid,title,url,city,department,agency}]}),
+    so custom_api reads it directly; it covers both brands (Gothaer and Barmenia). Region Koeln/Frankfurt +-30 km; Wuppertal (Barmenia HQ) is outside.
+    Unverified until a dry-run.'
   options:
+    api_url: https://karriere.barmeniagothaer.de/results.json
+    params: {filterType: all}
+    items_path: jobs
+    fields: {title: title, id: uid, location: city, department: department, url: url}
     regions: [rhein_main, koeln]
 - id: deutsche_familienversicherung
   name: Deutsche Familienversicherung AG
