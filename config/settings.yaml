@@ -334,6 +334,18 @@ location:
      Rostock, Kiel, Lübeck, Magdeburg, Halle, Chemnitz, Saarbrücken, Oldenburg, Osnabrück, Braunschweig,
      Wolfsburg, Ingolstadt, Heilbronn, Pforzheim, Göttingen, Siegburg, Hürth, Brühl, Monheim, Ratingen, Velbert,
      Dreieich, Langen, Rüsselsheim, Hofheim, Taunus, Gießen, Fulda, Düren, Euskirchen, Troisdorf]
+  # Named city groups for per-bank "regions: [rhein_main, koeln]" (new sources only): about 30 km around Frankfurt and Koeln.
+  regions:
+    rhein_main:
+      [Frankfurt, Frankfurt am Main, Frankfurt a.M., Offenbach, Eschborn, Bad Homburg, Oberursel, Kronberg, Königstein, Steinbach,
+       Schwalbach, Sulzbach, Hofheim, Kelkheim, Eppstein, Liederbach, Kriftel, Hattersheim, Flörsheim, Hochheim, Bad Soden,
+       Kelsterbach, Raunheim, Rüsselsheim, Mörfelden-Walldorf, Neu-Isenburg, Dreieich, Langen, Egelsbach, Heusenstamm,
+       Obertshausen, Mühlheim, Hanau, Maintal, Bruchköbel, Rodgau, Dietzenbach, Rödermark, Seligenstadt, Karben, Bad Vilbel,
+       Friedrichsdorf, Neu-Anspach, Usingen, Friedberg, Bad Nauheim, Darmstadt, Weiterstadt, Groß-Gerau, Mainz, Wiesbaden]
+    koeln:
+      [Köln, Cologne, Leverkusen, Bergisch Gladbach, Bonn, Brühl, Hürth, Frechen, Pulheim, Dormagen, Wesseling, Erftstadt, Kerpen,
+       Bergheim, Troisdorf, Siegburg, Sankt Augustin, Bornheim, Alfter, Niederkassel, Lohmar, Rösrath, Overath, Leichlingen,
+       Burscheid, Langenfeld, Monheim, Kürten, Odenthal, Bedburg, Elsdorf, Hennef]
   foreign_locations:
     [Amsterdam, London, Paris, Luxembourg, Luxemburg, Brussels, Brüssel, Zurich, Zürich, Vienna, Wien, Warsaw,
      Warschau, Madrid, Barcelona, Milan, Mailand, Rome, Dublin, Prague, Budapest, Stockholm, Copenhagen,

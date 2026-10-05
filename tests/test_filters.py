@@ -267,3 +267,25 @@ def test_soft_it_titles_survive_the_new_exclusions(settings, bank):
     for title in ("Gruppenleiter*in Digitale Transformation und Enabling", "Abteilungsleiter Organisation und Digitalisierung (m/w/d)",
                   "Abteilungsleiter (m/w/d) System- und Workflowmanagement", "Leitung Controlling & Betriebssteuerung"):
         assert evaluate(make_job(bank, title, location="Frankfurt"), bank, settings).accepted, title
+
+
+def test_regions_option_keeps_only_frankfurt_and_koeln_areas():
+    from src.config import Bank
+    from src.filters.location import is_germany
+    from src.models.job import Job
+    cfg = {"german_locations": ["Germany", "Frankfurt", "Berlin"], "foreign_locations": ["London"],
+           "regions": {"rhein_main": ["Frankfurt", "Eschborn"], "koeln": ["Köln", "Leverkusen"]}}
+    bank = Bank(id="x", name="X", germany_only=True, options={"regions": ["rhein_main", "koeln"]})
+
+    def job(loc, title="Head of Risk"):
+        return Job(bank_id="x", bank_name="X", title=title, url="https://x.test/1", location=loc)
+
+    assert is_germany(job("Frankfurt am Main"), bank, cfg)[0]
+    assert is_germany(job("Eschborn"), bank, cfg)[0]
+    assert is_germany(job("Leverkusen"), bank, cfg)[0]
+    assert not is_germany(job("Berlin"), bank, cfg)[0]
+    assert is_germany(job("", title="Teamleiter Controlling Köln"), bank, cfg)[0]      # place named in the title
+    assert not is_germany(job(""), bank, cfg)[0]                                      # unknown place: rejected ...
+    bank.options["accept_unknown_location"] = True
+    assert is_germany(job(""), bank, cfg)[0]                                          # ... unless the source is known to lack it
+    assert not is_germany(job("Berlin"), bank, cfg)[0]                                # a known other city is still rejected
