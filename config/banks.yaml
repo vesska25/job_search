@@ -4856,20 +4856,25 @@ banks:
   display_name: R+V
   country: Germany
   address_in_source_list: Wiesbaden (from the user's list of banking-related organisations; address not verified)
-  jobs_url: https://www.ruv.de/karriere/stellenanzeigen
-  source_type: smartrecruiters
+  jobs_url: https://www.ruv.de/karriere/jobsuche
+  source_type: custom_api
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: blocked_robots
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: 'The R+V Jobsuche page (https://www.ruv.de/karriere/jobsuche) embeds the SmartRecruiters job-alert widget with data-company-identifier="RVAllgemeineVersicherungenAG".
-    Dry-run of the smartrecruiters adapter: "robots.txt disallows or could not be checked" for https://api.smartrecruiters.com/v1/companies/RVAllgemeineVersicherungenAG/postings; a probe of
-    https://api.smartrecruiters.com/robots.txt itself was also skipped, and https://jobs.smartrecruiters.com/RVAllgemeineVersicherungenAG only redirects to ruv.de (no vacancies in the page).
-    Not worked around. R+V vacancies in the region still arrive through the Bundesagentur source. Retry later (the robots check may be a temporary failure of the runner).'
+  notes: 'Search page supplied by the user (https://www.ruv.de/karriere/jobsuche?...). The page script calls the site own JSON search https://www.ruv.de/.search?index=job (probe HTTP 200: {searchResults[{title,
+    location,jobId,url,careerLevel,jobCategory,date}], aggregations, total}); filter.careerLevel=Fuehrungskraefte (spelled with umlaut) selects the leadership level (11 of 1470 vacancies, 5 of them in Wiesbaden).
+    Page size is 10; paging by offset looked effective in one probe (not fully confirmed). The earlier SmartRecruiters route was stopped by its robots check and is no longer used. IDs are the relative URLs
+    (the same jobId is repeated per location). Only the leadership level is read on purpose; leaders titled under other levels would be missed. Unverified until a dry-run.'
   options:
-    company: RVAllgemeineVersicherungenAG
+    api_url: https://www.ruv.de/.search
+    params: {index: job, filter.careerLevel: Führungskräfte}
+    items_path: searchResults
+    fields: {title: title, id: url, location: location, department: jobCategory, date: date, url: no_such_field}
+    url_template: https://www.ruv.de{url}
+    pagination: {type: offset, param: offset, size: 10, total_path: total, in: params, start: 0, max_pages: 10}
     regions: [rhein_main, koeln]
 - id: payone
   name: PAYONE GmbH / Worldline (Germany)
