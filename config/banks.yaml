@@ -4861,12 +4861,13 @@ banks:
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: true
-  verification_status: unverified
+  enabled: false
+  verification_status: blocked_robots
   last_verified: null
-  notes: 'The R+V Jobsuche page (https://www.ruv.de/karriere/jobsuche) embeds the SmartRecruiters job-alert widget with data-company-identifier="RVAllgemeineVersicherungenAG";
-    the public posting API https://api.smartrecruiters.com/v1/companies/RVAllgemeineVersicherungenAG/postings is read by the smartrecruiters adapter (country de). HQ Wiesbaden, so the
-    regions filter keeps Frankfurt/Koeln +-30 km (Wiesbaden is in the rhein_main list). Unverified until a dry-run; other R+V companies may use further identifiers.'
+  notes: 'The R+V Jobsuche page (https://www.ruv.de/karriere/jobsuche) embeds the SmartRecruiters job-alert widget with data-company-identifier="RVAllgemeineVersicherungenAG".
+    Dry-run of the smartrecruiters adapter: "robots.txt disallows or could not be checked" for https://api.smartrecruiters.com/v1/companies/RVAllgemeineVersicherungenAG/postings; a probe of
+    https://api.smartrecruiters.com/robots.txt itself was also skipped, and https://jobs.smartrecruiters.com/RVAllgemeineVersicherungenAG only redirects to ruv.de (no vacancies in the page).
+    Not worked around. R+V vacancies in the region still arrive through the Bundesagentur source. Retry later (the robots check may be a temporary failure of the runner).'
   options:
     company: RVAllgemeineVersicherungenAG
     regions: [rhein_main, koeln]
