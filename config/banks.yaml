@@ -5456,13 +5456,10 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
+  enabled: true
   verification_status: unverified
   last_verified: null
-  notes: 'lbb.de links to Berliner Sparkasse (/de/home/ihre-sparkasse/dein-job.html); the bank publishes on the Sparkassen job exchange (a
-    detail page .../jobangebot/...-berliner-sparkasse-230401.html appeared in search results). bank_code 10050000 is the BLZ of Berliner
-    Sparkasse from general knowledge, NOT verified in a response (a probe of the API with that code was started but not read back),
-    so the entry is disabled: check it with a dry run, then enable. Berlin only, so with regions almost nothing will match.'
+  notes: 'lbb.de links to Berliner Sparkasse (/de/home/ihre-sparkasse/dein-job.html); the bank publishes on the Sparkassen job exchange (a detail page .../jobangebot/...-berliner-sparkasse-230401.html appeared in search results). bank_code 10050000 is the BLZ of Berliner Sparkasse from general knowledge, NOT verified in a response (a probe of the API with that code was started but not read back), so the entry is disabled: check it with a dry run, then enable. Berlin only, so with regions almost nothing will match. Dry-run 2026-10-05: sparkasse_jobmarket read 37 vacancies (Berlin only, so the Frankfurt/Koeln filter keeps none).'
   options:
     bank_code: '10050000'
     regions: [rhein_main, koeln]
@@ -5676,11 +5673,7 @@ banks:
   enabled: false
   verification_status: needs_review
   last_verified: null
-  notes: 'www.dkb.de/karriere is skipped by the probe (robots.txt unreachable, 503) so it is not used. The vacancy site
-    jobs.dkb.de (named in web search results, HTTP 200) is a SAP SuccessFactors career site (job URLs
-    /job/Berlin-<title>/<id>/, e.g. the Initiativbewerbung link on the home page). Disabled because the static
-    /search/?q=&locationsearch=Frankfurt (64 KB) and /viewalljobs/ (39 KB) pages showed no tr.data-row table rows to the
-    probe, so the list may be JavaScript-rendered; re-check with Verify and enable when the successfactors adapter finds jobs.'
+  notes: 'www.dkb.de/karriere is skipped by the probe (robots.txt unreachable, 503) so it is not used. The vacancy site jobs.dkb.de (named in web search results, HTTP 200) is a SAP SuccessFactors career site (job URLs /job/Berlin-<title>/<id>/, e.g. the Initiativbewerbung link on the home page). Disabled because the static /search/?q=&locationsearch=Frankfurt (64 KB) and /viewalljobs/ (39 KB) pages showed no tr.data-row table rows to the probe, so the list may be JavaScript-rendered; re-check with Verify and enable when the successfactors adapter finds jobs. Dry-run 2026-10-05: the SuccessFactors adapter finds no job links on jobs.dkb.de (layout differs); Berlin-based, so low value for the Frankfurt/Koeln filter. Kept disabled.'
   options:
     regions: [rhein_main, koeln]
 - id: comdirect_bank
@@ -5791,12 +5784,10 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: needs_review
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: 'donner-reuschel.de/karriere/ (HTTP 200) links to the softgarden tenant donner-reuschel.softgarden.io (page
-    /de/data-security answered 200). The vacancy list path /de/vacancies is the usual softgarden path (used by other banks)
-    but was not confirmed by a probe, and the softgarden /api/ is disallowed by robots.txt. Enable after Verify finds jobs.'
+  notes: 'donner-reuschel.de/karriere/ (HTTP 200) links to the softgarden tenant donner-reuschel.softgarden.io (page /de/data-security answered 200). The vacancy list path /de/vacancies is the usual softgarden path (used by other banks) but was not confirmed by a probe, and the softgarden /api/ is disallowed by robots.txt. Enable after Verify finds jobs. Dry-run 2026-10-05: softgarden list read 12 vacancies (0 in the Frankfurt/Koeln areas).'
   options:
     regions: [rhein_main, koeln]
 - id: merck_finck_privatbankiers
@@ -5906,16 +5897,10 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: needs_review
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: 'schwaebisch-hall.de/karriere links to karriere.schwaebisch-hall.de (HTTP 200, 400 KB, server-rendered React) with
-    static vacancy cards <a href="/de/job/<title>-Schwaebisch-Hall/<id>"> whose title sits in div[data-slot=item-title]
-    (e.g. "Teamleiter (m/w/d) Hard- und Software-Service", ids ~7182-7229). The cards show only job field and entry level,
-    NO city; the place appears only as suffix of the URL slug. The Frankfurt/Koeln filter therefore cannot be applied with
-    the current adapter (accept_unknown_location would let all Schwäbisch Hall jobs through). An older SuccessFactors site
-    jobs.schwaebisch-hall.de and d.vinci schwaebisch-hall.dvinci-hr.com were also linked. Enable when a location can be
-    derived (e.g. location_regex on the slug).'
+  notes: 'schwaebisch-hall.de/karriere links to karriere.schwaebisch-hall.de (HTTP 200, 400 KB, server-rendered React) with static vacancy cards <a href="/de/job/<title>-Schwaebisch-Hall/<id>"> whose title sits in div[data-slot=item-title] (e.g. "Teamleiter (m/w/d) Hard- und Software-Service", ids ~7182-7229). The cards show only job field and entry level, NO city; the place appears only as suffix of the URL slug. The Frankfurt/Koeln filter therefore cannot be applied with the current adapter (accept_unknown_location would let all Schwäbisch Hall jobs through). An older SuccessFactors site jobs.schwaebisch-hall.de and d.vinci schwaebisch-hall.dvinci-hr.com were also linked. Enable when a location can be derived (e.g. location_regex on the slug). Dry-run 2026-10-05: 20 vacancies read (Schwaebisch Hall area, 0 in the Frankfurt/Koeln areas).'
   options:
     link_pattern: "/de/job/[^/?#]+/\\d+"
     selectors:
