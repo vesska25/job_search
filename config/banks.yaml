@@ -4727,16 +4727,20 @@ banks:
   country: Germany
   address_in_source_list: Frankfurt am Main (given by the user; address not verified)
   jobs_url: https://degussa-goldhandel.jobs.personio.de/
-  source_type: personio
+  source_type: custom_html
   germany_only: false
   germany_filter: ''
   location_filter: []
   enabled: true
   verification_status: unverified
   last_verified: null
-  notes: 'Personio list given by the user when asked to add "Degussa Bank". NOTE: this is Degussa Goldhandel (precious-metals
-    trading), a different company from Degussa Bank AG (the bank); the bank''s own vacancy source is not connected yet. Unverified
-    until a dry-run.'
+  notes: 'Personio career site given by the user when asked to add "Degussa Bank". NOTE: this is Degussa Goldhandel (precious-metals
+    trading), a different company from Degussa Bank AG (the bank; its site www.degussa-bank.de no longer resolves, the bank was
+    taken over by OLB). The Personio XML feed (/xml) returns 404 for this tenant, so the HTML page is read: it has static links
+    /job/<id> (probe found 7). Unverified until a dry-run.'
+  options:
+    link_pattern: /job/\d+
+    accept_unknown_location: true
 - id: vr_payment
   name: VR Payment GmbH
   display_name: VR Payment
