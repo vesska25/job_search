@@ -6624,16 +6624,23 @@ banks:
   country: Germany
   address_in_source_list: Frankfurt am Main (found by web search)
   jobs_url: https://www.helvetia.de/de/jobs/de.html
-  source_type: unknown
+  source_type: custom_api
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: needs_review
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: 'Extra insurer (Helvetia Germany head office in Frankfurt). Official job site https://www.helvetia.de/de/jobs/de.html (probe of the redirect target page found it; HTTP 200)
-    with sub pages /de/jobs/de/Berufserfahrene.html, /de/jobs/de/ausbildung-studium-praktikum.html. The Austrian page lists "offene-stellen" but the German vacancy list URL
-    was not identified in the probes (the probe of /Berufserfahrene.html was not read in time). Needs a manual look for the vacancy list / ATS.'
+  notes: 'The job list widget (bam-job-search) on https://www.helvetia.de/de/jobs/de.html names its data URL in the action attribute:
+    https://www.helvetia.de/helvetia-de/de/jobs/de/main/jobSearchWidget/jobSearchWidget.json (probe HTTP 200, 65 KB, {text:["160 Job(s)"], results:[{items:[{title, subTitle:"Land, Stadt", href, zip}]}]}).
+    The list mixes Switzerland, Austria, Luxembourg and Germany; subTitle carries country and city, so the regions filter keeps only Frankfurt/Koeln +-30 km. displayLimit param raises the page size.
+    Unverified until a dry-run.'
+  options:
+    api_url: https://www.helvetia.de/helvetia-de/de/jobs/de/main/jobSearchWidget/jobSearchWidget.json
+    params: {displayLimit: 500}
+    items_path: results.0.items
+    fields: {title: title, id: href, location: subTitle, url: href}
+    regions: [rhein_main, koeln]
 - id: lbs_hessen_thueringen
   name: LBS Hessen-Thüringen
   display_name: LBS Hessen-Thüringen
