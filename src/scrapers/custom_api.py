@@ -57,7 +57,8 @@ class CustomApiScraper(BaseScraper):
         o = bank.options
         items = dig(data, o["items_path"])
         if not isinstance(items, list):
-            raise ScraperError(f"custom_api: items_path '{o['items_path']}' is not a list")
+            keys = sorted(data) if isinstance(data, dict) else type(data).__name__
+            raise ScraperError(f"custom_api: items_path '{o['items_path']}' is not a list (response keys: {keys})")
         f = {"title": "title", "id": "id", "location": "location", "department": "department",
              "date": "date", "url": "url", "description": "description", **(o.get("fields") or {})}
         jobs = []

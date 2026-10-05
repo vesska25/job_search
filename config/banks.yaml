@@ -4866,7 +4866,7 @@ banks:
   last_verified: null
   notes: 'Search page supplied by the user (https://www.ruv.de/karriere/jobsuche?...). The page script calls the site own JSON search https://www.ruv.de/.search?index=job (probe HTTP 200: {searchResults[{title,
     location,jobId,url,careerLevel,jobCategory,date}], aggregations, total}); filter.careerLevel=Fuehrungskraefte (spelled with umlaut) selects the leadership level (11 of 1470 vacancies, 5 of them in Wiesbaden).
-    Page size is 10; paging by offset looked effective in one probe (not fully confirmed). The earlier SmartRecruiters route was stopped by its robots check and is no longer used. IDs are the relative URLs
+    Page size is 10; the page parameter is `page` (page=2 returned the 11th vacancy, probe). The earlier SmartRecruiters route was stopped by its robots check and is no longer used. IDs are the relative URLs
     (the same jobId is repeated per location). Only the leadership level is read on purpose; leaders titled under other levels would be missed. Unverified until a dry-run.'
   options:
     api_url: https://www.ruv.de/.search
@@ -4874,7 +4874,7 @@ banks:
     items_path: searchResults
     fields: {title: title, id: url, location: location, department: jobCategory, date: date, url: no_such_field}
     url_template: https://www.ruv.de{url}
-    pagination: {type: offset, param: offset, size: 10, total_path: total, in: params, start: 0, max_pages: 10}
+    pagination: {type: page, param: page, total_path: total, in: params, max_pages: 10}
     regions: [rhein_main, koeln]
 - id: payone
   name: PAYONE GmbH / Worldline (Germany)
@@ -6614,7 +6614,7 @@ banks:
   country: Germany
   address_in_source_list: Oberursel (Taunus), within 30 km of Frankfurt (found by web search)
   jobs_url: https://www.alh.de/deine-karriere/freie-stellen
-  source_type: embedded_json
+  source_type: custom_api
   germany_only: true
   germany_filter: ''
   location_filter: []
@@ -6623,12 +6623,14 @@ banks:
   last_verified: null
   notes: 'Real domain alh.de (URL supplied by the user; alte-leipziger.de/deine-karriere/... answers 404). The page https://www.alh.de/deine-karriere/freie-stellen (HTTP 200, 1 MB) ships the whole vacancy list
     as JSON in the data-react-props attribute of section[data-react-init=jobSearch] ("68 Stellenangebote", initialResults[]: id, title, url, location[], lastUpdate, activity[]); the links point to the applicant
-    portal alteleip.pi-asp.de (only stored, never requested). Read by the embedded_json adapter with one GET. HQ Oberursel (rhein_main region). Unverified until a dry-run.'
+    portal alteleip.pi-asp.de (only stored, never requested). The page only embeds the first 25 of 68; the page script POSTs {q, facets, page} to https://www.alh.de/job-search/v1/search (searchEndpoint in the props), read here page by page (response keys unverified; the embedded_json adapter stays available). HQ Oberursel (rhein_main region). Unverified until a dry-run.'
   options:
-    selector: 'section[data-react-init="jobSearch"]'
-    attr: data-react-props
-    items_path: initialResults
+    method: POST
+    api_url: https://www.alh.de/job-search/v1/search
+    json_body: {}
+    items_path: results
     fields: {title: title, id: id, location: location, url: url, date: lastUpdate}
+    pagination: {type: page, param: page, total_path: meta.total, in: json_body, max_pages: 6}
     regions: [rhein_main, koeln]
 - id: helvetia_deutschland
   name: Helvetia Versicherungen Deutschland
