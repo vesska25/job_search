@@ -4721,6 +4721,26 @@ banks:
   last_verified: null
   notes: Added from the user's list of banking-related organisations (not banks). Careers page found by web search (not yet
     confirmed by a run). FX platform; Personio list (also .com).
+- id: olb
+  name: Oldenburgische Landesbank AG (OLB)
+  display_name: OLB
+  country: Germany
+  address_in_source_list: Oldenburg (given by the user; address not verified)
+  jobs_url: https://www.mein-check-in.de/olb/stellen
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Official vacancy list, linked from the olb.de home page (olb.de/ueber-uns/karriere): Check-in applicant portal
+    www.mein-check-in.de/olb/stellen, static list with job pages /olb/position-<id> (probe found them with titles). Degussa Bank
+    AG (WorksiteBank) was taken over by OLB in 2024, its site www.degussa-bank.de no longer resolves, so its vacancies (WorksiteBank
+    sites Ludwigshafen, Karlsruhe, Stuttgart, ...) appear here. Unverified until a dry-run.'
+  options:
+    link_pattern: /olb/position-\d+
+    accept_unknown_location: true
 - id: degussa_goldhandel
   name: Degussa Goldhandel GmbH
   display_name: Degussa Goldhandel
