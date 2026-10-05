@@ -6722,7 +6722,7 @@ banks:
   name: BARMER
   display_name: BARMER
   country: Germany
-  address_in_source_list: Wuppertal (Hauptsitz); Landesvertretungen u.a. Frankfurt, Köln
+  address_in_source_list: Frankfurt/Köln region (user-requested Krankenkasse; address not verified)
   jobs_url: https://jobs.barmer.de/
   source_type: sitemap_jobs
   germany_only: true
@@ -6736,6 +6736,31 @@ banks:
     sitemap_url: https://jobs.barmer.de/sitemap.xml
     url_regex: ac=jobad
     max_pages: 200
+    regions:
+    - rhein_main
+    - koeln
+- id: ikk_classic
+  name: IKK classic
+  display_name: IKK classic
+  country: Germany
+  address_in_source_list: Frankfurt/Köln region (user-requested Krankenkasse; address not verified)
+  jobs_url: https://www.ikk-classic.de/karriere/stellenangebote
+  source_type: custom_api
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Official IKK classic career page. Its list is filled by the site''s own same-origin REST service (main.js: jobsApi.getJobs = /.rest/job/v1/getJobs); a plain GET returns the whole list as a JSON array (probe: 175 KB, fields id, titleNoShys, location, url, lastUpdate). No key, login or session is used. The vacancy url is the applicant-portal link supplied by the API (ikkclas.pi-asp.de ... #position,id=...). location may hold several places ("Ulm, Göppingen, München"); creationDate is dd.mm.yyyy and is not used. Regions filter Frankfurt/Koeln +-30 km. Unverified until a dry-run.'
+  options:
+    api_url: https://www.ikk-classic.de/.rest/job/v1/getJobs
+    items_path: ''
+    fields:
+      title: titleNoShys
+      id: id
+      location: location
+      url: url
     regions:
     - rhein_main
     - koeln
