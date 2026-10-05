@@ -4721,6 +4721,22 @@ banks:
   last_verified: null
   notes: Added from the user's list of banking-related organisations (not banks). Careers page found by web search (not yet
     confirmed by a run). FX platform; Personio list (also .com).
+- id: degussa_goldhandel
+  name: Degussa Goldhandel GmbH
+  display_name: Degussa Goldhandel
+  country: Germany
+  address_in_source_list: Frankfurt am Main (given by the user; address not verified)
+  jobs_url: https://degussa-goldhandel.jobs.personio.de/
+  source_type: personio
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Personio list given by the user when asked to add "Degussa Bank". NOTE: this is Degussa Goldhandel (precious-metals
+    trading), a different company from Degussa Bank AG (the bank); the bank''s own vacancy source is not connected yet. Unverified
+    until a dry-run.'
 - id: vr_payment
   name: VR Payment GmbH
   display_name: VR Payment
