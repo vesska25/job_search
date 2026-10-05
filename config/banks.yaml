@@ -6566,17 +6566,22 @@ banks:
   display_name: HDI / Talanx
   country: Germany
   address_in_source_list: Köln (user-requested; address not verified)
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://careers.hdi.group/en/your_career_opportunities/job_board?companies=Talanx
+  source_type: custom_html
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: 'No official Germany-specific vacancy source verified. Talanx has a Köln site (Charles-de-Gaulle-Platz 1; HDI Global SE is based there, Gerling was merged into HDI). Probe of
-    www.talanx.com/de/talanx_gruppe/karriere (HTTP 200, 1 MB) found only links to itself and /en/talanx-group/careers, no vacancy list or ATS link; careers.talanx.com does not
-    resolve. Search results only point to job boards (StepStone, Berufsstart); the HDI "Talentefinder" portal was not located.'
+  notes: 'Job board URL supplied by the user (filter companies=Talanx). The Angular page is server-rendered: each vacancy is an anchor to https://job.hdi.group/job/<City>-<Title>/<id>/?feedId=...
+    (probe saw Hannover, Munich, Mainz, Hamburg, Cologne), pagination ?page=N. The city is the first word of the URL slug, so the title is built from the slug (title_url_regex) and the
+    regions filter sees it. The page state also carries a jobservice API key and a basic-auth path; they are NOT used. Unverified until a dry-run.'
+  options:
+    link_pattern: job\.hdi\.group/job/
+    title_url_regex: /job/([^/]+)/\d+
+    pagination: {param: page, max_pages: 30}
+    regions: [rhein_main, koeln]
 - id: gen_re_koeln
   name: General Reinsurance AG (Gen Re)
   display_name: Gen Re
