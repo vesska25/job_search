@@ -5948,3 +5948,371 @@ banks:
     site: Karriere
     max_pages: 30
     regions: [rhein_main, koeln]
+- id: n26
+  name: N26 Bank GmbH
+  display_name: N26
+  country: Germany
+  address_in_source_list: Berlin (user-requested; address not verified)
+  jobs_url: https://n26.com/en-eu/careers
+  source_type: custom_api
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'n26.com/en/careers (HTTP 200) embeds the Greenhouse board for=n26 (greenhouse.io/embed/job_board/js?for=n26) and links
+    vacancies as /en-eu/careers/positions/<greenhouse id>. The public Greenhouse JSON API
+    https://boards-api.greenhouse.io/v1/boards/n26/jobs answered HTTP 200 application/json (32114 bytes, jobs[] with absolute_url).
+    Same schema as raisin_bank (location.name, absolute_url). N26 is HQ in Berlin, so the Frankfurt/Koeln region filter will drop
+    most jobs. Group-wide list (several countries). Unverified until a Verify run.'
+  options:
+    api_url: https://boards-api.greenhouse.io/v1/boards/n26/jobs
+    items_path: jobs
+    fields:
+      title: title
+      id: id
+      location: location.name
+      url: absolute_url
+      date: first_published
+    regions: [rhein_main, koeln]
+- id: solaris
+  name: Solaris SE
+  display_name: Solaris
+  country: Germany
+  address_in_source_list: Berlin (user-requested; address not verified)
+  jobs_url: https://www.solarisgroup.com/en/careers/jobs/
+  source_type: custom_api
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'solarisgroup.com/en/careers/jobs/ (HTTP 200) links every vacancy to https://job-boards.greenhouse.io/solarisbank/jobs/<id>
+    (Greenhouse board solarisbank). The public JSON API https://boards-api.greenhouse.io/v1/boards/solarisbank/jobs answered HTTP
+    200 application/json (14915 bytes); locations seen: Berlin, Frankfurt, "Frankfurt; Berlin", "Berlin; Frankfurt", "Frankfurt;
+    Berlin; Munich". Solaris is HQ in Berlin with an office in Frankfurt; the regions filter keeps the Frankfurt ones.
+    Same schema as raisin_bank. Unverified until a Verify run.'
+  options:
+    api_url: https://boards-api.greenhouse.io/v1/boards/solarisbank/jobs
+    items_path: jobs
+    fields:
+      title: title
+      id: id
+      location: location.name
+      url: absolute_url
+      date: first_published
+    regions: [rhein_main, koeln]
+- id: scalable_capital
+  name: Scalable Capital GmbH
+  display_name: Scalable Capital
+  country: Germany
+  address_in_source_list: München (user-requested; address not verified)
+  jobs_url: https://careers.smartrecruiters.com/ScalableGmbH
+  source_type: custom_html
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'de.scalable.capital/careers links to https://careers.smartrecruiters.com/ScalableGmbH (SmartRecruiters company page).
+    The SmartRecruiters Posting API (api.smartrecruiters.com/v1/companies/ScalableGmbH/postings) is disallowed by robots.txt
+    (probe: "skipped by robots.txt"), so it is NOT used (source_type smartrecruiters not suitable). The company page itself
+    (HTTP 200, 142 KB, robots OK) is server-rendered: probe found <li class="opening-job"> cards with a link
+    https://jobs.smartrecruiters.com/ScalableGmbH/<id>-<slug>, <h4 class="job-title"> and a location span ("Berlin, Germany");
+    e.g. "Head of Accounting (m/f/x)" seen. HQ Munich, many jobs in Berlin, so the Frankfurt/Koeln region filter drops most
+    of them. Only the first page of cards is read (no pagination checked). Unverified until a Verify run.'
+  options:
+    selectors:
+      item: li.opening-job
+      title: h4.job-title
+      location: p.job-desc span
+      link: a.js-job-ad-link
+    regions: [rhein_main, koeln]
+- id: blackrock_germany
+  name: BlackRock (Germany offices)
+  display_name: BlackRock (Germany)
+  country: Germany
+  address_in_source_list: Frankfurt am Main / München (user-requested; address not verified)
+  jobs_url: https://careers.blackrock.com/location/germany-jobs/45831/2921044/2
+  source_type: sitemap_jobs
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: needs_review
+  last_verified: null
+  notes: 'Radancy career site careers.blackrock.com (same platform as Citi), vacancy pages /job/<city>/<slug>/45831/<id>. The sitemap
+    https://careers.blackrock.com/sitemap.xml (HTTP 200, 187 KB, not skipped by robots.txt) lists worldwide jobs (london, new-york,
+    tokyo, ...) but a grep for frankfurt/munich/cologne/duesseldorf/hamburg/berlin URLs found 0 matches, so the sitemap seems
+    incomplete or currently without German jobs. The Germany location page (HTTP 200, 194 KB) has no static /job/ links
+    (list loaded by JavaScript), and a Frankfurt job URL found by web search answered 404 (expired). So no reliable German vacancy
+    list was confirmed; the options below are the intended sitemap setup (url_regex limited to Frankfurt/Koeln-area city slugs) to be
+    enabled once a German job shows up in the sitemap or a list endpoint is found.'
+  options:
+    sitemap_url: https://careers.blackrock.com/sitemap.xml
+    url_regex: /job/(frankfurt|frankfurt-am-main|koeln|cologne|bonn|eschborn|bad-homburg|offenbach|oberursel|kronberg)[a-z-]*/
+    max_pages: 60
+    regions: [rhein_main, koeln]
+- id: klarna_germany
+  name: Klarna Bank AB (Germany)
+  display_name: Klarna (Germany)
+  country: Germany
+  address_in_source_list: Berlin (user-requested; address not verified)
+  jobs_url: https://www.klarna.com/international/careers/
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: blocked_robots
+  last_verified: null
+  notes: 'Probe of https://www.klarna.com/international/careers/ was "skipped by robots.txt" (not worked around). Web search names
+    klarnagroup.teamtailor.com/jobs as the official Teamtailor career site (Germany jobs in Berlin and Munich), but both
+    klarnagroup.teamtailor.com/jobs and klarnagroup.teamtailor.com/ answered HTTP 404 (Teamtailor error page) to the probe, so no
+    working vacancy list was confirmed. HQ Stockholm, German offices Berlin/Munich: the Frankfurt/Koeln region filter would drop
+    nearly all jobs anyway. Re-check later (Teamtailor offers /jobs.rss if the board is reachable).'
+  options:
+    regions: [rhein_main, koeln]
+- id: smava
+  name: Smava GmbH
+  display_name: smava
+  country: Germany
+  address_in_source_list: Berlin (user-requested; address not verified)
+  jobs_url: https://join.com/companies/smava
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Official job board of smava on JOIN (join.com/companies/smava, found via web search). Probe: HTTP 200, 125 KB, robots OK, static
+    links https://join.com/companies/smava/<id>-<slug> (5 seen on the first page, e.g. 16787515-absicherungsspezialist-kredit-im-homeoffice-w-m-d)
+    with readable slugs; the list shows no city, so accept_unknown_location is set (many roles are homeoffice). Only the first page of
+    the board is read (JOIN may load more via JavaScript). Mostly call-centre/credit-advisor roles, few leadership jobs expected.
+    Unverified until a Verify run.'
+  options:
+    link_pattern: /companies/smava/\d+-
+    accept_unknown_location: true
+    regions: [rhein_main, koeln]
+- id: trade_republic
+  name: Trade Republic Bank GmbH
+  display_name: Trade Republic
+  country: Germany
+  address_in_source_list: Berlin (user-requested; address not verified)
+  jobs_url: https://traderepublic.com/careers
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: js_list
+  last_verified: null
+  notes: 'traderepublic.com/careers answers HTTP 200 (Nuxt shell, 76 KB) but has no static vacancy links (only /en-de/about#career);
+    /en-de/careers is a 404. Scanned 6 of 28 same-domain scripts and the about page for greenhouse/ashby/lever/workable/personio/
+    recruitee/teamtailor/smartrecruiters/join.com endpoints: nothing found, so the real ATS or JSON endpoint is not
+    discoverable without a browser. Third-party boards (jobs.accel.com, portfoliojobs.tcv.com) mirror the jobs but are not official
+    and were not used. HQ Berlin: the Frankfurt/Koeln region filter would drop most jobs anyway. Needs the ATS endpoint from
+    browser DevTools.'
+  options:
+    regions: [rhein_main, koeln]
+- id: meag
+  name: MEAG MUNICH ERGO AssetManagement GmbH
+  display_name: MEAG (Munich Re)
+  country: Germany
+  address_in_source_list: München (user-requested; address not verified)
+  jobs_url: https://karriere.meag.com/stellenangebote.html
+  source_type: unknown
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: js_list
+  last_verified: null
+  notes: 'karriere.meag.com/stellenangebote.html (HTTP 200, 38 KB, robots OK) contains only navigation and a "Liste aktualisieren"
+    button, no static vacancy links: the list is loaded by JavaScript and no JSON endpoint was found in the static HTML. The page
+    also points to the Munich Re portal https://careers.munichre.com/de/jobsuche (BrandTheme MEAG filter) which was not probed
+    (not found as a static list). MEAG is HQ Munich (offices also in Hamburg, Frankfurt is minor), so the Frankfurt/Koeln
+    region filter would drop nearly all jobs anyway. Needs the list endpoint from browser DevTools.'
+  options:
+    regions: [rhein_main, koeln]
+- id: allianz_global_investors
+  name: Allianz Global Investors GmbH
+  display_name: Allianz Global Investors
+  country: Germany
+  address_in_source_list: Frankfurt am Main (user-requested; address not verified)
+  jobs_url: https://careers.allianz.com/de/de/sitemap_index.xml
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: needs_review
+  last_verified: null
+  notes: 'AllianzGI has no own career site: vacancies run on the Allianz group portal careers.allianz.com (Phenom platform, found by
+    web search; AllianzGI jobs appear there as Frankfurt roles). The search page https://careers.allianz.com/search/ answers HTTP 200
+    (540 KB) but has no static /job/ links (JavaScript list, 0 matches). robots.txt lists sitemap indexes per country; the
+    de/de index (HTTP 200) points to sitemap1-4.xml whose entries are https://careers.allianz.com/de/de/job/<id>/<Title-Slug>
+    (title only in the slug, no city, and unrelated UK/other jobs appear in it). A sitemap_jobs setup would pull the whole Allianz
+    Germany list (several hundred pages) without any AllianzGI or city filter, so it was NOT enabled; needs a Phenom list endpoint
+    with a company/location facet or an industry_filter on the job page. Group-wide portal: also covers other Allianz entities.'
+  options:
+    regions: [rhein_main, koeln]
+- id: dws
+  name: DWS Group GmbH & Co. KGaA
+  display_name: DWS
+  country: Germany
+  address_in_source_list: Frankfurt am Main (user-requested; address not verified)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  alias_of: deutsche_bank
+  verification_status: alias
+  last_verified: null
+  notes: 'DWS vacancies are published on the Deutsche Bank careers portal (web search shows "DWS - ..." roles in Frankfurt under
+    db.com/careers; the existing deutsche_bank entry reads that BeeSite portal), so DWS is mapped to deutsche_bank to avoid duplicate
+    notifications. Not verified that the BeeSite API returns the DWS roles: https://dws.com/en-de/careers/ answers HTTP 404, no
+    separate DWS list was found. If DWS jobs turn out to be missing in deutsche_bank results, add a BeeSite criteria filter.'
+- id: flossbach_von_storch
+  name: Flossbach von Storch SE
+  display_name: Flossbach von Storch
+  country: Germany
+  address_in_source_list: 50679 Köln (user-requested; address not verified)
+  jobs_url: https://www.flossbachvonstorch.de/de/ueber-uns/karriere/jobportal
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'flossbachvonstorch.de home page links to /de/ueber-uns/karriere/jobportal. Probe of that page: HTTP 200, robots OK, static vacancy
+    links /de/ueber-uns/karriere/job/<slug>-<id> with readable slug titles (7 seen, e.g. spezialist-it-governance-mwd-2669668,
+    senior-accountant-bilanzbuchhalter-mwd-2609157, senior-akquisiteur-sales-manager-private-vermoegensverwaltung-mwd-2432947).
+    The list shows no city (HQ Koeln, sales roles also Frankfurt/Muenchen/Hamburg), so accept_unknown_location is set and the
+    Frankfurt/Koeln filter cannot discriminate; the link text/slug is used as title (check on first Verify run that card text is
+    clean). Unverified until a Verify run.'
+  options:
+    link_pattern: /karriere/job/[^/?#]+
+    accept_unknown_location: true
+    regions: [rhein_main, koeln]
+- id: check24
+  name: CHECK24 Vergleichsportal GmbH
+  display_name: CHECK24
+  country: Germany
+  address_in_source_list: München (user-requested; address not verified)
+  jobs_url: https://jobs.check24.de/de/jobs/
+  source_type: custom_html
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'check24.de links to https://jobs.check24.de/de/ and that to /de/jobs/. Probe of /de/jobs/: HTTP 200, robots OK, static vacancy
+    links /de/jobs/<department>/ref<id>-<slug> with readable slugs (10+ seen, e.g. ref533m-teamleiter-mwd-kundenmanagement-mietwagen-augsburg,
+    ref568e-junior-controller-mwd-mobilfunk). The list shows no location (sometimes the city is in the slug, e.g. Augsburg), so
+    accept_unknown_location is set. Only the first page of the list is read; pagination not checked. HQ Munich (also Augsburg,
+    Berlin, Zurich): the region filter keeps almost nothing for Frankfurt/Koeln. Unverified until a Verify run.'
+  options:
+    link_pattern: /de/jobs/[^/]+/ref[0-9a-z]+-
+    accept_unknown_location: true
+    regions: [rhein_main, koeln]
+- id: ampega
+  name: Ampega Asset Management GmbH
+  display_name: Ampega (Talanx)
+  country: Germany
+  address_in_source_list: 50679 Köln (user-requested; address not verified)
+  jobs_url: https://www.ampega.com/karriere/unsere-jobs/
+  source_type: unknown
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: js_list
+  last_verified: null
+  notes: 'ampega.com answers HTTP 200 and links to /karriere/unsere-jobs/, /karriere/professionals/ etc. (TYPO3 site, cookie scripts
+    from ampega.de). The pages /karriere/unsere-jobs/ and /karriere/professionals/ returned the same 59945-byte document as the
+    home page with no vacancy links, no iframe and no external recruiting host (greps for softgarden, personio, rexx,
+    successfactors, smartrecruiters, join.com, talanx-karriere, jobs. found nothing), so the job list is not in static HTML. Ampega
+    belongs to Talanx; its jobs may sit on a Talanx group portal that was not found. Needs the real list endpoint from browser
+    DevTools.'
+  options:
+    regions: [rhein_main, koeln]
+- id: amundi_germany
+  name: Amundi Deutschland GmbH
+  display_name: Amundi (Germany)
+  country: Germany
+  address_in_source_list: München / Frankfurt am Main (user-requested; address not verified)
+  jobs_url: https://jobs.amundi.com/offre-de-emploi/liste-toutes-offres.aspx?all=1&mode=list
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: needs_review
+  last_verified: null
+  notes: 'www.amundi.de timed out for the probe (connect timeout). The group career portal jobs.amundi.com (found via web search, vacancy
+    example jobs.amundi.com/job/job-initiativbewerbung-m-w-d-_52173.aspx for Munich/Frankfurt) answers HTTP 200 on
+    /offre-de-emploi/liste-toutes-offres.aspx?all=1&mode=list (152 KB) with static cards <a class="ts-offer-list-item__title-link"
+    href="/offre-de-emploi/emploi-<slug>_<id>.aspx"> and readable titles (e.g. "Fund Manager H/F"); an RSS feed
+    /offre-de-emploi/tous-les-flux-rss.aspx is also linked. But the list is the WORLDWIDE Amundi list (mostly Paris, French titles) and the
+    card snippet shows no country/city, so the Frankfurt/Koeln filter cannot be applied; a Germany facet or a per-job location read is
+    needed. credit-agricole.de/job-portals/offer/<year>-<id> (Credit Agricole Germany portal) also showed Amundi Germany roles but
+    was not probed. Not enabled to avoid listing French jobs.'
+  options:
+    link_pattern: /offre-de-emploi/emploi-[^/?#]+_\d+\.aspx
+    regions: [rhein_main, koeln]
+- id: adyen_germany
+  name: Adyen (Germany, Berlin office)
+  display_name: Adyen (Germany)
+  country: Germany
+  address_in_source_list: Berlin (user-requested; address not verified)
+  jobs_url: https://careers.adyen.com/vacancies?locale=en&location=Berlin
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: js_list
+  last_verified: null
+  notes: 'careers.adyen.com/locations/berlin and /vacancies?locale=en&location=Berlin answer HTTP 200 (Nuxt app, 130-156 KB) but contain no
+    static vacancy links: the vacancy list is loaded client side (Nuxt payload key careers-vacancies-data-en, page flag
+    hasDefaultAlgoliaContent suggests an Algolia index). The sitemap index careers.adyen.com/sitemap.xml (HTTP 200) points to
+    sitemap-en.xml etc. but sitemap-en.xml (928 bytes) has no vacancy URLs. No JSON endpoint found in 4 tries. Adyen Germany jobs are in
+    Berlin only, so the Frankfurt/Koeln region filter would drop almost everything anyway. Needs the Algolia/API call from browser
+    DevTools.'
+  options:
+    regions: [rhein_main, koeln]
+- id: hansainvest
+  name: HANSAINVEST Hanseatische Investment-GmbH
+  display_name: HANSAINVEST
+  country: Germany
+  address_in_source_list: Hamburg (user-requested; address not verified)
+  jobs_url: https://jobs.signal-iduna.de/HANSAINVEST/go/Offene-Stellen/4577001/
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'hansainvest.com/ (HTTP 200) links its "Offene Stellen" to https://jobs.signal-iduna.de/HANSAINVEST/go/Offene-Stellen/4577001/
+    (SuccessFactors/Jobs2web site of the Signal Iduna group). Probe: HTTP 200, 376 KB, static links
+    /HANSAINVEST/job/<City>-<Title>-<zip>/<id>/ (10 seen, all Hamburg, e.g. Hamburg-Tax-Manager-(mwd)-22297/1385550433, Hamburg-Teamleitung-
+    (mwd)-IT-Infrastructure-&-Operations-22297/1209685501). The standard successfactors adapter was NOT used: /HANSAINVEST/search/
+    redirects to the whole SIGNALIDUNA group list (probe saw /SIGNALIDUNA/job/Leipzig-... agents). Because the city is the first word of the
+    URL slug, link_pattern keeps only vacancies whose slug starts with a Rhine-Main/Koeln city (Frankfurt, Eschborn, Bad Homburg,
+    Koeln, ...); accept_unknown_location covers the missing location column. HANSAINVEST has its head office in Hamburg plus a Frankfurt
+    branch, so the region filter will drop most jobs; the 10 jobs seen were all Hamburg (none matched at probe time). The list
+    may have more than the 10 links grepped. Unverified until a Verify run.'
+  options:
+    link_pattern: /HANSAINVEST/job/(?:Frankfurt|Eschborn|Bad-Homburg|Offenbach|Neu-Isenburg|K%C3%B6ln|Koeln|Leverkusen|Bonn)[^/]*/\d+
+    accept_unknown_location: true
+    regions: [rhein_main, koeln]
