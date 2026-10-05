@@ -6750,9 +6750,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'Official IKK classic career page. Its list is filled by the site''s own same-origin REST service (main.js: jobsApi.getJobs = /.rest/job/v1/getJobs); a plain GET returns the whole list as a JSON array (probe: 175 KB, fields id, titleNoShys, location, url, lastUpdate). No key, login or session is used. The vacancy url is the applicant-portal link supplied by the API (ikkclas.pi-asp.de ... #position,id=...). location may hold several places ("Ulm, Göppingen, München"); creationDate is dd.mm.yyyy and is not used. Regions filter Frankfurt/Koeln +-30 km. Unverified until a dry-run.'
+  verification_status: ok
+  last_verified: '2026-10-05'
+  notes: 'Official IKK classic career page. Its list is filled by the site''s own same-origin REST service (main.js: jobsApi.getJobs = /.rest/job/v1/getJobs); a plain GET returns the whole list as a JSON array (probe: 175 KB, fields id, titleNoShys, location, url, lastUpdate). No key, login or session is used. The vacancy url is the applicant-portal link supplied by the API (ikkclas.pi-asp.de ... #position,id=...). location may hold several places ("Ulm, Göppingen, München"); creationDate is dd.mm.yyyy and is not used. Regions filter Frankfurt/Koeln +-30 km. Dry-run 2026-10-05: 28 vacancies read, 1 in the Frankfurt/Koeln regions (Ausbildung, Bonn; 0 leadership).'
   options:
     api_url: https://www.ikk-classic.de/.rest/job/v1/getJobs
     items_path: ''
