@@ -6597,3 +6597,100 @@ banks:
   notes: 'Extra insurer (Helvetia Germany head office in Frankfurt). Official job site https://www.helvetia.de/de/jobs/de.html (probe of the redirect target page found it; HTTP 200)
     with sub pages /de/jobs/de/Berufserfahrene.html, /de/jobs/de/ausbildung-studium-praktikum.html. The Austrian page lists "offene-stellen" but the German vacancy list URL
     was not identified in the probes (the probe of /Berufserfahrene.html was not read in time). Needs a manual look for the vacancy list / ATS.'
+- id: sparkasse_koelnbonn
+  name: Sparkasse KölnBonn
+  display_name: Sparkasse KölnBonn
+  country: Germany
+  address_in_source_list: Köln
+  jobs_url: https://www.sparkasse.de/jobboerse.html
+  source_type: sparkasse_jobmarket
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Regional sweep: found in the sparkasse.de job-market API client list (bankCode 37050198); region Frankfurt/Koeln +-30 km. Unverified until a dry-run.'
+  options:
+    bank_code: '37050198'
+    regions:
+    - rhein_main
+    - koeln
+- id: kreissparkasse_koeln
+  name: Kreissparkasse Köln
+  display_name: Kreissparkasse Köln
+  country: Germany
+  address_in_source_list: Köln / Wipperfürth
+  jobs_url: https://www.sparkasse.de/jobboerse.html
+  source_type: sparkasse_jobmarket
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Regional sweep: found in the sparkasse.de job-market API client list (bankCode 37050299); region Frankfurt/Koeln +-30 km. Unverified until a dry-run.'
+  options:
+    bank_code: '37050299'
+    regions:
+    - rhein_main
+    - koeln
+- id: lbs_hessen_thueringen
+  name: LBS Hessen-Thüringen
+  display_name: LBS Hessen-Thüringen
+  country: Germany
+  address_in_source_list: Darmstadt / Frankfurt
+  jobs_url: https://www.sparkasse.de/jobboerse.html
+  source_type: sparkasse_jobmarket
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Regional sweep: found in the sparkasse.de job-market API client list (bankCode 90090355); region Frankfurt/Koeln +-30 km. Unverified until a dry-run.'
+  options:
+    bank_code: '90090355'
+    regions:
+    - rhein_main
+    - koeln
+- id: volksbank_rhein_main
+  name: Volksbank Rhein-Main eG
+  display_name: Volksbank Rhein-Main eG
+  country: Germany
+  address_in_source_list: Frankfurt / Offenbach
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Regional sweep: bank slug volksbank-rhein-main-eg found in the vr.de jobs sitemap; region Frankfurt/Koeln +-30 km. Unverified until a dry-run.'
+  options:
+    vr_slug: volksbank-rhein-main-eg
+    allow_empty: true
+    regions:
+    - rhein_main
+    - koeln
+- id: volksbank_koeln_bonn
+  name: Volksbank Köln Bonn eG
+  display_name: Volksbank Köln Bonn eG
+  country: Germany
+  address_in_source_list: Köln
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Regional sweep: bank slug volksbank-koeln-bonn-eg found in the vr.de jobs sitemap; region Frankfurt/Koeln +-30 km. Unverified until a dry-run.'
+  options:
+    vr_slug: volksbank-koeln-bonn-eg
+    allow_empty: true
+    regions:
+    - rhein_main
+    - koeln
