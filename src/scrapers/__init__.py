@@ -6,6 +6,7 @@ from src.scrapers.csod import CsodScraper
 from src.scrapers.custom_api import CustomApiScraper
 from src.scrapers.embedded_json import EmbeddedJsonScraper
 from src.scrapers.generic_html import GenericHtmlScraper
+from src.scrapers.jsf_loadmore import JsfLoadMoreScraper
 from src.scrapers.personio import PersonioScraper
 from src.scrapers.rss import RssScraper
 from src.scrapers.smartrecruiters import SmartRecruitersScraper
@@ -26,6 +27,7 @@ SCRAPERS = {
     "custom_api": CustomApiScraper,
     "csod": CsodScraper,
     "embedded_json": EmbeddedJsonScraper,
+    "jsf_loadmore": JsfLoadMoreScraper,
     "beesite": BeeSiteScraper,
     "rss": RssScraper,
     "custom_html": GenericHtmlScraper,

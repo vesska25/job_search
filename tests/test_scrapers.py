@@ -695,3 +695,53 @@ def test_embedded_json_reads_list_from_react_props(bank):
     assert jobs[0].title == "Teamleiter Finanzen (m/w/d)" and jobs[0].location == "Oberursel" and jobs[0].published_date == "2026-09-30"
     with pytest.raises(ScraperError):
         EmbeddedJsonScraper(None).parse_page("<html></html>", bank)
+
+
+def test_jsf_loadmore_clicks_until_the_link_is_gone(bank):
+    from src.scrapers.jsf_loadmore import JsfLoadMoreScraper
+
+    def item(n, city):
+        return (f'<li class="it"><a href="/stellenangebote/Job-{n}-TK{n}"><h4 class="t">Teamleitung {n} (m/w/d)</h4>'
+                f'<div class="o">in {city}</div></a></li>')
+
+    link = ('<a id="f:more" href="#" onclick="PrimeFaces.ab({s:&quot;f:more&quot;,f:&quot;f&quot;,'
+            'u:&quot;f:more f:list&quot;});return false;">Mehr laden</a>')
+    first = f'<form id="f"><ul>{item(1, "Hamburg")}</ul>{link}<input type="hidden" name="javax.faces.ViewState" value="S0"></form>'
+
+    def answer(items, more, state):
+        body = f'<ul>{items}</ul>{link if more else ""}'
+        return (f'<partial-response><changes><update id="f:list"><![CDATA[{body}]]></update>'
+                f'<update id="j_id1:javax.faces.ViewState:0"><![CDATA[{state}]]></update></changes></partial-response>')
+
+    answers = [answer(item(1, "Hamburg") + item(2, "Frankfurt am Main"), True, "S1"),
+               answer(item(1, "Hamburg") + item(2, "Frankfurt am Main") + item(3, "Köln"), False, "S2")]
+    posts = []
+
+    class Resp:
+        def __init__(self, text):
+            self.text = text
+
+    class FakeHttp:
+        def get(self, url, **kw):
+            return Resp(first)
+
+        def post(self, url, data=None, headers=None, **kw):
+            posts.append((data, headers))
+            return Resp(answers[len(posts) - 1])
+
+    bank.jobs_url = "https://www.example.de/stellenmarkt"
+    bank.options = {"base_url": "https://www.example.de", "more_link_selector": 'a[id="f:more"]',
+                    "selectors": {"item": "li.it", "title": "h4.t", "link": "a", "location": ".o"}}
+    jobs = JsfLoadMoreScraper(FakeHttp()).fetch_jobs(bank)
+    assert [j.title for j in jobs] == ["Teamleitung 1 (m/w/d)", "Teamleitung 2 (m/w/d)", "Teamleitung 3 (m/w/d)"]
+    assert jobs[2].location == "in Köln" and jobs[1].url == "https://www.example.de/stellenangebote/Job-2-TK2"
+    assert len(posts) == 2                                   # stops when the second answer has no more link
+    d, h = posts[0]
+    assert d["javax.faces.source"] == "f:more" and d["f"] == "f" and d["f:more"] == "f:more" and d["javax.faces.ViewState"] == "S0"
+    assert d["javax.faces.partial.render"] == "f:more f:list" and h["Faces-Request"] == "partial/ajax"
+    assert posts[1][0]["javax.faces.ViewState"] == "S1"      # the fresh ViewState of the first answer is reused
+
+
+def test_jsf_loadmore_without_link_is_a_plain_page(bank):
+    from src.scrapers.jsf_loadmore import JsfLoadMoreScraper
+    assert JsfLoadMoreScraper(None).more_request("<html><body>nothing</body></html>", bank) is None
