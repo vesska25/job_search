@@ -6694,3 +6694,27 @@ banks:
     regions:
     - rhein_main
     - koeln
+- id: techniker_krankenkasse
+  name: Techniker Krankenkasse (TK)
+  display_name: Techniker Krankenkasse
+  country: Germany
+  address_in_source_list: Hamburg (Hauptsitz); Landesvertretungen u.a. Frankfurt, Köln
+  jobs_url: https://www.tk.de/service/app/2055100/stellenmarkt/suche.app
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Official TK Stellenmarkt (linked from tk.de karriere page). Server-rendered JSF list, probe saw "Es wurden 74 Stellenangebote gefunden"; each item is li.stellenmarkt-anzeige__liste-item with an anchor /stellenangebote/<Title>-TK<id>, title h4 and location "in <City>". robots.txt allowed the probe. Regions filter Frankfurt/Koeln +-30 km. Unverified until a dry-run.'
+  options:
+    base_url: https://www.tk.de
+    selectors:
+      item: li.stellenmarkt-anzeige__liste-item
+      title: h4.stellenmarkt-anzeige__titel
+      link: a
+      location: .stellenmarkt-anzeige__ort
+    regions:
+    - rhein_main
+    - koeln
