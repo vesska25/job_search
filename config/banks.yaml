@@ -4760,6 +4760,7 @@ banks:
     /job/<id> (probe found 7). Unverified until a dry-run.'
   options:
     link_pattern: /job/\d+
+    title_cut_regex: \s+((?:Frankfurt|Augsburg|Hamburg|München|Berlin|Hannover|Düsseldorf|Köln|Nürnberg|Pforzheim|Stuttgart)\b.*)$
     accept_unknown_location: true
 - id: vr_payment
   name: VR Payment GmbH
