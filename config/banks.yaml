@@ -4857,21 +4857,19 @@ banks:
   country: Germany
   address_in_source_list: Wiesbaden (from the user's list of banking-related organisations; address not verified)
   jobs_url: https://www.ruv.de/karriere/stellenanzeigen
-  source_type: custom_html
+  source_type: smartrecruiters
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: js_list
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: 'Added from the user''s list of banking-related organisations (not banks). Careers page found by web search (not
-    yet confirmed by a run). Insurer of the cooperative group; list URL inferred from a job-ad path (ref…-wiesbaden). Also
-    reached through Bundesagentur. Disabled: the list on /karriere/jobsuche is loaded by JavaScript (no static links); the
-    old /karriere/stellenanzeigen returned 404. R+V vacancies in the user''s region still arrive through the Bundesagentur
-    source.'
+  notes: 'The R+V Jobsuche page (https://www.ruv.de/karriere/jobsuche) embeds the SmartRecruiters job-alert widget with data-company-identifier="RVAllgemeineVersicherungenAG";
+    the public posting API https://api.smartrecruiters.com/v1/companies/RVAllgemeineVersicherungenAG/postings is read by the smartrecruiters adapter (country de). HQ Wiesbaden, so the
+    regions filter keeps Frankfurt/Koeln +-30 km (Wiesbaden is in the rhein_main list). Unverified until a dry-run; other R+V companies may use further identifiers.'
   options:
-    link_pattern: /karriere/stellenanzeigen/
-    accept_unknown_location: true
+    company: RVAllgemeineVersicherungenAG
+    regions: [rhein_main, koeln]
 - id: payone
   name: PAYONE GmbH / Worldline (Germany)
   display_name: PAYONE / Worldline
