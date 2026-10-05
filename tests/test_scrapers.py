@@ -682,3 +682,16 @@ def test_csod_parse_assumed_requisition_format(bank):
     jobs, total = CsodScraper(None).parse(data, bank, "genre")
     assert total == 1 and jobs[0].url == "https://genre.csod.com/ux/ats/careersite/1/home/requisition/77?c=genre"
     assert jobs[0].location == "Köln, DE" and jobs[0].published_date == "2026-09-01"
+
+
+def test_embedded_json_reads_list_from_react_props(bank):
+    from src.scrapers.embedded_json import EmbeddedJsonScraper
+    bank.options = {"selector": '[data-react-init="jobSearch"]', "items_path": "initialResults",
+                    "fields": {"title": "title", "id": "id", "location": "location", "url": "url", "date": "lastUpdate"}}
+    html = ("<section data-react-init=\"jobSearch\" data-react-props='"
+            '{"headline":"2 Stellenangebote","initialResults":[{"id":"a1","title":"Teamleiter Finanzen (m/w/d)","url":"https://x/a1",'
+            '"lastUpdate":"2026-09-30T12:00:00+00:00","location":["Oberursel"]}]}' "'></section>")
+    jobs = EmbeddedJsonScraper(None).parse_page(html, bank)
+    assert jobs[0].title == "Teamleiter Finanzen (m/w/d)" and jobs[0].location == "Oberursel" and jobs[0].published_date == "2026-09-30"
+    with pytest.raises(ScraperError):
+        EmbeddedJsonScraper(None).parse_page("<html></html>", bank)

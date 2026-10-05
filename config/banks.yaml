@@ -6608,16 +6608,23 @@ banks:
   display_name: Alte Leipziger Hallesche
   country: Germany
   address_in_source_list: Oberursel (Taunus), within 30 km of Frankfurt (found by web search)
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://www.alh.de/deine-karriere/freie-stellen
+  source_type: embedded_json
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: 'No official Germany-specific vacancy source verified. Extra insurer (HQ Alte-Leipziger-Platz 1, Oberursel) found by web search. Probes of www.alte-leipziger.de/karriere
-    (HTTP 200, 1 MB) found FAQ accordions and mailto: bewerbung@alte-leipziger.de, but no link to a vacancy list or ATS in 2 greps; vacancies are listed only on StepStone in search results.'
+  notes: 'Real domain alh.de (URL supplied by the user; alte-leipziger.de/deine-karriere/... answers 404). The page https://www.alh.de/deine-karriere/freie-stellen (HTTP 200, 1 MB) ships the whole vacancy list
+    as JSON in the data-react-props attribute of section[data-react-init=jobSearch] ("68 Stellenangebote", initialResults[]: id, title, url, location[], lastUpdate, activity[]); the links point to the applicant
+    portal alteleip.pi-asp.de (only stored, never requested). Read by the embedded_json adapter with one GET. HQ Oberursel (rhein_main region). Unverified until a dry-run.'
+  options:
+    selector: 'section[data-react-init="jobSearch"]'
+    attr: data-react-props
+    items_path: initialResults
+    fields: {title: title, id: id, location: location, url: url, date: lastUpdate}
+    regions: [rhein_main, koeln]
 - id: helvetia_deutschland
   name: Helvetia Versicherungen Deutschland
   display_name: Helvetia Deutschland

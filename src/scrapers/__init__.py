@@ -4,6 +4,7 @@ from src.scrapers.bundesagentur import BundesagenturScraper
 from src.scrapers.beesite import BeeSiteScraper
 from src.scrapers.csod import CsodScraper
 from src.scrapers.custom_api import CustomApiScraper
+from src.scrapers.embedded_json import EmbeddedJsonScraper
 from src.scrapers.generic_html import GenericHtmlScraper
 from src.scrapers.personio import PersonioScraper
 from src.scrapers.rss import RssScraper
@@ -24,6 +25,7 @@ SCRAPERS = {
     "softgarden": SoftgardenScraper,
     "custom_api": CustomApiScraper,
     "csod": CsodScraper,
+    "embedded_json": EmbeddedJsonScraper,
     "beesite": BeeSiteScraper,
     "rss": RssScraper,
     "custom_html": GenericHtmlScraper,
