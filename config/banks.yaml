@@ -6336,7 +6336,7 @@ banks:
     api_url: https://generali-gruppe.dvinci-hr.com/jobPublication/list.json
     params: {language: de}
     items_path: ''
-    fields: {title: position, id: id, location: location, url: jobPublicationURL}
+    fields: {title: position, id: id, location: locations, url: jobPublicationURL}
     regions: [rhein_main, koeln]
 - id: axa_deutschland
   name: AXA Konzern AG

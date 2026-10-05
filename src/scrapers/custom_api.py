@@ -69,7 +69,7 @@ class CustomApiScraper(BaseScraper):
                 continue
             loc = dig(it, f["location"], "")
             if isinstance(loc, list):
-                loc = ", ".join(str(x) for x in loc)
+                loc = ", ".join(str(x.get("name") or x.get("city") or x) if isinstance(x, dict) else str(x) for x in loc)
             jobs.append(self.make_job(
                 bank, title=str(title), url=str(url), location=str(loc),
                 department=str(dig(it, f["department"], "") or ""),

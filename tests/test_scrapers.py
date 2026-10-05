@@ -87,6 +87,13 @@ def test_custom_api_response_that_is_the_list_itself(bank):
     assert [j.source_job_id for j in jobs] == ["1", "2"] and jobs[0].url == "https://x/jobs/1"
 
 
+def test_custom_api_location_list_of_objects_uses_their_names(bank):
+    bank.options = {"api_url": "https://x/l", "items_path": "", "fields": {"title": "position", "id": "id", "location": "locations", "url": "u"}}
+    data = [{"id": 1, "position": "Gruppenleiter Internal Audit", "u": "https://x/1",
+             "locations": [{"id": "KOELN", "name": "Köln"}, {"id": "MUENCHEN", "name": "München"}]}]
+    assert CustomApiScraper(None).parse(data, bank)[0].location == "Köln, München"
+
+
 def test_custom_api_offset_pagination_without_total_path(bank):
     pages = {0: [{"t": "A", "i": "1", "u": "/a"}, {"t": "B", "i": "2", "u": "/b"}], 2: [{"t": "C", "i": "3", "u": "/c"}], 4: []}
 
