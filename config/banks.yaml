@@ -6704,10 +6704,10 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: true
+  enabled: false
   verification_status: unverified
   last_verified: null
-  notes: 'Official TK Stellenmarkt (linked from tk.de karriere page). Server-rendered JSF list, probe saw "Es wurden 74 Stellenangebote gefunden"; each item is li.stellenmarkt-anzeige__liste-item with an anchor /stellenangebote/<Title>-TK<id>, title h4 and location "in <City>". robots.txt allowed the probe. Regions filter Frankfurt/Koeln +-30 km. Unverified until a dry-run.'
+  notes: 'Official TK Stellenmarkt (linked from tk.de karriere page). Server-rendered JSF list, probe saw "Es wurden 74 Stellenangebote gefunden"; each item is li.stellenmarkt-anzeige__liste-item with an anchor /stellenangebote/<Title>-TK<id>, title h4 and location "in <City>". robots.txt allowed the probe. Regions filter Frankfurt/Koeln +-30 km. Dry-run #1: parser OK (titles, URLs, cities) but a plain GET returns only the first 10 of 74; the rest load via the JSF/PrimeFaces "Mehr laden" ajax button (session + ViewState), which the GET adapters cannot follow. DISABLED: 10 of 74 would be misleading coverage. Needs a stateful JSF adapter or another listing URL.'
   options:
     base_url: https://www.tk.de
     selectors:
