@@ -2,6 +2,7 @@
 from src.scrapers.base import BaseScraper, ScraperError
 from src.scrapers.bundesagentur import BundesagenturScraper
 from src.scrapers.beesite import BeeSiteScraper
+from src.scrapers.csod import CsodScraper
 from src.scrapers.custom_api import CustomApiScraper
 from src.scrapers.generic_html import GenericHtmlScraper
 from src.scrapers.personio import PersonioScraper
@@ -22,6 +23,7 @@ SCRAPERS = {
     "smartrecruiters": SmartRecruitersScraper,
     "softgarden": SoftgardenScraper,
     "custom_api": CustomApiScraper,
+    "csod": CsodScraper,
     "beesite": BeeSiteScraper,
     "rss": RssScraper,
     "custom_html": GenericHtmlScraper,

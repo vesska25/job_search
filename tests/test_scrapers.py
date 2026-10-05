@@ -663,3 +663,22 @@ def test_link_title_from_url_is_percent_decoded(bank):
     html = '<a href="https://job.x/job/Cologne-%28Senior%29-Kaufm%C3%A4nnischer-Controller/123/?a=1">x</a>'
     jobs = GenericHtmlScraper(None).parse(html, bank)
     assert jobs[0].title == "Cologne (Senior) Kaufmännischer Controller"
+
+
+def test_csod_reads_token_and_endpoint_from_the_page_shell(bank):
+    from src.scrapers.csod import CsodScraper
+    html = 'x csod.context={"endpoints":{"cloud":"https://uk.api.csod.com/","api":"/"},"token":"abc.def"} y'
+    assert CsodScraper(None).session_from_page(html) == ("abc.def", "https://uk.api.csod.com/")
+    with pytest.raises(ScraperError):
+        CsodScraper(None).session_from_page("<html>nothing</html>")
+
+
+def test_csod_parse_assumed_requisition_format(bank):
+    """Format assumed from the platform's public front end; a dry-run against the real site confirms it."""
+    from src.scrapers.csod import CsodScraper
+    bank.options = {"career_site_id": 1}
+    data = {"data": {"totalCount": 1, "requisitions": [{"requisitionId": 77, "displayJobTitle": "Head of Finance",
+            "locations": [{"city": "Köln", "country": "DE"}], "postingEffectiveDate": "2026-09-01T00:00:00"}]}}
+    jobs, total = CsodScraper(None).parse(data, bank, "genre")
+    assert total == 1 and jobs[0].url == "https://genre.csod.com/ux/ats/careersite/1/home/requisition/77?c=genre"
+    assert jobs[0].location == "Köln, DE" and jobs[0].published_date == "2026-09-01"

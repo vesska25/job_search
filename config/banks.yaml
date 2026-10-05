@@ -6590,16 +6590,17 @@ banks:
   display_name: Gen Re
   country: Germany
   address_in_source_list: Köln (user-requested; address not verified)
-  jobs_url: https://www.genre.de/karriere
-  source_type: unknown
+  jobs_url: https://genre.csod.com/ux/ats/careersite/1/home?c=genre
+  source_type: csod
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: needs_review
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: 'Extra insurer found by web search (General Reinsurance AG, Theodor-Heuss-Ring 11, Köln; career site www.genre.de/karriere named in a search result). Probe of
-    https://www.genre.de/karriere failed: robots.txt unreachable (connect timeout from the runner), so the probe skipped it conservatively; no vacancy list seen. Retry later.'
+  notes: 'Career site URL supplied by the user: https://genre.csod.com/ux/ats/careersite/1/home?c=genre (Cornerstone OnDemand). robots.txt of genre.csod.com: "User-agent: * Crawl-delay: 10", no Disallow.
+    The page (5 KB) is a JavaScript shell with the anonymous guest session of the site (csod.context: API base uk.api.csod.com and a guest token), which the new csod adapter reads at run time and uses for the
+    same job search call the front end makes (token never stored). The response format is an assumption until the first dry-run; the robots check of the API host may still stop it. Region Koeln.'
   options:
     regions: [rhein_main, koeln]
 - id: alte_leipziger_hallesche
