@@ -5354,3 +5354,612 @@ banks:
   last_verified: null
   notes: No official Germany-specific vacancy source verified. Part of the Helaba group; vacancies are covered by the Helaba
     source.
+- id: lbbw
+  name: Landesbank Baden-Württemberg
+  display_name: LBBW
+  country: Germany
+  address_in_source_list: Stuttgart (user-requested; address not verified)
+  jobs_url: https://karriere.lbbw.de/
+  source_type: successfactors
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Official portal karriere.lbbw.de (linked from www.lbbw.de/menschen/karriere/..., seen in a probe of that page). SAP SuccessFactors
+    / Jobs2web: a probe of /search/?q=&startrow=0 returned vacancy links /job/<City>-<Title>-<postal code>/<id>/ with readable titles
+    (e.g. Stuttgart-Trainee-(mwd)-Risk-Management...). The city is the first word of the slug, so options.regions filters to
+    Frankfurt/Köln areas. Not yet checked by a full adapter run.'
+  options:
+    max_pages: 20
+    regions: [rhein_main, koeln]
+- id: bayernlb
+  name: Bayerische Landesbank (BayernLB)
+  display_name: BayernLB
+  country: Germany
+  address_in_source_list: München (user-requested; address not verified)
+  jobs_url: https://jobs.bayernlb.de/
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: needs_review
+  last_verified: null
+  notes: 'bayernlb.de/karriere_1/berufserfahrene/uebersicht_5/uebersicht_berufs.jsp (HTTP 200) links to https://jobs.bayernlb.de/ as the
+    only job-related link. The list page itself was probed but the result could not be read back (shared probe queue); platform and
+    link format unknown (a probe of jobs.bayernlb.de is still needed). Options regions prepared for when an adapter is chosen.'
+  options:
+    regions: [rhein_main, koeln]
+- id: nord_lb
+  name: Norddeutsche Landesbank Girozentrale (NORD/LB)
+  display_name: NORD/LB
+  country: Germany
+  address_in_source_list: Hannover (user-requested; address not verified)
+  jobs_url: https://karriere.nordlb.de/
+  source_type: successfactors
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Official portal karriere.nordlb.de (linked from nordlb.de/die-nordlb/karriere). SAP SuccessFactors / Jobs2web: probe of /search/?q=&startrow=0
+    returned vacancy links /NORDLB/job/<City>-<Title>-<state code postal code>/<id>/ with readable titles (e.g. Hannover-Immobiliengutachter:in).
+    The same portal also carries Deutsche Hypo (see deutsche_hypo, alias). City comes from the slug; options.regions keeps Frankfurt/Köln
+    only. A locationsearch=Frankfurt query returned a valid page without job links (probably the facet needs another value), so
+    the unfiltered list is read. Not yet checked by a full adapter run.'
+  options:
+    max_pages: 20
+    regions: [rhein_main, koeln]
+- id: deutsche_hypo
+  name: Deutsche Hypothekenbank (Actien-Gesellschaft) / Deutsche Hypo NORD/LB Real Estate Finance
+  display_name: Deutsche Hypo
+  country: Germany
+  address_in_source_list: Hannover (user-requested; address not verified)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  alias_of: nord_lb
+  verification_status: alias
+  last_verified: null
+  notes: Merged into NORD/LB on 1 July 2021 (Deutsche Hypo press release); www.deutsche-hypo.de links to https://www.nordlb.de/die-nordlb/karriere
+    and has no own vacancy list. Vacancies appear on karriere.nordlb.de (not monitored separately to avoid duplicate notifications).
+- id: hamburg_commercial_bank
+  name: Hamburg Commercial Bank AG
+  display_name: Hamburg Commercial Bank
+  country: Germany
+  address_in_source_list: Hamburg (user-requested; address not verified)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: 'No official Germany-specific vacancy source verified. www.hcob-bank.de and /en/ answer HTTP 200 (about 150 KB / 1.1 MB) but contain
+    no href with karriere/career/job/stellen (navigation probably rendered by JavaScript); the address /de/karriere/ and the search-engine
+    URL /en/karriere/talent-program/... both return a soft 404. A sitemap probe was not read back. Frankfurt office exists (Neue Mainzer
+    Strasse 20), so worth another look.'
+- id: landesbank_berlin_berliner_sparkasse
+  name: Landesbank Berlin AG / Berliner Sparkasse
+  display_name: Berliner Sparkasse (LBB)
+  country: Germany
+  address_in_source_list: Berlin (user-requested; address not verified)
+  jobs_url: https://www.sparkasse.de/jobboerse/berliner-sparkasse.html
+  source_type: sparkasse_jobmarket
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: unverified
+  last_verified: null
+  notes: 'lbb.de links to Berliner Sparkasse (/de/home/ihre-sparkasse/dein-job.html); the bank publishes on the Sparkassen job exchange (a
+    detail page .../jobangebot/...-berliner-sparkasse-230401.html appeared in search results). bank_code 10050000 is the BLZ of Berliner
+    Sparkasse from general knowledge, NOT verified in a response (a probe of the API with that code was started but not read back),
+    so the entry is disabled: check it with a dry run, then enable. Berlin only, so with regions almost nothing will match.'
+  options:
+    bank_code: '10050000'
+    regions: [rhein_main, koeln]
+- id: saarlb
+  name: Landesbank Saar (SaarLB)
+  display_name: SaarLB
+  country: Germany
+  address_in_source_list: Saarbrücken (user-requested; address not verified)
+  jobs_url: https://saarlb.de/karriere/stellenangebote/
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Official list (found by web search, confirmed by probe: HTTP 200). Static vacancy links https://saarlb.de/jobs/<slug>/ with readable
+    link text (e.g. Experte Vertriebscontroller (m/w/d), Experte Adressenrisikocontrolling (m/w/d), 6+ links). A softgarden board
+    saarlb.softgarden.io/get-connected is also linked. The list shows no city and SaarLB sits in Saarbrücken, so with regions few
+    or no vacancies will pass; accept_unknown_location is deliberately off.'
+  options:
+    link_pattern: ^https://saarlb\.de/jobs/[^/]+/?$
+    regions: [rhein_main, koeln]
+- id: lfa_foerderbank_bayern
+  name: LfA Förderbank Bayern
+  display_name: LfA Förderbank Bayern
+  country: Germany
+  address_in_source_list: München (user-requested; address not verified)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: 'No official Germany-specific vacancy source verified. Both https://www.lfa.de/ and https://lfa.de/ failed in the probe with "Exceeded 30
+    redirects" (probably a cookie/consent redirect loop), so no career URL could be read. Vacancies exist (aggregators list e.g. Spezialist
+    Meldewesen, Munich) but Munich only.'
+- id: investitionsbank_berlin
+  name: Investitionsbank Berlin (IBB)
+  display_name: IBB
+  country: Germany
+  address_in_source_list: Berlin (user-requested; address not verified)
+  jobs_url: https://www.mein-check-in.de/ibb/x/stellenangebote
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'CHECK-IN applicant portal named on IBB''s own career pages (web search); probe of the list returned HTTP 200 with static job
+    links /ibb/position-<id> (e.g. /ibb/position-271062, 271065, 272478, 271068). Same portal type as OLB/cronbank in banks.yaml. List
+    shows no city and IBB is Berlin only, so with regions almost nothing will pass; accept_unknown_location is off on purpose.'
+  options:
+    link_pattern: /ibb/position-\d+
+    regions: [rhein_main, koeln]
+- id: l_bank_baden_wuerttemberg
+  name: Landeskreditbank Baden-Württemberg - Förderbank (L-Bank)
+  display_name: L-Bank
+  country: Germany
+  address_in_source_list: Karlsruhe (user-requested; address not verified)
+  jobs_url: https://www.l-bank.info/karriere/jobs
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Official career site (www.l-bank.info links to /karriere/jobs). Probe of /karriere/jobs: HTTP 200, static vacancy links
+    https://www.l-bank.info/karriere/jobs/<slug>-<id>.html (e.g. personalreferent-m-w-d-recruiting-und-personalbetreuung-67442297.html,
+    werkstudent-m-w-d-it-projektunterstuetzung-und-organisation-67474157.html). Locations are Karlsruhe/Stuttgart only; no city
+    in the list, so with regions nothing is expected to pass (accept_unknown_location off).'
+  options:
+    link_pattern: /karriere/jobs/[^/]+-\d+\.html$
+    regions: [rhein_main, koeln]
+- id: berlin_hyp
+  name: Berlin Hyp AG
+  display_name: Berlin Hyp
+  country: Germany
+  address_in_source_list: Berlin (user-requested; address not verified)
+  jobs_url: https://www.berlinhyp.de/ueber-uns/ueber-uns/karriere/karriere_amk39vp4hz_d.html
+  source_type: unknown
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: needs_review
+  last_verified: null
+  notes: 'Career landing page (address taken from the 404 page of /karriere, HTTP 200, 73 KB). A grep for stelle/job/softgarden/personio/rexx/check-in/recruit
+    in the hrefs found nothing, so the vacancy list is not linked in static HTML (probably JavaScript or an external portal); the
+    follow-up probe could not be read back. Berlin Hyp has a Frankfurt office, so worth finding the list.'
+  options:
+    regions: [rhein_main, koeln]
+- id: deutsche_pfandbriefbank
+  name: Deutsche Pfandbriefbank AG (pbb)
+  display_name: pbb
+  country: Germany
+  address_in_source_list: Garching bei München (user-requested; address not verified)
+  jobs_url: https://jobs-pfandbriefbank.com/stellenangebote.html
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Official portal, linked from www.pfandbriefbank.com/karriere/ (probe). rexx portal, same layout as DAL/DEG/Bank11 in banks.yaml: probe
+    of /stellenangebote.html (HTTP 200) found vacancy links ...-mwd-de-j<number>.html with readable titles (e.g. Werkstudent Digitalisierung
+    Robotic Process Automation (m/w/d), Werkstudent ESG-Office (m/w/d)). Whether the list card shows a city is unknown (the probe
+    meant to check it failed); if no city is found, regions drops everything, then set accept_unknown_location: true or add a location
+    rule. pbb has sites in Garching, Frankfurt/Eschborn and Düsseldorf.'
+  options:
+    link_pattern: -j\d+\.html$
+    regions: [rhein_main, koeln]
+- id: muenchener_hypothekenbank
+  name: Münchener Hypothekenbank eG
+  display_name: Münchener Hypothekenbank
+  country: Germany
+  address_in_source_list: München (user-requested; address not verified)
+  jobs_url: https://karriere.mhb.de/
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'www.muenchenerhyp.de/karriere links to https://karriere.mhb.de/ (probe). Probe of karriere.mhb.de listed job links
+    https://muenchenerhyp-karriere.de/de/jobs/<id>/<slug> (e.g. 81386/it-service-architekt-mwd, 81340/sachverstandiger-immobiliengutachter-groraum-frankfurt-mit-hohem-remote-anteil-mwd,
+    81095/it-governance-manager-it-risikomanager-mwd). Link text/city not seen; the slug is the title fallback, a city appears only
+    in some titles, so regions will pass few vacancies. Direct fetch of muenchenerhyp-karriere.de/de/jobs answered 200 but showed
+    no job anchors.'
+  options:
+    link_pattern: /de/jobs/\d+/
+    regions: [rhein_main, koeln]
+- id: wl_bank
+  name: WL BANK AG Westfälische Landschaft Bodenkreditbank
+  display_name: WL BANK
+  country: Germany
+  address_in_source_list: Münster (user-requested; address not verified)
+  jobs_url: https://vr.mein-check-in.de/wlbank/x/stellenangebote
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'VR CHECK-IN portal named in search results (vr.mein-check-in.de/wlbank/position-pdf/id/...) and www.wlbank.de/karriere. Probe of
+    /wlbank/x/stellenangebote: HTTP 200 (30 KB) with links /wlbank/x/stellenangebote/<id> (e.g. 679, 683) and position-pdf
+    links; same layout as the parcIT entry. Münster only, so with regions nothing is expected (accept_unknown_location off).'
+  options:
+    link_pattern: /wlbank/x/stellenangebote/\d+
+    regions: [rhein_main, koeln]
+- id: unicredit_bank_hypovereinsbank
+  name: UniCredit Bank GmbH (HypoVereinsbank)
+  display_name: HypoVereinsbank (UniCredit Bank)
+  country: Germany
+  address_in_source_list: München (user-requested; address not verified)
+  jobs_url: https://careers.unicredit.eu/en_GB/jobsuche
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: needs_review
+  last_verified: null
+  notes: 'hypovereinsbank.de/hvb/karriere answers HTTP 403 (Akamai) to the probe, not circumvented. The UniCredit group portal
+    careers.unicredit.eu/en_GB/jobsuche (found via web search, hvb.de/jobs points there) returns HTTP 200 with static vacancy
+    links /en_GB/jobsuche/JobDetail/<slug>/<id> and readable titles, but it lists ALL UniCredit countries (Slovenian, Bulgarian
+    titles seen), shows no city on the cards and no Germany facet was found, so the Frankfurt/Koeln filter cannot be applied
+    yet. Needs a Germany-specific list URL or a location selector before enabling (custom_html, link_pattern JobDetail/).'
+  options:
+    regions: [rhein_main, koeln]
+- id: postbank
+  name: Postbank (Deutsche Bank Gruppe, BHW/Postbank Filialvertrieb)
+  display_name: Postbank
+  country: Germany
+  address_in_source_list: Bonn (user-requested; address not verified)
+  jobs_url: https://db.wd3.myworkdayjobs.com/de-DE/PBWebsite
+  source_type: workday
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Postbank has its OWN Workday site, separate from the Deutsche Bank BeeSite portal used by deutsche_bank
+    (careers.db.com only appears on postbank.de/unternehmen/karriere for graduates). postbank.de/karriere links to
+    https://db.wd3.myworkdayjobs.com/de-DE/PBWebsite (probe: HTTP 200, page title mentions Postbank, JS shell) and to the
+    older Lumesse board ich-bau-auf-mich.postbank.de/jobboerse (HTTP 200, not used). The Workday JSON API (POST) cannot be
+    probed from the GET probe tool, so the adapter result is unverified until the first run. Tenant db, site PBWebsite.'
+  options:
+    tenant: db
+    site: PBWebsite
+    max_pages: 15
+    regions: [rhein_main, koeln]
+- id: dkb_deutsche_kreditbank
+  name: Deutsche Kreditbank AG (DKB)
+  display_name: DKB
+  country: Germany
+  address_in_source_list: Berlin (user-requested; address not verified)
+  jobs_url: https://jobs.dkb.de/
+  source_type: successfactors
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: needs_review
+  last_verified: null
+  notes: 'www.dkb.de/karriere is skipped by the probe (robots.txt unreachable, 503) so it is not used. The vacancy site
+    jobs.dkb.de (named in web search results, HTTP 200) is a SAP SuccessFactors career site (job URLs
+    /job/Berlin-<title>/<id>/, e.g. the Initiativbewerbung link on the home page). Disabled because the static
+    /search/?q=&locationsearch=Frankfurt (64 KB) and /viewalljobs/ (39 KB) pages showed no tr.data-row table rows to the
+    probe, so the list may be JavaScript-rendered; re-check with Verify and enable when the successfactors adapter finds jobs.'
+  options:
+    regions: [rhein_main, koeln]
+- id: comdirect_bank
+  name: comdirect bank AG
+  display_name: comdirect
+  country: Germany
+  address_in_source_list: Quickborn (user-requested; address not verified)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  alias_of: commerzbank
+  verification_status: alias
+  last_verified: null
+  notes: comdirect is part of Commerzbank. comdirect.de/inf/karriere answers 404 but the page links to the Commerzbank job
+    portal (jobs.commerzbank.com index.php?ac=search_result), which is already monitored by the commerzbank entry. Not
+    monitored separately to avoid duplicates.
+- id: consorsbank
+  name: Consorsbank (BNP Paribas S.A. Niederlassung Deutschland)
+  display_name: Consorsbank
+  country: Germany
+  address_in_source_list: Nürnberg (user-requested; address not verified)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  alias_of: bnp_paribas
+  verification_status: alias
+  last_verified: null
+  notes: Consorsbank is a brand of BNP Paribas S.A. Niederlassung Deutschland (Nürnberg). consorsbank.de (HTTP 200) shows no
+    career link; vacancies are on the BNP Paribas Germany portal covered by the bnp_paribas entry (currently blocked, Akamai
+    403, not circumvented). No separate source.
+- id: barclays_bank_europe
+  name: Barclays Bank Europe (Germany)
+  display_name: Barclays Bank Europe
+  country: Germany
+  address_in_source_list: Frankfurt am Main (user-requested; address not verified)
+  jobs_url: https://search.jobs.barclays/emea
+  source_type: sitemap_jobs
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Barclays career site search.jobs.barclays (Radancy/TalentBrew; search result page 200, robots.txt allows all, 17
+    bytes). Probe of https://search.jobs.barclays/sitemap.xml: HTTP 200 with static vacancy URLs
+    /job/<city>/<slug>/13015/<id> (frankfurt-am-main, hamburg, ... seen). The sitemap is filtered to the Frankfurt/Koeln
+    areas by city slug in the URL, so only those pages are fetched. Group-wide site: Barclays Bank Europe jobs in Frankfurt
+    are mixed with other Barclays Frankfurt entities. Detail-page parsing (JSON-LD) unverified.'
+  options:
+    sitemap_url: https://search.jobs.barclays/sitemap.xml
+    url_regex: "/job/(frankfurt[^/]*|koeln|cologne|bonn|leverkusen|eschborn|bad-homburg[^/]*|offenbach[^/]*|neu-isenburg|wiesbaden|mainz|darmstadt|hanau)/"
+    max_pages: 120
+    regions: [rhein_main, koeln]
+- id: berenberg
+  name: Joh. Berenberg, Gossler & Co. KG (Berenberg)
+  display_name: Berenberg
+  country: Germany
+  address_in_source_list: Hamburg (user-requested; address not verified)
+  jobs_url: https://careers.berenberg.com/de/unsere-jobangebote
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: js_list
+  last_verified: null
+  notes: 'berenberg.de links to careers.berenberg.com/de (Concrete5 CMS, JS shell). The list page
+    /de/unsere-jobangebote answers 200 (25 KB) but exposes no vacancy links in the static HTML; single vacancy pages are
+    /de/unsere-jobangebote/<Title>-<id>-<City> (two New York ones seen statically on /de/berufserfahrene/berenberg-capital-markets).
+    Scanned 5 same-domain scripts for api/json/ajax/ATS endpoints: none. A link /search-our-jobs was seen but not probed
+    further (round limit). Needs a JSON endpoint to be monitorable.'
+  options:
+    regions: [rhein_main, koeln]
+- id: mm_warburg_co
+  name: M.M.Warburg & CO (AG & Co.) KGaA
+  display_name: M.M.Warburg
+  country: Germany
+  address_in_source_list: Hamburg (user-requested; address not verified)
+  jobs_url: https://www.mmwarburg.de/de/karriere/stellenangebote/
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Probe: mmwarburg.de/de/karriere/stellenangebote/ HTTP 200, 10 static vacancy links
+    /de/karriere/stellenangebote/<uuid>/ (on the career page the same link pattern appears); a detail page has title and
+    h1 "Senior-Risikocontroller (m/w/d)". The card location is not confirmed, so accept_unknown_location is on (jobs whose
+    city is readable are still filtered to Frankfurt/Koeln; jobs without any city pass). Check the first run.'
+  options:
+    link_pattern: "/de/karriere/stellenangebote/[0-9a-f-]{36}"
+    accept_unknown_location: true
+    regions: [rhein_main, koeln]
+- id: donner_reuschel
+  name: Donner & Reuschel AG
+  display_name: Donner & Reuschel
+  country: Germany
+  address_in_source_list: Hamburg (user-requested; address not verified)
+  jobs_url: https://donner-reuschel.softgarden.io/de/vacancies
+  source_type: softgarden
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: needs_review
+  last_verified: null
+  notes: 'donner-reuschel.de/karriere/ (HTTP 200) links to the softgarden tenant donner-reuschel.softgarden.io (page
+    /de/data-security answered 200). The vacancy list path /de/vacancies is the usual softgarden path (used by other banks)
+    but was not confirmed by a probe, and the softgarden /api/ is disallowed by robots.txt. Enable after Verify finds jobs.'
+  options:
+    regions: [rhein_main, koeln]
+- id: merck_finck_privatbankiers
+  name: Merck Finck Privatbankiers AG
+  display_name: Merck Finck
+  country: Germany
+  address_in_source_list: München (user-requested; address not verified)
+  jobs_url: https://careers.quintet.com/search/
+  source_type: successfactors
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Merck Finck belongs to Quintet; merckfinck.de/de-de/karriere links to the SuccessFactors site careers.quintet.com.
+    Probe of /search/: HTTP 200, classic table rows (tr.data-row, a.jobTitle-link) with /MerckFinck/job/<City>-<title>/<id>/
+    (Frankfurt and München seen) next to other Quintet entities (KBL Luxembourg, Puilaetco, Brown Shipley), which the regions
+    filter removes. Parse by the adapter unverified.'
+  options:
+    regions: [rhein_main, koeln]
+- id: bethmann_bank
+  name: Bankhaus Bethmann (Bethmann Bank AG)
+  display_name: Bethmann Bank
+  country: Germany
+  address_in_source_list: Frankfurt am Main (user-requested; address not verified)
+  jobs_url: https://www.bethmannbank.de/en/karriere/index.html
+  source_type: unknown
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: blocked_robots
+  last_verified: null
+  notes: 'Probe skipped by robots.txt: robots.txt of www.bethmannbank.de was unreachable (read timeout) so the tool stays
+    conservative. The search result title says "Javascript is required", so the list is probably JS-rendered anyway. Single
+    vacancy PDFs exist as bethmannbank.de/de/media/<title>_tcm31-<id>.pdf. Not circumvented; retry later.'
+  options:
+    regions: [rhein_main, koeln]
+- id: volkswagen_financial_services
+  name: Volkswagen Financial Services AG / Volkswagen Bank GmbH
+  display_name: Volkswagen Financial Services
+  country: Germany
+  address_in_source_list: Braunschweig (user-requested; address not verified)
+  jobs_url: https://jobs.volkswagen-group.com/VWFS/search/
+  source_type: successfactors
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'vwfs.com/career.html links to the SuccessFactors career site jobs.volkswagen-group.com/VWFS/. Probe of
+    /VWFS/search/?q=&locale=de_DE: HTTP 200, classic table (tr.data-row, a.jobTitle-link) with static links
+    /VWFS/job/Braunschweig-<title>-38112/<id>/ and readable titles. Covers VWFS companies in several countries and the
+    Volkswagen Bank; most jobs are Braunschweig, the regions filter keeps only Frankfurt/Koeln area ones. Parse by the adapter
+    unverified.'
+  options:
+    search_url: https://jobs.volkswagen-group.com/VWFS/search/
+    regions: [rhein_main, koeln]
+- id: bmw_bank
+  name: BMW Bank GmbH (BMW Group Financial Services)
+  display_name: BMW Bank
+  country: Germany
+  address_in_source_list: München (user-requested; address not verified)
+  jobs_url: https://jobs.bmwgroup.com/search/?q=BMW+Bank&locale=de_DE
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: js_list
+  last_verified: null
+  notes: 'BMW Group portal jobs.bmwgroup.com (SuccessFactors CSB). The search page (HTTP 200, 52 KB) contains no static vacancy
+    links, only a link to the RSS feed https://jobs.bmwgroup.com/services/rss/job/?locale=de_DE&keywords=(BMW Bank), which is
+    skipped by robots.txt (not circumvented). Group-wide site; BMW Bank jobs would need a keyword filter. Retry if the RSS
+    feed is released or a static list is found.'
+  options:
+    regions: [rhein_main, koeln]
+- id: mercedes_benz_bank
+  name: Mercedes-Benz Bank AG / Mercedes-Benz Mobility
+  display_name: Mercedes-Benz Bank
+  country: Germany
+  address_in_source_list: Stuttgart (user-requested; address not verified)
+  jobs_url: https://jobs.mercedes-benz.com/
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: js_list
+  last_verified: null
+  notes: 'group.mercedes-benz.com/karriere answers 403 Access Denied (Akamai), not circumvented. The job portal
+    jobs.mercedes-benz.com (job URLs /de/<title>-<id>-mer<ref>, seen in web search) is a Nuxt single-page app (HTTP 200,
+    3 KB shell, no static links). robots.txt names https://jobs.mercedes-benz.com/sitemap.xml -> de-sitemap.xml,
+    en-sitemap.xml, enUS-sitemap.xml, hu-sitemap.xml (not opened; group-wide, thousands of Mercedes-Benz AG jobs, no
+    bank-only filter). Not enabled: would need a sitemap_jobs run with a bank filter.'
+  options:
+    regions: [rhein_main, koeln]
+- id: bausparkasse_schwaebisch_hall
+  name: Bausparkasse Schwäbisch Hall AG
+  display_name: Bausparkasse Schwäbisch Hall
+  country: Germany
+  address_in_source_list: Schwäbisch Hall (user-requested; address not verified)
+  jobs_url: https://karriere.schwaebisch-hall.de/
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: needs_review
+  last_verified: null
+  notes: 'schwaebisch-hall.de/karriere links to karriere.schwaebisch-hall.de (HTTP 200, 400 KB, server-rendered React) with
+    static vacancy cards <a href="/de/job/<title>-Schwaebisch-Hall/<id>"> whose title sits in div[data-slot=item-title]
+    (e.g. "Teamleiter (m/w/d) Hard- und Software-Service", ids ~7182-7229). The cards show only job field and entry level,
+    NO city; the place appears only as suffix of the URL slug. The Frankfurt/Koeln filter therefore cannot be applied with
+    the current adapter (accept_unknown_location would let all Schwäbisch Hall jobs through). An older SuccessFactors site
+    jobs.schwaebisch-hall.de and d.vinci schwaebisch-hall.dvinci-hr.com were also linked. Enable when a location can be
+    derived (e.g. location_regex on the slug).'
+  options:
+    link_pattern: "/de/job/[^/?#]+/\\d+"
+    selectors:
+      item: "a[href^='/de/job/']"
+      title: "div[data-slot='item-title']"
+    regions: [rhein_main, koeln]
+- id: wuestenrot_bhw_bausparkasse
+  name: Wüstenrot Bausparkasse AG / BHW Bausparkasse AG
+  display_name: Wüstenrot / BHW Bausparkasse
+  country: Germany
+  address_in_source_list: Ludwigsburg (user-requested; address not verified)
+  jobs_url: https://www.ww-ag.com/de/karriere/stellenangebote
+  source_type: unknown
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: js_list
+  last_verified: null
+  notes: 'wuestenrot.de/karriere (HTTP 404 on /de/karriere/, /karriere exists) links to the W&W Group career site
+    www.ww-ag.com/de/karriere (HTTP 200) and /de/karriere/stellenangebote (HTTP 200, 105 KB). The list is a JavaScript module
+    (modEmJoblist, search API /api/search/de/...), no static vacancy links; the page scripts showed no job-list endpoint
+    within the probe limit. Group-wide (W&W, Wüstenrot, Württembergische, BHW). Needs a discoverable JSON endpoint.'
+  options:
+    regions: [rhein_main, koeln]
+- id: debeka_bausparkasse
+  name: Debeka Bausparkasse AG
+  display_name: Debeka Bausparkasse
+  country: Germany
+  address_in_source_list: Koblenz (user-requested; address not verified)
+  jobs_url: https://debeka.wd3.myworkdayjobs.com/de-DE/Karriere
+  source_type: workday
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'debeka.de/karriere/ (HTTP 200) links to karriere.debeka.de and to the Workday site
+    https://debeka.wd3.myworkdayjobs.com/de-DE/Karriere (probe: HTTP 200, JS shell). Tenant debeka, site Karriere; the list
+    covers all Debeka companies (Bausparkasse jobs mixed in) and includes many sales/apprentice jobs, hence max_pages 30. The
+    Workday JSON API (POST) cannot be probed with the GET tool; unverified until the first run.'
+  options:
+    tenant: debeka
+    site: Karriere
+    max_pages: 30
+    regions: [rhein_main, koeln]
