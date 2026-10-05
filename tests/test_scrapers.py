@@ -628,3 +628,15 @@ def test_generic_html_page_dedupes_repeated_vacancy_links(bank):
     http = MagicMock()
     http.get.return_value.text = html
     assert len(GenericHtmlScraper(http).fetch_jobs(bank)) == 2
+
+
+def test_sitemap_jobs_slug_strip_regex_removes_id_and_gender_suffix(bank):
+    from unittest.mock import MagicMock
+
+    from src.scrapers.sitemap_jobs import SitemapJobsScraper
+    bank.options = {"sitemap_url": "https://x.example/sitemap.xml", "url_regex": "/job/\\d+-", "detail": False,
+                    "slug_strip_regex": r"^\d+-|-m-w-d$"}
+    http = MagicMock()
+    http.get.return_value.text = "<urlset><url><loc>https://x.example/job/37596-gruppenleitung-personal-m-w-d/</loc></url></urlset>"
+    jobs = SitemapJobsScraper(http).fetch_jobs(bank)
+    assert [j.title for j in jobs] == ["Gruppenleitung Personal"]

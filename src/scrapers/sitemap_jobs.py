@@ -9,6 +9,7 @@ banks.yaml options:
   url_regex: "/stellenangebote/[^/]+/?$"                          (keep only matching URLs; default: all)
   skip_slug: "^(ausbildung|praktikum|student|werkstudent)"        (regex on the last path segment: pages never worth a request)
   detail: true                                                    (false: build the title from the URL slug, no page requests)
+  slug_strip_regex: "^\\d+-|-m-w-d$"                              (with detail false: removed from the slug before the title is built, e.g. a leading id)
   location_regex: "\\bin ([A-ZÄÖÜ][^()]*)$"                       (applied to the title when the page has no location)
   industry_filter: {selector: "span.meta-category", text_regex: "Banks"}
                                                                   (keep a page only if an element matching the CSS selector has
@@ -81,7 +82,9 @@ class SitemapJobsScraper(BaseScraper):
     def fetch_jobs(self, bank: Bank) -> list:
         urls = self.urls(bank)[: self.max_pages if self.max_pages else None]
         if not bank.options.get("detail", True):
-            return [self.make_job(bank, title=title_from_slug(slug_of(u)), url=u, source_job_id=slug_of(u)) for u in urls]
+            strip = re.compile(bank.options["slug_strip_regex"]) if bank.options.get("slug_strip_regex") else None
+            return [self.make_job(bank, title=title_from_slug(strip.sub("", slug_of(u)) if strip else slug_of(u)), url=u,
+                                  source_job_id=slug_of(u)) for u in urls]
         parser = GenericHtmlScraper(self.http)
         jobs = []
         for u in urls:

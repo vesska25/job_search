@@ -6222,7 +6222,7 @@ banks:
     Berlin, Zurich): the region filter keeps almost nothing for Frankfurt/Koeln. Unverified until a Verify run.'
   options:
     link_pattern: /de/jobs/[^/]+/ref[0-9a-z]+-
-    accept_unknown_location: true
+    title_cut_regex: \s+Teilen\s+.*$
     regions: [rhein_main, koeln]
 - id: ampega
   name: Ampega Asset Management GmbH
@@ -6406,8 +6406,8 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: needs_review
+  enabled: true
+  verification_status: unverified
   last_verified: null
   notes: 'Official portal jobs.devk.de (linked from devk.de/karriere, probe HTTP 200). Server-rendered Nuxt list https://jobs.devk.de/jobs/ (HTTP 200) with tiles
     a.molecule-result-item href /job/<id>-<slug>/ and data-cta-txt=<title>; pagination is path based (/jobs/2/ works, 52 pages), ?page=2 is ignored, so custom_html
@@ -6419,6 +6419,7 @@ banks:
     sitemap_url: https://jobs.devk.de/sitemap.xml
     url_regex: /job/\d+-
     detail: false
+    slug_strip_regex: ^\d+-|-m-w-d$
     max_pages: 1500
     accept_unknown_location: true
     regions: [rhein_main, koeln]
