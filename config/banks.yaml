@@ -6316,3 +6316,283 @@ banks:
     link_pattern: /HANSAINVEST/job/(?:Frankfurt|Eschborn|Bad-Homburg|Offenbach|Neu-Isenburg|K%C3%B6ln|Koeln|Leverkusen|Bonn)[^/]*/\d+
     accept_unknown_location: true
     regions: [rhein_main, koeln]
+- id: generali_deutschland
+  name: Generali Deutschland AG
+  display_name: Generali Deutschland
+  country: Germany
+  address_in_source_list: Köln (user-requested; address not verified)
+  jobs_url: https://www.generali.de/karriere/jobboerse
+  source_type: unknown
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: js_list
+  last_verified: null
+  notes: 'Official career page www.generali.de/karriere (probe HTTP 200). The Jobboerse page /karriere/jobboerse (HTTP 200, 175 KB) contains no static vacancy
+    links (only 4 hrefs: self, /karriere, karriere.generali.at/aktuelle-jobs, generali.ch) -> the list is JavaScript-rendered; no JSON/sitemap endpoint
+    found in 2 probes. Revisit with a browser-network look at the Jobboerse page; regions filter rhein_main/koeln would then apply.'
+  options:
+    regions: [rhein_main, koeln]
+- id: axa_deutschland
+  name: AXA Konzern AG
+  display_name: AXA Deutschland
+  country: Germany
+  address_in_source_list: Köln (user-requested; address not verified)
+  jobs_url: https://www.axa.de/karriere
+  source_type: unknown
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: blocked_robots
+  last_verified: null
+  notes: 'Probe of https://www.axa.de/karriere was "skipped by robots.txt": robots.txt of www.axa.de was unreachable (HTTP 503 after retries), the probe tool
+    then acts conservatively. Not worked around. Retry later (a 503 may be temporary); jobs are also on a separate career portal not yet identified.'
+  options:
+    regions: [rhein_main, koeln]
+- id: zurich_deutschland
+  name: Zurich Gruppe Deutschland
+  display_name: Zurich Deutschland
+  country: Germany
+  address_in_source_list: Köln / Frankfurt am Main (user-requested; address not verified)
+  jobs_url: https://www.careers.zurich.com/search/?q=&locationsearch=Deutschland&locale=de_DE
+  source_type: successfactors
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Link found on www.zurich.de/karriere (probe, HTTP 200): https://www.careers.zurich.com/search/?...locationsearch=Deutschland&locale=de_DE. SAP SuccessFactors
+    / Jobs2web career site. Probe of that search URL returned HTTP 200 with readable job titles (e.g. "Product & Underwriting Manager Motor (m/w/d)", "Specialist
+    Process & Data Manager Finance (m/w/d)", "Zurich Vorsorge Experte - Standort Frankfurt"); probe with locationsearch=Köln returned vacancy links /job/Köln-<Title>/<id>/.
+    The adapter takes the city from the row or from the URL slug (first word). Caveat: city in URL slug is percent-encoded (K%C3%B6ln): if regions filtering
+    drops these in the first run, check the location value. Not yet checked by a full adapter run.'
+  options:
+    params:
+      locationsearch: Deutschland
+    max_pages: 20
+    regions: [rhein_main, koeln]
+- id: ergo_dkv
+  name: ERGO Group / ERGO Deutschland / DKV
+  display_name: ERGO / DKV
+  country: Germany
+  address_in_source_list: Köln (user-requested; address not verified)
+  jobs_url: https://careers.munichre.com/de/ergo
+  source_type: sitemap_jobs
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'ERGO (incl. DKV, D.A.S., ERGO Vertriebe) recruits via the Munich Re Radancy portal careers.munichre.com/de/ergo (probe HTTP 200). robots.txt did not block
+    the probe; https://careers.munichre.com/sitemap.xml (probe HTTP 200) lists every vacancy as /en/job/<city>/<slug>/<facet>/<id> (e.g. /en/job/frankfurt-am-main/maklerbetreuer-...-standort-frankfurt/3192/23152708608).
+    Only Frankfurt/Rhein-Main/Köln-area cities are fetched via url_regex. The portal covers the whole Munich Re group (not only ERGO) and worldwide: the city
+    regex limits it; a city missing from the regex would be missed. Not yet checked by a full adapter run (detail pages are expected to carry JobPosting JSON-LD).'
+  options:
+    sitemap_url: https://careers.munichre.com/sitemap.xml
+    url_regex: /job/(frankfurt|frankfurt-am-main|koeln|cologne|leverkusen|bonn|bergisch-gladbach|bruhl|brühl|hurth|hürth|frechen|pulheim|dormagen|wesseling|erftstadt|kerpen|eschborn|offenbach|bad-homburg|oberursel|kronberg|hofheim|bad-soden|russelsheim|rüsselsheim|neu-isenburg|dreieich|langen|hanau|darmstadt|mainz|wiesbaden)[a-z-]*/
+    max_pages: 150
+    regions: [rhein_main, koeln]
+- id: devk_versicherungen
+  name: DEVK Versicherungen
+  display_name: DEVK
+  country: Germany
+  address_in_source_list: Köln (user-requested; address not verified)
+  jobs_url: https://jobs.devk.de/jobs/
+  source_type: sitemap_jobs
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: needs_review
+  last_verified: null
+  notes: 'Official portal jobs.devk.de (linked from devk.de/karriere, probe HTTP 200). Server-rendered Nuxt list https://jobs.devk.de/jobs/ (HTTP 200) with tiles
+    a.molecule-result-item href /job/<id>-<slug>/ and data-cta-txt=<title>; pagination is path based (/jobs/2/ works, 52 pages), ?page=2 is ignored, so custom_html
+    cannot page through it. https://jobs.devk.de/sitemap.xml (HTTP 200) lists all vacancies as /job/<id>-<slug>/ (probe found e.g. /job/37955-spezialist-verkaeufertraining-m-w-d/).
+    Detail pages carry no JobPosting JSON-LD and no usable city in the title/h1 (probe of a detail page found no addressLocality), so title comes from the slug (detail: false)
+    and the location is unknown: the regions filter cannot work. Left disabled; enable only if jobs without a known location are accepted (accept_unknown_location
+    is set), the leadership title filter then does the narrowing, or add a selectors/location approach on the /jobs/<n>/ pages (.locations element holds the city).'
+  options:
+    sitemap_url: https://jobs.devk.de/sitemap.xml
+    url_regex: /job/\d+-
+    detail: false
+    max_pages: 1500
+    accept_unknown_location: true
+    regions: [rhein_main, koeln]
+- id: allianz_deutschland
+  name: Allianz Deutschland
+  display_name: Allianz Deutschland
+  country: Germany
+  address_in_source_list: Frankfurt am Main / Köln (user-requested; address not verified)
+  jobs_url: https://careers.allianz.com/de/de/search-results
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: js_list
+  last_verified: null
+  notes: 'Official portal careers.allianz.com (Phenom People platform), Germany site /de/de/ (search-results page HTTP 200, 443 KB). The list is rendered by JavaScript:
+    the page HTML embeds totalHits":0 and no jobs. robots.txt lists sitemaps; https://careers.allianz.com/de/de/sitemap_index.xml (HTTP 200) -> sitemap1..4.xml, and
+    sitemap1.xml lists vacancies as /de/de/job/<id>/<Title-Slug> (e.g. /de/de/job/107226/Cyber-Defense-Specialist) but for ALL countries (also Stevenage, MX...), without city
+    in the URL, so a sitemap_jobs adapter would need thousands of detail requests and the index has 4 files (the adapter reads one). Phenom also has a JSON widgets API
+    but its request format was not seen in a response, so it was not guessed. Not enabled.'
+  options:
+    regions: [rhein_main, koeln]
+- id: swiss_re_deutschland
+  name: Swiss Re (Germany - Frankfurt, Munich)
+  display_name: Swiss Re Deutschland
+  country: Germany
+  address_in_source_list: Frankfurt am Main (user-requested; address not verified)
+  jobs_url: https://www.swissre.com/careers/germany.html
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Official Swiss Re Germany careers page (found by web search, probe HTTP 200). The page lists Germany vacancies as static links /careers/job/<Title>/<id> (probe
+    found e.g. /careers/job/Senior-Underwriter-Hybrid-m-f-x-d-80-100-/1438447233, /careers/job/-Senior-Aktuar-in-and-Client-Manager-in-L-and-H-f-r-Deutschland-.../1414628733);
+    the link text holds "<title>, <City> (DE)" (e.g. "Munich (DE)"), the city is cut off by title_cut_regex. Some entries show no city: accept_unknown_location is set. Number of
+    jobs on the page and the exact link text were not fully verified (probe output was cut), so check the first run: if titles contain the city or are empty, adjust title_cut_regex.
+    Frankfurt jobs (Corporate Solutions) are expected to appear on this page.'
+  options:
+    link_pattern: /careers/job/
+    base_url: https://www.swissre.com
+    title_cut_regex: ',\s*([A-ZÄÖÜ][A-Za-zäöüß .-]+)\s*\(DE\)\s*$'
+    accept_unknown_location: true
+    regions: [rhein_main, koeln]
+- id: gothaer_versicherungen
+  name: Gothaer Versicherungen
+  display_name: Gothaer
+  country: Germany
+  address_in_source_list: Köln (user-requested; address not verified)
+  jobs_url: https://karriere.gothaer.de/stellenmarkt/
+  source_type: unknown
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: js_list
+  last_verified: null
+  notes: 'Official career site karriere.gothaer.de (found by web search; shared Barmenia Gothaer portal). /stellenmarkt/ (probe HTTP 200, 75 KB) contains only navigation
+    (/jobwelten/..., /vertriebskarriere/...) and no static vacancy links; a grep for external ATS hosts (softgarden, personio, rexx, successfactors, join, onlyfy, jobs.*) and
+    iframes found nothing -> the list is JavaScript-rendered, JSON endpoint not discovered in 3 probes (/job-welten pages not checked). Needs a browser look at the network calls.'
+  options:
+    regions: [rhein_main, koeln]
+- id: deutsche_familienversicherung
+  name: Deutsche Familienversicherung AG
+  display_name: Deutsche Familienversicherung
+  country: Germany
+  address_in_source_list: Frankfurt am Main (user-requested; address not verified)
+  jobs_url: https://deutsche-familienversicherung.jobs.personio.de/
+  source_type: personio
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: blocked_robots
+  last_verified: null
+  notes: 'A web search says DFV uses Personio for applications. The tenant name deutsche-familienversicherung was a guess from that and not confirmed: the probe of
+    https://deutsche-familienversicherung.jobs.personio.de/xml was "skipped by robots.txt" (also happens for tenants that do not exist), so neither the tenant nor the feed could
+    be verified; not worked around. Confirm the real tenant on deutsche-familienversicherung.de/karriere, then set enabled true (personio adapter reads /xml).'
+  options:
+    regions: [rhein_main, koeln]
+- id: frankfurter_leben_versicherung
+  name: Frankfurter Versicherung / Frankfurter Leben (FL Group)
+  display_name: Frankfurter Leben
+  country: Germany
+  address_in_source_list: Bad Homburg / Frankfurt am Main (user-requested; address not verified)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: 'No official Germany-specific vacancy source verified. Search results mention Frankfurter Leben (run-off platform of Fosun, ~170 staff, Bad Homburg) recruiting
+    via job boards only; a guessed career URL (www.frankfurter-leben.de/karriere) did not resolve (DNS failure in the probe), so the real domain was not found.'
+- id: bnp_paribas_cardif_deutschland
+  name: BNP Paribas Cardif (Germany)
+  display_name: BNP Paribas Cardif Deutschland
+  country: Germany
+  address_in_source_list: Gerlingen (Stuttgart area; not Frankfurt/Köln)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: 'No official Germany-specific vacancy source verified. Search results show Cardif Germany jobs only on the global BNP Paribas portal group.bnpparibas/en/careers/job-offer/...
+    with place Gerlingen (Baden-Württemberg); the German head office is not in the Frankfurt/Köln area, so no Rhein-Main/Köln vacancies are expected. Not probed further.'
+- id: hdi_talanx_koeln
+  name: HDI Global / Talanx (Köln)
+  display_name: HDI / Talanx
+  country: Germany
+  address_in_source_list: Köln (user-requested; address not verified)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: 'No official Germany-specific vacancy source verified. Talanx has a Köln site (Charles-de-Gaulle-Platz 1; HDI Global SE is based there, Gerling was merged into HDI). Probe of
+    www.talanx.com/de/talanx_gruppe/karriere (HTTP 200, 1 MB) found only links to itself and /en/talanx-group/careers, no vacancy list or ATS link; careers.talanx.com does not
+    resolve. Search results only point to job boards (StepStone, Berufsstart); the HDI "Talentefinder" portal was not located.'
+- id: gen_re_koeln
+  name: General Reinsurance AG (Gen Re)
+  display_name: Gen Re
+  country: Germany
+  address_in_source_list: Köln (user-requested; address not verified)
+  jobs_url: https://www.genre.de/karriere
+  source_type: unknown
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: needs_review
+  last_verified: null
+  notes: 'Extra insurer found by web search (General Reinsurance AG, Theodor-Heuss-Ring 11, Köln; career site www.genre.de/karriere named in a search result). Probe of
+    https://www.genre.de/karriere failed: robots.txt unreachable (connect timeout from the runner), so the probe skipped it conservatively; no vacancy list seen. Retry later.'
+  options:
+    regions: [rhein_main, koeln]
+- id: alte_leipziger_hallesche
+  name: ALTE LEIPZIGER - HALLESCHE Konzern
+  display_name: Alte Leipziger Hallesche
+  country: Germany
+  address_in_source_list: Oberursel (Taunus), within 30 km of Frankfurt (found by web search)
+  jobs_url: ''
+  source_type: unknown
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: no_source_found
+  last_verified: null
+  notes: 'No official Germany-specific vacancy source verified. Extra insurer (HQ Alte-Leipziger-Platz 1, Oberursel) found by web search. Probes of www.alte-leipziger.de/karriere
+    (HTTP 200, 1 MB) found FAQ accordions and mailto: bewerbung@alte-leipziger.de, but no link to a vacancy list or ATS in 2 greps; vacancies are listed only on StepStone in search results.'
+- id: helvetia_deutschland
+  name: Helvetia Versicherungen Deutschland
+  display_name: Helvetia Deutschland
+  country: Germany
+  address_in_source_list: Frankfurt am Main (found by web search)
+  jobs_url: https://www.helvetia.de/de/jobs/de.html
+  source_type: unknown
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: false
+  verification_status: needs_review
+  last_verified: null
+  notes: 'Extra insurer (Helvetia Germany head office in Frankfurt). Official job site https://www.helvetia.de/de/jobs/de.html (probe of the redirect target page found it; HTTP 200)
+    with sub pages /de/jobs/de/Berufserfahrene.html, /de/jobs/de/ausbildung-studium-praktikum.html. The Austrian page lists "offene-stellen" but the German vacancy list URL
+    was not identified in the probes (the probe of /Berufserfahrene.html was not read in time). Needs a manual look for the vacancy list / ATS.'
