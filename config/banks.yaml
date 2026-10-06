@@ -6775,9 +6775,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'The AOK career portal gets its vacancies from a key-protected API of the site (aok.de/karriere, apiproxy.aok.de); by decision of the user that route is NOT used. Instead the AOK employers are read in full from the official Bundesagentur Jobsuche API (public X-API-Key from the API documentation), by exact employer name. Names found with a probe (was=AOK, Frankfurt 30 km: 39 hits; Koeln 30 km: 1 hit): "AOK Die Gesundheitskasse in Hessen", "AOK Hessen. Die Gesundheitskasse.", "AOK Rheinland-Pfalz/Saarland Direktion", "AOK Rheinland-Pfalz/Saarland", "AOK Rheinland/Hamburg - Die Gesundheitskasse". ITSCare (the AOKs'' joint IT company) is not included. Coverage is only what AOK posted to the Bundesagentur. Regions filter Frankfurt/Koeln +-30 km. Unverified until a dry-run.'
+  verification_status: ok
+  last_verified: '2026-10-06'
+  notes: 'The AOK career portal gets its vacancies from a key-protected API of the site (aok.de/karriere, apiproxy.aok.de); by decision of the user that route is NOT used. Instead the AOK employers are read in full from the official Bundesagentur Jobsuche API (public X-API-Key from the API documentation), by exact employer name. Names found with a probe (was=AOK, Frankfurt 30 km: 39 hits; Koeln 30 km: 1 hit): "AOK Die Gesundheitskasse in Hessen", "AOK Hessen. Die Gesundheitskasse.", "AOK Rheinland-Pfalz/Saarland Direktion", "AOK Rheinland-Pfalz/Saarland", "AOK Rheinland/Hamburg - Die Gesundheitskasse". ITSCare (the AOKs'' joint IT company) is not included. Coverage is only what AOK posted to the Bundesagentur. Regions filter Frankfurt/Koeln +-30 km. Dry-run 2026-10-06: 108 vacancies read, 37 in the Frankfurt/Koeln regions (Ausbildung, dual study, Volljurist Vergaberecht; 0 leadership).'
   options:
     aggregator: true
     employers:
