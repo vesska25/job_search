@@ -6802,8 +6802,8 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'Recruiting firm of the Sparkassen that posts vacancies of (anonymous) Sparkassen on the sparkasse.de job exchange; found in the exchange client list (bankCode 90500049, 51 vacancies on 2026-10-09). Added after "Leiter Gesamtbanksteuerung (m/w/d)" (job 236956) was missed. By decision of the user NO region filter: leadership vacancies from all of Germany are accepted (the normal leadership + function filters still apply). The page of a vacancy shows the recruiter''s own Berlin address, so the real workplace may differ. Unverified until a dry-run.'
+  verification_status: ok
+  last_verified: '2026-10-09'
+  notes: 'Recruiting firm of the Sparkassen that posts vacancies of (anonymous) Sparkassen on the sparkasse.de job exchange; found in the exchange client list (bankCode 90500049, 51 vacancies on 2026-10-09). Added after "Leiter Gesamtbanksteuerung (m/w/d)" (job 236956) was missed. By decision of the user NO region filter: leadership vacancies from all of Germany are accepted (the normal leadership + function filters still apply). The page of a vacancy shows the recruiter''s own Berlin address, so the real workplace may differ. Dry-run 2026-10-09: 51 vacancies read, 11 leadership, 2 relevant (Gruppenleitung KreditService, Leiter Gesamtbanksteuerung).'
   options:
     bank_code: '90500049'
