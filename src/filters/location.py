@@ -12,6 +12,8 @@ def in_regions(job, bank, cfg: dict) -> tuple[bool, str]:
     The job must name one of those cities in its location or title. No usable place: accepted only with accept_unknown_location."""
     cities: list = []
     for name in bank.options.get("regions") or []:
+        if not isinstance(name, str):      # the bundesagentur adapter uses {wo, umkreis} dicts for its own API query
+            continue
         cities += (cfg.get("regions") or {}).get(name, [])
     if not cities:
         return True, "no region configured"

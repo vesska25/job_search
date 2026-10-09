@@ -7,10 +7,11 @@ robots.txt of vr.de only disallows '/*suchergebnisse*' and '/content/', so sitem
 
 banks.yaml options:
   vr_slug: volksbank-darmstadt-mainz-eg   (bank part of the URL; default: derived from the bank name)
-  allow_empty: true                        (a bank without current vacancies is not a failure)
+  allow_empty: true                        (a bank without current vacancies is not a failure, even when it is missing from the
+                                            sitemap altogether: the exchange lists no page at all for a bank with no vacancy)
 
 A bank that does not appear in the sitemap at all (not even with an 'initiativbewerbung-<bank>' page) raises a
-ScraperError, so a wrong slug is reported instead of silently returning nothing.
+ScraperError unless allow_empty is set, so a wrong slug is reported instead of silently returning nothing.
 """
 from __future__ import annotations
 
@@ -57,6 +58,8 @@ class VrJobsScraper(BaseScraper):
 
     def fetch_jobs(self, bank: Bank) -> list:
         mine = self.bank_entries(bank, self.sitemap_entries())
+        if not mine and bank.options.get("allow_empty"):
+            return []        # a bank that currently has no vacancy at all is absent from the sitemap: that is not a failure
         if not mine:
             raise ScraperError(f"bank not found in the vr.de exchange (vr_slug={bank.options.get('vr_slug') or url_slug(bank.name)!r})")
         parser = GenericHtmlScraper(self.http)

@@ -390,6 +390,14 @@ def test_vr_jobs_unknown_bank_is_an_error_but_bank_without_vacancies_is_not(bank
     assert VrJobsScraper(http2).fetch_jobs(bank) == []
 
 
+def test_vr_jobs_allow_empty_bank_missing_from_the_sitemap_is_not_an_error(bank):
+    """Raiffeisenbank Nordliche Bergstrasse (2026-10-09): all vacancies withdrawn -> no page in the sitemap at all."""
+    from src.scrapers.vr_jobs import SITEMAP_URL, VrJobsScraper
+    http = _vr_http({SITEMAP_URL: VR_SITEMAP})
+    bank.name, bank.options = "Gibt Es Nicht eG", {"allow_empty": True}
+    assert VrJobsScraper(http).fetch_jobs(bank) == []
+
+
 def test_vr_jobs_skips_expired_vacancy_pages(bank):
     import requests
     from src.scrapers.vr_jobs import SITEMAP_URL, VrJobsScraper

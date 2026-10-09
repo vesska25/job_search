@@ -289,3 +289,19 @@ def test_regions_option_keeps_only_frankfurt_and_koeln_areas():
     bank.options["accept_unknown_location"] = True
     assert is_germany(job(""), bank, cfg)[0]                                          # ... unless the source is known to lack it
     assert not is_germany(job("Berlin"), bank, cfg)[0]                                # a known other city is still rejected
+
+
+def test_bundesagentur_region_dicts_do_not_crash_the_region_filter():
+    """The bundesagentur adapter keeps {wo, umkreis} dicts in options.regions for its API query (live run 2026-10-09: every
+    vacancy failed with 'unhashable type: dict'). The region filter must ignore them; the API already did the regional cut."""
+    from src.config import Bank
+    from src.filters.location import is_germany
+    from src.models.job import Job
+    cfg = {"german_locations": ["Germany", "Frankfurt"], "foreign_locations": ["London"],
+           "regions": {"rhein_main": ["Frankfurt"], "koeln": ["Köln"]}}
+    bank = Bank(id="x", name="X", germany_only=True,
+                options={"regions": [{"wo": "Frankfurt am Main", "umkreis": 30}, {"wo": "Köln", "umkreis": 30}]})
+    job = Job(bank_id="x", bank_name="X", title="Abteilungsleiter Risiko", url="https://x.test/1", location="Bad Vilbel, HESSEN")
+    assert is_germany(job, bank, cfg)[0]                                  # no named region configured -> nothing to filter on
+    bank.options["regions"].append("koeln")                               # dicts and names mixed: names still apply
+    assert not is_germany(job, bank, cfg)[0]
