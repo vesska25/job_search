@@ -3,7 +3,11 @@ name: Weekly bank job monitor
 
 on:
   schedule:
-    - cron: "0 15 * * 5"       # every Friday 15:00 UTC = 17:00 CEST (summer) / 16:00 CET (winter)
+    # GitHub delays or drops scheduled runs that start exactly on the hour, so the minutes are off-peak.
+    - cron: "7 15 * * 5"       # main: every Friday 15:07 UTC = 17:07 CEST (summer) / 16:07 CET (winter)
+    - cron: "12 17 * * 5"      # backup 1: Friday 17:12 UTC, in case the main run never started
+    - cron: "42 6 * * 6"       # backup 2: Saturday 06:42 UTC
+    # A backup after a successful main run sends nothing: only vacancies not yet in the database are new.
   workflow_dispatch:
     inputs:
       baseline:
