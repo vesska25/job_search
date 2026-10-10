@@ -2070,9 +2070,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'Official careers page (robots.txt allowed the probe, server-rendered). Vacancies are PDF ads jobs/Ste_<title>.pdf; probe 2026-10-10 saw two (Datenbankentwickler, District Bavaria). The title is read from the file name. The bank sits in Floersheim (Rhein-Main), so unknown locations are accepted. Unverified until a dry-run.'
+  verification_status: ok
+  last_verified: 2026-10-10
+  notes: 'Official careers page (robots.txt allowed the probe, server-rendered). Vacancies are PDF ads jobs/Ste_<title>.pdf; probe 2026-10-10 saw two (Datenbankentwickler, District Bavaria). The title is read from the file name. The bank sits in Floersheim (Rhein-Main), so unknown locations are accepted. Dry-run 2026-10-10 ok (2/2 titles read; both rejected by the filters: developer, sales).'
   options:
     link_pattern: jobs/Ste_[^"]*\.pdf
     title_url_regex: jobs/Ste_([^/]+)\.pdf
