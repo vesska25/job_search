@@ -521,9 +521,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'Official career page of Bausparkasse Mainz (bkm.de; robots.txt allowed the probe). Server-rendered table "Unsere aktuellen Stellenangebote" (div.job-listing): columns Job / Standort / Start / Aktion, each row has a Details link to /karriere-bausparkasse-mainz/<slug>. Probe saw Rechtsreferendar:in and Data Engineer / Data Platform Architect, both Mainz. Regions filter Frankfurt/Koeln +-30 km. Unverified until a dry-run.'
+  verification_status: ok
+  last_verified: '2026-10-10'
+  notes: 'Official career page of Bausparkasse Mainz (bkm.de; robots.txt allowed the probe). Server-rendered table "Unsere aktuellen Stellenangebote" (div.job-listing): columns Job / Standort / Start / Aktion, each row has a Details link to /karriere-bausparkasse-mainz/<slug>. Probe saw Rechtsreferendar:in and Data Engineer / Data Platform Architect, both Mainz. Regions filter Frankfurt/Koeln +-30 km. Dry-run 2026-10-10: 2 vacancies read, 0 leadership.'
   options:
     selectors:
       item: div.job-listing tbody tr
@@ -627,9 +627,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'Jobs & Karriere page of the guarantee banks of Rhineland-Palatinate (rlp.ermoeglicher.de, address Rheinstrasse 4H, Mainz; robots.txt allowed the probe). Each vacancy is an article.articleCard with the title in h4.articleCard__title and a "Mehr erfahren" link a.link to .../jobs-karriere/<slug>/ (the link text is a button label, so the title is read from the card); the probe saw one vacancy (Spezialist Regulatorik/Change Management). Seat is Mainz, so unknown locations are accepted. Unverified until a dry-run.'
+  verification_status: ok
+  last_verified: '2026-10-10'
+  notes: 'Jobs & Karriere page of the guarantee banks of Rhineland-Palatinate (rlp.ermoeglicher.de, address Rheinstrasse 4H, Mainz; robots.txt allowed the probe). Each vacancy is an article.articleCard with the title in h4.articleCard__title and a "Mehr erfahren" link a.link to .../jobs-karriere/<slug>/ (the link text is a button label, so the title is read from the card); the probe saw one vacancy (Spezialist Regulatorik/Change Management). Seat is Mainz, so unknown locations are accepted. Dry-run 2026-10-10: 1 vacancy read (title taken from the card), 0 leadership.'
   options:
     selectors:
       item: article.articleCard
@@ -1713,9 +1713,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'Official job page isb.rlp.de/karriere/jobs.html (robots.txt allowed the probe). Block "Unsere freien Stellen": TYPO3 news entries linking to /karriere/detailansicht.html?tx_news_pi1[news]=<id>&cHash=... (probe saw 5 entries; each is linked twice, image and title, de-duplicated by URL). Seat is Mainz, so unknown locations are accepted. Unverified until a dry-run.'
+  verification_status: ok
+  last_verified: '2026-10-10'
+  notes: 'Official job page isb.rlp.de/karriere/jobs.html (robots.txt allowed the probe). Block "Unsere freien Stellen": TYPO3 news entries linking to /karriere/detailansicht.html?tx_news_pi1[news]=<id>&cHash=... (probe saw 5 entries; each is linked twice, image and title, de-duplicated by URL). Seat is Mainz, so unknown locations are accepted. Dry-run 2026-10-10: 5 vacancies read, 0 leadership.'
   options:
     base_url: https://isb.rlp.de
     link_pattern: /karriere/detailansicht\.html\?tx_news_pi1
@@ -3476,9 +3476,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'Official job page swkbank.de/jobs (found by search, robots.txt allowed the probe). Server-rendered list: each vacancy is an anchor /jobs/detail/<slug> whose text is the title (probe saw Anti Financial Crime Fraud/AML Professional, Bilanzbuchhalter als Senior Accountant in Mainz, Senior Retail Markets Manager, Partner Markets Success Manager, Partner PO Loans). The list has no location; the bank sits in Mainz, so unknown locations are accepted and the Frankfurt/Koeln regions filter still applies to named places. Unverified until a dry-run.'
+  verification_status: ok
+  last_verified: '2026-10-10'
+  notes: 'Official job page swkbank.de/jobs (found by search, robots.txt allowed the probe). Server-rendered list: each vacancy is an anchor /jobs/detail/<slug> whose text is the title (probe saw Anti Financial Crime Fraud/AML Professional, Bilanzbuchhalter als Senior Accountant in Mainz, Senior Retail Markets Manager, Partner Markets Success Manager, Partner PO Loans). The list has no location; the bank sits in Mainz, so unknown locations are accepted and the Frankfurt/Koeln regions filter still applies to named places. Dry-run 2026-10-10: 6 vacancies read, 0 leadership.'
   options:
     base_url: https://www.swkbank.de
     selectors:
