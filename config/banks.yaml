@@ -1273,15 +1273,16 @@ banks:
   display_name: Ford Bank
   country: Germany
   address_in_source_list: 50735 Köln
-  jobs_url: ''
+  jobs_url: https://www.careers.ford.com/search-jobs/Germany?orgIds=48560
   source_type: unknown
   germany_only: false
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
-  last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  verification_status: blocked_robots
+  last_verified: '2026-10-10'
+  notes: 'Ford Bank has no own careers page; vacancies sit in the shared Ford portal careers.ford.com (Germany search, orgIds=48560), shared with Ford-Werke. Probe 2026-10-10: robots.txt forbids the search-jobs path, so it is not scraped (robots.txt is never circumvented). Check manually or ask Ford for a permitted feed.'
+
 - id: ford_bank_niederlassung_der_fce_bank_plc
   name: Ford Bank Niederlassung der FCE Bank plc
   country: Germany
@@ -6870,9 +6871,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'Sparkassen job exchange (JSON API sparkasse.de/api/job-market/jobs/search) filtered by bankCode 90500017. A probe on 2026-10-10 showed 4 vacancies for this employer. No region filter (user decision, as for Sparkassen-Personalberatung). Not to be confused with ifp_executive_search (ifp-online.com). Unverified until a dry-run.'
+  verification_status: ok
+  last_verified: 2026-10-10
+  notes: 'Sparkassen job exchange (JSON API sparkasse.de/api/job-market/jobs/search) filtered by bankCode 90500017. A probe on 2026-10-10 showed 4 vacancies for this employer. No region filter (user decision, as for Sparkassen-Personalberatung). Not to be confused with ifp_executive_search (ifp-online.com). Dry-run 2026-10-10 ok: 4 vacancies, 1 match (Bereichsleitung Organisation / IT, Hameln).'
   options:
     bank_code: '90500017'
 - id: sparkassen_personalberatung
