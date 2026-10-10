@@ -6859,6 +6859,22 @@ banks:
     regions:
     - rhein_main
     - koeln
+- id: ifp_personalberatung_managementdiagnostik
+  name: ifp Personalberatung Managementdiagnostik GmbH & Co. KG
+  display_name: ifp Personalberatung (Sparkassen-Jobboerse)
+  country: Germany
+  address_in_source_list: Recruiter listed in the Sparkassen job exchange (bank code 90500017); added at the user's request, not in the original list
+  jobs_url: https://www.sparkasse.de/jobboerse.html
+  source_type: sparkasse_jobmarket
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: unverified
+  last_verified: null
+  notes: 'Sparkassen job exchange (JSON API sparkasse.de/api/job-market/jobs/search) filtered by bankCode 90500017. A probe on 2026-10-10 showed 4 vacancies for this employer. No region filter (user decision, as for Sparkassen-Personalberatung). Not to be confused with ifp_executive_search (ifp-online.com). Unverified until a dry-run.'
+  options:
+    bank_code: '90500017'
 - id: sparkassen_personalberatung
   name: Sparkassen-Personalberatung GmbH
   display_name: Sparkassen-Personalberatung
