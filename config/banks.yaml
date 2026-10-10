@@ -440,9 +440,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'JOIN job board "Bank of Communications Frankfurt Branch" (join.com/companies/bankcomm1), found by web search, not linked from an official page that was seen; robots.txt allowed the probe. The server-rendered page contains vacancy links /companies/bankcomm1/<id>-<slug> (probe 2026-10-10: Specialist Regulatory Reporting / Taxation, Customer Information Manager, ...). Same pattern as Honda Bank. Unverified until a dry-run.'
+  verification_status: ok
+  last_verified: 2026-10-10
+  notes: 'JOIN job board "Bank of Communications Frankfurt Branch" (join.com/companies/bankcomm1), found by web search, not linked from an official page that was seen; robots.txt allowed the probe. The server-rendered page contains vacancy links /companies/bankcomm1/<id>-<slug> (probe 2026-10-10: Specialist Regulatory Reporting / Taxation, Customer Information Manager, ...). Same pattern as Honda Bank. Dry-run 2026-10-10 ok: 2 vacancies (Specialist Regulatory Reporting, Customer Information Manager), both rejected by the filters.'
   options:
     link_pattern: /companies/bankcomm1/\d+-
     accept_unknown_location: true
@@ -1855,9 +1855,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'Official group career portal careers.kommunalkredit.at (robots.txt allowed the probe, server-rendered list). The location search "Frankfurt" returned one vacancy on 2026-10-10 (Analyst M&A Advisory Energy & Infrastructure (FFM)); links are /job/<Location-Title>/<id>/ with class jobTitle-link. Unverified until a dry-run.'
+  verification_status: ok
+  last_verified: 2026-10-10
+  notes: 'Official group career portal careers.kommunalkredit.at (robots.txt allowed the probe, server-rendered list). The location search "Frankfurt" returned one vacancy on 2026-10-10 (Analyst M&A Advisory Energy & Infrastructure (FFM)); links are /job/<Location-Title>/<id>/ with class jobTitle-link. Dry-run 2026-10-10 ok: 1 vacancy (rejected by the Analyst exclusion).'
   options:
     base_url: https://careers.kommunalkredit.at
     selectors:
@@ -2948,10 +2948,10 @@ banks:
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'Official SEB group career page (robots.txt allowed the probe). The server-rendered HTML carries the vacancy list as JSON in the data-list-json attribute of <pw-lazy-element selector="pw-lever-list"> (totalHits 142 on 2026-10-10, group-wide: Vilnius, Riga, Gothenburg, ...; items have url (relative), title, location, team). Only vacancies whose location names Frankfurt/Cologne region cities pass the region filter. Whether the page embeds all 142 or only a first slice is checked by the dry-run. Unverified until a dry-run.'
+  enabled: false
+  verification_status: needs_review
+  last_verified: '2026-10-10'
+  notes: 'Official SEB group career page (robots.txt allowed the probe). The server-rendered HTML carries the vacancy list as JSON in the data-list-json attribute of <pw-lazy-element selector="pw-lever-list"> (totalHits 142 on 2026-10-10, group-wide: Vilnius, Riga, Gothenburg, ...; items have url (relative), title, location, team). Only vacancies whose location names Frankfurt/Cologne region cities pass the region filter. Dry-run 2026-10-10: the page embeds only the first 10 of 142 vacancies (all Vilnius/Riga/Gothenburg, none in Frankfurt), so the list is incomplete and the source is switched off. The full list needs the Lever/pw-lever-list pagination endpoint, which has not been found.'
   options:
     selector: 'pw-lazy-element[selector="pw-lever-list"]'
     attr: data-list-json
