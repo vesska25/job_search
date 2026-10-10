@@ -601,8 +601,8 @@ banks:
   location_filter: []
   enabled: false
   verification_status: no_source_found
-  last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  last_verified: '2026-10-10'
+  notes: 'No official Germany-specific vacancy source verified. Probe 2026-10-10 of the careers page: it states that there are currently no open positions (old ads are commented out in the HTML), so there is nothing to monitor. Re-check manually from time to time.'
 - id: burgschaftsbank_nordrhein_westfalen_kreditgarant
   name: Bürgschaftsbank Nordrhein-Westfalen GmbH Kreditgarantiegemeinschaft
   country: Germany
@@ -1561,9 +1561,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'JOIN job board of Honda Bank (join.com/companies/hondabank), found by web search, not linked from an official page that was seen; robots.txt allowed the probe. Server-rendered "Offene Stellen"; probe saw one vacancy (Wholesale Credit Analyst Coordinator) with the link /companies/hondabank/<id>-<slug>. Same pattern as the smava entry. No location in the list; the bank sits in Frankfurt, so unknown locations are accepted. Unverified until a dry-run.'
+  verification_status: ok
+  last_verified: 2026-10-10
+  notes: 'JOIN job board of Honda Bank (join.com/companies/hondabank), found by web search, not linked from an official page that was seen; robots.txt allowed the probe. Server-rendered "Offene Stellen"; probe saw one vacancy (Wholesale Credit Analyst Coordinator) with the link /companies/hondabank/<id>-<slug>. Same pattern as the smava entry. No location in the list; the bank sits in Frankfurt, so unknown locations are accepted. Dry-run 2026-10-10 ok (titles and links read correctly).'
   options:
     link_pattern: /companies/hondabank/\d+-
     accept_unknown_location: true
@@ -1581,9 +1581,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'Career page linked from the bank homepage (robots.txt allowed the probe). Server-rendered list under #offene-stellen, grouped by department; each ad is an h4 inside an anchor to /karriere/details/?job=<id>. Probe saw 3 vacancies (District Manager Kia Finance Region Bayern/Suedostdeutschland, Senior Controller, Werkstudent Risk Steering). No location in the list; the bank sits in Frankfurt, so unknown locations are accepted (the Bavaria district manager carries its region in the title and is dropped by the regions filter). Unverified until a dry-run.'
+  verification_status: ok
+  last_verified: 2026-10-10
+  notes: 'Career page linked from the bank homepage (robots.txt allowed the probe). Server-rendered list under #offene-stellen, grouped by department; each ad is an h4 inside an anchor to /karriere/details/?job=<id>. Probe saw 3 vacancies (District Manager Kia Finance Region Bayern/Suedostdeutschland, Senior Controller, Werkstudent Risk Steering). No location in the list; the bank sits in Frankfurt, so unknown locations are accepted (the Bavaria district manager carries its region in the title and is dropped by the regions filter). Dry-run 2026-10-10 ok (titles and links read correctly).'
   options:
     link_pattern: /karriere/details/\?job=\d+
     accept_unknown_location: true
@@ -2061,17 +2061,26 @@ banks:
   notes: No official Germany-specific vacancy source verified
 - id: mce_bank
   name: MCE Bank GmbH
+  display_name: MCE Bank
   country: Germany
   address_in_source_list: 65439 Flörsheim am Main
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.mce-bank.eu/karriere_be.htm
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Official careers page (robots.txt allowed the probe, server-rendered). Vacancies are PDF ads jobs/Ste_<title>.pdf; probe 2026-10-10 saw two (Datenbankentwickler, District Bavaria). The title is read from the file name. The bank sits in Floersheim (Rhein-Main), so unknown locations are accepted. Unverified until a dry-run.'
+  options:
+    link_pattern: jobs/Ste_[^"]*\.pdf
+    title_url_regex: jobs/Ste_([^/]+)\.pdf
+    base_url: https://www.mce-bank.eu/
+    accept_unknown_location: true
+    regions:
+    - rhein_main
+    - koeln
 - id: mediobanca_banca_di_credito_finanziario_societa_
   name: MEDIOBANCA BANCA DI CREDITO FINANZIARIO SOCIETA' PER AZIONI, Zweigniederlassung Deutschland
   country: Germany
@@ -3428,9 +3437,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'Official jobs page (steyler-bank.de/jobs, robots.txt allowed the probe, server-rendered). Vacancies are PDF ads under /fileadmin/.../Stellenausschreibungen/<date>_Stellenausschreibung-<title>.pdf; probe saw one (Wertpapierberater). The title is read from the file name. The bank sits in Sankt Augustin (Koeln region), so unknown locations are accepted. Unverified until a dry-run.'
+  verification_status: ok
+  last_verified: 2026-10-10
+  notes: 'Official jobs page (steyler-bank.de/jobs, robots.txt allowed the probe, server-rendered). Vacancies are PDF ads under /fileadmin/.../Stellenausschreibungen/<date>_Stellenausschreibung-<title>.pdf; probe saw one (Wertpapierberater). The title is read from the file name. The bank sits in Sankt Augustin (Koeln region), so unknown locations are accepted. Dry-run 2026-10-10 ok (titles and links read correctly).'
   options:
     link_pattern: /Stellenausschreibungen/[^"]*\.pdf
     title_url_regex: /\d{4}_\d{2}_\d{2}_Stellenausschreibung-([^/]+)\.pdf
@@ -5284,10 +5293,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
-  last_verified: null
-  notes: No official Germany-specific vacancy source verified. No official careers page found (only an Indeed profile). https://www.awado.de/karriere
-    answers 404; no careers page found.
+  verification_status: out_of_scope
+  last_verified: '2026-10-10'
+  notes: 'No official Germany-specific vacancy source verified. Probe 2026-10-10: https://awado.de/karriere/job-pool/ lists 10 ads (dvinci portal genoverband-karriere.dvinci-hr.com/de/p/AWADOGRUPPE), all Consultant/IT-Advisory/Steuern/Ausbildung. AWADO is a consulting and tax-advisory firm; consulting is not wanted, so no source is monitored.'
 - id: dz_compliancepartner
   name: DZ CompliancePartner
   display_name: DZ CompliancePartner
