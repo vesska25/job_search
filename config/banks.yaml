@@ -431,17 +431,24 @@ banks:
     country field. Earlier run failed because of an adapter bug (fixed); awaiting a verified run.
 - id: bank_of_communications_co_ltd_frankfurt_branch
   name: Bank of Communications Co., Ltd. Frankfurt branch
+  display_name: Bank of Communications (Frankfurt)
   country: Germany
   address_in_source_list: 60311 Frankfurt am Main
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://join.com/companies/bankcomm1
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'JOIN job board "Bank of Communications Frankfurt Branch" (join.com/companies/bankcomm1), found by web search, not linked from an official page that was seen; robots.txt allowed the probe. The server-rendered page contains vacancy links /companies/bankcomm1/<id>-<slug> (probe 2026-10-10: Specialist Regulatory Reporting / Taxation, Customer Information Manager, ...). Same pattern as Honda Bank. Unverified until a dry-run.'
+  options:
+    link_pattern: /companies/bankcomm1/\d+-
+    accept_unknown_location: true
+    regions:
+    - rhein_main
+    - koeln
 - id: bank_of_ireland_niederlassung_frankfurt
   name: Bank of Ireland, Niederlassung Frankfurt
   country: Germany
