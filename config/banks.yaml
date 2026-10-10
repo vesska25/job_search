@@ -1552,30 +1552,44 @@ banks:
     accept_unknown_location: true
 - id: honda_bank
   name: Honda Bank GmbH
+  display_name: Honda Bank
   country: Germany
   address_in_source_list: 60314 Frankfurt am Main
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://join.com/companies/hondabank
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'JOIN job board of Honda Bank (join.com/companies/hondabank), found by web search, not linked from an official page that was seen; robots.txt allowed the probe. Server-rendered "Offene Stellen"; probe saw one vacancy (Wholesale Credit Analyst Coordinator) with the link /companies/hondabank/<id>-<slug>. Same pattern as the smava entry. No location in the list; the bank sits in Frankfurt, so unknown locations are accepted. Unverified until a dry-run.'
+  options:
+    link_pattern: /companies/hondabank/\d+-
+    accept_unknown_location: true
+    regions:
+    - rhein_main
+    - koeln
 - id: hyundai_capital_bank_europe
   name: Hyundai Capital Bank Europe GmbH
+  display_name: Hyundai Capital Bank Europe
   country: Germany
   address_in_source_list: 60327 Frankfurt am Main
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.hyundaicapitalbank.eu/karriere/
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Career page linked from the bank homepage (robots.txt allowed the probe). Server-rendered list under #offene-stellen, grouped by department; each ad is an h4 inside an anchor to /karriere/details/?job=<id>. Probe saw 3 vacancies (District Manager Kia Finance Region Bayern/Suedostdeutschland, Senior Controller, Werkstudent Risk Steering). No location in the list; the bank sits in Frankfurt, so unknown locations are accepted (the Bavaria district manager carries its region in the title and is dropped by the regions filter). Unverified until a dry-run.'
+  options:
+    link_pattern: /karriere/details/\?job=\d+
+    accept_unknown_location: true
+    regions:
+    - rhein_main
+    - koeln
 - id: huttenberger_bank
   name: Hüttenberger Bank eG
   country: Germany
@@ -3405,17 +3419,26 @@ banks:
   notes: No official Germany-specific vacancy source verified
 - id: steyler_bank
   name: Steyler Bank GmbH
+  display_name: Steyler Ethik Bank
   country: Germany
   address_in_source_list: 53757 Sankt Augustin
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.steyler-bank.de/jobs/
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Official jobs page (steyler-bank.de/jobs, robots.txt allowed the probe, server-rendered). Vacancies are PDF ads under /fileadmin/.../Stellenausschreibungen/<date>_Stellenausschreibung-<title>.pdf; probe saw one (Wertpapierberater). The title is read from the file name. The bank sits in Sankt Augustin (Koeln region), so unknown locations are accepted. Unverified until a dry-run.'
+  options:
+    link_pattern: /Stellenausschreibungen/[^"]*\.pdf
+    title_url_regex: /\d{4}_\d{2}_\d{2}_Stellenausschreibung-([^/]+)\.pdf
+    base_url: https://www.steyler-bank.de
+    accept_unknown_location: true
+    regions:
+    - rhein_main
+    - koeln
 - id: stadtische_sparkasse_offenbach_a_m
   name: Städtische Sparkasse Offenbach a. M.
   country: Germany
