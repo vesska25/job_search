@@ -512,17 +512,27 @@ banks:
   notes: Excluded by the user (not of interest). No official Germany-specific vacancy source verified
 - id: bausparkasse_mainz
   name: Bausparkasse Mainz Aktiengesellschaft
+  display_name: Bausparkasse Mainz
   country: Germany
   address_in_source_list: 55122 Mainz a Rhein
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.bkm.de/karriere-bausparkasse-mainz
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Official career page of Bausparkasse Mainz (bkm.de; robots.txt allowed the probe). Server-rendered table "Unsere aktuellen Stellenangebote" (div.job-listing): columns Job / Standort / Start / Aktion, each row has a Details link to /karriere-bausparkasse-mainz/<slug>. Probe saw Rechtsreferendar:in and Data Engineer / Data Platform Architect, both Mainz. Regions filter Frankfurt/Koeln +-30 km. Unverified until a dry-run.'
+  options:
+    selectors:
+      item: div.job-listing tbody tr
+      title: td:nth-child(1)
+      location: td:nth-child(2)
+      link: a.link
+    regions:
+    - rhein_main
+    - koeln
 - id: bensberger_bank_e_g
   name: Bensberger Bank e.G.
   country: Germany
