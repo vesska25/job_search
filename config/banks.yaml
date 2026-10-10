@@ -1839,17 +1839,27 @@ banks:
     accept_unknown_location: true
 - id: kommunalkredit_austria_zweigstelle_deutschland
   name: Kommunalkredit Austria AG Zweigstelle Deutschland
+  display_name: Kommunalkredit (Frankfurt)
   country: Germany
   address_in_source_list: 60313 Frankfurt am Main
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://careers.kommunalkredit.at/search/?q=&locationsearch=Frankfurt
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Official group career portal careers.kommunalkredit.at (robots.txt allowed the probe, server-rendered list). The location search "Frankfurt" returned one vacancy on 2026-10-10 (Analyst M&A Advisory Energy & Infrastructure (FFM)); links are /job/<Location-Title>/<id>/ with class jobTitle-link. Unverified until a dry-run.'
+  options:
+    base_url: https://careers.kommunalkredit.at
+    selectors:
+      item: 'a.jobTitle-link'
+      title: 'a.jobTitle-link'
+    accept_unknown_location: true
+    regions:
+    - rhein_main
+    - koeln
 - id: kfw
   name: Kreditanstalt für Wiederaufbau
   display_name: KfW
