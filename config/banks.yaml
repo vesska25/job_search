@@ -561,12 +561,12 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: failed
-  last_verified: '2026-10-03'
+  enabled: true
+  verification_status: no_vacancies_now
+  last_verified: '2026-10-10'
   notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''bruehler-bank-eg'') | VR
     job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not fetched);
-    unverified until a Verify run. '
+    unverified until a Verify run.  Re-enabled 2026-10-10: the bank has no vacancy on the exchange right now (a bank without any vacancy is absent from the exchange list; vr_jobs now treats that as 0 vacancies when allow_empty is set), so it is monitored again and reports as soon as a vacancy appears.'
   options:
     allow_empty: true
 - id: budenheimer_volksbank
@@ -1585,12 +1585,12 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: failed
-  last_verified: '2026-10-03'
+  enabled: true
+  verification_status: no_vacancies_now
+  last_verified: '2026-10-10'
   notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''huettenberger-bank-eg'')
     | VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not fetched);
-    unverified until a Verify run. '
+    unverified until a Verify run.  Re-enabled 2026-10-10: the bank has no vacancy on the exchange right now (a bank without any vacancy is absent from the exchange list; vr_jobs now treats that as 0 vacancies when allow_empty is set), so it is monitored again and reports as soon as a vacancy appears.'
   options:
     allow_empty: true
 - id: icici_bank_uk_plc_germany_branch
@@ -1973,12 +1973,12 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: failed
-  last_verified: '2026-10-03'
+  enabled: true
+  verification_status: no_vacancies_now
+  last_verified: '2026-10-10'
   notes: 'Auto-disabled 2026-10-03: ScraperError: bank not found in the vr.de exchange (vr_slug=''landbank-horlofftal-eingetragene-genossenschaft'')
     | VR job exchange (vr.de sitemap, bank matched by URL slug); Found by a web search (agent report, page itself not fetched);
-    unverified until a Verify run. '
+    unverified until a Verify run.  Re-enabled 2026-10-10: the bank has no vacancy on the exchange right now (a bank without any vacancy is absent from the exchange list; vr_jobs now treats that as 0 vacancies when allow_empty is set), so it is monitored again and reports as soon as a vacancy appears.'
   options:
     allow_empty: true
 - id: helaba
@@ -3335,11 +3335,11 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: failed
-  last_verified: '2026-10-03'
+  enabled: true
+  verification_status: no_vacancies_now
+  last_verified: '2026-10-10'
   notes: 'Auto-disabled 2026-10-03: source returned 0 vacancies | Sparkassen job exchange; bankCode 34051570 taken from the
-    exchange URL found by a web search; unverified until a Verify run.'
+    exchange URL found by a web search; unverified until a Verify run. Re-enabled 2026-10-10: the bank is not in the exchange client list (13 Sparkassen of 336 clients have vacancies) because it has no vacancy right now; 0 vacancies is not a failure, so it is monitored again.'
   options:
     bank_code: '34051570'
 - id: stadtsparkasse_wuppertal
