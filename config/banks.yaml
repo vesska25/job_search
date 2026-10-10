@@ -2940,17 +2940,27 @@ banks:
     search_text: Mönchengladbach
 - id: skandinaviska_enskilda_banken_ab_publ_frankfurt_
   name: Skandinaviska Enskilda Banken AB (publ) Frankfurt Branch
+  display_name: SEB (Frankfurt)
   country: Germany
   address_in_source_list: 60313 Frankfurt am Main
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://sebgroup.com/career/find-your-new-job/our-vacant-positions
+  source_type: embedded_json
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Official SEB group career page (robots.txt allowed the probe). The server-rendered HTML carries the vacancy list as JSON in the data-list-json attribute of <pw-lazy-element selector="pw-lever-list"> (totalHits 142 on 2026-10-10, group-wide: Vilnius, Riga, Gothenburg, ...; items have url (relative), title, location, team). Only vacancies whose location names Frankfurt/Cologne region cities pass the region filter. Whether the page embeds all 142 or only a first slice is checked by the dry-run. Unverified until a dry-run.'
+  options:
+    selector: 'pw-lazy-element[selector="pw-lever-list"]'
+    attr: data-list-json
+    items_path: leverListItems
+    fields: {title: title, location: location, department: team, url: _no_absolute_url}
+    url_template: https://sebgroup.com{url}
+    regions:
+    - rhein_main
+    - koeln
 - id: societe_generale_s_a
   name: Société Générale S.A.
   country: Germany
