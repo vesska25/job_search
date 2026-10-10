@@ -629,9 +629,12 @@ banks:
   enabled: true
   verification_status: unverified
   last_verified: null
-  notes: 'Jobs & Karriere page of the guarantee banks of Rhineland-Palatinate (rlp.ermoeglicher.de, address Rheinstrasse 4H, Mainz; robots.txt allowed the probe). Each vacancy is an article card (h4.articleCard__title) linking to .../jobs-karriere/<slug>/; the probe saw one vacancy (Spezialist Regulatorik/Change Management). Seat is Mainz, so unknown locations are accepted. Unverified until a dry-run.'
+  notes: 'Jobs & Karriere page of the guarantee banks of Rhineland-Palatinate (rlp.ermoeglicher.de, address Rheinstrasse 4H, Mainz; robots.txt allowed the probe). Each vacancy is an article.articleCard with the title in h4.articleCard__title and a "Mehr erfahren" link a.link to .../jobs-karriere/<slug>/ (the link text is a button label, so the title is read from the card); the probe saw one vacancy (Spezialist Regulatorik/Change Management). Seat is Mainz, so unknown locations are accepted. Unverified until a dry-run.'
   options:
-    link_pattern: /de/ueber-uns/profil/jobs-karriere/[^/]+/$
+    selectors:
+      item: article.articleCard
+      title: .articleCard__title
+      link: a.link
     accept_unknown_location: true
     regions:
     - rhein_main
