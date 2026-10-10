@@ -608,17 +608,24 @@ banks:
   notes: No official Germany-specific vacancy source verified
 - id: burgschaftsbank_rheinland_pfalz
   name: Bürgschaftsbank Rheinland-Pfalz GmbH
+  display_name: Bürgschaftsbank Rheinland-Pfalz
   country: Germany
   address_in_source_list: 55116 Mainz a Rhein
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://rlp.ermoeglicher.de/de/ueber-uns/profil/jobs-karriere/
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Jobs & Karriere page of the guarantee banks of Rhineland-Palatinate (rlp.ermoeglicher.de, address Rheinstrasse 4H, Mainz; robots.txt allowed the probe). Each vacancy is an article card (h4.articleCard__title) linking to .../jobs-karriere/<slug>/; the probe saw one vacancy (Spezialist Regulatorik/Change Management). Seat is Mainz, so unknown locations are accepted. Unverified until a dry-run.'
+  options:
+    link_pattern: /de/ueber-uns/profil/jobs-karriere/[^/]+/$
+    accept_unknown_location: true
+    regions:
+    - rhein_main
+    - koeln
 - id: c24_bank
   name: C24 Bank GmbH
   country: Germany
@@ -1684,17 +1691,25 @@ banks:
     max_pages: 10
 - id: investitions_und_strukturbank_rheinland_pfalz_is
   name: Investitions- und Strukturbank Rheinland-Pfalz (ISB)
+  display_name: ISB Rheinland-Pfalz
   country: Germany
   address_in_source_list: 55116 Mainz a Rhein
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://isb.rlp.de/karriere/jobs.html
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Official job page isb.rlp.de/karriere/jobs.html (robots.txt allowed the probe). Block "Unsere freien Stellen": TYPO3 news entries linking to /karriere/detailansicht.html?tx_news_pi1[news]=<id>&cHash=... (probe saw 5 entries; each is linked twice, image and title, de-duplicated by URL). Seat is Mainz, so unknown locations are accepted. Unverified until a dry-run.'
+  options:
+    base_url: https://isb.rlp.de
+    link_pattern: /karriere/detailansicht\.html\?tx_news_pi1
+    accept_unknown_location: true
+    regions:
+    - rhein_main
+    - koeln
 - id: isbank
   name: Isbank AG
   country: Germany
@@ -2290,9 +2305,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: false
-  verification_status: no_source_found
-  last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  verification_status: out_of_scope
+  last_verified: '2026-10-10'
+  notes: 'No official Germany-specific vacancy source verified. Insolvent: BaFin applied for insolvency on 19 January 2023 and the Mainz local court opened proceedings on 25 January 2023 (reported by test.de, Boersen-Zeitung and boerse-online). No vacancies can be expected, so no source is monitored.'
 - id: oddo_bhf
   name: ODDO BHF SE
   country: Germany
@@ -3439,17 +3454,26 @@ banks:
     accept_unknown_location: true
 - id: sud_west_kreditbank_finanzierung
   name: Süd-West-Kreditbank Finanzierung GmbH
+  display_name: SWK Bank
   country: Germany
   address_in_source_list: 55124 Mainz a Rhein
-  jobs_url: ''
-  source_type: unknown
-  germany_only: false
+  jobs_url: https://www.swkbank.de/jobs
+  source_type: custom_html
+  germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
+  enabled: true
+  verification_status: unverified
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: 'Official job page swkbank.de/jobs (found by search, robots.txt allowed the probe). Server-rendered list: each vacancy is an anchor /jobs/detail/<slug> whose text is the title (probe saw Anti Financial Crime Fraud/AML Professional, Bilanzbuchhalter als Senior Accountant in Mainz, Senior Retail Markets Manager, Partner Markets Success Manager, Partner PO Loans). The list has no location; the bank sits in Mainz, so unknown locations are accepted and the Frankfurt/Koeln regions filter still applies to named places. Unverified until a dry-run.'
+  options:
+    base_url: https://www.swkbank.de
+    selectors:
+      item: a.text-dark[href^="/jobs/detail/"]
+    accept_unknown_location: true
+    regions:
+    - rhein_main
+    - koeln
 - id: targobank
   name: TARGOBANK AG
   country: Germany
