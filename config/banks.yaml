@@ -4914,21 +4914,17 @@ banks:
   enabled: true
   verification_status: unverified
   last_verified: null
-  notes: 'Added from the user''s list of banking-related organisations (not banks). Careers page found by web search (not
-    yet confirmed by a run). Credit bureau; list page derived from a job-detail URL (JSP), karriere.schufa.de is the landing
-    page. Fixed: the list is a JSON endpoint https://www.schufa.de/jobssearch/ ({found, results[]}). PARTIAL: it returns only
-    the 10 newest of `found` (18 seen); parameters page/start are ignored, so pagination is unknown and older postings are
-    missed.'
+  notes: 'Credit bureau (not a bank), added from the user''s list. The old list endpoint https://www.schufa.de/jobssearch/ answers 404 since 2026-10-28. The job board page (swm-job-search component, service-url) now loads its list with a plain GET from https://www.schufa.de/search/rest/api/v1/prepared_search/de_jobs/execute (parameters read from the page bundle: query=*, facet.filter.entry_level=experienced, haupia_start=<offset>); the JSON has results[] {id, title[0], link (relative), locations_id_keyword}, numRows. Probe 2026-10-28: 13 experienced vacancies (the facet also lists 2 trainees and 1 students, not monitored). Unverified until a dry-run.'
   options:
-    api_url: https://www.schufa.de/jobssearch/
+    api_url: https://www.schufa.de/search/rest/api/v1/prepared_search/de_jobs/execute
+    params: {query: '*', facet.filter.entry_level: experienced}
     items_path: results
     fields:
-      title: lang_title
+      title: title.0
       id: id
-      location: m_str_locations_id
-      department: m_str_fachbereiche_id
-    url_template: https://www.schufa.de{str_url}
-    accept_unknown_location: true
+      location: locations_id_keyword
+    url_template: https://www.schufa.de{link}
+    pagination: {type: offset, param: haupia_start, size: 10, total_path: numRows, in: params, start: 0, max_pages: 10}
 - id: universal_investment
   name: Universal Investment
   display_name: Universal Investment
