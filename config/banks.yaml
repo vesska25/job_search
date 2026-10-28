@@ -4912,9 +4912,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'Credit bureau (not a bank), added from the user''s list. The old list endpoint https://www.schufa.de/jobssearch/ answers 404 since 2026-10-28. The job board page (swm-job-search component, service-url) now loads its list with a plain GET from https://www.schufa.de/search/rest/api/v1/prepared_search/de_jobs/execute (parameters read from the page bundle: query=*, facet.filter.entry_level=experienced, haupia_start=<offset>); the JSON has results[] {id, title[0], link (relative), locations_id_keyword}, numRows. Probe 2026-10-28: 13 experienced vacancies (the facet also lists 2 trainees and 1 students, not monitored). The server returns 6 results per page, so the offset steps by 6 (a step of 10 skipped vacancies 7-10). Unverified until a dry-run.'
+  verification_status: ok
+  last_verified: 2026-10-28
+  notes: 'Credit bureau (not a bank), added from the user''s list. The old list endpoint https://www.schufa.de/jobssearch/ answers 404 since 2026-10-28. The job board page (swm-job-search component, service-url) now loads its list with a plain GET from https://www.schufa.de/search/rest/api/v1/prepared_search/de_jobs/execute (parameters read from the page bundle: query=*, facet.filter.entry_level=experienced, haupia_start=<offset>); the JSON has results[] {id, title[0], link (relative), locations_id_keyword}, numRows. Probe 2026-10-28: 13 experienced vacancies (the facet also lists 2 trainees and 1 students, not monitored). The server returns 6 results per page, so the offset steps by 6 (a step of 10 skipped vacancies 7-10). Dry-run 2026-10-28 ok: 13 vacancies read (3 pages of 6/6/1), 1 match (Leitung Customer Service Transformation & Digitalisierung).'
   options:
     api_url: https://www.schufa.de/search/rest/api/v1/prepared_search/de_jobs/execute
     params: {query: '*', facet.filter.entry_level: experienced}
