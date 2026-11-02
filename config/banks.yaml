@@ -1861,8 +1861,8 @@ banks:
   options:
     base_url: https://careers.kommunalkredit.at
     selectors:
-      item: 'a.jobTitle-link'
-      title: 'a.jobTitle-link'
+      item: 'a.jobTitle-link[href^="/job/Frankfurt"]'
+      title: 'a.jobTitle-link[href^="/job/Frankfurt"]'
     accept_unknown_location: true
     regions:
     - rhein_main
