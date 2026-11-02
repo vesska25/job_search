@@ -1855,14 +1855,12 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: ok
-  last_verified: 2026-10-10
-  notes: 'Official group career portal careers.kommunalkredit.at (robots.txt allowed the probe, server-rendered list). The location search "Frankfurt" returned one vacancy on 2026-10-10 (Analyst M&A Advisory Energy & Infrastructure (FFM)); links are /job/<Location-Title>/<id>/ with class jobTitle-link. Dry-run 2026-10-10 ok: 1 vacancy (rejected by the Analyst exclusion).'
+  verification_status: unverified
+  last_verified: null
+  notes: 'Official group career portal careers.kommunalkredit.at (robots.txt allowed the probe, server-rendered list; the same portal also lists Vienna vacancies, the location search does not filter reliably and the list has no location field). Only links /job/Frankfurt-<title>/<id>/ are taken (link_pattern), 2026-11-02 dry-run before this fix returned 11 vacancies incl. Vienna ones. Needs a dry-run.'
   options:
     base_url: https://careers.kommunalkredit.at
-    selectors:
-      item: 'a.jobTitle-link[href^="/job/Frankfurt"]'
-      title: 'a.jobTitle-link[href^="/job/Frankfurt"]'
+    link_pattern: /job/Frankfurt-
     accept_unknown_location: true
     regions:
     - rhein_main
