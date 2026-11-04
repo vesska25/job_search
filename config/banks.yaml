@@ -2016,20 +2016,24 @@ banks:
   display_name: Helaba
   country: Germany
   address_in_source_list: 60311 Frankfurt am Main
-  jobs_url: https://www.helaba.com/de/karriere/jobs-stellenangebote.php
+  jobs_url: https://www.helaba.com/de/karriere/jobs
   source_type: custom_html
   germany_only: false
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: ok
-  last_verified: '2026-10-04'
-  notes: Own career page (URL from the user); server-rendered list, vacancy links /de/karriere/stellenangebote/<slug>.php.
-    No location in the list, so unknown locations are accepted (foreign branches like London/New York are possible). Pagination
-    of the list not checked. Run Verify to confirm.
+  verification_status: unverified
+  last_verified: null
+  notes: 'Own career page. Since 2026-11-04 the site uses /de/karriere/jobs (10 per page, ?page=N) with links /de/karriere/jobs/<slug>-<id>; the old /de/karriere/stellenangebote/<slug>.php links are gone (the old selector matched nothing and the adapter fell back to page 1 only: 10 of about 51). Card: li.job-item > a.job-item__link, span.job-item__title (suffix " - (0782/409)" cut), first span.job-item__detail = city. Unverified until a dry-run.'
   options:
+    base_url: https://www.helaba.com
     selectors:
-      item: a[href*="/de/karriere/stellenangebote/"]
+      item: li.job-item
+      title: span.job-item__title
+      link: a.job-item__link
+      location: span.job-item__detail
+    title_cut_regex: \s+-\s+\(\d+/\d+\)\s*$
+    pagination: {param: page, max_pages: 10}
     accept_unknown_location: true
 - id: landesbausparkasse_hessen_thuringen_abteilung_de
   name: Landesbausparkasse Hessen-Thüringen Abteilung der Landesbank Hessen-Thüringen Girozentrale
