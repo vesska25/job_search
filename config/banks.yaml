@@ -2022,9 +2022,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'Own career page. Since 2026-11-04 the site uses /de/karriere/jobs (10 per page, ?page=N) with links /de/karriere/jobs/<slug>-<id>; the old /de/karriere/stellenangebote/<slug>.php links are gone (the old selector matched nothing and the adapter fell back to page 1 only: 10 of about 51). Card: li.job-item > a.job-item__link, span.job-item__title (suffix " - (0782/409)" cut), first span.job-item__detail = city. Unverified until a dry-run.'
+  verification_status: ok
+  last_verified: 2026-11-04
+  notes: 'Own career page. Since 2026-11-04 the site uses /de/karriere/jobs (10 per page, ?page=N) with links /de/karriere/jobs/<slug>-<id>; the old /de/karriere/stellenangebote/<slug>.php links are gone (the old selector matched nothing and the adapter fell back to page 1 only: 10 of about 51). Card: li.job-item > a.job-item__link, span.job-item__title (suffix " - (0782/409)" cut), first span.job-item__detail = city. Dry-run 2026-11-04 ok: 41 vacancies over 6 pages, 0 matches (5 leadership titles without a relevant function).'
   options:
     base_url: https://www.helaba.com
     selectors:
@@ -2032,7 +2032,7 @@ banks:
       title: span.job-item__title
       link: a.job-item__link
       location: span.job-item__detail
-    title_cut_regex: \s+-\s+\(\d+/\d+\)\s*$
+    title_cut_regex: \s+-\s+\(\s*\d+/\d+\s*\)\s*$
     pagination: {param: page, max_pages: 10}
     accept_unknown_location: true
 - id: landesbausparkasse_hessen_thuringen_abteilung_de
