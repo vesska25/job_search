@@ -82,8 +82,8 @@ class HealthStore:
     """Loads the stored rows once, records this run's results in memory, persists them on save() (only if writable).
     A dry run reads the real database (if it exists) so it can show what would be flagged, but never writes."""
 
-    def __init__(self, path, writable: bool = True):
-        self.path, self.writable = path, writable
+    def __init__(self, path, writable: bool = True, learn: bool = False):
+        self.path, self.writable, self.learn = path, writable, learn   # learn: a clean result becomes the new baseline, flagged or not
         self.rows: dict[str, dict] = {}
         self.history: dict[str, list[dict]] = {}
         self.current: dict[str, dict] = {}       # this run: found / germany / relevant / error per source
@@ -120,7 +120,8 @@ class HealthStore:
 
     def record(self, bank_id: str, label: str, count: int | None = None, error: str | None = None,
                germany: int | None = None, relevant: int | None = None) -> Issue | None:
-        row, kind, detail = assess(self.rows.get(bank_id), count, error)
+        prev = {} if self.learn and not error else self.rows.get(bank_id)   # learning: forget a stale baseline (errors stay flagged)
+        row, kind, detail = assess(prev, count, error)
         self.rows[bank_id] = row
         self.touched.add(bank_id)
         self.current[bank_id] = {"found": count, "germany": germany, "relevant": relevant, "error": error}

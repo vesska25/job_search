@@ -303,7 +303,7 @@ def main(argv=None) -> int:
     db = JobDatabase(":memory:" if args.dry_run and not args.db else db_path)
     stats = Stats()
     extra: dict = {}
-    health = HealthStore(db_path, writable=not args.dry_run or args.learn_health)
+    health = HealthStore(db_path, writable=not args.dry_run or args.learn_health, learn=args.learn_health)
     matches = run(selected, settings, http, db, llm, stats, extra=extra, profiles=profiles, health=health)
     health.save()
     for issue in health.issues:

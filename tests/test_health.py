@@ -109,3 +109,24 @@ def test_report_per_bank_table_shows_now_before_and_relevant():
     assert "All enabled sources (1)" in out and ">28<" in out and ">31<" in out and ">-3<" in out and ">20<" in out
     assert "title='2026-10-02'" in out
     assert "Relevant vacancies by source (1)" in out and "Head of Risk" in out
+
+
+def test_learn_mode_resets_the_baseline_of_a_flagged_source_but_keeps_errors_flagged(tmp_path):
+    db = tmp_path / "h.db"
+    first = HealthStore(db)
+    first.record("a", "A", count=10)
+    first.record("b", "B", count=10)
+    first.save()
+    flagged = HealthStore(db)
+    assert flagged.record("a", "A", count=0) is not None            # normally ~10 -> "empty", baseline kept at 10
+    flagged.record("b", "B", count=10)
+    flagged.save()
+    assert HealthStore(db).rows["a"]["baseline"] == 10
+    learn = HealthStore(db, learn=True)
+    assert learn.record("a", "A", count=0) is None                  # the new truth: this source is empty now
+    assert learn.record("b", "B", error="HTTPError: 404") is not None   # errors are never learned away
+    learn.save()
+    again = HealthStore(db)
+    assert again.rows["a"]["baseline"] == 0 and again.rows["a"]["issue_kind"] is None
+    assert again.rows["b"]["issue_kind"] == "error" and again.rows["b"]["baseline"] == 10
+    assert HealthStore(db).record("a", "A", count=0) is None        # no more "usually ~10" warning
