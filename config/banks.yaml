@@ -4053,11 +4053,11 @@ banks:
   germany_only: true
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_vacancies_now
+  enabled: true
+  verification_status: needs_review
   last_verified: '2026-10-03'
-  notes: 'Profile page on vr-karriere.de (URL from the user) currently says "Keine Stellenangebote". Not enabled: the vacancy
-    link layout cannot be verified until a vacancy exists. Re-check later.'
+  notes: 'Profile page on vr-karriere.de (URL from the user) currently says "Keine Stellenangebote". Enabled 2026-11-07 at the request of the user
+    (allow_empty: no health alarm while the page is empty); the vacancy link layout is unverified until a vacancy exists.'
   options:
     allow_empty: true
 - id: volksbank_erft
