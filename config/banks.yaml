@@ -4970,7 +4970,7 @@ banks:
     fields: {title: title, id: url, location: location, department: jobCategory, date: date, url: no_such_field}
     url_template: https://www.ruv.de{url}
     pagination: {type: page, param: page, total_path: total, in: params, max_pages: 10}
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: payone
   name: PAYONE GmbH / Worldline (Germany)
   display_name: PAYONE / Worldline
@@ -5471,7 +5471,7 @@ banks:
     Frankfurt/Köln areas. Not yet checked by a full adapter run.'
   options:
     max_pages: 20
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: bayernlb
   name: Bayerische Landesbank (BayernLB)
   display_name: BayernLB
@@ -5489,7 +5489,7 @@ banks:
     only job-related link. The list page itself was probed but the result could not be read back (shared probe queue); platform and
     link format unknown (a probe of jobs.bayernlb.de is still needed). Options regions prepared for when an adapter is chosen.'
   options:
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: nord_lb
   name: Norddeutsche Landesbank Girozentrale (NORD/LB)
   display_name: NORD/LB
@@ -5510,7 +5510,7 @@ banks:
     the unfiltered list is read. Not yet checked by a full adapter run.'
   options:
     max_pages: 20
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: deutsche_hypo
   name: Deutsche Hypothekenbank (Actien-Gesellschaft) / Deutsche Hypo NORD/LB Real Estate Finance
   display_name: Deutsche Hypo
@@ -5560,7 +5560,7 @@ banks:
   notes: 'lbb.de links to Berliner Sparkasse (/de/home/ihre-sparkasse/dein-job.html); the bank publishes on the Sparkassen job exchange (a detail page .../jobangebot/...-berliner-sparkasse-230401.html appeared in search results). bank_code 10050000 is the BLZ of Berliner Sparkasse from general knowledge, NOT verified in a response (a probe of the API with that code was started but not read back), so the entry is disabled: check it with a dry run, then enable. Berlin only, so with regions almost nothing will match. Dry-run 2026-10-05: sparkasse_jobmarket read 37 vacancies (Berlin only, so the Frankfurt/Koeln filter keeps none).'
   options:
     bank_code: '10050000'
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: saarlb
   name: Landesbank Saar (SaarLB)
   display_name: SaarLB
@@ -5580,7 +5580,7 @@ banks:
     or no vacancies will pass; accept_unknown_location is deliberately off.'
   options:
     link_pattern: ^https://saarlb\.de/jobs/[^/]+/?$
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: lfa_foerderbank_bayern
   name: LfA Förderbank Bayern
   display_name: LfA Förderbank Bayern
@@ -5615,7 +5615,7 @@ banks:
     shows no city and IBB is Berlin only, so with regions almost nothing will pass; accept_unknown_location is off on purpose.'
   options:
     link_pattern: /ibb/position-\d+
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: l_bank_baden_wuerttemberg
   name: Landeskreditbank Baden-Württemberg - Förderbank (L-Bank)
   display_name: L-Bank
@@ -5635,7 +5635,7 @@ banks:
     in the list, so with regions nothing is expected to pass (accept_unknown_location off).'
   options:
     link_pattern: /karriere/jobs/[^/]+-\d+\.html$
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: berlin_hyp
   name: Berlin Hyp AG
   display_name: Berlin Hyp
@@ -5653,7 +5653,7 @@ banks:
     in the hrefs found nothing, so the vacancy list is not linked in static HTML (probably JavaScript or an external portal); the
     follow-up probe could not be read back. Berlin Hyp has a Frankfurt office, so worth finding the list.'
   options:
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: deutsche_pfandbriefbank
   name: Deutsche Pfandbriefbank AG (pbb)
   display_name: pbb
@@ -5674,7 +5674,7 @@ banks:
     rule. pbb has sites in Garching, Frankfurt/Eschborn and Düsseldorf.'
   options:
     link_pattern: -j\d+\.html$
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: muenchener_hypothekenbank
   name: Münchener Hypothekenbank eG
   display_name: Münchener Hypothekenbank
@@ -5695,7 +5695,7 @@ banks:
     no job anchors.'
   options:
     link_pattern: /de/jobs/\d+/
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: wl_bank
   name: WL BANK AG Westfälische Landschaft Bodenkreditbank
   display_name: WL BANK
@@ -5714,7 +5714,7 @@ banks:
     links; same layout as the parcIT entry. Münster only, so with regions nothing is expected (accept_unknown_location off).'
   options:
     link_pattern: /wlbank/x/stellenangebote/\d+
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: unicredit_bank_hypovereinsbank
   name: UniCredit Bank GmbH (HypoVereinsbank)
   display_name: HypoVereinsbank (UniCredit Bank)
@@ -5734,7 +5734,7 @@ banks:
     titles seen), shows no city on the cards and no Germany facet was found, so the Frankfurt/Koeln filter cannot be applied
     yet. Needs a Germany-specific list URL or a location selector before enabling (custom_html, link_pattern JobDetail/).'
   options:
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: postbank
   name: Postbank (Deutsche Bank Gruppe, BHW/Postbank Filialvertrieb)
   display_name: Postbank
@@ -5757,7 +5757,7 @@ banks:
     tenant: db
     site: PBWebsite
     max_pages: 15
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: dkb_deutsche_kreditbank
   name: Deutsche Kreditbank AG (DKB)
   display_name: DKB
@@ -5773,7 +5773,7 @@ banks:
   last_verified: null
   notes: 'www.dkb.de/karriere is skipped by the probe (robots.txt unreachable, 503) so it is not used. The vacancy site jobs.dkb.de (named in web search results, HTTP 200) is a SAP SuccessFactors career site (job URLs /job/Berlin-<title>/<id>/, e.g. the Initiativbewerbung link on the home page). Disabled because the static /search/?q=&locationsearch=Frankfurt (64 KB) and /viewalljobs/ (39 KB) pages showed no tr.data-row table rows to the probe, so the list may be JavaScript-rendered; re-check with Verify and enable when the successfactors adapter finds jobs. Dry-run 2026-10-05: the SuccessFactors adapter finds no job links on jobs.dkb.de (layout differs); Berlin-based, so low value for the Frankfurt/Koeln filter. Kept disabled.'
   options:
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: comdirect_bank
   name: comdirect bank AG
   display_name: comdirect
@@ -5830,7 +5830,7 @@ banks:
     sitemap_url: https://search.jobs.barclays/sitemap.xml
     url_regex: "/job/(frankfurt[^/]*|koeln|cologne|bonn|leverkusen|eschborn|bad-homburg[^/]*|offenbach[^/]*|neu-isenburg|wiesbaden|mainz|darmstadt|hanau)/"
     max_pages: 120
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: berenberg
   name: Joh. Berenberg, Gossler & Co. KG (Berenberg)
   display_name: Berenberg
@@ -5850,7 +5850,7 @@ banks:
     Scanned 5 same-domain scripts for api/json/ajax/ATS endpoints: none. A link /search-our-jobs was seen but not probed
     further (round limit). Needs a JSON endpoint to be monitorable.'
   options:
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: mm_warburg_co
   name: M.M.Warburg & CO (AG & Co.) KGaA
   display_name: M.M.Warburg
@@ -5871,7 +5871,7 @@ banks:
   options:
     link_pattern: "/de/karriere/stellenangebote/[0-9a-f-]{36}"
     accept_unknown_location: true
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: donner_reuschel
   name: Donner & Reuschel AG
   display_name: Donner & Reuschel
@@ -5887,7 +5887,7 @@ banks:
   last_verified: null
   notes: 'donner-reuschel.de/karriere/ (HTTP 200) links to the softgarden tenant donner-reuschel.softgarden.io (page /de/data-security answered 200). The vacancy list path /de/vacancies is the usual softgarden path (used by other banks) but was not confirmed by a probe, and the softgarden /api/ is disallowed by robots.txt. Enable after Verify finds jobs. Dry-run 2026-10-05: softgarden list read 12 vacancies (0 in the Frankfurt/Koeln areas).'
   options:
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: merck_finck_privatbankiers
   name: Merck Finck Privatbankiers AG
   display_name: Merck Finck
@@ -5906,7 +5906,7 @@ banks:
     (Frankfurt and München seen) next to other Quintet entities (KBL Luxembourg, Puilaetco, Brown Shipley), which the regions
     filter removes. Parse by the adapter unverified.'
   options:
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: bethmann_bank
   name: Bankhaus Bethmann (Bethmann Bank AG)
   display_name: Bethmann Bank
@@ -5924,7 +5924,7 @@ banks:
     conservative. The search result title says "Javascript is required", so the list is probably JS-rendered anyway. Single
     vacancy PDFs exist as bethmannbank.de/de/media/<title>_tcm31-<id>.pdf. Not circumvented; retry later.'
   options:
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: volkswagen_financial_services
   name: Volkswagen Financial Services AG / Volkswagen Bank GmbH
   display_name: Volkswagen Financial Services
@@ -5945,7 +5945,7 @@ banks:
     unverified.'
   options:
     search_url: https://jobs.volkswagen-group.com/VWFS/search/
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: bmw_bank
   name: BMW Bank GmbH (BMW Group Financial Services)
   display_name: BMW Bank
@@ -5964,7 +5964,7 @@ banks:
     skipped by robots.txt (not circumvented). Group-wide site; BMW Bank jobs would need a keyword filter. Retry if the RSS
     feed is released or a static list is found.'
   options:
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: mercedes_benz_bank
   name: Mercedes-Benz Bank AG / Mercedes-Benz Mobility
   display_name: Mercedes-Benz Bank
@@ -5984,7 +5984,7 @@ banks:
     en-sitemap.xml, enUS-sitemap.xml, hu-sitemap.xml (not opened; group-wide, thousands of Mercedes-Benz AG jobs, no
     bank-only filter). Not enabled: would need a sitemap_jobs run with a bank filter.'
   options:
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: bausparkasse_schwaebisch_hall
   name: Bausparkasse Schwäbisch Hall AG
   display_name: Bausparkasse Schwäbisch Hall
@@ -6004,7 +6004,7 @@ banks:
     selectors:
       item: "a[href^='/de/job/']"
       title: "div[data-slot='item-title']"
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: wuestenrot_bhw_bausparkasse
   name: Wüstenrot Bausparkasse AG / BHW Bausparkasse AG
   display_name: Wüstenrot / BHW Bausparkasse
@@ -6023,7 +6023,7 @@ banks:
     (modEmJoblist, search API /api/search/de/...), no static vacancy links; the page scripts showed no job-list endpoint
     within the probe limit. Group-wide (W&W, Wüstenrot, Württembergische, BHW). Needs a discoverable JSON endpoint.'
   options:
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: debeka_bausparkasse
   name: Debeka Bausparkasse AG
   display_name: Debeka Bausparkasse
@@ -6045,7 +6045,7 @@ banks:
     tenant: debeka
     site: Karriere
     max_pages: 30
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: n26
   name: N26 Bank GmbH
   display_name: N26
@@ -6073,7 +6073,7 @@ banks:
       location: location.name
       url: absolute_url
       date: first_published
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: solaris
   name: Solaris SE
   display_name: Solaris
@@ -6101,7 +6101,7 @@ banks:
       location: location.name
       url: absolute_url
       date: first_published
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: scalable_capital
   name: Scalable Capital GmbH
   display_name: Scalable Capital
@@ -6128,7 +6128,7 @@ banks:
       title: h4.job-title
       location: p.job-desc span
       link: a.js-job-ad-link
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: blackrock_germany
   name: BlackRock (Germany offices)
   display_name: BlackRock (Germany)
@@ -6153,7 +6153,7 @@ banks:
     sitemap_url: https://careers.blackrock.com/sitemap.xml
     url_regex: /job/(frankfurt|frankfurt-am-main|koeln|cologne|bonn|eschborn|bad-homburg|offenbach|oberursel|kronberg)[a-z-]*/
     max_pages: 60
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: klarna_germany
   name: Klarna Bank AB (Germany)
   display_name: Klarna (Germany)
@@ -6173,7 +6173,7 @@ banks:
     working vacancy list was confirmed. HQ Stockholm, German offices Berlin/Munich: the Frankfurt/Koeln region filter would drop
     nearly all jobs anyway. Re-check later (Teamtailor offers /jobs.rss if the board is reachable).'
   options:
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: smava
   name: Smava GmbH
   display_name: smava
@@ -6195,7 +6195,7 @@ banks:
   options:
     link_pattern: /companies/smava/\d+-
     accept_unknown_location: true
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: trade_republic
   name: Trade Republic Bank GmbH
   display_name: Trade Republic
@@ -6216,7 +6216,7 @@ banks:
     and were not used. HQ Berlin: the Frankfurt/Koeln region filter would drop most jobs anyway. Needs the ATS endpoint from
     browser DevTools.'
   options:
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: meag
   name: MEAG MUNICH ERGO AssetManagement GmbH
   display_name: MEAG (Munich Re)
@@ -6236,7 +6236,7 @@ banks:
     (not found as a static list). MEAG is HQ Munich (offices also in Hamburg, Frankfurt is minor), so the Frankfurt/Koeln
     region filter would drop nearly all jobs anyway. Needs the list endpoint from browser DevTools.'
   options:
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: allianz_global_investors
   name: Allianz Global Investors GmbH
   display_name: Allianz Global Investors
@@ -6258,7 +6258,7 @@ banks:
     Germany list (several hundred pages) without any AllianzGI or city filter, so it was NOT enabled; needs a Phenom list endpoint
     with a company/location facet or an industry_filter on the job page. Group-wide portal: also covers other Allianz entities.'
   options:
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: dws
   name: DWS Group GmbH & Co. KGaA
   display_name: DWS
@@ -6299,7 +6299,7 @@ banks:
   options:
     link_pattern: /karriere/job/[^/?#]+
     accept_unknown_location: true
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: check24
   name: CHECK24 Vergleichsportal GmbH
   display_name: CHECK24
@@ -6321,7 +6321,7 @@ banks:
   options:
     link_pattern: /de/jobs/[^/]+/ref[0-9a-z]+-
     title_cut_regex: \s+Teilen\s+.*$
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: ampega
   name: Ampega Asset Management GmbH
   display_name: Ampega (Talanx)
@@ -6342,7 +6342,7 @@ banks:
     belongs to Talanx; its jobs may sit on a Talanx group portal that was not found. Needs the real list endpoint from browser
     DevTools.'
   options:
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: amundi_germany
   name: Amundi Deutschland GmbH
   display_name: Amundi (Germany)
@@ -6366,7 +6366,7 @@ banks:
     was not probed. Not enabled to avoid listing French jobs.'
   options:
     link_pattern: /offre-de-emploi/emploi-[^/?#]+_\d+\.aspx
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: adyen_germany
   name: Adyen (Germany, Berlin office)
   display_name: Adyen (Germany)
@@ -6387,7 +6387,7 @@ banks:
     Berlin only, so the Frankfurt/Koeln region filter would drop almost everything anyway. Needs the Algolia/API call from browser
     DevTools.'
   options:
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: hansainvest
   name: HANSAINVEST Hanseatische Investment-GmbH
   display_name: HANSAINVEST
@@ -6413,7 +6413,7 @@ banks:
   options:
     link_pattern: /HANSAINVEST/job/(?:Frankfurt|Eschborn|Bad-Homburg|Offenbach|Neu-Isenburg|K%C3%B6ln|Koeln|Leverkusen|Bonn)[^/]*/\d+
     accept_unknown_location: true
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: generali_deutschland
   name: Generali Deutschland AG
   display_name: Generali Deutschland
@@ -6435,7 +6435,7 @@ banks:
     params: {language: de}
     items_path: ''
     fields: {title: position, id: id, location: jobOpening.location, department: jobOpening.department, url: jobPublicationURL}
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: axa_deutschland
   name: AXA Konzern AG
   display_name: AXA Deutschland
@@ -6453,7 +6453,7 @@ banks:
     the tool treats an unreadable or disallowing robots.txt as a stop (www.axa.de/karriere earlier: robots.txt HTTP 503). Not worked around (tracking parameters of the supplied link were not used).
     Cannot tell from the probe whether the portal disallows bots or just blocks the runner; retry later, otherwise the vacancies stay unmonitored.'
   options:
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: zurich_deutschland
   name: Zurich Gruppe Deutschland
   display_name: Zurich Deutschland
@@ -6476,7 +6476,7 @@ banks:
     params:
       locationsearch: Deutschland
     max_pages: 20
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: ergo_dkv
   name: ERGO Group / ERGO Deutschland / DKV
   display_name: ERGO / DKV
@@ -6498,7 +6498,7 @@ banks:
     sitemap_url: https://careers.munichre.com/sitemap.xml
     url_regex: /job/(frankfurt|frankfurt-am-main|koeln|cologne|leverkusen|bonn|bergisch-gladbach|bruhl|brühl|hurth|hürth|frechen|pulheim|dormagen|wesseling|erftstadt|kerpen|eschborn|offenbach|bad-homburg|oberursel|kronberg|hofheim|bad-soden|russelsheim|rüsselsheim|neu-isenburg|dreieich|langen|hanau|darmstadt|mainz|wiesbaden)[a-z-]*/
     max_pages: 150
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: devk_versicherungen
   name: DEVK Versicherungen
   display_name: DEVK
@@ -6525,7 +6525,7 @@ banks:
     slug_strip_regex: ^\d+-|-m-w-d$
     max_pages: 1500
     accept_unknown_location: true
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: allianz_deutschland
   name: Allianz Deutschland
   display_name: Allianz Deutschland
@@ -6569,7 +6569,7 @@ banks:
     fields: {title: title, id: jobId, location: cityState, department: category, url: applyUrl}
     url_template: https://careers.allianz.com/de/de/job/{id}
     pagination: {type: offset, param: from, size_param: size, size: 50, total_path: refineSearch.totalHits, in: json_body, start: 0, max_pages: 30}
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: swiss_re_deutschland
   name: Swiss Re (Germany - Frankfurt, Munich)
   display_name: Swiss Re Deutschland
@@ -6593,7 +6593,7 @@ banks:
     base_url: https://www.swissre.com
     title_cut_regex: ',\s*([A-ZÄÖÜ][A-Za-zäöüß .-]+)\s*\(DE\)\s*$'
     accept_unknown_location: true
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: gothaer_versicherungen
   name: Gothaer Versicherungen
   display_name: Gothaer
@@ -6616,7 +6616,7 @@ banks:
     params: {filterType: all}
     items_path: jobs
     fields: {title: title, id: uid, location: city, department: department, url: url}
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: deutsche_familienversicherung
   name: Deutsche Familienversicherung AG
   display_name: Deutsche Familienversicherung
@@ -6632,7 +6632,7 @@ banks:
   last_verified: null
   notes: 'Real Personio tenant dfvag (URL supplied by the user; the earlier guess deutsche-familienversicherung was wrong, hence the robots stop). personio adapter reads https://dfvag.jobs.personio.de/xml. Unverified until a dry-run.'
   options:
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: frankfurter_leben_versicherung
   name: Frankfurter Versicherung / Frankfurter Leben (FL Group)
   display_name: Frankfurter Leben
@@ -6683,7 +6683,7 @@ banks:
     link_pattern: job\.hdi\.group/job/
     title_url_regex: /job/([^/]+)/\d+
     pagination: {param: page, max_pages: 30}
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: gen_re_koeln
   name: General Reinsurance AG (Gen Re)
   display_name: Gen Re
@@ -6701,7 +6701,7 @@ banks:
     The page (5 KB) is a JavaScript shell with the anonymous guest session of the site (csod.context: API base uk.api.csod.com and a guest token), which the new csod adapter reads at run time and uses for the
     same job search call the front end makes (token never stored). The response format is an assumption until the first dry-run; the robots check of the API host may still stop it. Region Koeln.'
   options:
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: alte_leipziger_hallesche
   name: ALTE LEIPZIGER - HALLESCHE Konzern
   display_name: Alte Leipziger Hallesche
@@ -6725,7 +6725,7 @@ banks:
     items_path: results
     fields: {title: title, id: id, location: location, url: url, date: lastUpdate}
     pagination: {type: page, param: page, total_path: meta.total, in: json_body, max_pages: 6}
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: helvetia_deutschland
   name: Helvetia Versicherungen Deutschland
   display_name: Helvetia Deutschland
@@ -6748,7 +6748,7 @@ banks:
     params: {displayLimit: 500}
     items_path: results.0.items
     fields: {title: title, id: href, location: subTitle, url: href}
-    regions: [rhein_main, koeln]
+    regions: [rhein_main, koeln, duesseldorf]
 - id: lbs_hessen_thueringen
   name: LBS Hessen-Thüringen
   display_name: LBS Hessen-Thüringen
