@@ -6945,8 +6945,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: needs_review
-  notes: 'Family-office / alternative-asset manager. Career page /karriere/ (robots.txt allowed the probe 2026-11-07) lists vacancies server-side as tiles (h2.t-entry-title > a) in tabs Frankfurt/Bad Homburg, Duesseldorf and HQ Asset Servicing; each tile links to its own page on hqtrust.de. No location in the tile (it is only given by the tab), so unknown locations are accepted; all HQ Trust sites are in the Frankfurt / Duesseldorf regions. Probe saw 4+ tiles incl. Leiter IT & Plattform, Business Manager / Business Analyst, Investment-Consultant, Praktikant. To be confirmed by a dry-run.'
+  verification_status: ok
+  last_verified: 2026-11-07
+  notes: 'Family-office / alternative-asset manager. Career page /karriere/ (robots.txt allowed the probe 2026-11-07) lists vacancies server-side as tiles (h2.t-entry-title > a) in tabs Frankfurt/Bad Homburg, Duesseldorf and HQ Asset Servicing; each tile links to its own page on hqtrust.de. No location in the tile (it is only given by the tab), so unknown locations are accepted; all HQ Trust sites are in the Frankfurt / Duesseldorf regions. Probe saw 4+ tiles incl. Leiter IT & Plattform, Business Manager / Business Analyst, Investment-Consultant, Praktikant. Dry-run 2026-11-07 ok: 10 vacancies read, 1 leadership match (Leiter IT & Plattform).'
   options:
     selectors:
       item: div.tmb
@@ -6969,11 +6970,30 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: needs_review
-  notes: 'Asset / investment manager (alternative assets). Career page https://www.feri.de/professionals/stellenangebote/ links to the Softgarden board feri.softgarden.io; its list /de/vacancies is server-rendered (probe 2026-11-07, 12+ links ../job/<id>/<slug>, e.g. Bereichsleiter Prozesse und KI, Senior Investment Manager Private Markets). No location in the list; FERI sits in Bad Homburg, so unknown locations are accepted. To be confirmed by a dry-run.'
+  verification_status: ok
+  last_verified: 2026-11-07
+  notes: 'Asset / investment manager (alternative assets). Career page https://www.feri.de/professionals/stellenangebote/ links to the Softgarden board feri.softgarden.io; its list /de/vacancies is server-rendered (probe 2026-11-07, 12+ links ../job/<id>/<slug>, e.g. Bereichsleiter Prozesse und KI, Senior Investment Manager Private Markets). No location in the list; FERI sits in Bad Homburg, so unknown locations are accepted. Dry-run 2026-11-07 ok: 14 vacancies read, 0 relevant (Bereichsleiter Prozesse und KI is dropped by the function filter).'
   options:
     link_pattern: /job/\d+/
     accept_unknown_location: true
+    regions:
+    - rhein_main
+    - koeln
+    - duesseldorf
+- id: prime_capital
+  name: Prime Capital AG
+  display_name: Prime Capital
+  country: Germany
+  address_in_source_list: 60311 Frankfurt am Main
+  jobs_url: https://primecapital-ag.jobs.personio.de/
+  source_type: personio
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: needs_review
+  notes: 'Alternative-asset manager (Frankfurt, Luxembourg). Personio XML feed https://primecapital-ag.jobs.personio.de/xml answered HTTP 200 on 2026-11-07 with one posting (Initiative Application, Frankfurt/Luxembourg), so no real vacancy right now. Connected to catch new postings. To be confirmed by a dry-run.'
+  options:
     regions:
     - rhein_main
     - koeln
