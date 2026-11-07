@@ -6958,3 +6958,23 @@ banks:
     - rhein_main
     - koeln
     - duesseldorf
+- id: feri
+  name: FERI AG
+  display_name: FERI
+  country: Germany
+  address_in_source_list: 61348 Bad Homburg v.d.H.
+  jobs_url: https://feri.softgarden.io/de/vacancies
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: needs_review
+  notes: 'Asset / investment manager (alternative assets). Career page https://www.feri.de/professionals/stellenangebote/ links to the Softgarden board feri.softgarden.io; its list /de/vacancies is server-rendered (probe 2026-11-07, 12+ links ../job/<id>/<slug>, e.g. Bereichsleiter Prozesse und KI, Senior Investment Manager Private Markets). No location in the list; FERI sits in Bad Homburg, so unknown locations are accepted. To be confirmed by a dry-run.'
+  options:
+    link_pattern: /job/\d+/
+    accept_unknown_location: true
+    regions:
+    - rhein_main
+    - koeln
+    - duesseldorf
