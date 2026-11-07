@@ -355,6 +355,15 @@ location:
       [Düsseldorf, Duesseldorf, Neuss, Meerbusch, Ratingen, Hilden, Erkrath, Mettmann, Haan, Kaarst, Korschenbroich, Willich,
        Krefeld, Mönchengladbach, Grevenbroich, Dormagen, Langenfeld, Monheim, Leverkusen, Solingen, Wuppertal, Velbert,
        Heiligenhaus, Wülfrath, Duisburg, Mülheim an der Ruhr, Essen, Kempen, Tönisvorst, Viersen, Jüchen]
+    stuttgart:
+      [Stuttgart, Esslingen am Neckar, Ludwigsburg, Böblingen, Sindelfingen, Leinfelden-Echterdingen, Filderstadt, Ostfildern,
+       Fellbach, Waiblingen, Kornwestheim, Korntal-Münchingen, Gerlingen, Leonberg, Ditzingen, Bietigheim-Bissingen, Nürtingen,
+       Kirchheim unter Teck, Göppingen, Backnang, Schorndorf, Herrenberg, Winnenden, Remseck am Neckar, Stuttgart-Vaihingen,
+       Stuttgart-Möhringen, Stuttgart-Zuffenhausen, Stuttgart-Bad Cannstatt, Stuttgart-Feuerbach, Stuttgart-Degerloch]
+    mannheim:
+      [Mannheim, Ludwigshafen, Ludwigshafen am Rhein, Heidelberg, Weinheim, Schwetzingen, Viernheim, Lampertheim, Bensheim,
+       Speyer, Frankenthal, Worms, Hockenheim, Walldorf, Wiesloch, Bad Dürkheim, Neustadt an der Weinstraße, Ladenburg,
+       Edingen-Neckarhausen, Plankstadt, Ketsch, Mutterstadt, Schifferstadt, Bürstadt, Lorsch, Heppenheim, Sinsheim]
   foreign_locations:
     [Amsterdam, London, Paris, Luxembourg, Luxemburg, Brussels, Brüssel, Zurich, Zürich, Vienna, Wien, Warsaw,
      Warschau, Madrid, Barcelona, Milan, Mailand, Rome, Dublin, Prague, Budapest, Stockholm, Copenhagen,
