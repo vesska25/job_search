@@ -7099,3 +7099,37 @@ banks:
     bank_code: '67250020'
     regions:
     - mannheim
+- id: kreissparkasse_waiblingen
+  name: Kreissparkasse Waiblingen
+  display_name: Kreissparkasse Waiblingen
+  country: Germany
+  address_in_source_list: 71332 Waiblingen
+  jobs_url: https://www.sparkasse.de/jobboerse/kreissparkasse-waiblingen.html
+  source_type: sparkasse_jobmarket
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: needs_review
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 60250010). Probe 2026-11-07 confirmed client name Kreissparkasse Waiblingen (examples Pruefer Kreditrevision, Schuelerpraktikum). Same adapter as Kreissparkasse Duesseldorf. To be confirmed by a dry-run.
+  options:
+    bank_code: '60250010'
+    regions:
+    - stuttgart
+- id: kreissparkasse_goeppingen
+  name: Kreissparkasse Göppingen
+  display_name: Kreissparkasse Göppingen
+  country: Germany
+  address_in_source_list: 73033 Göppingen
+  jobs_url: https://www.sparkasse.de/jobboerse/kreissparkasse-goeppingen.html
+  source_type: sparkasse_jobmarket
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: needs_review
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 61050000). Probe 2026-11-07 confirmed client name Kreissparkasse Göppingen (examples Pflichtpraktikum, Bankkaufleute 2027). Same adapter as Kreissparkasse Duesseldorf. To be confirmed by a dry-run.
+  options:
+    bank_code: '61050000'
+    regions:
+    - stuttgart
