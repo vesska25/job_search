@@ -6991,8 +6991,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: needs_review
-  notes: 'Alternative-asset manager (Frankfurt, Luxembourg). Personio XML feed https://primecapital-ag.jobs.personio.de/xml answered HTTP 200 on 2026-11-07 with one posting (Initiative Application, Frankfurt/Luxembourg), so no real vacancy right now. Connected to catch new postings. To be confirmed by a dry-run.'
+  verification_status: ok
+  last_verified: 2026-11-07
+  notes: 'Alternative-asset manager (Frankfurt, Luxembourg). Personio XML feed https://primecapital-ag.jobs.personio.de/xml answered HTTP 200 on 2026-11-07 with one posting (Initiative Application, Frankfurt/Luxembourg), so no real vacancy right now. Connected to catch new postings. Dry-run 2026-11-07 ok: 1 posting read (Initiative Application, Frankfurt), rejected as non-leadership.'
   options:
     regions:
     - rhein_main
