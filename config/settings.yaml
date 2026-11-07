@@ -364,6 +364,9 @@ location:
       [Mannheim, Ludwigshafen, Ludwigshafen am Rhein, Heidelberg, Weinheim, Schwetzingen, Viernheim, Lampertheim, Bensheim,
        Speyer, Frankenthal, Worms, Hockenheim, Walldorf, Wiesloch, Bad Dürkheim, Neustadt an der Weinstraße, Ladenburg,
        Edingen-Neckarhausen, Plankstadt, Ketsch, Mutterstadt, Schifferstadt, Bürstadt, Lorsch, Heppenheim, Sinsheim]
+    karlsruhe:
+      [Karlsruhe, Ettlingen, Bruchsal, Rastatt, Stutensee, Linkenheim-Hochstetten, Waghäusel, Philippsburg, Bretten, Pfinztal,
+       Karlsbad, Rheinstetten, Durmersheim, Gaggenau, Baden-Baden, Landau in der Pfalz, Germersheim, Wörth am Rhein, Pforzheim]
   foreign_locations:
     [Amsterdam, London, Paris, Luxembourg, Luxemburg, Brussels, Brüssel, Zurich, Zürich, Vienna, Wien, Warsaw,
      Warschau, Madrid, Barcelona, Milan, Mailand, Rome, Dublin, Prague, Budapest, Stockholm, Copenhagen,

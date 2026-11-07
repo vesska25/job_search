@@ -5655,15 +5655,15 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
-  notes: 'Official career site (www.l-bank.info links to /karriere/jobs). Probe of /karriere/jobs: HTTP 200, static vacancy links
-    https://www.l-bank.info/karriere/jobs/<slug>-<id>.html (e.g. personalreferent-m-w-d-recruiting-und-personalbetreuung-67442297.html,
-    werkstudent-m-w-d-it-projektunterstuetzung-und-organisation-67474157.html). Locations are Karlsruhe/Stuttgart only; no city
-    in the list, so with regions nothing is expected to pass (accept_unknown_location off).'
+  verification_status: needs_review
+  notes: 'Official career site (www.l-bank.info links to /karriere/jobs). Server-rendered cards li.m-masonry-item--job with the title in h3, the city in the Standort block (Karlsruhe or Stuttgart) and the link in the button a.a-button (href https://www.l-bank.info/karriere/jobs/<slug>-<id>.html). Probe 2026-11-07 showed 16 vacancies. The first run read the button text Zur Jobbeschreibung as the title, so explicit selectors are used now. To be confirmed by a dry-run.'
   options:
-    link_pattern: /karriere/jobs/[^/]+-\d+\.html$
-    regions: [rhein_main, koeln, duesseldorf]
+    selectors:
+      item: li.m-masonry-item--job
+      title: h3
+      link: a.a-button
+      location: div.m-masonry-item__content-body-location
+    regions: [karlsruhe, stuttgart, mannheim, rhein_main, koeln, duesseldorf]
 - id: berlin_hyp
   name: Berlin Hyp AG
   display_name: Berlin Hyp
