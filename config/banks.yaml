@@ -449,6 +449,7 @@ banks:
     regions:
     - rhein_main
     - koeln
+    - duesseldorf
 - id: bank_of_ireland_niederlassung_frankfurt
   name: Bank of Ireland, Niederlassung Frankfurt
   country: Germany
@@ -540,6 +541,7 @@ banks:
     regions:
     - rhein_main
     - koeln
+    - duesseldorf
 - id: bensberger_bank_e_g
   name: Bensberger Bank e.G.
   country: Germany
@@ -646,6 +648,7 @@ banks:
     regions:
     - rhein_main
     - koeln
+    - duesseldorf
 - id: c24_bank
   name: C24 Bank GmbH
   country: Germany
@@ -1578,6 +1581,7 @@ banks:
     regions:
     - rhein_main
     - koeln
+    - duesseldorf
 - id: hyundai_capital_bank_europe
   name: Hyundai Capital Bank Europe GmbH
   display_name: Hyundai Capital Bank Europe
@@ -1598,6 +1602,7 @@ banks:
     regions:
     - rhein_main
     - koeln
+    - duesseldorf
 - id: huttenberger_bank
   name: Hüttenberger Bank eG
   country: Germany
@@ -1745,6 +1750,7 @@ banks:
     regions:
     - rhein_main
     - koeln
+    - duesseldorf
 - id: isbank
   name: Isbank AG
   country: Germany
@@ -1865,6 +1871,7 @@ banks:
     regions:
     - rhein_main
     - koeln
+    - duesseldorf
 - id: kfw
   name: Kreditanstalt für Wiederaufbau
   display_name: KfW
@@ -2101,6 +2108,7 @@ banks:
     regions:
     - rhein_main
     - koeln
+    - duesseldorf
 - id: mediobanca_banca_di_credito_finanziario_societa_
   name: MEDIOBANCA BANCA DI CREDITO FINANZIARIO SOCIETA' PER AZIONI, Zweigniederlassung Deutschland
   country: Germany
@@ -2963,6 +2971,7 @@ banks:
     regions:
     - rhein_main
     - koeln
+    - duesseldorf
 - id: societe_generale_s_a
   name: Société Générale S.A.
   country: Germany
@@ -3478,6 +3487,7 @@ banks:
     regions:
     - rhein_main
     - koeln
+    - duesseldorf
 - id: stadtische_sparkasse_offenbach_a_m
   name: Städtische Sparkasse Offenbach a. M.
   country: Germany
@@ -3549,6 +3559,7 @@ banks:
     regions:
     - rhein_main
     - koeln
+    - duesseldorf
 - id: targobank
   name: TARGOBANK AG
   country: Germany
@@ -6768,6 +6779,7 @@ banks:
     regions:
     - rhein_main
     - koeln
+    - duesseldorf
 - id: volksbank_rhein_main
   name: Volksbank Rhein-Main eG
   display_name: Volksbank Rhein-Main eG
@@ -6788,6 +6800,7 @@ banks:
     regions:
     - rhein_main
     - koeln
+    - duesseldorf
 - id: techniker_krankenkasse
   name: Techniker Krankenkasse (TK)
   display_name: Techniker Krankenkasse
@@ -6812,6 +6825,7 @@ banks:
     regions:
     - rhein_main
     - koeln
+    - duesseldorf
 - id: barmer
   name: BARMER
   display_name: BARMER
@@ -6833,6 +6847,7 @@ banks:
     regions:
     - rhein_main
     - koeln
+    - duesseldorf
 - id: ikk_classic
   name: IKK classic
   display_name: IKK classic
@@ -6858,6 +6873,7 @@ banks:
     regions:
     - rhein_main
     - koeln
+    - duesseldorf
 - id: aok_via_bundesagentur
   name: AOK (Hessen, Rheinland-Pfalz/Saarland, Rheinland/Hamburg) via Bundesagentur
   display_name: AOK (via Bundesagentur)
@@ -6885,6 +6901,7 @@ banks:
     regions:
     - rhein_main
     - koeln
+    - duesseldorf
 - id: ifp_personalberatung_managementdiagnostik
   name: ifp Personalberatung Managementdiagnostik GmbH & Co. KG
   display_name: ifp Personalberatung (Sparkassen-Jobboerse)
@@ -6917,3 +6934,27 @@ banks:
   notes: 'Recruiting firm of the Sparkassen that posts vacancies of (anonymous) Sparkassen on the sparkasse.de job exchange; found in the exchange client list (bankCode 90500049, 51 vacancies on 2026-10-09). Added after "Leiter Gesamtbanksteuerung (m/w/d)" (job 236956) was missed. By decision of the user NO region filter: leadership vacancies from all of Germany are accepted (the normal leadership + function filters still apply). The page of a vacancy shows the recruiter''s own Berlin address, so the real workplace may differ. Dry-run 2026-10-09: 51 vacancies read, 11 leadership, 2 relevant (Gruppenleitung KreditService, Leiter Gesamtbanksteuerung).'
   options:
     bank_code: '90500049'
+- id: hq_trust
+  name: HQ Trust GmbH
+  display_name: HQ Trust
+  country: Germany
+  address_in_source_list: 61352 Bad Homburg v.d.H.
+  jobs_url: https://hqtrust.de/karriere/
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: needs_review
+  notes: 'Family-office / alternative-asset manager. Career page /karriere/ (robots.txt allowed the probe 2026-11-07) lists vacancies server-side as tiles (h2.t-entry-title > a) in tabs Frankfurt/Bad Homburg, Duesseldorf and HQ Asset Servicing; each tile links to its own page on hqtrust.de. No location in the tile (it is only given by the tab), so unknown locations are accepted; all HQ Trust sites are in the Frankfurt / Duesseldorf regions. Probe saw 4+ tiles incl. Leiter IT & Plattform, Business Manager / Business Analyst, Investment-Consultant, Praktikant. To be confirmed by a dry-run.'
+  options:
+    selectors:
+      item: div.tmb
+      title: h2.t-entry-title a
+      link: h2.t-entry-title a
+    base_url: https://hqtrust.de
+    accept_unknown_location: true
+    regions:
+    - rhein_main
+    - koeln
+    - duesseldorf
