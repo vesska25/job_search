@@ -305,3 +305,12 @@ def test_bundesagentur_region_dicts_do_not_crash_the_region_filter():
     assert is_germany(job, bank, cfg)[0]                                  # no named region configured -> nothing to filter on
     bank.options["regions"].append("koeln")                               # dicts and names mixed: names still apply
     assert not is_germany(job, bank, cfg)[0]
+
+
+def test_process_and_ai_functions(settings, bank):
+    f = lambda t: match_functions(make_job(bank, t), settings["filters"])
+    assert f("Bereichsleiter Prozesse und KI (m/w/d)")
+    assert f("Head of Artificial Intelligence (m/w/d)")
+    assert f("Leiter Künstliche Intelligenz (m/w/d)")
+    assert f("Head of AI Platform (m/w/d)")
+    assert not f("Abteilungsleiter Maintenance (m/w/d)")   # 'ai' inside a word must not count

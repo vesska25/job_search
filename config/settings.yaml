@@ -206,6 +206,11 @@ filters:
     - Digitale Transformation
     - Digitale Transformationen
     - Digital          # any leadership title with 'digital' (Digitale/Digitalisierung/Digital Banking ...) in title or category
+    - Prozess          # Prozesse / Prozessoptimierung / Prozessmanagement ... (added at the user's request: "Bereichsleiter Prozesse und KI")
+    - KI               # whole word only (short term)
+    - AI               # whole word only (short term)
+    - Künstliche Intelligenz
+    - Artificial Intelligence
     - Prozessmanagement
     - Workflowmanagement
     - Workflow Management
