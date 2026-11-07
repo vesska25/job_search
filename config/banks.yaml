@@ -2159,8 +2159,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: needs_review
-  notes: 'Official MUFG Bank careers page https://www.bk.mufg.jp/global/careers/opportunities/ links to the Workday site mufgub / MUFG-Careers (found by probe 2026-11-07; the EMEA Dusseldorf page links to the same careers area). Group-wide list searched for Duesseldorf; the region filter makes the final location check. To be confirmed by a dry-run.'
+  verification_status: ok
+  last_verified: 2026-11-07
+  notes: 'Official MUFG Bank careers page https://www.bk.mufg.jp/global/careers/opportunities/ links to the Workday site mufgub / MUFG-Careers (found by probe 2026-11-07; the EMEA Dusseldorf page links to the same careers area). Group-wide list searched for Duesseldorf; the region filter makes the final location check. Dry-run 2026-11-07 ok, vacancies read correctly.'
   options:
     tenant: mufgub
     site: MUFG-Careers
@@ -3525,8 +3526,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: needs_review
-  notes: 'SMBC EMEA career site (SuccessFactors / Jobs2web) linked from the official page https://www.smbcgroup.com/emea/careers (probe 2026-11-07, robots.txt allowed). Group-wide EMEA list; the region filter makes the Germany check. Same adapter as Mizuho. To be confirmed by a dry-run.'
+  verification_status: ok
+  last_verified: 2026-11-07
+  notes: 'SMBC EMEA career site (SuccessFactors / Jobs2web) linked from the official page https://www.smbcgroup.com/emea/careers (probe 2026-11-07, robots.txt allowed). Group-wide EMEA list; the region filter makes the Germany check. Same adapter as Mizuho. Dry-run 2026-11-07 ok, vacancies read correctly.'
   options:
     max_pages: 30
     regions:
@@ -5489,15 +5491,15 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: unverified
-  last_verified: null
+  verification_status: ok
+  last_verified: 2026-11-07
   notes: 'Official portal karriere.lbbw.de (linked from www.lbbw.de/menschen/karriere/..., seen in a probe of that page). SAP SuccessFactors
     / Jobs2web: a probe of /search/?q=&startrow=0 returned vacancy links /job/<City>-<Title>-<postal code>/<id>/ with readable titles
     (e.g. Stuttgart-Trainee-(mwd)-Risk-Management...). The city is the first word of the slug, so options.regions filters to
-    Frankfurt/Köln areas. Not yet checked by a full adapter run.'
+    Frankfurt/Köln areas. Dry-run 2026-11-07 ok (adapter reads the vacancies, Stuttgart and Mannheim added to the regions).'
   options:
     max_pages: 20
-    regions: [rhein_main, koeln, duesseldorf]
+    regions: [rhein_main, koeln, duesseldorf, stuttgart, mannheim]
 - id: bayernlb
   name: Bayerische Landesbank (BayernLB)
   display_name: BayernLB
@@ -7025,8 +7027,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: needs_review
-  notes: Sparkassen job exchange (JSON API filtered by bankCode 67050505). Probe 2026-11-07 confirmed client name Sparkasse Rhein Neckar Nord with about 20 vacancies (for example Kreditanalyst, Individualkundenberater). Same adapter as Kreissparkasse Duesseldorf. To be confirmed by a dry-run.
+  verification_status: ok
+  last_verified: 2026-11-07
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 67050505). Probe 2026-11-07 confirmed client name Sparkasse Rhein Neckar Nord with about 20 vacancies (for example Kreditanalyst, Individualkundenberater). Same adapter as Kreissparkasse Duesseldorf. Dry-run 2026-11-07 ok, vacancies read correctly.
   options:
     bank_code: '67050505'
     regions:
@@ -7042,8 +7045,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: needs_review
-  notes: Sparkassen job exchange (JSON API filtered by bankCode 60350130). Probe 2026-11-07 confirmed client name Kreissparkasse Böblingen (examples Firmenkundenberater, BOGY-Schuelerpraktikum). Same adapter as Kreissparkasse Duesseldorf. To be confirmed by a dry-run.
+  verification_status: ok
+  last_verified: 2026-11-07
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 60350130). Probe 2026-11-07 confirmed client name Kreissparkasse Böblingen (examples Firmenkundenberater, BOGY-Schuelerpraktikum). Same adapter as Kreissparkasse Duesseldorf. Dry-run 2026-11-07 ok, vacancies read correctly.
   options:
     bank_code: '60350130'
     regions:
@@ -7059,8 +7063,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: needs_review
-  notes: Sparkassen job exchange (JSON API filtered by bankCode 60450050). Probe 2026-11-07 confirmed client name Kreissparkasse Ludwigsburg (examples Vermoegensverwalter, Revisor). Same adapter as Kreissparkasse Duesseldorf. To be confirmed by a dry-run.
+  verification_status: ok
+  last_verified: 2026-11-07
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 60450050). Probe 2026-11-07 confirmed client name Kreissparkasse Ludwigsburg (examples Vermoegensverwalter, Revisor). Same adapter as Kreissparkasse Duesseldorf. Dry-run 2026-11-07 ok, vacancies read correctly.
   options:
     bank_code: '60450050'
     regions:
@@ -7076,8 +7081,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: needs_review
-  notes: Sparkassen job exchange (JSON API filtered by bankCode 61150020). Probe 2026-11-07 confirmed client name Kreissparkasse Esslingen-Nürtingen (examples Trainee Unternehmenskundenbetreuung, Werkstudent). Same adapter as Kreissparkasse Duesseldorf. To be confirmed by a dry-run.
+  verification_status: ok
+  last_verified: 2026-11-07
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 61150020). Probe 2026-11-07 confirmed client name Kreissparkasse Esslingen-Nürtingen (examples Trainee Unternehmenskundenbetreuung, Werkstudent). Same adapter as Kreissparkasse Duesseldorf. Dry-run 2026-11-07 ok, vacancies read correctly.
   options:
     bank_code: '61150020'
     regions:
@@ -7093,8 +7099,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: needs_review
-  notes: Sparkassen job exchange (JSON API filtered by bankCode 67250020). Probe 2026-11-07 confirmed client name Sparkasse Heidelberg (examples Praktika, Privatkundenvertrieb). Same adapter as Kreissparkasse Duesseldorf. To be confirmed by a dry-run.
+  verification_status: ok
+  last_verified: 2026-11-07
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 67250020). Probe 2026-11-07 confirmed client name Sparkasse Heidelberg (examples Praktika, Privatkundenvertrieb). Same adapter as Kreissparkasse Duesseldorf. Dry-run 2026-11-07 ok, vacancies read correctly.
   options:
     bank_code: '67250020'
     regions:
@@ -7110,8 +7117,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: needs_review
-  notes: Sparkassen job exchange (JSON API filtered by bankCode 60250010). Probe 2026-11-07 confirmed client name Kreissparkasse Waiblingen (examples Pruefer Kreditrevision, Schuelerpraktikum). Same adapter as Kreissparkasse Duesseldorf. To be confirmed by a dry-run.
+  verification_status: ok
+  last_verified: 2026-11-07
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 60250010). Probe 2026-11-07 confirmed client name Kreissparkasse Waiblingen (examples Pruefer Kreditrevision, Schuelerpraktikum). Same adapter as Kreissparkasse Duesseldorf. Dry-run 2026-11-07 ok, vacancies read correctly.
   options:
     bank_code: '60250010'
     regions:
@@ -7127,8 +7135,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: needs_review
-  notes: Sparkassen job exchange (JSON API filtered by bankCode 61050000). Probe 2026-11-07 confirmed client name Kreissparkasse Göppingen (examples Pflichtpraktikum, Bankkaufleute 2027). Same adapter as Kreissparkasse Duesseldorf. To be confirmed by a dry-run.
+  verification_status: ok
+  last_verified: 2026-11-07
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 61050000). Probe 2026-11-07 confirmed client name Kreissparkasse Göppingen (examples Pflichtpraktikum, Bankkaufleute 2027). Same adapter as Kreissparkasse Duesseldorf. Dry-run 2026-11-07 ok, vacancies read correctly.
   options:
     bank_code: '61050000'
     regions:
@@ -7144,8 +7153,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: needs_review
-  notes: Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs). Vacancy URLs seen in search results on 2026-11-07 contain the bank slug volksbank-stuttgart-eg (examples Juniorbetreuer Firmenkunden, Trainee Privatkunden). To be confirmed by a dry-run.
+  verification_status: ok
+  last_verified: 2026-11-07
+  notes: Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs). Vacancy URLs seen in search results on 2026-11-07 contain the bank slug volksbank-stuttgart-eg (examples Juniorbetreuer Firmenkunden, Trainee Privatkunden). Dry-run 2026-11-07 ok, vacancies read correctly.
   options:
     vr_slug: volksbank-stuttgart-eg
     regions:
@@ -7161,8 +7171,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: needs_review
-  notes: Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs). Vacancy URLs seen in search results on 2026-11-07 contain the bank slug vr-bank-rhein-neckar-eg (examples Abteilungsleiter Wertpapiere Treasury, Berater Mittelstand, Filialleitung). To be confirmed by a dry-run.
+  verification_status: ok
+  last_verified: 2026-11-07
+  notes: Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs). Vacancy URLs seen in search results on 2026-11-07 contain the bank slug vr-bank-rhein-neckar-eg (examples Abteilungsleiter Wertpapiere Treasury, Berater Mittelstand, Filialleitung). Dry-run 2026-11-07 ok, vacancies read correctly.
   options:
     vr_slug: vr-bank-rhein-neckar-eg
     regions:
@@ -7178,8 +7189,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: needs_review
-  notes: stellen.center career portal (same platform as PSD Bank West), link found in the bank flyer and confirmed by probe 2026-11-07. Server-rendered cards with sections Kundenberater, Fachkraefte und Spezialisten, Fuehrungskraefte (example Filialleiter Schwaebisch Gmuend); vacancy links look like /P4ELUTJBD/filialleiter-schwabisch-gmund-mwd; the place of work is in a badge (Einsatzort). Region filter keeps Stuttgart area only. To be confirmed by a dry-run.
+  verification_status: ok
+  last_verified: 2026-11-07
+  notes: stellen.center career portal (same platform as PSD Bank West), link found in the bank flyer and confirmed by probe 2026-11-07. Server-rendered cards with sections Kundenberater, Fachkraefte und Spezialisten, Fuehrungskraefte (example Filialleiter Schwaebisch Gmuend); vacancy links look like /P4ELUTJBD/filialleiter-schwabisch-gmund-mwd; the place of work is in a badge (Einsatzort). Region filter keeps Stuttgart area only. Dry-run 2026-11-07 ok, vacancies read correctly.
   options:
     selectors:
       item: div.card.job
@@ -7199,8 +7211,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: needs_review
-  notes: Helix Jobs vacancy list. The old check-in board vr.mein-check-in.de/volksbank-kurpfalz says that the job board moved to volksbank-kurpfalz.helixjobs.com (probe 2026-11-07). The list is server-rendered with h3 titles (examples Leiter Intensivkundenbetreuung, Betreuer Firmenkunden Standort Heidelberg). Same layout as Wiesbadener Volksbank. No location in the card, the bank works in the Heidelberg and Weinheim area, so unknown locations are accepted. To be confirmed by a dry-run.
+  verification_status: ok
+  last_verified: 2026-11-07
+  notes: Helix Jobs vacancy list. The old check-in board vr.mein-check-in.de/volksbank-kurpfalz says that the job board moved to volksbank-kurpfalz.helixjobs.com (probe 2026-11-07). The list is server-rendered with h3 titles (examples Leiter Intensivkundenbetreuung, Betreuer Firmenkunden Standort Heidelberg). Same layout as Wiesbadener Volksbank. No location in the card, the bank works in the Heidelberg and Weinheim area, so unknown locations are accepted. Dry-run 2026-11-07 ok, vacancies read correctly.
   options:
     selectors:
       item: a[href*="/_/jobad?prj="]
