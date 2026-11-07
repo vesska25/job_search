@@ -7031,3 +7031,71 @@ banks:
     bank_code: '67050505'
     regions:
     - mannheim
+- id: kreissparkasse_boeblingen
+  name: Kreissparkasse Böblingen
+  display_name: Kreissparkasse Böblingen
+  country: Germany
+  address_in_source_list: 71032 Böblingen
+  jobs_url: https://www.sparkasse.de/jobboerse/kreissparkasse-boeblingen.html
+  source_type: sparkasse_jobmarket
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: needs_review
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 60350130). Probe 2026-11-07 confirmed client name Kreissparkasse Böblingen (examples Firmenkundenberater, BOGY-Schuelerpraktikum). Same adapter as Kreissparkasse Duesseldorf. To be confirmed by a dry-run.
+  options:
+    bank_code: '60350130'
+    regions:
+    - stuttgart
+- id: kreissparkasse_ludwigsburg
+  name: Kreissparkasse Ludwigsburg
+  display_name: Kreissparkasse Ludwigsburg
+  country: Germany
+  address_in_source_list: 71638 Ludwigsburg
+  jobs_url: https://www.sparkasse.de/jobboerse/kreissparkasse-ludwigsburg.html
+  source_type: sparkasse_jobmarket
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: needs_review
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 60450050). Probe 2026-11-07 confirmed client name Kreissparkasse Ludwigsburg (examples Vermoegensverwalter, Revisor). Same adapter as Kreissparkasse Duesseldorf. To be confirmed by a dry-run.
+  options:
+    bank_code: '60450050'
+    regions:
+    - stuttgart
+- id: kreissparkasse_esslingen_nuertingen
+  name: Kreissparkasse Esslingen-Nürtingen
+  display_name: Kreissparkasse Esslingen-Nürtingen
+  country: Germany
+  address_in_source_list: 73728 Esslingen am Neckar
+  jobs_url: https://www.sparkasse.de/jobboerse/kreissparkasse-esslingen-nuertingen.html
+  source_type: sparkasse_jobmarket
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: needs_review
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 61150020). Probe 2026-11-07 confirmed client name Kreissparkasse Esslingen-Nürtingen (examples Trainee Unternehmenskundenbetreuung, Werkstudent). Same adapter as Kreissparkasse Duesseldorf. To be confirmed by a dry-run.
+  options:
+    bank_code: '61150020'
+    regions:
+    - stuttgart
+- id: sparkasse_heidelberg
+  name: Sparkasse Heidelberg
+  display_name: Sparkasse Heidelberg
+  country: Germany
+  address_in_source_list: 69115 Heidelberg
+  jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-heidelberg.html
+  source_type: sparkasse_jobmarket
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: needs_review
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 67250020). Probe 2026-11-07 confirmed client name Sparkasse Heidelberg (examples Praktika, Privatkundenvertrieb). Same adapter as Kreissparkasse Duesseldorf. To be confirmed by a dry-run.
+  options:
+    bank_code: '67250020'
+    regions:
+    - mannheim
