@@ -2150,17 +2150,26 @@ banks:
   notes: No official Germany-specific vacancy source verified
 - id: mufg_bank_europe_n_v_germany_branch
   name: MUFG Bank (Europe) N.V. Germany Branch
+  display_name: MUFG Bank Europe
   country: Germany
   address_in_source_list: 40213 Düsseldorf
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://mufgub.wd3.myworkdayjobs.com/ja-JP/MUFG-Careers
+  source_type: workday
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
-  last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  enabled: true
+  verification_status: needs_review
+  notes: 'Official MUFG Bank careers page https://www.bk.mufg.jp/global/careers/opportunities/ links to the Workday site mufgub / MUFG-Careers (found by probe 2026-11-07; the EMEA Dusseldorf page links to the same careers area). Group-wide list searched for Duesseldorf; the region filter makes the final location check. To be confirmed by a dry-run.'
+  options:
+    tenant: mufgub
+    site: MUFG-Careers
+    search_text: Düsseldorf
+    max_pages: 10
+    regions:
+    - rhein_main
+    - koeln
+    - duesseldorf
 - id: macquarie_bank_europe_designated_activity_compan
   name: Macquarie Bank Europe Designated Activity Company, Frankfurt Branch
   country: Germany
@@ -3507,17 +3516,23 @@ banks:
 - id: sumitomo_mitsui_banking_corporation_fil_dusseldo
   name: Sumitomo Mitsui Banking Corporation Fil. Düsseldorf Zweigniederlassung der Sumitomo Mitsui Banking Corporation mit
     Sitz in Tokio
+  display_name: SMBC Düsseldorf
   country: Germany
   address_in_source_list: 40549 Düsseldorf
-  jobs_url: ''
-  source_type: unknown
+  jobs_url: https://careersemea.smbcgroup.com/
+  source_type: successfactors
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: no_source_found
-  last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  enabled: true
+  verification_status: needs_review
+  notes: 'SMBC EMEA career site (SuccessFactors / Jobs2web) linked from the official page https://www.smbcgroup.com/emea/careers (probe 2026-11-07, robots.txt allowed). Group-wide EMEA list; the region filter makes the Germany check. Same adapter as Mizuho. To be confirmed by a dry-run.'
+  options:
+    max_pages: 30
+    regions:
+    - rhein_main
+    - koeln
+    - duesseldorf
 - id: sutor_bank
   name: Sutor Bank GmbH
   country: Germany
