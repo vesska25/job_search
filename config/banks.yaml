@@ -1802,7 +1802,7 @@ banks:
   enabled: false
   verification_status: no_source_found
   last_verified: null
-  notes: No official Germany-specific vacancy source verified
+  notes: No official Germany-specific vacancy source verified. Checked 2026-11-07 - kbc.be/jobs lists Belgian business lines only; no Germany / Duesseldorf vacancy section found.
 - id: keb_hana_bank_d
   name: KEB Hana Bank (D) Aktiengesellschaft
   country: Germany
@@ -2583,7 +2583,7 @@ banks:
   enabled: false
   verification_status: no_source_found
   last_verified: null
-  notes: No official Germany-specific vacancy source verified. Winding-down institution; likely no regular vacancies.
+  notes: No official Germany-specific vacancy source verified. Checked 2026-11-07 - portigon.com does not resolve (company in wind-down), so there is no career page to monitor.. Winding-down institution; likely no regular vacancies.
 - id: procredit_bank
   name: ProCredit Bank AG
   country: Germany
