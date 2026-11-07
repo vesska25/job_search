@@ -5995,24 +5995,28 @@ banks:
     regions: [rhein_main, koeln, duesseldorf]
 - id: mercedes_benz_bank
   name: Mercedes-Benz Bank AG / Mercedes-Benz Mobility
-  display_name: Mercedes-Benz Bank
+  display_name: Mercedes-Benz
   country: Germany
   address_in_source_list: Stuttgart (user-requested; address not verified)
   jobs_url: https://jobs.mercedes-benz.com/
-  source_type: unknown
+  source_type: beesite
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: js_list
-  last_verified: null
-  notes: 'group.mercedes-benz.com/karriere answers 403 Access Denied (Akamai), not circumvented. The job portal
-    jobs.mercedes-benz.com (job URLs /de/<title>-<id>-mer<ref>, seen in web search) is a Nuxt single-page app (HTTP 200,
-    3 KB shell, no static links). robots.txt names https://jobs.mercedes-benz.com/sitemap.xml -> de-sitemap.xml,
-    en-sitemap.xml, enUS-sitemap.xml, hu-sitemap.xml (not opened; group-wide, thousands of Mercedes-Benz AG jobs, no
-    bank-only filter). Not enabled: would need a sitemap_jobs run with a bank filter.'
+  enabled: true
+  verification_status: needs_review
+  notes: 'jobs.mercedes-benz.com is a Nuxt single-page app, but its own scripts call the BeeSite search API https://jobs.api.mercedes-benz.com/search (found in the script config 2026-11-07, criteria format CriterionName / CriterionValue). Filters taken from the URL given by the user (TargetGroup.Code=4, CareerLevel.Code=13). The list is group-wide (all Mercedes-Benz jobs that match the two filters), so the region filter does the location check. group.mercedes-benz.com answers 403 and is not used. To be confirmed by a dry-run.'
   options:
-    regions: [rhein_main, koeln, duesseldorf]
+    api_url: https://jobs.api.mercedes-benz.com/search
+    language: DE
+    page_size: 50
+    criteria:
+    - CriterionName: TargetGroup.Code
+      CriterionValue: ['4']
+    - CriterionName: CareerLevel.Code
+      CriterionValue: ['13']
+    max_pages: 30
+    regions: [stuttgart, mannheim, rhein_main, koeln, duesseldorf]
 - id: bausparkasse_schwaebisch_hall
   name: Bausparkasse Schwäbisch Hall AG
   display_name: Bausparkasse Schwäbisch Hall
