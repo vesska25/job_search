@@ -7133,3 +7133,37 @@ banks:
     bank_code: '61050000'
     regions:
     - stuttgart
+- id: volksbank_stuttgart
+  name: Volksbank Stuttgart eG
+  display_name: Volksbank Stuttgart eG
+  country: Germany
+  address_in_source_list: 70173 Stuttgart
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: needs_review
+  notes: Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs). Vacancy URLs seen in search results on 2026-11-07 contain the bank slug volksbank-stuttgart-eg (examples Juniorbetreuer Firmenkunden, Trainee Privatkunden). To be confirmed by a dry-run.
+  options:
+    vr_slug: volksbank-stuttgart-eg
+    regions:
+    - stuttgart
+- id: vr_bank_rhein_neckar
+  name: VR Bank Rhein-Neckar eG
+  display_name: VR Bank Rhein-Neckar eG
+  country: Germany
+  address_in_source_list: 68161 Mannheim
+  jobs_url: https://www.vr.de/karriere/jobs.html
+  source_type: vr_jobs
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: needs_review
+  notes: Job exchange of the Volksbanken Raiffeisenbanken (vr.de/karriere/jobs). Vacancy URLs seen in search results on 2026-11-07 contain the bank slug vr-bank-rhein-neckar-eg (examples Abteilungsleiter Wertpapiere Treasury, Berater Mittelstand, Filialleitung). To be confirmed by a dry-run.
+  options:
+    vr_slug: vr-bank-rhein-neckar-eg
+    regions:
+    - mannheim
