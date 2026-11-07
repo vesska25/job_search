@@ -7167,3 +7167,44 @@ banks:
     vr_slug: vr-bank-rhein-neckar-eg
     regions:
     - mannheim
+- id: sparda_bank_baden_wuerttemberg
+  name: Sparda-Bank Baden-Württemberg eG
+  display_name: Sparda-Bank Baden-Württemberg
+  country: Germany
+  address_in_source_list: 70174 Stuttgart
+  jobs_url: https://sparda-bw.stellen.center/
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: needs_review
+  notes: stellen.center career portal (same platform as PSD Bank West), link found in the bank flyer and confirmed by probe 2026-11-07. Server-rendered cards with sections Kundenberater, Fachkraefte und Spezialisten, Fuehrungskraefte (example Filialleiter Schwaebisch Gmuend); vacancy links look like /P4ELUTJBD/filialleiter-schwabisch-gmund-mwd; the place of work is in a badge (Einsatzort). Region filter keeps Stuttgart area only. To be confirmed by a dry-run.
+  options:
+    selectors:
+      item: div.card.job
+      title: h3.card-title a
+      link: h3.card-title a
+      location: div.badge-job:has(i.fa-location-dot)
+    regions:
+    - stuttgart
+- id: volksbank_kurpfalz
+  name: Volksbank Kurpfalz eG
+  display_name: Volksbank Kurpfalz
+  country: Germany
+  address_in_source_list: 69115 Heidelberg
+  jobs_url: https://volksbank-kurpfalz.helixjobs.com/_/joblist
+  source_type: custom_html
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: needs_review
+  notes: Helix Jobs vacancy list. The old check-in board vr.mein-check-in.de/volksbank-kurpfalz says that the job board moved to volksbank-kurpfalz.helixjobs.com (probe 2026-11-07). The list is server-rendered with h3 titles (examples Leiter Intensivkundenbetreuung, Betreuer Firmenkunden Standort Heidelberg). Same layout as Wiesbadener Volksbank. No location in the card, the bank works in the Heidelberg and Weinheim area, so unknown locations are accepted. To be confirmed by a dry-run.
+  options:
+    selectors:
+      item: a[href*="/_/jobad?prj="]
+      title: h3
+    accept_unknown_location: true
+    regions:
+    - mannheim
