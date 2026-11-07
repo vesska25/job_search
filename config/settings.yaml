@@ -346,6 +346,10 @@ location:
       [Köln, Cologne, Leverkusen, Bergisch Gladbach, Bonn, Brühl, Hürth, Frechen, Pulheim, Dormagen, Wesseling, Erftstadt, Kerpen,
        Bergheim, Troisdorf, Siegburg, Sankt Augustin, Bornheim, Alfter, Niederkassel, Lohmar, Rösrath, Overath, Leichlingen,
        Burscheid, Langenfeld, Monheim, Kürten, Odenthal, Bedburg, Elsdorf, Hennef]
+    duesseldorf:
+      [Düsseldorf, Duesseldorf, Neuss, Meerbusch, Ratingen, Hilden, Erkrath, Mettmann, Haan, Kaarst, Korschenbroich, Willich,
+       Krefeld, Mönchengladbach, Grevenbroich, Dormagen, Langenfeld, Monheim, Leverkusen, Solingen, Wuppertal, Velbert,
+       Heiligenhaus, Wülfrath, Duisburg, Mülheim an der Ruhr, Essen, Kempen, Tönisvorst, Viersen, Jüchen]
   foreign_locations:
     [Amsterdam, London, Paris, Luxembourg, Luxemburg, Brussels, Brüssel, Zurich, Zürich, Vienna, Wien, Warsaw,
      Warschau, Madrid, Barcelona, Milan, Mailand, Rome, Dublin, Prague, Budapest, Stockholm, Copenhagen,
