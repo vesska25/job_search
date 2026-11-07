@@ -7014,3 +7014,20 @@ banks:
     - rhein_main
     - koeln
     - duesseldorf
+- id: sparkasse_rhein_neckar_nord
+  name: Sparkasse Rhein Neckar Nord
+  display_name: Sparkasse Rhein Neckar Nord (Mannheim)
+  country: Germany
+  address_in_source_list: 68161 Mannheim
+  jobs_url: https://www.sparkasse.de/jobboerse/sparkasse-rhein-neckar-nord.html
+  source_type: sparkasse_jobmarket
+  germany_only: true
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: needs_review
+  notes: Sparkassen job exchange (JSON API filtered by bankCode 67050505). Probe 2026-11-07 confirmed client name Sparkasse Rhein Neckar Nord with about 20 vacancies (for example Kreditanalyst, Individualkundenberater). Same adapter as Kreissparkasse Duesseldorf. To be confirmed by a dry-run.
+  options:
+    bank_code: '67050505'
+    regions:
+    - mannheim
