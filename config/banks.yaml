@@ -6004,8 +6004,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: needs_review
-  notes: 'jobs.mercedes-benz.com is a Nuxt single-page app, but its own scripts call the BeeSite search API https://jobs.api.mercedes-benz.com/search (found in the script config 2026-11-07, criteria format CriterionName / CriterionValue). Filters taken from the URL given by the user (TargetGroup.Code=4, CareerLevel.Code=13). The list is group-wide (all Mercedes-Benz jobs that match the two filters), so the region filter does the location check. group.mercedes-benz.com answers 403 and is not used. To be confirmed by a dry-run.'
+  verification_status: ok
+  last_verified: 2026-11-07
+  notes: 'jobs.mercedes-benz.com is a Nuxt single-page app, but its own scripts call the BeeSite search API https://jobs.api.mercedes-benz.com/search (found in the script config 2026-11-07, criteria format CriterionName / CriterionValue). Filters taken from the URL given by the user (TargetGroup.Code=4, CareerLevel.Code=13). The list is group-wide (all Mercedes-Benz jobs that match the two filters), so the region filter does the location check. group.mercedes-benz.com answers 403 and is not used. Dry-run 2026-11-07 ok (GET works, 711 vacancies read, 48 in the configured regions, 3 relevant, 1 new match Project Lead Internationalization Digitale Extras in Stuttgart).'
   options:
     api_url: https://jobs.api.mercedes-benz.com/search
     language: DE
