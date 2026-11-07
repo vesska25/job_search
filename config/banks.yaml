@@ -5655,8 +5655,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: needs_review
-  notes: 'Official career site (www.l-bank.info links to /karriere/jobs). Server-rendered cards li.m-masonry-item--job with the title in h3, the city in the Standort block (Karlsruhe or Stuttgart) and the link in the button a.a-button (href https://www.l-bank.info/karriere/jobs/<slug>-<id>.html). Probe 2026-11-07 showed 16 vacancies. The first run read the button text Zur Jobbeschreibung as the title, so explicit selectors are used now. To be confirmed by a dry-run.'
+  verification_status: ok
+  last_verified: 2026-11-07
+  notes: 'Official career site (www.l-bank.info links to /karriere/jobs). Server-rendered cards li.m-masonry-item--job with the title in h3, the city in the Standort block (Karlsruhe or Stuttgart) and the link in the button a.a-button (href https://www.l-bank.info/karriere/jobs/<slug>-<id>.html). Probe 2026-11-07 showed 16 vacancies. The first run read the button text Zur Jobbeschreibung as the title, so explicit selectors are used now. Dry-run 2026-11-07 ok (16 vacancies with correct titles and Karlsruhe locations, 0 leadership matches: only Referent, Praktikant, Werkstudent and similar).'
   options:
     selectors:
       item: li.m-masonry-item--job
