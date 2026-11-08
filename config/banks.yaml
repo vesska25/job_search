@@ -5184,11 +5184,13 @@ banks:
   location_filter: []
   enabled: true
   verification_status: needs_review
-  notes: 'Official career site careers.fiserv.com (Phenom) embeds the vacancies as JSON, and every applyUrl points to the Workday site fiserv.wd5.myworkdayjobs.com/EXT (probe 2026-11-07 of the search page given by the user, Bad Homburg vor der Hohe, examples Deputy AML Officer, Senior AML Officer). The Workday adapter reads the Workday API directly with search text Germany, and the region filter keeps only the configured areas. To be confirmed by a dry-run.'
+  notes: 'Official career site careers.fiserv.com (Phenom) embeds the vacancies as JSON, and every applyUrl points to the Workday site fiserv.wd5.myworkdayjobs.com/EXT (probe 2026-11-07 of the search page given by the user, Bad Homburg vor der Hohe, examples Deputy AML Officer, Senior AML Officer). The Workday adapter reads the Workday API directly. A first dry-run with search text Germany found only 5 vacancies (Frankfurt and Nuremberg) and missed Bad Homburg, so the country facet Germany (same id as in the Fidelity entry) is used instead; the region filter keeps only the configured areas. To be confirmed by a dry-run.'
   options:
     tenant: fiserv
     site: EXT
-    search_text: Germany
+    applied_facets:
+      locationCountry:
+      - dcc5b7608d8644b3a93716604e78e995
     max_pages: 25
     regions: [rhein_main, koeln, duesseldorf, stuttgart, mannheim]
 - id: finanz_informatik_solutions_plus
