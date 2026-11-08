@@ -5174,18 +5174,23 @@ banks:
     no static job links (embedded external ATS); no Germany-specific page.
 - id: telecash_fiserv
   name: TeleCash / Fiserv
-  display_name: TeleCash
+  display_name: Fiserv
   country: Germany
   address_in_source_list: Bad Homburg (from the user's list of banking-related organisations; address not verified)
-  jobs_url: https://www.careers.fiserv.com
-  source_type: unknown
+  jobs_url: https://fiserv.wd5.myworkdayjobs.com/EXT
+  source_type: workday
   germany_only: false
   germany_filter: ''
   location_filter: []
-  enabled: false
-  verification_status: js_list
-  last_verified: null
-  notes: Fiserv global portal, no TeleCash-specific page; JS list. Not connected.
+  enabled: true
+  verification_status: needs_review
+  notes: 'Official career site careers.fiserv.com (Phenom) embeds the vacancies as JSON, and every applyUrl points to the Workday site fiserv.wd5.myworkdayjobs.com/EXT (probe 2026-11-07 of the search page given by the user, Bad Homburg vor der Hohe, examples Deputy AML Officer, Senior AML Officer). The Workday adapter reads the Workday API directly with search text Germany, and the region filter keeps only the configured areas. To be confirmed by a dry-run.'
+  options:
+    tenant: fiserv
+    site: EXT
+    search_text: Germany
+    max_pages: 25
+    regions: [rhein_main, koeln, duesseldorf, stuttgart, mannheim]
 - id: finanz_informatik_solutions_plus
   name: Finanz Informatik Solutions Plus
   display_name: FI Solutions Plus
