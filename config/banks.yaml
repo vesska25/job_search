@@ -899,8 +899,9 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: needs_review
-  notes: 'Own career portal (Next.js). The vacancy list shows only the first page (about 16 of about 160 jobs) in the HTML and the paging runs in the browser, so the old list reading missed most vacancies. sitemap.xml lists every vacancy page (karriere.apobank.de/job-suche/<id>, probe 2026-11-09). Each page is opened and the title is read from og:title (no JSON-LD, no city on the page), the suffix | apoBank is stripped. No city means no region filter, as before (the bank is national). To be confirmed by a dry-run.'
+  verification_status: ok
+  last_verified: '2026-11-09'
+  notes: 'Own career portal (Next.js). The vacancy list shows only the first page (about 16 of about 160 jobs) in the HTML and the paging runs in the browser, so the old list reading missed most vacancies. sitemap.xml lists every vacancy page (karriere.apobank.de/job-suche/<id>, probe 2026-11-09). Each page is opened and the title is read from og:title (no JSON-LD, no city on the page), the suffix | apoBank is stripped. No city means no region filter, as before (the bank is national). Dry-run 2026-11-09: 144 vacancies read, titles clean, 1 match.'
   options:
     sitemap_url: https://karriere.apobank.de/sitemap.xml
     url_regex: /job-suche/\d+$
