@@ -11,6 +11,7 @@ banks.yaml options:
   detail: true                                                    (false: build the title from the URL slug, no page requests)
   slug_strip_regex: "^\\d+-|-m-w-d$"                              (with detail false: removed from the slug before the title is built, e.g. a leading id)
   location_regex: "\\bin ([A-ZÄÖÜ][^()]*)$"                       (applied to the title when the page has no location)
+  title_strip_regex: "\\s*\\|\\s*apoBank\\s*$"                    (removed from every title, e.g. a site-name suffix 'Titel | apoBank')
   industry_filter: {selector: "span.meta-category", text_regex: "Banks"}
                                                                   (keep a page only if an element matching the CSS selector has
                                                                   text matching the regex; pages without such an element are dropped)
@@ -102,6 +103,11 @@ class SitemapJobsScraper(BaseScraper):
         return jobs
 
     @staticmethod
+    def strip_title(title: str, bank: Bank) -> str:
+        rx = bank.options.get("title_strip_regex")
+        return re.sub(rx, "", title).strip() if rx else title
+
+    @staticmethod
     def industry_ok(html: str, bank: Bank) -> bool:
         """True when no industry_filter is set, or an element matching `selector` has text matching `text_regex`
         (ifp: <span class="meta-category">Region West, Banks and building societies</span>)."""
@@ -120,12 +126,13 @@ class SitemapJobsScraper(BaseScraper):
             job = ld[0]
             job.url, job.source_job_id, job.source_type = url, slug_of(url), self.source_type
             job.title = clean_title(job.title) or job.title
+            job.title = self.strip_title(job.title, bank)
             return job
         h1 = soup.find("h1")
         og = soup.find("meta", attrs={"property": "og:title"})
         title = (h1.get_text(" ", strip=True) if h1 else "") or (og.get("content", "").strip() if og else "") \
             or (soup.title.get_text(" ", strip=True) if soup.title else "")
-        title = clean_title(title)
+        title = self.strip_title(clean_title(title), bank)
         if not title:
             return None
         location = ""

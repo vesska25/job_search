@@ -753,3 +753,21 @@ def test_jsf_loadmore_clicks_until_the_link_is_gone(bank):
 def test_jsf_loadmore_without_link_is_a_plain_page(bank):
     from src.scrapers.jsf_loadmore import JsfLoadMoreScraper
     assert JsfLoadMoreScraper(None).more_request("<html><body>nothing</body></html>", bank) is None
+
+
+def test_sitemap_jobs_title_strip_regex_removes_site_suffix(bank):
+    from src.scrapers.sitemap_jobs import SitemapJobsScraper
+    sm = ('<urlset><url><loc>http://karriere.example.bank/job-suche/111</loc></url>'
+          '<url><loc>http://karriere.example.bank/job-suche/222</loc></url>'
+          '<url><loc>http://karriere.example.bank/impressum</loc></url></urlset>')
+    jsonld = ('<script type="application/ld+json">{"@type":"JobPosting","title":"Head of Controlling (m/w/d) | ExampleBank",'
+              '"jobLocation":{"address":{"addressLocality":"Köln"}},"url":"x"}</script>')
+    bank.options = {"sitemap_url": "https://karriere.example.bank/sitemap.xml", "url_regex": r"/job-suche/\d+$",
+                    "title_strip_regex": r"\s*\|\s*ExampleBank\s*$", "max_pages": 10}
+    http = _sm_http({"https://karriere.example.bank/sitemap.xml": sm,
+                     "http://karriere.example.bank/job-suche/111": f"<html><head><title>x</title></head>{jsonld}</html>",
+                     "http://karriere.example.bank/job-suche/222":
+                         '<html><head><meta property="og:title" content="Kreditanalyst Firmenkunden (m/w/d) | ExampleBank"/></head></html>'})
+    jobs = SitemapJobsScraper(http, max_pages=10).fetch_jobs(bank)
+    assert [(j.title, j.source_job_id) for j in jobs] == [("Head of Controlling (m/w/d)", "111"),
+                                                           ("Kreditanalyst Firmenkunden (m/w/d)", "222")]

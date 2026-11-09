@@ -890,25 +890,22 @@ banks:
   notes: No official Germany-specific vacancy source verified
 - id: deutsche_apotheker_und_arztebank_eg
   name: DEUTSCHE APOTHEKER- UND ÄRZTEBANK EG
+  display_name: apoBank
   country: Germany
   address_in_source_list: 40547 Düsseldorf
   jobs_url: https://karriere.apobank.de/job-suche
-  source_type: custom_html
-  germany_only: false
+  source_type: sitemap_jobs
+  germany_only: true
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: ok
-  last_verified: '2026-10-04'
-  notes: Own career portal (Next.js, robots.txt allows). Only the first page (~16 most recent of ~160 jobs) is present in
-    the HTML; ?page=N returns the same page, so the list is read without pagination. Enough to catch NEW jobs weekly unless
-    >16 appear in one week. Germany filter is client-side on city.
+  verification_status: needs_review
+  notes: 'Own career portal (Next.js). The vacancy list shows only the first page (about 16 of about 160 jobs) in the HTML and the paging runs in the browser, so the old list reading missed most vacancies. sitemap.xml lists every vacancy page (karriere.apobank.de/job-suche/<id>, probe 2026-11-09). Each page is opened and the title is read from og:title (no JSON-LD, no city on the page), the suffix | apoBank is stripped. No city means no region filter, as before (the bank is national). To be confirmed by a dry-run.'
   options:
-    selectors:
-      item: a[href^="/job-suche/"]
-      title: h5
-      location: p
-  display_name: apoBank
+    sitemap_url: https://karriere.apobank.de/sitemap.xml
+    url_regex: /job-suche/\d+$
+    title_strip_regex: \s*\|\s*apoBank\s*$
+    max_pages: 300
 - id: deutsche_bank
   name: DEUTSCHE BANK AKTIENGESELLSCHAFT
   display_name: Deutsche Bank
