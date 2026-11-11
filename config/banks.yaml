@@ -831,7 +831,7 @@ banks:
     by a full run.
   display_name: Deutsche Börse Group
   options:
-    link_pattern: offer-redirect
+    link_pattern: 'offer-redirect|/jobs/[^/?#]+/[0-9a-f-]{36}'
     detail_location:
       regex: \(([^()]*)\)\s*›
 - id: cooperatieve_rabobank_u_a_zweigniederlassung_fra
@@ -6037,9 +6037,9 @@ banks:
   last_verified: null
   notes: 'schwaebisch-hall.de/karriere links to karriere.schwaebisch-hall.de (HTTP 200, 400 KB, server-rendered React) with static vacancy cards <a href="/de/job/<title>-Schwaebisch-Hall/<id>"> whose title sits in div[data-slot=item-title] (e.g. "Teamleiter (m/w/d) Hard- und Software-Service", ids ~7182-7229). The cards show only job field and entry level, NO city; the place appears only as suffix of the URL slug. The Frankfurt/Koeln filter therefore cannot be applied with the current adapter (accept_unknown_location would let all Schwäbisch Hall jobs through). An older SuccessFactors site jobs.schwaebisch-hall.de and d.vinci schwaebisch-hall.dvinci-hr.com were also linked. Enable when a location can be derived (e.g. location_regex on the slug). Dry-run 2026-10-05: 20 vacancies read (Schwaebisch Hall area, 0 in the Frankfurt/Koeln areas).'
   options:
-    link_pattern: "/de/job/[^/?#]+/\\d+"
+    link_pattern: "/job/[^/?#]+/\\d+"
     selectors:
-      item: "a[href^='/de/job/']"
+      item: "a[href*='/job/']"
       title: "div[data-slot='item-title']"
     regions: [rhein_main, koeln, duesseldorf]
 - id: wuestenrot_bhw_bausparkasse
