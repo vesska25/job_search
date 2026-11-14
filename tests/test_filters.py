@@ -24,6 +24,7 @@ from tests.conftest import make_job
     ("Head of Expert Network", "strong"),               # soft exclusion overridden by leadership
     ("Senior Manager Regulatory Reporting", "ambiguous"),
     ("Anleitung Kreditprozesse", "none"),               # compound false friend
+    ("Personalentwickler & Veränderungsbegleiter (m/w/d)", "none"),   # "begleiter" ends in "leiter"
     ("Projektleiter Regulatory Change", "ambiguous"),
     ("Senior Accountant", "none"),
 ])

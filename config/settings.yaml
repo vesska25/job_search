@@ -41,7 +41,7 @@ filters:
   # German compounds: these also match as the END of a longer word (e.g. "Risikobereichsleiter").
   compound_suffix_keywords: [Leiter, Leiterin, Leitung, Direktor, Direktorin, Gruppenleiter, Teamleiter]
   # ...except for these words (false friends / project roles that are not people leadership).
-  compound_exclusions: [Anleitung, Einleitung, Ableitung, Projektleiter, Projektleiterin, Projektleitung, Produktleiter]
+  compound_exclusions: [Anleitung, Einleitung, Ableitung, Begleiter, Begleiterin, Projektleiter, Projektleiterin, Projektleitung, Produktleiter]
 
   # Titles that MAY be leadership. Accepted only if the description shows management
   # responsibility (see management_signals); otherwise treated as borderline (see borderline_policy).
