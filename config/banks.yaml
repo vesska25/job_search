@@ -7242,7 +7242,7 @@ banks:
   location_filter: []
   enabled: false
   verification_status: blocked_by_site
-  notes: Dayforce HCM candidate portal. The page is a JavaScript app; its list comes from POST https://jobs.dayforcehcm.com/api/geo/moneygram/jobposting/search (request and response shape taken from the portal, not yet confirmed by a dry-run). The whole company list is read (no server location filter) and cut by the regions below. Dry-run 2026-11-14: the API answers 403 Forbidden to our POST (robots.txt allows it, the server refuses the request), so the source is switched off instead of failing every run. Retry only if Dayforce publishes an open endpoint or a GET list.
+  notes: Dayforce HCM candidate portal. The page is a JavaScript app; its list comes from POST https://jobs.dayforcehcm.com/api/geo/moneygram/jobposting/search (request and response shape taken from the portal, not yet confirmed by a dry-run). The whole company list is read (no server location filter) and cut by the regions below. Dry-run 2026-11-14 showed that the API answers 403 Forbidden to our POST (robots.txt allows it, the server refuses the request), so the source is switched off instead of failing every run. Retry only if Dayforce publishes an open endpoint or a GET list.
   options:
     method: POST
     api_url: https://jobs.dayforcehcm.com/api/geo/moneygram/jobposting/search
