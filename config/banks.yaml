@@ -7230,3 +7230,45 @@ banks:
     accept_unknown_location: true
     regions:
     - mannheim
+- id: moneygram
+  name: MoneyGram International
+  display_name: MoneyGram
+  country: Germany
+  address_in_source_list: Frankfurt am Main (user-requested)
+  jobs_url: https://jobs.dayforcehcm.com/en-US/moneygram/CANDIDATEPORTAL
+  source_type: custom_api
+  germany_only: false
+  germany_filter: ''
+  location_filter: []
+  enabled: true
+  verification_status: needs_review
+  notes: Dayforce HCM candidate portal. The page is a JavaScript app; its list comes from POST https://jobs.dayforcehcm.com/api/geo/moneygram/jobposting/search (request and response shape taken from the portal, not yet confirmed by a dry-run). The whole company list is read (no server location filter) and cut by the regions below. To be confirmed by a dry-run.
+  options:
+    method: POST
+    api_url: https://jobs.dayforcehcm.com/api/geo/moneygram/jobposting/search
+    json_body:
+      clientNamespace: moneygram
+      jobBoardCode: CANDIDATEPORTAL
+      cultureCode: en-US
+      distanceUnit: 0
+      keywords: ''
+    items_path: jobPostings
+    fields:
+      title: jobTitle
+      id: jobPostingId
+      location: postingLocations
+      date: postingStartTimestampUTC
+    url_template: https://jobs.dayforcehcm.com/en-US/moneygram/CANDIDATEPORTAL/jobs/{id}
+    pagination:
+      type: offset
+      param: paginationStart
+      size: 25
+      total_path: maxCount
+      in: json_body
+      max_pages: 30
+    regions:
+    - rhein_main
+    - koeln
+    - duesseldorf
+    - stuttgart
+    - mannheim
