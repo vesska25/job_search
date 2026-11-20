@@ -1,6 +1,7 @@
 from datetime import date
 
 import pytest
+import requests
 
 from src.notifications.telegram import EMPTY_TEXT, MAX_LEN, TelegramNotifier, format_digest, format_job, week_of
 from tests.conftest import make_job
@@ -91,3 +92,38 @@ def test_long_digest_is_split_into_labelled_parts_and_loses_no_vacancy():
     assert len(msgs) > 1 and all(f"Part {i}/{len(msgs)}" in m for i, m in enumerate(msgs, 1))
     assert sum(len(re.findall(r"^\d+\. ", m, re.M)) for m in msgs) == 43
     assert all(len(m) < 4096 for m in msgs)
+
+
+class FlakySession:
+    """Fails with the given outcomes in order (an exception instance or an HTTP status), then answers 200."""
+    def __init__(self, *outcomes):
+        self.outcomes, self.calls = list(outcomes), 0
+
+    def post(self, url, **kw):
+        self.calls += 1
+        o = self.outcomes.pop(0) if self.outcomes else 200
+        if isinstance(o, Exception):
+            raise o
+        return type("R", (), {"status_code": o, "text": "x"})()
+
+
+def test_send_retries_timeouts_and_server_errors():
+    s = FlakySession(requests.ReadTimeout("slow"), 502)
+    pauses = []
+    TelegramNotifier("T", "1", session=s, sleep=pauses.append).send("hi")
+    assert s.calls == 3 and pauses == [3, 10]
+
+
+def test_send_gives_up_without_leaking_the_token():
+    err = requests.ConnectionError("Max retries exceeded with url: /botSECRET/sendMessage")
+    s = FlakySession(err, err, err)
+    with pytest.raises(RuntimeError) as e:
+        TelegramNotifier("SECRET", "1", session=s, sleep=lambda _s: None).send("hi")
+    assert s.calls == 3 and "SECRET" not in str(e.value) and "ConnectionError" in str(e.value)
+
+
+def test_client_errors_are_not_retried():
+    s = FlakySession(400)
+    with pytest.raises(RuntimeError):
+        TelegramNotifier("T", "1", session=s, sleep=lambda _s: None).send("hi")
+    assert s.calls == 1

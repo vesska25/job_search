@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import html
+import time
 from datetime import date, timedelta
 from typing import Iterable
 
@@ -79,26 +80,47 @@ def _split(header: str, blocks: list[str]) -> list[str]:
 
 
 class TelegramNotifier:
-    def __init__(self, token: str, chat_id: str, session=None, timeout: float = 20):
+    RETRY_DELAYS = (3, 10)        # pauses between the 3 attempts of one request
+
+    def __init__(self, token: str, chat_id: str, session=None, timeout: float = 20, sleep=time.sleep):
         if not token or not chat_id:
             raise ValueError("TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID must be set")
-        self.token, self.chat_id, self.timeout = token, chat_id, timeout
+        self.token, self.chat_id, self.timeout, self._sleep = token, chat_id, timeout, sleep
         self.session = session or requests.Session()
 
+    def _post(self, method: str, timeout: float, **kwargs):
+        """POST to the Bot API; retries timeouts, connection errors, 429 and 5xx (api.telegram.org often times out
+        from CI runners). The URL contains the bot token, so errors never carry the request text."""
+        url = f"https://api.telegram.org/bot{self.token}/{method}"
+        attempts = len(self.RETRY_DELAYS) + 1
+        for attempt in range(attempts):
+            last = attempt == attempts - 1
+            try:
+                resp = self.session.post(url, timeout=timeout, **kwargs)
+            except (requests.Timeout, requests.ConnectionError) as exc:
+                if last:
+                    raise RuntimeError(f"Telegram request failed after {attempts} attempts: {type(exc).__name__}") from None
+                log.warning("Telegram %s: %s, retry %d/%d", method, type(exc).__name__, attempt + 1, attempts - 1)
+                self._sleep(self.RETRY_DELAYS[attempt])
+                continue
+            if resp.status_code in (429, 500, 502, 503, 504) and not last:
+                log.warning("Telegram %s: HTTP %s, retry %d/%d", method, resp.status_code, attempt + 1, attempts - 1)
+                self._sleep(self.RETRY_DELAYS[attempt])
+                continue
+            return resp
+
     def send(self, text: str) -> None:
-        resp = self.session.post(
-            f"https://api.telegram.org/bot{self.token}/sendMessage", timeout=self.timeout,
-            data={"chat_id": self.chat_id, "text": text, "parse_mode": "HTML",
-                  "disable_web_page_preview": "true"},
-        )
+        resp = self._post("sendMessage", self.timeout,
+                          data={"chat_id": self.chat_id, "text": text, "parse_mode": "HTML",
+                                "disable_web_page_preview": "true"})
         if resp.status_code != 200:
             # Never log the URL: it contains the bot token.
             raise RuntimeError(f"Telegram API error {resp.status_code}: {resp.text[:200]}")
 
     def send_document(self, filename: str, data: bytes, caption: str = "", mime: str = "text/html") -> None:
-        resp = self.session.post(
-            f"https://api.telegram.org/bot{self.token}/sendDocument", timeout=max(self.timeout, 60),
-            data={"chat_id": self.chat_id, "caption": caption[:1000]}, files={"document": (filename, data, mime)})
+        resp = self._post("sendDocument", max(self.timeout, 60),
+                          data={"chat_id": self.chat_id, "caption": caption[:1000]},
+                          files={"document": (filename, data, mime)})
         if resp.status_code != 200:
             raise RuntimeError(f"Telegram API error {resp.status_code}: {resp.text[:200]}")
 
