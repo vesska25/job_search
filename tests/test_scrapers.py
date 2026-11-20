@@ -837,3 +837,20 @@ def test_sitemap_jobs_dedupe_title_location_keeps_the_first_entry(bank):
                     "slug_location_regex": "^([^-]+)-", "dedupe_title_location": True}
     jobs = SitemapJobsScraper(_sm_http({"https://job.example.group/sm.xml": sm})).fetch_jobs(bank)
     assert [(j.location, j.source_job_id) for j in jobs] == [("Hilden", "1445585133"), ("Koeln", "1445585333")]
+
+
+def test_embedded_json_reads_json_after_a_marker_in_a_script(bank):
+    from src.scrapers.embedded_json import EmbeddedJsonScraper
+    html = ('<script>var hint = "eagerLoadRefineSearch: none";</script>'
+            '<script>phApp.ddo = {"a":1,"eagerLoadRefineSearch":{"status":200,"hits":1,"data":{"jobs":['
+            '{"jobId":"R-10404485","title":"Deputy Compliance Officer (m/w/d)","cityState":"Bad Homburg vor der Hohe",'
+            '"postedDate":"2026-10-26T00:00:00.000+0000"}]}}};</script>')
+    bank.options = {"json_after": '"eagerLoadRefineSearch":', "items_path": "data.jobs",
+                    "fields": {"title": "title", "id": "jobId", "location": "cityState", "date": "postedDate"},
+                    "url_template": "https://careers.example.com/us/en/job/{id}"}
+    jobs = EmbeddedJsonScraper(None).parse_page(html, bank)
+    assert [(j.title, j.location, j.url, j.published_date) for j in jobs] == [
+        ("Deputy Compliance Officer (m/w/d)", "Bad Homburg vor der Hohe",
+         "https://careers.example.com/us/en/job/R-10404485", "2026-10-26")]
+    with pytest.raises(ScraperError):
+        EmbeddedJsonScraper(None).parse_page("<html>no state here</html>", bank)
