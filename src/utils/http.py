@@ -49,7 +49,7 @@ class HttpClient:
         if session is None:
             self.session.verify = ca_bundle()
             retry = Retry(total=retries, backoff_factor=1.0, status_forcelist=(429, 500, 502, 503, 504),
-                          allowed_methods=("GET", "POST"), respect_retry_after_header=True)
+                          allowed_methods=("GET", "POST"), respect_retry_after_header=True, raise_on_status=False)
             adapter = HTTPAdapter(max_retries=retry)
             self.session.mount("https://", adapter)
             self.session.mount("http://", adapter)
@@ -67,6 +67,10 @@ class HttpClient:
             if resp.status_code == 200:
                 self._fix_encoding(resp)
                 rules = RobotsRules(resp.text, self.user_agent)
+            elif resp.status_code == 429:         # rate limited: not "no robots.txt", so stay away instead of hammering
+                log.warning("robots.txt for %s answered 429 Too Many Requests (Retry-After: %s); being conservative",
+                            origin, resp.headers.get("Retry-After", "not given"))
+                rules = RobotsRules(disallow_all=True)
             elif 400 <= resp.status_code < 500:
                 rules = None                      # no robots.txt -> everything allowed
             else:
