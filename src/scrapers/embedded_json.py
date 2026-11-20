@@ -11,6 +11,9 @@ banks.yaml options:
 Alternative for JSON that sits in a <script> as plain text (Phenom: ..."eagerLoadRefineSearch":{"hits":7,"data":{"jobs":[...]}}):
   json_after: '"eagerLoadRefineSearch":'        (the JSON value is parsed right after the first usable occurrence of this text;
                                                   replaces selector/attr, items_path is relative to that value, e.g. data.jobs)
+  page_param: from, page_size: 10, total_path: totalHits, max_pages: 10
+                                                (json_after only: the page is fetched again with &from=<offset> until total_path
+                                                 is reached; total_path is relative to the same JSON value)
 """
 from __future__ import annotations
 
@@ -19,7 +22,7 @@ import json
 from bs4 import BeautifulSoup
 
 from src.config import Bank
-from src.scrapers.base import ScraperError
+from src.scrapers.base import ScraperError, dig
 from src.scrapers.custom_api import CustomApiScraper
 
 
@@ -30,7 +33,20 @@ class EmbeddedJsonScraper(CustomApiScraper):
         o = bank.options
         if not (o.get("selector") or o.get("json_after")) or o.get("items_path") is None:
             raise ScraperError("embedded_json requires options.items_path and options.selector (or options.json_after)")
-        return self.parse_page(self.http.get(bank.jobs_url).text, bank)
+        if not (o.get("json_after") and o.get("page_param")):
+            return self.parse_page(self.http.get(bank.jobs_url).text, bank)
+        size, offset, jobs, seen = int(o.get("page_size", 10)), 0, [], set()
+        for _ in range(min(int(o.get("max_pages", 10)), self.max_pages or 10)):
+            sep = "&" if "?" in bank.jobs_url else "?"
+            data = self._json_after(self.http.get(f"{bank.jobs_url}{sep}{o['page_param']}={offset}").text, o["json_after"])
+            batch = [j for j in self.parse(data, bank) if j.job_id not in seen]
+            seen.update(j.job_id for j in batch)
+            jobs.extend(batch)
+            total = dig(data, o["total_path"], None) if o.get("total_path") else None
+            offset += size
+            if not batch or (total is not None and offset >= int(total)):
+                break
+        return jobs
 
     def parse_page(self, html: str, bank: Bank) -> list:
         o = bank.options

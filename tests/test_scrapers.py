@@ -854,3 +854,28 @@ def test_embedded_json_reads_json_after_a_marker_in_a_script(bank):
          "https://careers.example.com/us/en/job/R-10404485", "2026-10-26")]
     with pytest.raises(ScraperError):
         EmbeddedJsonScraper(None).parse_page("<html>no state here</html>", bank)
+
+
+def test_embedded_json_pages_through_json_after(bank):
+    from src.scrapers.embedded_json import EmbeddedJsonScraper
+
+    def page(ids):
+        jobs = ",".join('{"jobId":"%s","title":"Role %s","cityState":"Frankfurt"}' % (i, i) for i in ids)
+        return '<script>x={"eagerLoadRefineSearch":{"hits":%d,"totalHits":3,"data":{"jobs":[%s]}}}</script>' % (len(ids), jobs)
+
+    class Http:
+        calls = []
+
+        def get(self, url, **kw):
+            self.calls.append(url)
+            return type("R", (), {"text": page(["a", "b"]) if url.endswith("from=0") else page(["c"])})()
+
+    bank.jobs_url = "https://careers.example.com/search?qcountry=Germany&s=1"
+    bank.options = {"json_after": '"eagerLoadRefineSearch":', "items_path": "data.jobs", "page_param": "from",
+                    "page_size": 2, "total_path": "totalHits",
+                    "fields": {"title": "title", "id": "jobId", "location": "cityState"},
+                    "url_template": "https://careers.example.com/job/{id}"}
+    http = Http()
+    jobs = EmbeddedJsonScraper(http).fetch_jobs(bank)
+    assert [j.source_job_id for j in jobs] == ["a", "b", "c"]
+    assert [u.rsplit("&", 1)[-1] for u in http.calls] == ["from=0", "from=2"]

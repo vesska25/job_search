@@ -5175,19 +5175,24 @@ banks:
   display_name: Fiserv
   country: Germany
   address_in_source_list: Bad Homburg (from the user's list of banking-related organisations; address not verified)
-  jobs_url: https://fiserv.wd5.myworkdayjobs.com/EXT
-  source_type: workday
+  jobs_url: https://careers.fiserv.com/us/en/search-results?qcountry=Germany&s=1
+  source_type: embedded_json
   germany_only: false
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: ok
-  last_verified: 2026-11-08
-  notes: 'Official career site careers.fiserv.com (Phenom) embeds the vacancies as JSON, and every applyUrl points to the Workday site fiserv.wd5.myworkdayjobs.com/EXT (probe 2026-11-07 of the search page given by the user, Bad Homburg vor der Hohe, examples Deputy AML Officer, Senior AML Officer). The Workday adapter reads the Workday API directly. The whole site lists about 400 vacancies worldwide, so it is read in full without any server-side filter (a search text Germany missed Bad Homburg and the country facet is ignored by this site); the region filter keeps only the configured areas. Dry-run 2026-11-08 ok with 396 vacancies read and 13 in Germany (9 Bad Homburg, 3 Frankfurt, 1 more), none with a leadership match.'
+  verification_status: needs_review
+  last_verified: null
+  notes: 'Workday (fiserv.wd5.myworkdayjobs.com) answers 429 to the GitHub runners since 2026-11-13 (even for robots.txt), so the Workday adapter no longer works. The official career site careers.fiserv.com (Phenom) ships the search result as JSON inside the page (eagerLoadRefineSearch with hits/totalHits and data.jobs: jobId, title, cityState, postedDate, country). The search for qcountry=Germany answers 12 vacancies, 10 per page, so the page is read again with from=10 (probe 2026-11-20). Vacancy link: careers.fiserv.com/us/en/job/<jobId>. The region filter keeps Rhein-Main, Koeln, Duesseldorf, Stuttgart, Mannheim. To be confirmed by a dry-run.'
   options:
-    tenant: fiserv
-    site: EXT
-    max_pages: 25
+    json_after: '"eagerLoadRefineSearch":'
+    items_path: data.jobs
+    fields: {title: title, id: jobId, location: cityState, date: postedDate}
+    url_template: https://careers.fiserv.com/us/en/job/{id}
+    page_param: from
+    page_size: 10
+    total_path: totalHits
+    max_pages: 10
     regions: [rhein_main, koeln, duesseldorf, stuttgart, mannheim]
 - id: finanz_informatik_solutions_plus
   name: Finanz Informatik Solutions Plus
