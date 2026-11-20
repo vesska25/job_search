@@ -771,3 +771,39 @@ def test_sitemap_jobs_title_strip_regex_removes_site_suffix(bank):
     jobs = SitemapJobsScraper(http, max_pages=10).fetch_jobs(bank)
     assert [(j.title, j.source_job_id) for j in jobs] == [("Head of Controlling (m/w/d)", "111"),
                                                            ("Kreditanalyst Firmenkunden (m/w/d)", "222")]
+
+
+def _sm_http_with_network_errors(pages, broken):
+    import requests
+
+    class Http:
+        def get(self, url, **kw):
+            if url in broken:
+                raise requests.ConnectionError("Max retries exceeded")
+            return type("R", (), {"text": pages[url]})()
+    return Http()
+
+
+def test_sitemap_jobs_skips_a_page_that_hits_a_network_error(bank):
+    from src.scrapers.sitemap_jobs import SitemapJobsScraper
+    base = "https://jobs.example.bank/stellenangebote/"
+    bank.options = {"sitemap_url": "https://jobs.example.bank/sm.xml", "url_regex": "/stellenangebote/",
+                    "skip_slug": "^ausbildung", "max_pages": 50}
+    pages = {"https://jobs.example.bank/sm.xml": SM,
+             base + "senior-risikomanager-w-m-d/": "<html><h1>Senior Risikomanager (m/w/d)</h1></html>",
+             base + "abgelaufen-stelle/": "<html><h1>Leiter Treasury (m/w/d)</h1></html>"}
+    http = _sm_http_with_network_errors(pages, broken={base + "leiter-compliance-in-duesseldorf/"})
+    jobs = SitemapJobsScraper(http, max_pages=50).fetch_jobs(bank)
+    assert [j.source_job_id for j in jobs] == ["senior-risikomanager-w-m-d", "abgelaufen-stelle"]
+
+
+def test_sitemap_jobs_fails_when_every_page_hits_a_network_error(bank):
+    from src.scrapers.sitemap_jobs import SitemapJobsScraper
+    base = "https://jobs.example.bank/stellenangebote/"
+    bank.options = {"sitemap_url": "https://jobs.example.bank/sm.xml", "url_regex": "/stellenangebote/",
+                    "skip_slug": "^ausbildung", "max_pages": 50}
+    http = _sm_http_with_network_errors({"https://jobs.example.bank/sm.xml": SM},
+                                        broken={base + "senior-risikomanager-w-m-d/", base + "abgelaufen-stelle/",
+                                                base + "leiter-compliance-in-duesseldorf/"})
+    with pytest.raises(ScraperError, match="3 of 3"):
+        SitemapJobsScraper(http, max_pages=50).fetch_jobs(bank)

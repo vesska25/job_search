@@ -16,6 +16,9 @@ banks.yaml options:
                                                                   (keep a page only if an element matching the CSS selector has
                                                                   text matching the regex; pages without such an element are dropped)
   max_pages: 250                                                  (safety cap on page requests, via the usual max_pages option)
+
+A vacancy page that cannot be fetched (network error, 5xx, 429) is skipped, so one hiccup among ~150 pages does not
+drop the whole source; the source only fails when more than max(5, 10 %) of the pages fail.
 """
 from __future__ import annotations
 
@@ -29,6 +32,9 @@ from bs4 import BeautifulSoup
 from src.config import Bank
 from src.scrapers.base import BaseScraper, ScraperError
 from src.scrapers.generic_html import GenericHtmlScraper
+from src.utils.logging import get_logger
+
+log = get_logger("sitemap_jobs")
 
 LOC = re.compile(r"<loc>\s*([^<\s]+)\s*</loc>")
 
@@ -87,19 +93,29 @@ class SitemapJobsScraper(BaseScraper):
             return [self.make_job(bank, title=title_from_slug(strip.sub("", slug_of(u)) if strip else slug_of(u)), url=u,
                                   source_job_id=slug_of(u)) for u in urls]
         parser = GenericHtmlScraper(self.http)
-        jobs = []
+        jobs, failed = [], []
         for u in urls:
             try:
                 html = self.http.get(u).text
             except requests.HTTPError as exc:
                 if exc.response is not None and exc.response.status_code in (404, 410):
                     continue  # sitemap may still list expired vacancies
-                raise
+                failed.append((u, exc))
+                continue
+            except (requests.ConnectionError, requests.Timeout, requests.exceptions.RetryError) as exc:
+                failed.append((u, exc))
+                continue
             if not self.industry_ok(html, bank):
                 continue
             job = self.parse_page(html, u, bank, parser)
             if job:
                 jobs.append(job)
+        if failed:
+            if len(failed) > max(5, len(urls) // 10) or not jobs:
+                u, exc = failed[0]
+                raise ScraperError(f"{len(failed)} of {len(urls)} vacancy pages failed, first: {type(exc).__name__} {u}")
+            log.warning("%s: %d of %d vacancy pages skipped after errors (first: %s)",
+                        bank.display_name or bank.id, len(failed), len(urls), failed[0][0])
         return jobs
 
     @staticmethod
