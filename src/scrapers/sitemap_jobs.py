@@ -9,6 +9,8 @@ banks.yaml options:
   url_regex: "/stellenangebote/[^/]+/?$"                          (keep only matching URLs; default: all)
   skip_slug: "^(ausbildung|praktikum|student|werkstudent)"        (regex on the last path segment: pages never worth a request)
   detail: true                                                    (false: build the title from the URL slug, no page requests)
+  title_segment: -2                                               (with detail false: index of the path segment holding the title, default -1 = last; HDI: /job/<Title>/<id>/ -> -2)
+  slug_location_regex: "^(Frankfurt-am-Main|[^-]+)-"             (with detail false: the city is the front of the slug; group 1 becomes the location and is cut off the title)
   slug_strip_regex: "^\\d+-|-m-w-d$"                              (with detail false: removed from the slug before the title is built, e.g. a leading id)
   location_regex: "\\bin ([A-ZÄÖÜ][^()]*)$"                       (applied to the title when the page has no location)
   title_strip_regex: "\\s*\\|\\s*apoBank\\s*$"                    (removed from every title, e.g. a site-name suffix 'Titel | apoBank')
@@ -24,7 +26,7 @@ from __future__ import annotations
 
 import html as htmllib
 import re
-from urllib.parse import urlsplit
+from urllib.parse import unquote, urlsplit
 
 import requests
 from bs4 import BeautifulSoup
@@ -90,8 +92,20 @@ class SitemapJobsScraper(BaseScraper):
         urls = self.urls(bank)[: self.max_pages if self.max_pages else None]
         if not bank.options.get("detail", True):
             strip = re.compile(bank.options["slug_strip_regex"]) if bank.options.get("slug_strip_regex") else None
-            return [self.make_job(bank, title=title_from_slug(strip.sub("", slug_of(u)) if strip else slug_of(u)), url=u,
-                                  source_job_id=slug_of(u)) for u in urls]
+            title_seg = int(bank.options.get("title_segment", -1))
+            loc_rx = re.compile(bank.options["slug_location_regex"]) if bank.options.get("slug_location_regex") else None
+            out = []
+            for u in urls:
+                segs = [x for x in urlsplit(u).path.split("/") if x]
+                slug = unquote(segs[title_seg] if segs and -len(segs) <= title_seg < len(segs) else slug_of(u))
+                location = ""
+                if loc_rx and (m := loc_rx.match(slug)):          # city at the front of the slug: 'Koeln-Teamleiter-Risiko'
+                    location, slug = m.group(1).replace("-", " "), slug[m.end():]
+                if strip:
+                    slug = strip.sub("", slug)
+                out.append(self.make_job(bank, title=title_from_slug(slug), url=u, location=location,
+                                         source_job_id=slug_of(u)))
+            return out
         parser = GenericHtmlScraper(self.http)
         jobs, failed = [], []
         for u in urls:

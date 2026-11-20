@@ -807,3 +807,22 @@ def test_sitemap_jobs_fails_when_every_page_hits_a_network_error(bank):
                                                 base + "leiter-compliance-in-duesseldorf/"})
     with pytest.raises(ScraperError, match="3 of 3"):
         SitemapJobsScraper(http, max_pages=50).fetch_jobs(bank)
+
+
+def test_sitemap_jobs_slug_location_regex_takes_the_city_from_the_slug(bank):
+    from src.scrapers.sitemap_jobs import SitemapJobsScraper
+    sm = ("<urlset>"
+          "<url><loc>https://job.example.group/job/Hannover-AI-Solution-Engineer/1450352533/</loc></url>"
+          "<url><loc>https://job.example.group/job/K%C3%B6ln-Werkstudentin-Vertriebshotline/1456139033/</loc></url>"
+          "<url><loc>https://job.example.group/job/Cologne-Werkstudentin-Vertriebshotline/1456139133/</loc></url>"
+          "<url><loc>https://job.example.group/job/Frankfurt-am-Main-Teamleiter-Risiko-%28mwd%29/1456139233/</loc></url>"
+          "</urlset>")
+    bank.options = {"sitemap_url": "https://job.example.group/sitemap.xml", "url_regex": "/job/(?!Cologne-)",
+                    "detail": False, "title_segment": -2, "slug_location_regex": "^(Frankfurt-am-Main|[^-]+)-",
+                    "max_pages": 50}
+    jobs = SitemapJobsScraper(_sm_http({"https://job.example.group/sitemap.xml": sm})).fetch_jobs(bank)
+    assert [(j.title, j.location) for j in jobs] == [
+        ("Ai Solution Engineer", "Hannover"),
+        ("Werkstudentin Vertriebshotline", "Köln"),
+        ("Teamleiter Risiko (Mwd)", "Frankfurt am Main")]
+    assert jobs[1].url.endswith("/1456139033/") and jobs[1].source_job_id == "1456139033"
