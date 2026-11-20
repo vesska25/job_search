@@ -6711,15 +6711,16 @@ banks:
   germany_filter: ''
   location_filter: []
   enabled: true
-  verification_status: needs_review
-  last_verified: null
-  notes: 'The careers.hdi.group job board no longer pages on the server (page 2 answers Page 2 from 1, only 10 vacancies were read instead of about 140; probe 2026-11-20). The vacancies live on the SuccessFactors site job.hdi.group, whose sitemap https://job.hdi.group/sitemap.xml lists every vacancy as /job/<City>-<Title>/<id>/ (group wide, all Talanx companies). The sitemap is read without opening the vacancy pages: the city is the front of the slug and goes to the regions filter, the title is the rest. English duplicates (Cologne-...) are skipped because the German Köln-... entry exists. The search page and the CSRF service of job.hdi.group are not used (JavaScript, robots.txt). To be confirmed by a dry-run.'
+  verification_status: ok
+  last_verified: '2026-11-20'
+  notes: 'The careers.hdi.group job board no longer pages on the server (page 2 answers Page 2 from 1, only 10 vacancies were read instead of about 140; probe 2026-11-20). The vacancies live on the SuccessFactors site job.hdi.group, whose sitemap https://job.hdi.group/sitemap.xml lists every vacancy as /job/<City>-<Title>/<id>/ (group wide, all Talanx companies). The sitemap is read without opening the vacancy pages: the city is the front of the slug and goes to the regions filter, the title is the rest. English duplicates (Cologne-...) are skipped because the German Köln-... entry exists. The search page and the CSRF service of job.hdi.group are not used (JavaScript, robots.txt). Dry-run 2026-11-20 read 272 vacancies (87 in Germany, 2 matches), was 10 before. Entries with the same title and city (one per language) are merged.'
   options:
     sitemap_url: https://job.hdi.group/sitemap.xml
     url_regex: /job/(?!Cologne-)
     detail: false
     title_segment: -2
     slug_location_regex: ^(Frankfurt-am-Main|Bad-Homburg|[^-]+)-
+    dedupe_title_location: true
     max_pages: 600
     regions: [rhein_main, koeln, duesseldorf]
 - id: gen_re_koeln

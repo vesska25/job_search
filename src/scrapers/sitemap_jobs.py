@@ -10,6 +10,7 @@ banks.yaml options:
   skip_slug: "^(ausbildung|praktikum|student|werkstudent)"        (regex on the last path segment: pages never worth a request)
   detail: true                                                    (false: build the title from the URL slug, no page requests)
   title_segment: -2                                               (with detail false: index of the path segment holding the title, default -1 = last; HDI: /job/<Title>/<id>/ -> -2)
+  dedupe_title_location: true                                     (with detail false: keep one of several entries with the same title and city, e.g. a vacancy listed once per language)
   slug_location_regex: "^(Frankfurt-am-Main|[^-]+)-"             (with detail false: the city is the front of the slug; group 1 becomes the location and is cut off the title)
   slug_strip_regex: "^\\d+-|-m-w-d$"                              (with detail false: removed from the slug before the title is built, e.g. a leading id)
   location_regex: "\\bin ([A-ZÄÖÜ][^()]*)$"                       (applied to the title when the page has no location)
@@ -105,6 +106,8 @@ class SitemapJobsScraper(BaseScraper):
                     slug = strip.sub("", slug)
                 out.append(self.make_job(bank, title=title_from_slug(slug), url=u, location=location,
                                          source_job_id=slug_of(u)))
+            if bank.options.get("dedupe_title_location"):          # one vacancy published twice (one id per language)
+                out = list({(j.title.lower(), j.location.lower()): j for j in reversed(out)}.values())[::-1]
             return out
         parser = GenericHtmlScraper(self.http)
         jobs, failed = [], []

@@ -826,3 +826,14 @@ def test_sitemap_jobs_slug_location_regex_takes_the_city_from_the_slug(bank):
         ("Werkstudentin Vertriebshotline", "Köln"),
         ("Teamleiter Risiko (Mwd)", "Frankfurt am Main")]
     assert jobs[1].url.endswith("/1456139033/") and jobs[1].source_job_id == "1456139033"
+
+
+def test_sitemap_jobs_dedupe_title_location_keeps_the_first_entry(bank):
+    from src.scrapers.sitemap_jobs import SitemapJobsScraper
+    sm = ("<urlset><url><loc>https://job.example.group/job/Hilden-AI-Lead/1445585133/</loc></url>"
+          "<url><loc>https://job.example.group/job/Hilden-AI-Lead/1445585233/</loc></url>"
+          "<url><loc>https://job.example.group/job/Koeln-AI-Lead/1445585333/</loc></url></urlset>")
+    bank.options = {"sitemap_url": "https://job.example.group/sm.xml", "detail": False, "title_segment": -2,
+                    "slug_location_regex": "^([^-]+)-", "dedupe_title_location": True}
+    jobs = SitemapJobsScraper(_sm_http({"https://job.example.group/sm.xml": sm})).fetch_jobs(bank)
+    assert [(j.location, j.source_job_id) for j in jobs] == [("Hilden", "1445585133"), ("Koeln", "1445585333")]
