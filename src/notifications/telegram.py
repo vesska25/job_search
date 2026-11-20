@@ -80,9 +80,9 @@ def _split(header: str, blocks: list[str]) -> list[str]:
 
 
 class TelegramNotifier:
-    RETRY_DELAYS = (3, 10)        # pauses between the 3 attempts of one request
+    RETRY_DELAYS = (5, 15, 30)    # pauses between the 4 attempts of one request
 
-    def __init__(self, token: str, chat_id: str, session=None, timeout: float = 20, sleep=time.sleep):
+    def __init__(self, token: str, chat_id: str, session=None, timeout: float = 45, sleep=time.sleep):
         if not token or not chat_id:
             raise ValueError("TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID must be set")
         self.token, self.chat_id, self.timeout, self._sleep = token, chat_id, timeout, sleep

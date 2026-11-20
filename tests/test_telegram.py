@@ -111,15 +111,15 @@ def test_send_retries_timeouts_and_server_errors():
     s = FlakySession(requests.ReadTimeout("slow"), 502)
     pauses = []
     TelegramNotifier("T", "1", session=s, sleep=pauses.append).send("hi")
-    assert s.calls == 3 and pauses == [3, 10]
+    assert s.calls == 3 and pauses == [5, 15]
 
 
 def test_send_gives_up_without_leaking_the_token():
     err = requests.ConnectionError("Max retries exceeded with url: /botSECRET/sendMessage")
-    s = FlakySession(err, err, err)
+    s = FlakySession(err, err, err, err)
     with pytest.raises(RuntimeError) as e:
         TelegramNotifier("SECRET", "1", session=s, sleep=lambda _s: None).send("hi")
-    assert s.calls == 3 and "SECRET" not in str(e.value) and "ConnectionError" in str(e.value)
+    assert s.calls == 4 and "SECRET" not in str(e.value) and "ConnectionError" in str(e.value)
 
 
 def test_client_errors_are_not_retried():
