@@ -9,6 +9,7 @@ from tests.conftest import make_job
 
 @pytest.mark.parametrize("title,level", [
     ("Head of Regulatory Reporting", "strong"),
+    ("Deputy Outsourcing Officer Risk (m/w/d)", "strong"),   # Deputy counts as leadership
     ("Bereichsleiterin Risikocontrolling (m/w/d)", "strong"),
     ("Abteilungsleitung Gesamtbanksteuerung", "strong"),
     ("Teamleiter Treasury", "strong"),

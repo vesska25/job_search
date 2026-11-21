@@ -13,6 +13,7 @@ filters:
     - Team Lead
     - Team Leader
     - Lead
+    - Deputy        # Deputy Compliance Officer, Deputy Outsourcing Officer (added at the user's request, 2026-11-21)
     - Leiter
     - Leiterin
     - Leitung
