@@ -5175,7 +5175,7 @@ banks:
   display_name: Fiserv
   country: Germany
   address_in_source_list: Bad Homburg (from the user's list of banking-related organisations; address not verified)
-  jobs_url: https://careers.fiserv.com/us/en/search-results?qcountry=Germany&s=1
+  jobs_url: https://careers.fiserv.com/us/en/search-results?qcountry=Germany
   source_type: embedded_json
   germany_only: false
   germany_filter: ''
@@ -5183,7 +5183,7 @@ banks:
   enabled: true
   verification_status: needs_review
   last_verified: null
-  notes: 'Workday (fiserv.wd5.myworkdayjobs.com) answers 429 to the GitHub runners since 2026-11-13 (even for robots.txt), so the Workday adapter no longer works. The official career site careers.fiserv.com (Phenom) ships the search result as JSON inside the page (eagerLoadRefineSearch with hits/totalHits and data.jobs: jobId, title, cityState, postedDate, country). The search for qcountry=Germany answers 12 vacancies, 10 per page, so the page is read again with from=10 (probe 2026-11-20). Vacancy link: careers.fiserv.com/us/en/job/<jobId>. The region filter keeps Rhein-Main, Koeln, Duesseldorf, Stuttgart, Mannheim. To be confirmed by a dry-run.'
+  notes: 'Workday (fiserv.wd5.myworkdayjobs.com) answers 429 to the GitHub runners since 2026-11-13 (even for robots.txt), so the Workday adapter no longer works. The official career site careers.fiserv.com (Phenom) ships the search result as JSON inside the page (eagerLoadRefineSearch with hits/totalHits and data.jobs: jobId, title, cityState, postedDate, country). The search for qcountry=Germany answers 12 vacancies, 10 per page, so the page is read again with from=10 (probe 2026-11-20). Do NOT add s=1 to the address: with it the site ignores the country and returns all 400 worldwide vacancies (dry-run 2026-11-21). Vacancy link: careers.fiserv.com/us/en/job/<jobId>. The region filter keeps Rhein-Main, Koeln, Duesseldorf, Stuttgart, Mannheim. To be confirmed by a dry-run.'
   options:
     json_after: '"eagerLoadRefineSearch":'
     items_path: data.jobs
